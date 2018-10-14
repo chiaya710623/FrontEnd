@@ -12,6 +12,8 @@
 		function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!--//tags -->
 <link href="assets/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link rel="stylesheet" type="text/css" href="assets/css/jquery-ui.css">
+<link rel="stylesheet" href="assets/css/flexslider.css" type="text/css" media="screen" />
 <link href="assets/css/style.css" rel="stylesheet" type="text/css" media="all" />
 <link href="assets/css/font-awesome.css" rel="stylesheet">
 <link href="assets/css/easy-responsive-tabs.css" rel='stylesheet' type='text/css'/>
@@ -28,6 +30,26 @@
 <!-- js -->
 <script type="text/javascript" src="assets/js/jquery-2.1.4.min.js"></script>
 <!-- //js -->
+<script src="assets/js/responsiveslides.min.js"></script>
+				<script>
+						// You can also use "$(window).load(function() {"
+						$(function () {
+						 // Slideshow 4
+						$("#slider3").responsiveSlides({
+							auto: true,
+							pager: true,
+							nav: false,
+							speed: 500,
+							namespace: "callbacks",
+							before: function () {
+						$('.events').append("<li>before event fired.</li>");
+						},
+						after: function () {
+							$('.events').append("<li>after event fired.</li>");
+							}
+							});
+						});
+				</script>
 <script src="assets/js/modernizr.custom.js"></script>
 	<!-- Custom-JavaScript-File-Links -->
 	<!-- cart-js -->
@@ -69,6 +91,18 @@
 	});
 </script>
 <!-- //script for responsive tabs -->
+<!-- FlexSlider -->
+<script src="assets/js/jquery.flexslider.js"></script>
+						<script>
+						// Can also be used with $(document).ready()
+							$(window).load(function() {
+								$('.flexslider').flexslider({
+								animation: "slide",
+								controlNav: "thumbnails"
+								});
+							});
+						</script>
+					<!-- //FlexSlider-->
 <!-- stats -->
 	<script src="assets/js/jquery.waypoints.min.js"></script>
 	<script src="assets/js/jquery.countup.js"></script>
