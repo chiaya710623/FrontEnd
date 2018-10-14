@@ -11,4 +11,5 @@ export class ListComponent implements OnInit {
   constructor(private dataService: DataService) {}
 
   ngOnInit() {}
+  add_to_cart() {}
 }
