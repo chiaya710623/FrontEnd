@@ -7,8 +7,14 @@ import { DataService } from '../data.service';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
-  products = this.dataService.products;
   constructor(private dataService: DataService) {}
+
+  // search_list = ['', '', '', '', ''];
+
+  // search($search_list) {
+  //   this.dataService.search($search_list);
+  // }
+
 
   ngOnInit() {}
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/data.service';
+import { CartService } from 'src/app/cart.service';
 
 @Component({
   selector: 'app-list',
@@ -7,9 +8,17 @@ import { DataService } from 'src/app/data.service';
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
-  products = this.dataService.products;
-  constructor(private dataService: DataService) {}
+  constructor(
+    private dataService: DataService,
+    private dataservice: CartService
+  ) {}
 
   ngOnInit() {}
-  add_to_cart() {}
+  add_to_cart($id, $amout) {
+    // 把商品id跟數量加到cart的陣列裡去
+  }
+  get products() {
+    return this.dataService.products;
+  }
+
 }

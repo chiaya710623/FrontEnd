@@ -1,0 +1,15 @@
+.search_list {
+  align-self: center;
+  width: 100%;
+}
+.search_list tr {
+  height: 50px;
+}
+.search_list th {
+  text-align: end;
+  padding: 0px 20px 0px 25px;
+  width: 30%;
+}
+.search_list td {
+  width: 70%;
+}
