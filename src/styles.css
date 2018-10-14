@@ -1,1 +1,7 @@
-/* You can add global styles to this file, and also import other style files */
+.add_to_cart_button{
+    font-size: 16px;
+    padding: 10px 20px 10px 20px;
+    border-color: #68D6C1;
+    background-color: #68D6C1;
+    border-radius: 5%;
+    }
