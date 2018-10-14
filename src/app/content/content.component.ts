@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-content',
@@ -6,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./content.component.css']
 })
 export class ContentComponent implements OnInit {
-  amount = 0;
-  product_id = null;
-  constructor() {}
-  ngOnInit() {}
+  products = this.dataService.products;
+  id = 1;
+  constructor(
+    private route: ActivatedRoute,
+    private dataService: DataService
+  ) {}
+  ngOnInit() {
+    this.route.params.subscribe(data => {
+      console.log(data);
+      // 想辦法把data弄出去
+    });
+  }
   add_to_cart() {}
+
 }

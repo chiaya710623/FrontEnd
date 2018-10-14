@@ -41,14 +41,14 @@
       </div>
     </div>
     <div class="col-md-8 single-right-left simpleCart_shelfItem">
-      <h3>三隻小豬</h3>
-      <p><span class="item_price">$650</span> <del>- $900</del></p>
+      <h3>{{ products[id].name }}</h3>
+      <p><span class="item_price">${{ products[id].price }}</span> <del>- ${{ products[id].price *1.5 }}</del></p>
       <div style="padding: 0px 0px 0px 18px">
         <ul>
-          <li>作者：人</li>
-          <li>譯者：另一個人</li>
-          <li>出版社：一家公司</li>
-          <li>ISBN：9879879871234</li>
+          <li>作者：{{ products[id].author.name }}</li>
+          <li>譯者：{{ products[id].translator }}</li>
+          <li>出版社：{{ products[id].publisher }}</li>
+          <li>ISBN：{{ products[id].isbn }}</li>
         </ul>
       </div>
 
@@ -84,11 +84,8 @@
           <div class="tab1">
 
             <div class="single_page_agile_its_w3ls">
-              <h6>★經典兒童睡前故事★來自全世界的各國優秀畫家，繪製全新的精美插畫</h6>
-              <p class="w3ls_para">
-                　　1.世界童話系列共有十本，集結膾炙人口的經典童話故事，讓爸爸媽媽和孩子都能一起沉浸在美好的童話世界裡，令人回味無窮。
-                　　2.書籍規格採用高級精裝，方型尺寸攜帶方便，家裡的小寶貝值得擁有最美好的兒時回憶！內附CD，有聲書搭配內頁插畫，讓故事簡單易懂，童話更有溫度。
-              </p>
+              <h6>書籍介紹</h6>
+              <p class="w3ls_para">{{ products[id].description }}</p>
             </div>
           </div>
           <!--//tab_one-->
@@ -126,8 +123,8 @@
 
             <div class="single_page_agile_its_w3ls">
               <h6>作者介紹</h6>
-              <h3>人</h3>
-              <p class="w3ls_para">是個很優秀的朋友呢
+              <h3>{{ products[id].author.name }}</h3>
+              <p class="w3ls_para">{{ products[id].author.description }}
               </p>
             </div>
           </div>
