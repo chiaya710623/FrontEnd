@@ -51,22 +51,21 @@
           <li>ISBN：9879879871234</li>
         </ul>
       </div>
-      <div class="description">
-        <h5>Check delivery, payment options and charges at your location</h5>
-        <form action="#" method="post">
-          <input type="text" value="Enter pincode" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter pincode';}"
-            required="">
-          <input type="submit" value="Check">
-        </form>
-      </div>
-      
+
       <form action="">
-          <p><select name = "amount">
-              <option value ="1">1</option>
-              <option value ="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-            </select></p>
+        <div class="description">選擇商品數量：<select name="amount">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+
+
+          </select></div>
         <input type="button" class="add_to_cart_button" value="加入購物車" (click)="add_to_cart()">
       </form>
 
