@@ -19,7 +19,7 @@ const routes: Routes = [
         component: ProductsComponent
       },
       {
-        path: 'content',
+        path: 'products/:id',
         component: ContentComponent
       }
     ]

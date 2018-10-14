@@ -1,19 +1,17 @@
-
-
 <div class="col-md-4 product-men" *ngFor="let item of products;">
   <div class="men-pro-item simpleCart_shelfItem">
     <div class="men-thumb-item">
-      <img src="assets/images/m8.jpg" alt="" class="pro-image-front">
-      <img src="assets/images/m8.jpg" alt="" class="pro-image-back">
+      <img [src]="item.photo" alt="" class="pro-image-front">
+      <img [src]="item.photo" alt="" class="pro-image-back">
       <div class="men-cart-pro">
         <div class="inner-men-cart-pro">
-          <a [routerLink]="['/content']" class="link-product-add-cart">商品資訊</a>
+          <a [routerLink]="['/products/', item.id]"  class="link-product-add-cart">商品資訊</a>
         </div>
       </div>
 
     </div>
     <div class="item-info-product ">
-      <h4><a [routerLink]="['/content']">{{ item.name }}</a></h4>
+      <h4><a [routerLink]="['/products/', item.id]">{{ item.name }}</a></h4>
       <div class="info-product-price">
         <span class="item_price">${{ item.price}}</span>
         <del>${{ item.price * 1.5}}</del>
@@ -26,4 +24,4 @@
   </div>
 </div>
 
-  <div class="clearfix"></div>
+<div class="clearfix"></div>

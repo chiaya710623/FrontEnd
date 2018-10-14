@@ -21,7 +21,8 @@ export class DataService {
       price: 200,
       description: '就是一本很好看的書呀',
       createdAt: '2018-04-11T21:58:27.358Z',
-      updatedAt: '2018-05-11T21:58:27.358Z'
+      updatedAt: '2018-05-11T21:58:27.358Z',
+      photo: 'assets/images/m5.jpg'
     },
     {
       classification: '童書繪本',
@@ -37,7 +38,8 @@ export class DataService {
       price: 290,
       description: '瑪莉有隻小綿羊',
       createdAt: '2013-06-11T21:58:27.358Z',
-      updatedAt: '2018-05-14T21:58:27.358Z'
+      updatedAt: '2018-05-14T21:58:27.358Z',
+      photo: 'assets/images/m6.jpg'
     },
     {
       classification: '語言學習',
@@ -53,7 +55,8 @@ export class DataService {
       price: 380,
       description: '肚子餓的時候學日文的效果不太好呢',
       createdAt: '2013-05-11T21:58:27.358Z',
-      updatedAt: '2014-05-11T21:58:27.358Z'
+      updatedAt: '2014-05-11T21:58:27.358Z',
+      photo: 'assets/images/m7.jpg'
     },
     {
       classification: '文學叢書',
@@ -69,7 +72,8 @@ export class DataService {
       price: 1000,
       description: '人生就像一碗好喝的雞湯',
       createdAt: '2003-05-11T16:58:27.358Z',
-      updatedAt: '2007-12-11T21:58:27.358Z'
+      updatedAt: '2007-12-11T21:58:27.358Z',
+      photo: 'assets/images/m8.jpg'
     },
   ];
 }
