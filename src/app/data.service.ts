@@ -9,7 +9,7 @@ export class DataService {
   products = [
     {
       classification: '考試用書',
-      id: 1,
+      id: '1',
       isbn: '9783456782135',
       name: '三隻小豬',
       author: {
@@ -26,7 +26,7 @@ export class DataService {
     },
     {
       classification: '童書繪本',
-      id: 2,
+      id: '2',
       isbn: '9783456734635',
       name: '小綿羊',
       author: {
@@ -43,7 +43,7 @@ export class DataService {
     },
     {
       classification: '語言學習',
-      id: 3,
+      id: '3',
       isbn: '9233455782135',
       name: 'お腹がすいた',
       author: {
@@ -60,7 +60,7 @@ export class DataService {
     },
     {
       classification: '文學叢書',
-      id: 4,
+      id: '4',
       isbn: '9783456567135',
       name: '養生雞湯',
       author: {
@@ -77,7 +77,7 @@ export class DataService {
     },
     {
       classification: '考試用書',
-      id: 5,
+      id: '5',
       isbn: '9783456782135',
       name: '三隻小豬',
       author: {
@@ -94,7 +94,7 @@ export class DataService {
     },
     {
       classification: '童書繪本',
-      id: 6,
+      id: '6',
       isbn: '9783456734635',
       name: '天使平底鍋',
       author: {
@@ -111,7 +111,7 @@ export class DataService {
     },
     {
       classification: '語言學習',
-      id: 7,
+      id: '7',
       isbn: '9233455782135',
       name: '幸運數字七',
       author: {
@@ -128,7 +128,7 @@ export class DataService {
     },
     {
       classification: '文學叢書',
-      id: 8,
+      id: '8',
       isbn: '9783456567135',
       name: '養生雞湯',
       author: {
@@ -145,7 +145,7 @@ export class DataService {
     },
     {
       classification: '考試用書',
-      id: 9,
+      id: '9',
       isbn: '9232356782135',
       name: '天使的世界',
       author: {
@@ -162,7 +162,7 @@ export class DataService {
     },
     {
       classification: '童書繪本',
-      id: 10,
+      id: '10',
       isbn: '9783456567234',
       name: '小魚與小蝦',
       author: {

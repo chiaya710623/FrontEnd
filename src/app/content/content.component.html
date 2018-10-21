@@ -41,14 +41,14 @@
       </div>
     </div>
     <div class="col-md-8 single-right-left simpleCart_shelfItem">
-      <h3>{{ products[id].name }}</h3>
-      <p><span class="item_price">${{ products[id].price }}</span> <del>- ${{ products[id].price *1.5 }}</del></p>
+      <h3>{{ products[index].name }}</h3>
+      <p><span class="item_price">${{ products[index].price }}</span> <del>- ${{ products[index].price *1.5 }}</del></p>
       <div style="padding: 0px 0px 0px 18px">
         <ul>
-          <li>作者：{{ products[id].author.name }}</li>
-          <li>譯者：{{ products[id].translator }}</li>
-          <li>出版社：{{ products[id].publisher }}</li>
-          <li>ISBN：{{ products[id].isbn }}</li>
+          <li>作者：{{ products[index].author.name }}</li>
+          <li>譯者：{{ products[index].translator }}</li>
+          <li>出版社：{{ products[index].publisher }}</li>
+          <li>ISBN：{{ products[index].isbn }}</li>
         </ul>
       </div>
 

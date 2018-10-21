@@ -9,17 +9,24 @@ import { DataService } from '../data.service';
 })
 export class ContentComponent implements OnInit {
   products = this.dataService.products;
-  id = 1;
+  id = '1';
+  index = 0;
   constructor(
     private route: ActivatedRoute,
     private dataService: DataService
   ) {}
   ngOnInit() {
     this.route.params.subscribe(data => {
-      console.log(data);
-      // 想辦法把data弄出去
+      this.id = data.id;
+      for (let i = 0; i < this.products.length; i++) {
+        if (this.products[i].id === this.id) {
+          this.index = i;
+        }
+      }
+      console.log(this.id);
+      console.log(this.index);
     });
   }
-  add_to_cart() {}
 
+  add_to_cart() {}
 }
