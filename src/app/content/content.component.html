@@ -53,7 +53,7 @@
       </div>
 
       <form action="">
-        <div class="description">選擇商品數量：<select name="amount">
+        <div class="description">選擇商品數量：<select name="amount" [(ngModel)]="item_amount">
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -66,29 +66,40 @@
 
 
           </select></div>
-        <input type="button" class="function_button" value="加入購物車" (click)="add_to_cart()">
+        <input type="button" class="function_button" value="加入購物車" (click)="add_to_cart(id, item_amount)">
       </form>
 
     </div>
     <div class="clearfix"> </div>
-    <!-- /new_arrivals -->
+    <!--詳細資訊-->
     <div class="responsive_tabs_agileits">
       <div id="horizontalTab">
         <ul class="resp-tabs-list">
-          <li>Description</li>
-          <li>Reviews</li>
-          <li>Information</li>
+          <li>內容介紹</li>
+          <li>作者介紹</li>
+          <li>書籍評價</li>
         </ul>
         <div class="resp-tabs-container">
-          <!--/tab_one-->
+          <!--書籍介紹-->
           <div class="tab1">
 
             <div class="single_page_agile_its_w3ls">
               <h6>書籍介紹</h6>
-              <p class="w3ls_para">{{ products[id].description }}</p>
+              <p class="w3ls_para">{{ products[index].description }}</p>
             </div>
           </div>
-          <!--//tab_one-->
+          <!--//書籍介紹-->
+          <!--作者介紹 -->
+          <div class="tab3">
+              <div class="single_page_agile_its_w3ls">
+                <h6>作者介紹</h6>
+                <h3>{{ products[index].author.name }}</h3>
+                <p class="w3ls_para">{{ products[index].author.description }}
+                </p>
+              </div>
+            </div>
+            <!--//作者介紹 -->
+          <!--評價-->
           <div class="tab2">
 
             <div class="single_page_agile_its_w3ls">
@@ -119,19 +130,12 @@
 
             </div>
           </div>
-          <div class="tab3">
+          <!--//評價-->
 
-            <div class="single_page_agile_its_w3ls">
-              <h6>作者介紹</h6>
-              <h3>{{ products[id].author.name }}</h3>
-              <p class="w3ls_para">{{ products[id].author.description }}
-              </p>
-            </div>
-          </div>
         </div>
       </div>
     </div>
-    <!-- //new_arrivals -->
+    <!--//詳細資訊-->
     <!--/slider_owl-->
 
 

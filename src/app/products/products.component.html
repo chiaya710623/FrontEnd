@@ -147,7 +147,7 @@
                 <del>${{ item.price * 1.5}}</del>
               </div>
               <div>
-                <input type="button" class="function_button" value="加入購物車">
+                <input type="button" class="function_button" value="加入購物車" (click)="add_to_cart(item.id, 1)">
               </div>
 
             </div>

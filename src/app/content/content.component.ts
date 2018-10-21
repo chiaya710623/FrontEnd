@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../data.service';
+import { CartService } from '../cart.service';
 
 @Component({
   selector: 'app-content',
@@ -11,9 +12,11 @@ export class ContentComponent implements OnInit {
   products = this.dataService.products;
   id = '1';
   index = 0;
+  item_amount = 1;
   constructor(
     private route: ActivatedRoute,
-    private dataService: DataService
+    private dataService: DataService,
+    private cartService: CartService
   ) {}
   ngOnInit() {
     this.route.params.subscribe(data => {
@@ -23,10 +26,11 @@ export class ContentComponent implements OnInit {
           this.index = i;
         }
       }
-      console.log(this.id);
-      console.log(this.index);
     });
   }
 
-  add_to_cart() {}
+  add_to_cart(id, item_amount) {
+    this.cartService.add_to_cart(id, item_amount);
+    alert('已加入購物車');
+  }
 }
