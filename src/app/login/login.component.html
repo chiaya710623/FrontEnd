@@ -1,15 +1,14 @@
-<!-- 註冊 -->
+<!-- 登入 -->
+
     <!-- Modal content-->
-    <div class="modal-content" style="padding: 100px">
+    <div class="modal-content" style="padding: 100px;">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
       <div class="modal-body modal-body-sub_agile">
         <div class="col-md-8 modal_body_left modal_body_left1">
-          <h3 class="agileinfo_sign">Sign Up <span>Now</span></h3>
+          <h3 class="agileinfo_sign">Sign In <span>Now</span></h3>
           <form action="#" method="post">
-            <div class="styled-input agile-styled-input-top">
-              <input type="text" name="Name" required="" [(ngModel)] = "name">
-              <label>暱稱</label>
-              <span></span>
-            </div>
             <div class="styled-input">
               <input type="email" name="Email" required="" [(ngModel)] = "email">
               <label>Email</label>
@@ -17,16 +16,11 @@
             </div>
             <div class="styled-input">
               <input type="password" name="password" required="" [(ngModel)] = "password">
-              <label>密碼</label>
+              <label>Password</label>
               <span></span>
             </div>
-            <div class="styled-input">
-              <input type="password" name="Confirm Password" required="" [(ngModel)] = "confirm">
-              <label>確認密碼</label>
-              <span></span>
-            </div>
-            <input type="button" class="function_button" value="註冊"  (click)="submit(name,email,password,confirm)">
-            <ng-container *ngIf="password !== confirm">  密碼不一致</ng-container>
+
+            <input type="button" class="function_button" value="登入"  (click)="submit(email,password)">
           </form>
           <ul class="social-nav model-3d-0 footer-social w3_agile_social top_agile_third">
             <li><a href="#" class="facebook">
@@ -47,7 +41,7 @@
               </a></li>
           </ul>
           <div class="clearfix"></div>
-          <p><a href="#">By clicking register, I agree to your terms</a></p>
+          <p><a href="#" data-toggle="modal" data-target="#myModal2"> Don't have an account?</a></p>
 
         </div>
         <div class="col-md-4 modal_body_right modal_body_right1">
@@ -57,4 +51,5 @@
       </div>
     </div>
     <!-- //Modal content-->
-<!-- //註冊 -->
+
+<!-- //登入 -->
