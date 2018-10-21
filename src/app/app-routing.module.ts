@@ -7,6 +7,7 @@ import { ContentComponent } from './content/content.component';
 import { AboutComponent } from './about/about.component';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
+import { ContactComponent } from './contact/contact.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,10 @@ const routes: Routes = [
       {
         path: 'products/:id',
         component: ContentComponent
+      },
+      {
+        path: 'contact',
+        component: ContactComponent
       }
     ]
   }

@@ -13,6 +13,7 @@ import { NgModule } from '@angular/core';
 import { AboutComponent } from './about/about.component';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
+import { ContactComponent } from './contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { LoginComponent } from './login/login.component';
     ContentComponent,
     AboutComponent,
     SignupComponent,
-    LoginComponent
+    LoginComponent,
+    ContactComponent
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
