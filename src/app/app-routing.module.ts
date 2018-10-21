@@ -5,6 +5,7 @@ import { MasterComponent } from './master/master.component';
 import { ProductsComponent } from './products/products.component';
 import { ContentComponent } from './content/content.component';
 import { AboutComponent } from './about/about.component';
+import { SignupComponent } from './signup/signup.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,10 @@ const routes: Routes = [
       {
         path: '',
         component: HomeComponent
+      },
+      {
+        path: 'signup',
+        component: SignupComponent
       },
       {
         path: 'about',

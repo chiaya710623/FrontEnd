@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class MemberService {
     {
       id: 1,
       name: 'Ada',
-      email: 'chiaya710623@gmail.com',
+      email: '456789@gmail.com',
       password: '123'
     },
   ];
@@ -20,7 +21,7 @@ export class MemberService {
         name: name,
         email: email,
         password: password
-      };
+    };
     this.amount++;
   }
 }
