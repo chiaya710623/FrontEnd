@@ -30,32 +30,32 @@
               <li><input type="checkbox" id="item-0-0" /><label for="item-0-0"><i class="fa fa-long-arrow-right"
                     aria-hidden="true"></i> 文學叢書</label>
                 <ul>
-                  <li><a [routerLink]="['product']">靈異奇幻</a></li>
-                  <li><a [routerLink]="['product']">心理勵志</a></li>
-                  <li><a [routerLink]="['product']">醫療保健</a></li>
+                  <li><a [routerLink]="['/products']">靈異奇幻</a></li>
+                  <li><a [routerLink]="['/products']">心理勵志</a></li>
+                  <li><a [routerLink]="['/products']">醫療保健</a></li>
                 </ul>
               </li>
               <li><input type="checkbox" id="item-0-1" /><label for="item-0-1"><i class="fa fa-long-arrow-right"
                     aria-hidden="true"></i> 考試用書</label>
                 <ul>
-                  <li><a [routerLink]="['product']">小學</a></li>
-                  <li><a [routerLink]="['product']">國中</a></li>
-                  <li><a [routerLink]="['product']">高中</a></li>
-                  <li><a [routerLink]="['product']">大學</a></li>
+                  <li><a [routerLink]="['/products']">小學</a></li>
+                  <li><a [routerLink]="['/products']">國中</a></li>
+                  <li><a [routerLink]="['/products']">高中</a></li>
+                  <li><a [routerLink]="['/products']">大學</a></li>
                 </ul>
               </li>
               <li><input type="checkbox" id="item-0-2" /><label for="item-0-2"><i class="fa fa-long-arrow-right"
                     aria-hidden="true"></i> 童書繪本</label>
                 <ul>
-                  <li><a [routerLink]="['product']">學齡前</a></li>
-                  <li><a [routerLink]="['product']">學齡</a></li>
+                  <li><a [routerLink]="['/products']">學齡前</a></li>
+                  <li><a [routerLink]="['/products']">學齡</a></li>
                 </ul>
               </li>
               <li><input type="checkbox" id="item-0-2" /><label for="item-0-2"><i class="fa fa-long-arrow-right"
                     aria-hidden="true"></i> 語言學習</label>
                 <ul>
-                  <li><a [routerLink]="['product']">英文</a></li>
-                  <li><a [routerLink]="['product']">日文</a></li>
+                  <li><a [routerLink]="['/products']">英文</a></li>
+                  <li><a [routerLink]="['/products']">日文</a></li>
                 </ul>
               </li>
             </ul>
@@ -85,7 +85,7 @@
               </tr>
               <tr>
                 <th>類別</th>
-                <td><select >
+                <td><select>
                     <option value="">請選擇類別</option>
                     <option value="文學叢書">文學叢書</option>
                     <option value="童書繪本">童書繪本</option>
@@ -117,16 +117,57 @@
         </div>
         <div class="sorting">
           <h6>Showing</h6>
-          <select id="country2" onchange="change_country(this.value)" class="frm-field required sect">
-            <option value="null">7</option>
-            <option value="null">14</option>
-            <option value="null">28</option>
-            <option value="null">35</option>
+          <select id="amount" [(ngModel)]="amount" (change)="page=1;">
+            <option value="3">3</option>
+            <option value="6">6</option>
+            <option value="9">9</option>
+            <option value="12">12</option>
           </select>
         </div>
         <div class="clearfix"></div>
       </div>
-      <app-list></app-list>
+      <ng-container *ngFor="let item of products;let index=index;let last=last;">
+      <div class="col-md-4 product-men" *ngIf="index >= amount * (page-1) && index < amount * page">
+
+        <div class="men-pro-item simpleCart_shelfItem">
+          <div class="men-thumb-item">
+            <img [src]="item.photo" alt="" class="pro-image-front">
+            <img [src]="item.photo" alt="" class="pro-image-back">
+            <div class="men-cart-pro">
+              <div class="inner-men-cart-pro">
+                <a [routerLink]="['/products/', item.id]" class="link-product-add-cart">商品資訊</a>
+              </div>
+            </div>
+
+          </div>
+          <div class="item-info-product ">
+            <h4><a [routerLink]="['/products/', item.id]">{{ item.name }}</a></h4>
+            <div class="info-product-price">
+              <span class="item_price">${{ item.price}}</span>
+              <del>${{ item.price * 1.5}}</del>
+            </div>
+            <div>
+              <input type="button" class="function_button" value="加入購物車">
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+      </ng-container>
+
+      <div class="clearfix"></div>
+      <ul class="pagination pagination-lg">
+        <li *ngIf="amount < products.length" ><a (click)="page=1"><span aria-hidden="true">«</span></a></li>
+        <li *ngIf="page - 2 > 0"><a (click)="page=page-2">{{page-2}}</a></li>
+        <li *ngIf="page - 1 > 0"><a (click)="page=page-1">{{page-1}}</a></li>
+        <li class="active" *ngIf="amount < products.length"><a>{{page}}</a></li>
+        <li *ngIf="(page + 1) * amount - products.length < amount"><a (click)="page=page+1">{{page+1}}</a></li>
+        <li *ngIf="(page + 2) * amount - products.length < amount"><a (click)="page=page+2">{{page+2}}</a></li>
+        <li *ngIf="amount < products.length"><a (click)="page=(products.length - products.length % amount)/amount+1" aria-label="Next"><span
+              aria-hidden="true">»</span></a></li>
+      </ul>
+
     </div>
     <div class="clearfix"></div>
 

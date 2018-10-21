@@ -142,50 +142,42 @@ export class DataService {
       createdAt: '2003-05-11T16:58:27.358Z',
       updatedAt: '2007-12-11T21:58:27.358Z',
       photo: 'assets/images/m8.jpg'
+    },
+    {
+      classification: '考試用書',
+      id: 9,
+      isbn: '9232356782135',
+      name: '天使的世界',
+      author: {
+        name: '小中大',
+        description: '頭小身體大'
+      },
+      translator: '隔壁鄰居',
+      publisher: '高橋会社',
+      price: 380,
+      description: '在天上',
+      createdAt: '2011-05-11T21:58:27.358Z',
+      updatedAt: '2013-05-11T21:58:27.358Z',
+      photo: 'assets/images/m2.jpg'
+    },
+    {
+      classification: '童書繪本',
+      id: 10,
+      isbn: '9783456567234',
+      name: '小魚與小蝦',
+      author: {
+        name: '派大興',
+        description: '住在海裡'
+      },
+      translator: '饕客',
+      publisher: '美食出版社',
+      price: 1000,
+      description: '小魚跟小蝦很可愛，所以要吃掉',
+      createdAt: '2005-05-11T16:58:27.358Z',
+      updatedAt: '2007-12-11T21:58:27.358Z',
+      photo: 'assets/images/m1.jpg'
     }
   ];
-  // origin = this.products;
-  // i = 0;
-  // search($search_list) {
-  //   for (
-  //     this.i = 0;
-  //     this.i < 5 && $search_list[this.i].trim() === '';
-  //     this.i++
-  //   ) {
-  //     if (this.i === 4) {
-  //       this.products = this.origin;
-  //     }
-  //   }
-  //   if (this.i < 5) {
-  //     for (let i = 0; i < 5; i++) {
-  //       switch (i) {
-  //         case 0:
-  //           this.products = this.origin.filter(
-  //             item => item.name.indexOf($search_list[i]) !== -1
-  //           );
-  //           break;
-  //         case 1:
-  //           this.products = this.origin.filter(
-  //             item => item.author.name.indexOf($search_list[i]) !== -1
-  //           );
-  //           break;
-  //         case 2:
-  //           this.products = this.origin.filter(
-  //             item => item.publisher.indexOf($search_list[i]) !== -1
-  //           );
-  //           break;
-  //         case 3:
-  //           this.products = this.origin.filter(
-  //             item => item.isbn.indexOf($search_list[i]) !== -1
-  //           );
-  //           break;
-  //         case 4:
-  //           this.products = this.origin.filter(
-  //             item => item.classification.indexOf($search_list[i]) !== -1
-  //           );
-  //           break;
-  //       }
-  //     }
-  //   }
-  // }
+
+
 }

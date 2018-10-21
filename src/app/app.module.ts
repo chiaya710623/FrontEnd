@@ -7,7 +7,6 @@ import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { MasterComponent } from './master/master.component';
 import { ProductsComponent } from './products/products.component';
-import { ListComponent } from './products/list/list.component';
 import { ContentComponent } from './content/content.component';
 import { NgModule } from '@angular/core';
 import { AboutComponent } from './about/about.component';
@@ -23,7 +22,6 @@ import { ContactComponent } from './contact/contact.component';
     HomeComponent,
     MasterComponent,
     ProductsComponent,
-    ListComponent,
     ContentComponent,
     AboutComponent,
     SignupComponent,
