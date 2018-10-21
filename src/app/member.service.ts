@@ -33,8 +33,8 @@ export class MemberService {
         this.member[i].email === email &&
         this.member[i].password === password
       ) {
-        this.login = 1;
-        return 1;
+        this.login = i + 1;
+        return i + 1;
       }
     }
     this.login = 0;

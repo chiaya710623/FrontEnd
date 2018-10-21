@@ -17,4 +17,7 @@ export class HeaderComponent implements OnInit {
     alert('已登出');
     this.router.navigate(['/']);
   }
+  get username() {
+    return this.dataService.member[this.dataService.login - 1].name;
+  }
 }
