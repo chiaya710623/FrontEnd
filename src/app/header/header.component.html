@@ -136,23 +136,48 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body modal-body-sub_agile">
-        <div class="col-md-8 modal_body_left modal_body_left1">
+        <div class="">
           <h3 class="agileinfo_sign">購物車 <span>清單</span></h3>
-
-          <table>
-            <!-- 購物車列表還沒做-->
-          </table>
-
           <div class="clearfix"></div>
-          <input type="button" class="function_button" value="結帳" [routerLink]="['/checkout']">
+          <div>
+            <div>
+              <h2>購物車中有<span>{{ cart.length }}項商品</span></h2>
+              <br>
+              <ng-container *ngIf="cart.length > 0;">
+                <table class="product_list">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>商品名稱</th>
+                      <th>售價</th>
+                      <th>數量</th>
+                      <th>刪除</th>
+                    </tr>
+                  </thead>
+                  <ng-container *ngFor="let item of cart; let index=index;">
+                    <tr>
+                      <td>{{ index + 1 }}</td>
+                      <td><a [routerLink]="['/products/', item.id]"  data-dismiss="modal">{{ item.name }}</a></td>
+                      <td>NT${{ item.price }}</td>
+                      <td>
+                        {{ item.amount }}
+                      </td>
+                      <td>
+                        <p style="text-align:center;"><img src="/assets/images/close_1.png" (click)="delete_item(index)"></p>
+                      </td>
+                    </tr>
+                  </ng-container>
+                </table>
+              </ng-container>
+              <div class="clearfix"></div>
+              <br>
+              <input type="button" class="function_button" value="結帳" [routerLink]="['/checkout']" data-dismiss="modal">
+            </div>
+          </div>
+          <div class="clearfix"></div>
         </div>
-        <div class="col-md-4 modal_body_right modal_body_right1">
-          <img src="assets/images/log_pic.jpg" alt=" " />
-        </div>
-        <div class="clearfix"></div>
       </div>
+      <!-- //Modal content-->
     </div>
-    <!-- //Modal content-->
   </div>
-</div>
-<!-- //購物車 -->
+  <!-- //購物車 -->
