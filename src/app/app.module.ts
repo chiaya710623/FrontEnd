@@ -13,6 +13,7 @@ import { AboutComponent } from './about/about.component';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { ContactComponent } from './contact/contact.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ContactComponent } from './contact/contact.component';
     AboutComponent,
     SignupComponent,
     LoginComponent,
-    ContactComponent
+    ContactComponent,
+    CheckoutComponent
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
