@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CartService } from '../cart.service';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-home',
@@ -6,10 +8,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
+  constructor(
+    private dataService: DataService,
+    private cartService: CartService
+  ) {}
+  Today = new Date;
+  ngOnInit() {}
+  get products() {
+    return this.dataService.products;
   }
-
+  add_to_cart(id, item_amount) {
+    this.cartService.add_to_cart(id, item_amount);
+    alert('已加入購物車');
+  }
 }
