@@ -43,4 +43,7 @@ export class HeaderComponent implements OnInit {
     this.cartService.cart.splice(index, index + 1);
     this.cartService.list_amount--;
   }
+  search(search_list) {
+    this.dataService.search(search_list);
+  }
 }

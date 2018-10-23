@@ -14,7 +14,20 @@ export class ProductsComponent implements OnInit {
   ) {}
   amount = 3;
   page = 1;
-  search_list = {};
+  search_list = {
+    name: '',
+    author_name: '',
+    publisher: '',
+    isbn: '',
+    classification: ''
+  };
+  show_list = {
+    name: '',
+    author_name: '',
+    publisher: '',
+    isbn: '',
+    classification: ''
+  };
   ngOnInit() {}
   get products() {
     return this.dataService.products;
@@ -25,8 +38,6 @@ export class ProductsComponent implements OnInit {
   }
   search(search_list) {
     this.dataService.search(search_list);
-  }
-  c() {
-    console.log(this.search_list);
+    this.show_list = search_list;
   }
 }

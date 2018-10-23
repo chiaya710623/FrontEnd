@@ -90,22 +90,48 @@
                 <ul class="dropdown-menu multi-column columns-3">
                   <div class="agile_inner_drop_nav_info classification_font">
                     <div class="col-sm-6 multi-gd-img1 multi-gd-text ">
-                      <a [routerLink]="['/products']"><p><img src="assets/images/top2.jpg" alt=" " /></p></a>
+                      <a [routerLink]="['/products']">
+                        <p><img src="assets/images/top2.jpg" alt=" " /></p>
+                      </a>
                     </div>
                     <div class="col-sm-3 multi-gd-img">
                       <ul class="multi-column-dropdown">
-                        <li><a [routerLink]="['/products']">文學叢書</a></li>
-                        <li><a [routerLink]="['/products']">考試用書</a></li>
-                        <li><a [routerLink]="['/products']">童書繪本</a></li>
-                        <li><a [routerLink]="['/products']">語言學習</a></li>
+                        <li><a [routerLink]="['/products']" (click)="search({    name: '',
+                          author_name: '',
+                          publisher: '',
+                          isbn: '',classification: '文學叢書'})">文學叢書</a></li>
+                        <li><a [routerLink]="['/products']" (click)="search({    name: '',
+                          author_name: '',
+                          publisher: '',
+                          isbn: '',classification: '考試用書'})">考試用書</a></li>
+                        <li><a [routerLink]="['/products']" (click)="search({    name: '',
+                          author_name: '',
+                          publisher: '',
+                          isbn: '',classification: '童書繪本'})">童書繪本</a></li>
+                        <li><a [routerLink]="['/products']" (click)="search({    name: '',
+                          author_name: '',
+                          publisher: '',
+                          isbn: '',classification: '語言學習'})">語言學習</a></li>
                       </ul>
                     </div>
                     <div class="col-sm-3 multi-gd-img">
                       <ul class="multi-column-dropdown">
-                        <li><a [routerLink]="['/products']">漫畫</a></li>
-                        <li><a [routerLink]="['/products']">小說</a></li>
-                        <li><a [routerLink]="['/products']">雜誌</a></li>
-                        <li><a [routerLink]="['/products']">文具</a></li>
+                        <li><a [routerLink]="['/products']" (click)="search({    name: '',
+                          author_name: '',
+                          publisher: '',
+                          isbn: '',classification: '漫畫'})">漫畫</a></li>
+                        <li><a [routerLink]="['/products']" (click)="search({    name: '',
+                          author_name: '',
+                          publisher: '',
+                          isbn: '',classification: '小說'})">小說</a></li>
+                        <li><a [routerLink]="['/products']" (click)="search({    name: '',
+                          author_name: '',
+                          publisher: '',
+                          isbn: '',classification: '雜誌'})">雜誌</a></li>
+                        <li><a [routerLink]="['/products']" (click)="search({    name: '',
+                          author_name: '',
+                          publisher: '',
+                          isbn: '',classification: '文具'})">文具</a></li>
                       </ul>
                     </div>
                     <div class="clearfix"></div>
@@ -118,9 +144,12 @@
         </div>
       </nav>
     </div>
-    <div class="top_nav_right"><div style="width: 50%;"><div class="wthreecartaits wthreecartaits2 cart cart box_1">
-        <a href="#" data-toggle="modal" data-target="#cart"><i class="fa fa-cart-arrow-down fa-lg" aria-hidden="true"></i></a>
-      </div></div>
+    <div class="top_nav_right">
+      <div style="width: 50%;">
+        <div class="wthreecartaits wthreecartaits2 cart cart box_1">
+          <a href="#" data-toggle="modal" data-target="#cart"><i class="fa fa-cart-arrow-down fa-lg" aria-hidden="true"></i></a>
+        </div>
+      </div>
 
     </div>
     <div class="clearfix"></div>
@@ -157,7 +186,7 @@
                   <ng-container *ngFor="let item of cart; let index=index;">
                     <tr>
                       <td>{{ index + 1 }}</td>
-                      <td><a [routerLink]="['/products/', item.id]"  data-dismiss="modal">{{ item.name }}</a></td>
+                      <td><a [routerLink]="['/products/', item.id]" data-dismiss="modal">{{ item.name }}</a></td>
                       <td>NT${{ item.price }}</td>
                       <td>
                         {{ item.amount }}

@@ -184,7 +184,7 @@ export class DataService {
   search(search_list) {
     this.products = this.originalProducts;
     // tslint:disable-next-line:forin
-    for (const key in Object.keys(search_list)) {
+    for (const key in search_list) {
       switch (key) {
         case 'name':
           if (search_list[key].trim() !== '') {
@@ -224,5 +224,9 @@ export class DataService {
           break;
       }
     }
+  }
+
+  origin() {
+    this.products = this.originalProducts;
   }
 }

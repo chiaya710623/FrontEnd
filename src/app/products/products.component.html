@@ -24,36 +24,52 @@
           <li><input type="checkbox" checked="checked" id="item-0" /><label for="item-0"><i class="fa fa-long-arrow-right"
                 aria-hidden="true"></i> 所有商品</label>
             <ul>
-              <li><input type="checkbox" id="item-0-0" /><label for="item-0-0"><i class="fa fa-long-arrow-right"
-                    aria-hidden="true"></i> 文學叢書</label>
+              <li><input type="checkbox" id="item-0-0" (click)="search({name: '',author_name: '',publisher: '',isbn: '',classification: '文學叢書'})" /><label
+                  for="item-0-0"><i class="fa fa-long-arrow-right" aria-hidden="true"></i> 文學叢書</label>
                 <ul>
-                  <li><a (click)="search({classification: '文學叢書'})">靈異奇幻</a></li>
-                  <li><a [routerLink]="['/products']">心理勵志</a></li>
-                  <li><a [routerLink]="['/products']">醫療保健</a></li>
+                  <li><a (click)="search({name: '', author_name: '', publisher: '', isbn: '',classification: '文學叢書'})">靈異奇幻</a></li>
+                  <li><a (click)="search({name: '', author_name: '', publisher: '', isbn: '',classification: '文學叢書'})">心理勵志</a></li>
+                  <li><a (click)="search({name: '',author_name: '',publisher: '',isbn: '',classification: '文學叢書'})">醫療保健</a></li>
                 </ul>
               </li>
-              <li><input type="checkbox" id="item-0-1" /><label for="item-0-1"><i class="fa fa-long-arrow-right"
-                    aria-hidden="true"></i> 考試用書</label>
+              <li><input type="checkbox" id="item-0-1" (click)="search({name: '',author_name: '',publisher: '',isbn: '',classification: '考試用書'})" /><label
+                  for="item-0-1"><i class="fa fa-long-arrow-right" aria-hidden="true"></i> 考試用書</label>
                 <ul>
-                  <li><a [routerLink]="['/products']">小學</a></li>
-                  <li><a [routerLink]="['/products']">國中</a></li>
-                  <li><a [routerLink]="['/products']">高中</a></li>
-                  <li><a [routerLink]="['/products']">大學</a></li>
+                  <li><a (click)="search({name: '',author_name: '',publisher: '',isbn: '',classification: '考試用書'})">小學</a></li>
+                  <li><a (click)="search({name: '',author_name: '',publisher: '',isbn: '',classification: '考試用書'})">國中</a></li>
+                  <li><a (click)="search({name: '',author_name: '',publisher: '',isbn: '',classification: '考試用書'})">高中</a></li>
+                  <li><a (click)="search({name: '',author_name: '',publisher: '',isbn: '',classification: '考試用書'})">大學</a></li>
                 </ul>
               </li>
-              <li><input type="checkbox" id="item-0-2" /><label for="item-0-2"><i class="fa fa-long-arrow-right"
-                    aria-hidden="true"></i> 童書繪本</label>
+              <li><input type="checkbox" id="item-0-2" (click)="search({name: '',author_name: '',publisher: '',isbn: '',classification: '童書繪本'})" /><label
+                  for="item-0-2"><i class="fa fa-long-arrow-right" aria-hidden="true"></i> 童書繪本</label>
                 <ul>
-                  <li><a [routerLink]="['/products']">學齡前</a></li>
-                  <li><a [routerLink]="['/products']">學齡</a></li>
+                  <li><a (click)="search({name: '',author_name: '',publisher: '',isbn: '',classification: '童書繪本'})">學齡前</a></li>
+                  <li><a (click)="search({name: '',author_name: '',publisher: '',isbn: '',classification: '童書繪本'})">學齡</a></li>
                 </ul>
               </li>
-              <li><input type="checkbox" id="item-0-2" /><label for="item-0-2"><i class="fa fa-long-arrow-right"
-                    aria-hidden="true"></i> 語言學習</label>
+              <li><input type="checkbox" id="item-0-3" (click)="search({name: '',author_name: '',publisher: '',isbn: '',classification: '語言學習'})" /><label
+                  for="item-0-3"><i class="fa fa-long-arrow-right" aria-hidden="true"></i> 語言學習</label>
                 <ul>
-                  <li><a [routerLink]="['/products']">英文</a></li>
-                  <li><a [routerLink]="['/products']">日文</a></li>
+                  <li><a (click)="search({name: '',author_name: '',publisher: '',isbn: '',classification: '語言學習'})">英文</a></li>
+                  <li><a (click)="search({name: '',author_name: '',publisher: '',isbn: '',classification: '語言學習'})">日文</a></li>
                 </ul>
+              </li>
+              <li><input type="checkbox" id="item-0-4" (click)="search({name: '',author_name: '',publisher: '',isbn: '',classification: '漫畫'})" /><label
+                  for="item-0-4"><i class="fa fa-long-arrow-right" aria-hidden="true"></i> 漫畫</label>
+
+              </li>
+              <li><input type="checkbox" id="item-0-5" (click)="search({name: '',author_name: '',publisher: '',isbn: '',classification: '小說'})" /><label
+                  for="item-0-5"><i class="fa fa-long-arrow-right" aria-hidden="true"></i> 小說</label>
+
+              </li>
+              <li><input type="checkbox" id="item-0-6" (click)="search({name: '',author_name: '',publisher: '',isbn: '',classification: '雜誌'})" /><label
+                  for="item-0-6"><i class="fa fa-long-arrow-right" aria-hidden="true"></i> 雜誌</label>
+
+              </li>
+              <li><input type="checkbox" id="item-0-7" (click)="search({name: '',author_name: '',publisher: '',isbn: '',classification: '文具'})" /><label
+                  for="item-0-7"><i class="fa fa-long-arrow-right" aria-hidden="true"></i> 文具</label>
+
               </li>
             </ul>
           </li>
@@ -62,39 +78,39 @@
       <div class="community-poll">
         <h4>Search</h4>
         <div>
-          <form>
-            <table class="search_list">
-              <tr>
-                <th>書名</th>
-                <td><input type="text" placeholder="請輸入書名" [(ngModel)]="search_list.name" (change)="c()"></td>
-              </tr>
-              <tr>
-                <th>作者</th>
-                <td><input type="text" placeholder="請輸入作者" [(ngModel)]="search_list.author_name"></td>
-              </tr>
-              <tr>
-                <th>出版社</th>
-                <td><input type="text" placeholder="請輸入出版社" [(ngModel)]="search_list.publisher"></td>
-              </tr>
-              <tr>
-                <th>ISBN</th>
-                <td><input type="text" placeholder="請輸入ISBN" [(ngModel)]="search_list.isbn"></td>
-              </tr>
-              <tr>
-                <th>類別</th>
-                <td><select [(ngModel)]="search_list.classification">
-                    <option value="">請選擇類別</option>
-                    <option value="文學叢書">文學叢書</option>
-                    <option value="童書繪本">童書繪本</option>
-                    <option value="語言學習">語言學習</option>
-                    <option value="考試用書">考試用書</option>
-                  </select></td>
-              </tr>
-            </table>
-            <div style="padding: 5px 0px 20px 0px; text-align: center">
-              <input type="button" class="function_button" value="搜尋商品" (click)="search(search_list)">
-            </div>
-          </form>
+
+          <table class="search_list">
+            <tr>
+              <th>書名</th>
+              <td><input type="text" placeholder="請輸入書名" [(ngModel)]="search_list.name"></td>
+            </tr>
+            <tr>
+              <th>作者</th>
+              <td><input type="text" placeholder="請輸入作者" [(ngModel)]="search_list.author_name"></td>
+            </tr>
+            <tr>
+              <th>出版社</th>
+              <td><input type="text" placeholder="請輸入出版社" [(ngModel)]="search_list.publisher"></td>
+            </tr>
+            <tr>
+              <th>ISBN</th>
+              <td><input type="text" placeholder="請輸入ISBN" [(ngModel)]="search_list.isbn"></td>
+            </tr>
+            <tr>
+              <th>類別</th>
+              <td><select [(ngModel)]="search_list.classification">
+                  <option value="">請選擇類別</option>
+                  <option value="文學叢書">文學叢書</option>
+                  <option value="童書繪本">童書繪本</option>
+                  <option value="語言學習">語言學習</option>
+                  <option value="考試用書">考試用書</option>
+                </select></td>
+            </tr>
+          </table>
+          <div style="padding: 5px 0px 20px 0px; text-align: center">
+            <input type="button" class="function_button" value="搜尋商品" (click)="search(search_list)">
+          </div>
+
         </div>
       </div>
       <div class="clearfix"></div>
@@ -102,7 +118,14 @@
     <!-- //左欄 -->
     <div class="col-md-8 products-right">
       <!-- 右上區塊 -->
-      <h5>Product <span>Compare(0)</span></h5>
+      <h5>商品 <span>列表（共{{products.length}}項）</span></h5>
+      <div style="padding-top: 5%;">
+        <p *ngIf="show_list.classification !== '';">類別：{{show_list.classification}} </p>
+        <p *ngIf="show_list.name !== '';">書名：{{show_list.name}} </p>
+        <p *ngIf="show_list.author_name !== '';">作者：{{show_list.author_name}} </p>
+        <p *ngIf="show_list.publisher !== '';">出版社：{{show_list.publisher}} </p>
+        <p *ngIf="show_list.isbn !== '';">isbn：{{show_list.isbn}} </p>
+      </div>
       <div class="sort-grid">
         <div class="sorting">
           <h6>Sort By</h6>
