@@ -13,3 +13,6 @@
 .search_list td {
   width: 70%;
 }
+.search_list input {
+  width: 80%;
+}
