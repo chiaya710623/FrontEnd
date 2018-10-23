@@ -22,7 +22,8 @@ export class DataService {
       description: '就是一本很好看的書呀',
       createdAt: '2018-04-11T21:58:27.358Z',
       updatedAt: '2018-05-11T21:58:27.358Z',
-      photo: 'assets/images/m5.jpg'
+      photo: 'assets/images/m5.jpg',
+      publish_year: 2018
     },
     {
       classification: '童書繪本',
@@ -39,7 +40,8 @@ export class DataService {
       description: '瑪莉有隻小綿羊',
       createdAt: '2013-06-11T21:58:27.358Z',
       updatedAt: '2018-05-14T21:58:27.358Z',
-      photo: 'assets/images/m6.jpg'
+      photo: 'assets/images/m6.jpg',
+      publish_year: 2018
     },
     {
       classification: '語言學習',
@@ -56,7 +58,8 @@ export class DataService {
       description: '肚子餓的時候學日文的效果不太好呢',
       createdAt: '2013-05-11T21:58:27.358Z',
       updatedAt: '2014-05-11T21:58:27.358Z',
-      photo: 'assets/images/m7.jpg'
+      photo: 'assets/images/m7.jpg',
+      publish_year: 2018
     },
     {
       classification: '文學叢書',
@@ -73,7 +76,8 @@ export class DataService {
       description: '人生就像一碗好喝的雞湯',
       createdAt: '2003-05-11T16:58:27.358Z',
       updatedAt: '2007-12-11T21:58:27.358Z',
-      photo: 'assets/images/m8.jpg'
+      photo: 'assets/images/m8.jpg',
+      publish_year: 2018
     },
     {
       classification: '考試用書',
@@ -90,7 +94,8 @@ export class DataService {
       description: '就是一本很好看的書呀',
       createdAt: '2018-04-11T21:58:27.358Z',
       updatedAt: '2018-05-11T21:58:27.358Z',
-      photo: 'assets/images/m5.jpg'
+      photo: 'assets/images/m5.jpg',
+      publish_year: 2018
     },
     {
       classification: '童書繪本',
@@ -107,7 +112,8 @@ export class DataService {
       description: '瑪莉有隻小綿羊',
       createdAt: '2013-06-11T21:58:27.358Z',
       updatedAt: '2018-05-14T21:58:27.358Z',
-      photo: 'assets/images/m6.jpg'
+      photo: 'assets/images/m6.jpg',
+      publish_year: 2018
     },
     {
       classification: '語言學習',
@@ -124,7 +130,8 @@ export class DataService {
       description: '肚子餓的時候學日文的效果不太好呢',
       createdAt: '2013-05-11T21:58:27.358Z',
       updatedAt: '2014-05-11T21:58:27.358Z',
-      photo: 'assets/images/m7.jpg'
+      photo: 'assets/images/m7.jpg',
+      publish_year: 2015
     },
     {
       classification: '文學叢書',
@@ -141,7 +148,8 @@ export class DataService {
       description: '一個猶豫要不要多吃一點的故事',
       createdAt: '2003-05-11T16:58:27.358Z',
       updatedAt: '2007-12-11T21:58:27.358Z',
-      photo: 'assets/images/m3.jpg'
+      photo: 'assets/images/m3.jpg',
+      publish_year: 2015
     },
     {
       classification: '考試用書',
@@ -158,7 +166,8 @@ export class DataService {
       description: '在天上',
       createdAt: '2011-05-11T21:58:27.358Z',
       updatedAt: '2013-05-11T21:58:27.358Z',
-      photo: 'assets/images/m2.jpg'
+      photo: 'assets/images/m2.jpg',
+      publish_year: 2015
     },
     {
       classification: '童書繪本',
@@ -175,7 +184,8 @@ export class DataService {
       description: '小魚跟小蝦很可愛，所以要吃掉',
       createdAt: '2005-05-11T16:58:27.358Z',
       updatedAt: '2007-12-11T21:58:27.358Z',
-      photo: 'assets/images/m1.jpg'
+      photo: 'assets/images/m1.jpg',
+      publish_year: 2015
     },
     {
       classification: '漫畫',
@@ -192,7 +202,8 @@ export class DataService {
       description: '就是一本很好看的書呀',
       createdAt: '2011-04-11T21:58:27.358Z',
       updatedAt: '2013-07-01T21:58:27.358Z',
-      photo: 'assets/images/m7.jpg'
+      photo: 'assets/images/m7.jpg',
+      publish_year: 2015
     },
     {
       classification: '雜誌',
@@ -209,7 +220,8 @@ export class DataService {
       description: '教妳地下時尚',
       createdAt: '2013-06-11T21:58:27.358Z',
       updatedAt: '2014-12-14T21:58:27.358Z',
-      photo: 'assets/images/m1.jpg'
+      photo: 'assets/images/m1.jpg',
+      publish_year: 2016
     },
     {
       classification: '文具',
@@ -226,7 +238,8 @@ export class DataService {
       description: '學習的好幫手，最佳文具套組',
       createdAt: '2015-05-11T21:58:27.358Z',
       updatedAt: '2016-07-04T22:28:27.358Z',
-      photo: 'assets/images/m2.jpg'
+      photo: 'assets/images/m2.jpg',
+      publish_year: 2016
     },
     {
       classification: '文學叢書',
@@ -243,7 +256,8 @@ export class DataService {
       description: '人生就像兩碗好喝的雞湯',
       createdAt: '2012-05-11T16:38:27.358Z',
       updatedAt: '2014-13-11T21:58:27.358Z',
-      photo: 'assets/images/m3.jpg'
+      photo: 'assets/images/m3.jpg',
+      publish_year: 2016
     },
     {
       classification: '小說',
@@ -260,7 +274,8 @@ export class DataService {
       description: '你懂的',
       createdAt: '2000-04-11T21:58:27.258Z',
       updatedAt: '2001-05-11T21:58:27.458Z',
-      photo: 'assets/images/m5.jpg'
+      photo: 'assets/images/m5.jpg',
+      publish_year: 2016
     },
     {
       classification: '童書繪本',
@@ -277,7 +292,8 @@ export class DataService {
       description: '瑪莉有隻小綿羊',
       createdAt: '2013-06-11T21:58:27.358Z',
       updatedAt: '2018-05-14T21:58:27.358Z',
-      photo: 'assets/images/m6.jpg'
+      photo: 'assets/images/m6.jpg',
+      publish_year: 2017
     },
     {
       classification: '小說',
@@ -294,7 +310,8 @@ export class DataService {
       description: '肚子餓的時候學日文的效果不太好呢',
       createdAt: '2013-05-11T21:58:27.358Z',
       updatedAt: '2014-05-11T21:58:27.358Z',
-      photo: 'assets/images/m7.jpg'
+      photo: 'assets/images/m7.jpg',
+      publish_year: 2017
     },
     {
       classification: '漫畫',
@@ -311,7 +328,8 @@ export class DataService {
       description: '人生就像一碗好喝的雞湯',
       createdAt: '2001-05-11T16:58:27.358Z',
       updatedAt: '2009-12-11T21:58:27.358Z',
-      photo: 'assets/images/m8.jpg'
+      photo: 'assets/images/m8.jpg',
+      publish_year: 2017
     },
     {
       classification: '雜誌',
@@ -328,7 +346,8 @@ export class DataService {
       description: '在天上',
       createdAt: '2011-05-11T21:58:27.358Z',
       updatedAt: '2013-05-11T21:58:27.358Z',
-      photo: 'assets/images/m2.jpg'
+      photo: 'assets/images/m2.jpg',
+      publish_year: 2017
     },
     {
       classification: '童書繪本',
@@ -345,7 +364,8 @@ export class DataService {
       description: '小魚跟小蝦很可愛，所以要吃掉',
       createdAt: '2005-05-11T16:58:27.358Z',
       updatedAt: '2007-12-11T21:58:27.358Z',
-      photo: 'assets/images/m1.jpg'
+      photo: 'assets/images/m1.jpg',
+      publish_year: 2017
     }
   ];
   show_list = {

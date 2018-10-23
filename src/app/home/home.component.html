@@ -72,8 +72,8 @@
     <h3 class="wthree_text_info">新書 <span>上架</span></h3>
 
 
-    <div class="col-md-4 product-men" *ngFor="let item of products; let index=index;">
-      <ng-container *ngIf="1">
+    <ng-container *ngFor="let item of products; let index=index;">
+      <div class="col-md-3 product-men" *ngIf="item.publish_year > 2016;">
         <div class="men-pro-item simpleCart_shelfItem">
           <div class="men-thumb-item">
             <img [src]="item.photo" alt="" class="pro-image-front">
@@ -98,8 +98,8 @@
 
           </div>
         </div>
-      </ng-container>
-    </div>
+      </div>
+    </ng-container>
 
     <div class="clearfix"></div>
 
