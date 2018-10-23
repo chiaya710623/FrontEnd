@@ -179,5 +179,50 @@ export class DataService {
     }
   ];
 
+  originalProducts = this.products;
 
+  search(search_list) {
+    this.products = this.originalProducts;
+    // tslint:disable-next-line:forin
+    for (const key in Object.keys(search_list)) {
+      switch (key) {
+        case 'name':
+          if (search_list[key].trim() !== '') {
+            this.products = this.products.filter(
+              products => products.name.indexOf(search_list[key]) !== -1
+            );
+          }
+          break;
+        case 'author_name':
+          if (search_list[key].trim() !== '') {
+            this.products = this.products.filter(
+              products => products.author.name.indexOf(search_list[key]) !== -1
+            );
+          }
+          break;
+        case 'publisher':
+          if (search_list[key].trim() !== '') {
+            this.products = this.products.filter(
+              products => products.publisher.indexOf(search_list[key]) !== -1
+            );
+          }
+          break;
+        case 'isbn':
+          if (search_list[key].trim() !== '') {
+            this.products = this.products.filter(
+              products => products.isbn.indexOf(search_list[key]) !== -1
+            );
+          }
+          break;
+        case 'classification':
+          if (search_list[key].trim() !== '') {
+            this.products = this.products.filter(
+              products =>
+                products.classification.indexOf(search_list[key]) !== -1
+            );
+          }
+          break;
+      }
+    }
+  }
 }

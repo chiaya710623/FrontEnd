@@ -27,7 +27,7 @@
               <li><input type="checkbox" id="item-0-0" /><label for="item-0-0"><i class="fa fa-long-arrow-right"
                     aria-hidden="true"></i> 文學叢書</label>
                 <ul>
-                  <li><a [routerLink]="['/products']">靈異奇幻</a></li>
+                  <li><a (click)="search({classification: '文學叢書'})">靈異奇幻</a></li>
                   <li><a [routerLink]="['/products']">心理勵志</a></li>
                   <li><a [routerLink]="['/products']">醫療保健</a></li>
                 </ul>
@@ -66,23 +66,23 @@
             <table class="search_list">
               <tr>
                 <th>書名</th>
-                <td><input type="text" placeholder="請輸入書名"></td>
+                <td><input type="text" placeholder="請輸入書名" [(ngModel)]="search_list.name" (change)="c()"></td>
               </tr>
               <tr>
                 <th>作者</th>
-                <td><input type="text" placeholder="請輸入作者"></td>
+                <td><input type="text" placeholder="請輸入作者" [(ngModel)]="search_list.author_name"></td>
               </tr>
               <tr>
                 <th>出版社</th>
-                <td><input type="text" placeholder="請輸入出版社"></td>
+                <td><input type="text" placeholder="請輸入出版社" [(ngModel)]="search_list.publisher"></td>
               </tr>
               <tr>
                 <th>ISBN</th>
-                <td><input type="text" placeholder="請輸入ISBN"></td>
+                <td><input type="text" placeholder="請輸入ISBN" [(ngModel)]="search_list.isbn"></td>
               </tr>
               <tr>
                 <th>類別</th>
-                <td><select>
+                <td><select [(ngModel)]="search_list.classification">
                     <option value="">請選擇類別</option>
                     <option value="文學叢書">文學叢書</option>
                     <option value="童書繪本">童書繪本</option>
@@ -92,7 +92,7 @@
               </tr>
             </table>
             <div style="padding: 5px 0px 20px 0px; text-align: center">
-              <input type="button" class="function_button" value="搜尋商品">
+              <input type="button" class="function_button" value="搜尋商品" (click)="search(search_list)">
             </div>
           </form>
         </div>
