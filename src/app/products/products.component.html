@@ -6,7 +6,7 @@
       <div class="agile_inner_breadcrumb">
 
         <ul class="w3_short">
-          <li><a [routerLink]="['/']">Home</a><i>|</i></li>
+          <li><a [routerLink]="['/']" (click)="origin();">Home</a><i>|</i></li>
           <li>Products</li>
         </ul>
       </div>
@@ -21,7 +21,7 @@
       <div class="css-treeview">
         <h4>Categories</h4>
         <ul class="tree-list-pad">
-          <li><input type="checkbox" checked="checked" id="item-0" /><label for="item-0"><i class="fa fa-long-arrow-right"
+          <li><input type="checkbox" checked="checked" id="item-0" (click)="origin();"/><label for="item-0"><i class="fa fa-long-arrow-right"
                 aria-hidden="true"></i> 所有商品</label>
             <ul>
               <li><input type="checkbox" id="item-0-0" (click)="search({name: '',author_name: '',publisher: '',isbn: '',classification: '文學叢書'})" /><label
@@ -129,10 +129,10 @@
       <div class="sort-grid">
         <div class="sorting">
           <h6>Sort By</h6>
-          <select id="country1" onchange="change_country(this.value)" class="frm-field required sect">
-            <option value="null">所有商品</option>
-            <option value="null">價格：由高到低</option>
-            <option value="null">價格：由低到高</option>
+          <select id="country1" [(ngModel)]="choice" (change)="sort(choice)" class="frm-field required sect">
+            <option value="0">請選擇排序方式</option>
+            <option value="1">價格：由高到低</option>
+            <option value="2">價格：由低到高</option>
           </select>
           <div class="clearfix"></div>
         </div>

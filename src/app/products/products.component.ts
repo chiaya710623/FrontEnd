@@ -12,8 +12,9 @@ export class ProductsComponent implements OnInit {
     private dataService: DataService,
     private cartService: CartService
   ) {}
-  amount = 3;
+  amount = 6;
   page = 1;
+  choice = 0;
   search_list = {
     name: '',
     author_name: '',
@@ -21,13 +22,9 @@ export class ProductsComponent implements OnInit {
     isbn: '',
     classification: ''
   };
-  show_list = {
-    name: '',
-    author_name: '',
-    publisher: '',
-    isbn: '',
-    classification: ''
-  };
+  get show_list() {
+    return this.dataService.show_list;
+  }
   ngOnInit() {}
   get products() {
     return this.dataService.products;
@@ -38,6 +35,11 @@ export class ProductsComponent implements OnInit {
   }
   search(search_list) {
     this.dataService.search(search_list);
-    this.show_list = search_list;
+  }
+  sort(choice) {
+    this.dataService.sort(choice);
+  }
+  origin() {
+    this.dataService.origin();
   }
 }

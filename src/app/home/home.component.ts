@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit {
     private dataService: DataService,
     private cartService: CartService
   ) {}
-  Today = new Date;
+  Today = new Date();
   ngOnInit() {}
   get products() {
     return this.dataService.products;

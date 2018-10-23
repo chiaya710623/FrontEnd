@@ -3,6 +3,7 @@ import { MemberService } from '../member.service';
 import { Router } from '@angular/router';
 import { DataService } from '../data.service';
 import { CartService } from '../cart.service';
+import { ProductsComponent } from '../products/products.component';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -45,5 +46,8 @@ export class HeaderComponent implements OnInit {
   }
   search(search_list) {
     this.dataService.search(search_list);
+  }
+  origin() {
+    this.dataService.origin();
   }
 }
