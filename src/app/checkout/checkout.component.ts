@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../cart.service';
 import { DataService } from '../data.service';
+import { OrderService } from '../order.service';
 
 @Component({
   selector: 'app-checkout',
@@ -10,9 +11,18 @@ import { DataService } from '../data.service';
 export class CheckoutComponent implements OnInit {
   constructor(
     private cartService: CartService,
-    private dataService: DataService
+    private dataService: DataService,
+    private orderService: OrderService
   ) {}
   total = 0;
+  order = {
+    name: '',
+    phone: '',
+    address: '',
+    email: '',
+    pay: '',
+    transmit: ''
+  };
   ngOnInit() {}
   get showcart() {
     const cart = [];
@@ -29,5 +39,9 @@ export class CheckoutComponent implements OnInit {
       this.total += cart[i].price * cart[i].amount;
     }
     return cart;
+  }
+  submit(order, products, total) {
+    console.log(order, products, total);
+    alert('訂單已送出，謝謝您的購買！');
   }
 }
