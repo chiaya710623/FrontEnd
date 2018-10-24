@@ -504,7 +504,7 @@ module.exports = ".product_list {\r\n  font-family: \"Trebuchet MS\", Arial, Hel
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"checkout\">\r\n  <div class=\"container\">\r\n    <div class=\"checkout-left\">\r\n      <div class=\"checkout-left-basket\">\r\n        <h4>Continue to basket</h4>\r\n        <ul>\r\n          <ng-container *ngFor=\"let item of showcart;\">\r\n            <li>{{item.name}} <span>NT${{item.price}} x {{item.amount}} = NT${{item.price*item.amount}} </span></li>\r\n          </ng-container>\r\n          <li>運費 <span>NT$65</span></li>\r\n          <li>----------------------------------------</li>\r\n          <li><strong>總金額 <span>NT${{ total + 65 }}</span></strong></li>\r\n        </ul>\r\n      </div>\r\n    </div>\r\n    <div style=\"padding: 0% 20% 0% 20%;\">\r\n      <table class=\"product_list\">\r\n        <h3>填寫訂單資料</h3>\r\n        <tr>\r\n          <th>訂購人姓名：</th>\r\n          <td><input type=\"text\" name=\"name\" placeholder=\"請輸入姓名\"></td>\r\n        </tr>\r\n        <tr>\r\n          <th>電話：</th>\r\n          <td><input type=\"text\" name=\"phone\" placeholder=\"請輸入電話\"></td>\r\n        </tr>\r\n        <tr>\r\n          <th>E-mail：</th>\r\n          <td><input type=\"text\" name=\"email\" placeholder=\"請輸入E-mail\"></td>\r\n        </tr>\r\n        <tr>\r\n          <th>地址：</th>\r\n          <td><input type=\"text\" name=\"address\" placeholder=\"請輸入地址\"></td>\r\n        </tr>\r\n        <tr>\r\n          <th>付款方式：</th>\r\n          <td><input type=\"radio\" name=\"pay\" value=\"'信用卡付款'\">信用卡付款 <input type=\"radio\" name=\"pay\" value=\"'轉帳付款'\">轉帳付款\r\n          </td>\r\n        </tr>\r\n        <tr>\r\n          <th>運送方式：</th>\r\n          <td><input type=\"radio\" name=\"transmit\" value=\"'郵寄'\">郵寄 <input type=\"radio\" name=\"transmit\" value=\"'7-11取貨'\">7-11取貨\r\n          </td>\r\n        </tr>\r\n      </table>\r\n    </div>\r\n    <div class=\"checkout-right-basket\">\r\n        <a [routerLink]=\"['/products']\"><span class=\"glyphicon glyphicon-menu-left\" aria-hidden=\"true\"></span>返回購物</a>\r\n\r\n        <a [routerLink]=\"['/']\"><span class=\"glyphicon glyphicon-menu-right\" aria-hidden=\"true\"></span>送出訂單</a>\r\n\r\n      </div>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"checkout\">\r\n  <div class=\"container\">\r\n    <div class=\"checkout-left\">\r\n      <div class=\"checkout-left-basket\">\r\n        <h4>Continue to basket</h4>\r\n        <ul>\r\n          <ng-container *ngFor=\"let item of showcart;\">\r\n            <li>{{item.name}} <span>NT${{item.price}} x {{item.amount}} = NT${{item.price*item.amount}} </span></li>\r\n          </ng-container>\r\n          <li>運費 <span>NT$65</span></li>\r\n          <li>----------------------------------------</li>\r\n          <li><strong>總金額 <span>NT${{ total + 65 }}</span></strong></li>\r\n        </ul>\r\n      </div>\r\n    </div>\r\n    <div style=\"padding: 0% 20% 0% 20%;\">\r\n      <table class=\"product_list\">\r\n        <h3>填寫訂單資料</h3>\r\n        <tr>\r\n          <th>訂購人姓名：</th>\r\n          <td><input type=\"text\" name=\"name\" placeholder=\"請輸入姓名\"[(ngModel)]=\"order.name\"></td>\r\n        </tr>\r\n        <tr>\r\n          <th>電話：</th>\r\n          <td><input type=\"text\" name=\"phone\" placeholder=\"請輸入電話\"[(ngModel)]=\"order.phone\"></td>\r\n        </tr>\r\n        <tr>\r\n          <th>E-mail：</th>\r\n          <td><input type=\"text\" name=\"email\" placeholder=\"請輸入E-mail\"[(ngModel)]=\"order.email\"></td>\r\n        </tr>\r\n        <tr>\r\n          <th>地址：</th>\r\n          <td><input type=\"text\" name=\"address\" placeholder=\"請輸入地址\"[(ngModel)]=\"order.address\"></td>\r\n        </tr>\r\n        <tr>\r\n          <th>付款方式：</th>\r\n          <td><input type=\"radio\" name=\"pay\" value=\"'信用卡付款'\"[(ngModel)]=\"order.pay\">信用卡付款  <input type=\"radio\" name=\"pay\" value=\"'轉帳付款'\"[(ngModel)]=\"order.pay\">轉帳付款\r\n          </td>\r\n        </tr>\r\n        <tr>\r\n          <th>運送方式：</th>\r\n          <td><input type=\"radio\" name=\"transmit\" value=\"'郵寄'\"[(ngModel)]=\"order.transmit\">郵寄 <input type=\"radio\" name=\"transmit\" value=\"'7-11取貨'\"[(ngModel)]=\"order.transmit\">7-11取貨\r\n          </td>\r\n        </tr>\r\n      </table>\r\n    </div>\r\n    <div class=\"checkout-right-basket\">\r\n        <a [routerLink]=\"['/products']\"><span class=\"glyphicon glyphicon-menu-left\" aria-hidden=\"true\"></span>返回購物</a>\r\n\r\n        <a (click)=\"submit(order, showcart, total)\"><span class=\"glyphicon glyphicon-menu-right\" aria-hidden=\"true\"></span>送出訂單</a>\r\n\r\n      </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -521,6 +521,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _cart_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../cart.service */ "./src/app/cart.service.ts");
 /* harmony import */ var _data_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../data.service */ "./src/app/data.service.ts");
+/* harmony import */ var _order_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../order.service */ "./src/app/order.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -533,11 +534,21 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var CheckoutComponent = /** @class */ (function () {
-    function CheckoutComponent(cartService, dataService) {
+    function CheckoutComponent(cartService, dataService, orderService) {
         this.cartService = cartService;
         this.dataService = dataService;
+        this.orderService = orderService;
         this.total = 0;
+        this.order = {
+            name: '',
+            phone: '',
+            address: '',
+            email: '',
+            pay: '',
+            transmit: ''
+        };
     }
     CheckoutComponent.prototype.ngOnInit = function () { };
     Object.defineProperty(CheckoutComponent.prototype, "showcart", {
@@ -560,6 +571,10 @@ var CheckoutComponent = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
+    CheckoutComponent.prototype.submit = function (order, products, total) {
+        console.log(order, products, total);
+        alert('訂單已送出，謝謝您的購買！');
+    };
     CheckoutComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-checkout',
@@ -567,7 +582,8 @@ var CheckoutComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./checkout.component.css */ "./src/app/checkout/checkout.component.css")]
         }),
         __metadata("design:paramtypes", [_cart_service__WEBPACK_IMPORTED_MODULE_1__["CartService"],
-            _data_service__WEBPACK_IMPORTED_MODULE_2__["DataService"]])
+            _data_service__WEBPACK_IMPORTED_MODULE_2__["DataService"],
+            _order_service__WEBPACK_IMPORTED_MODULE_3__["OrderService"]])
     ], CheckoutComponent);
     return CheckoutComponent;
 }());
@@ -1686,6 +1702,43 @@ var MemberService = /** @class */ (function () {
         __metadata("design:paramtypes", [])
     ], MemberService);
     return MemberService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/order.service.ts":
+/*!**********************************!*\
+  !*** ./src/app/order.service.ts ***!
+  \**********************************/
+/*! exports provided: OrderService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OrderService", function() { return OrderService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var OrderService = /** @class */ (function () {
+    function OrderService() {
+    }
+    OrderService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [])
+    ], OrderService);
+    return OrderService;
 }());
 
 
