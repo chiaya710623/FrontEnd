@@ -400,7 +400,7 @@ module.exports = "ul li,\r\nol li {\r\n  font-size: 14px;\r\n}\r\np {\r\n  margi
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"clearfix\"></div>\n<!-- cartlist -->\n<div class=\"checkout\">\n  <div class=\"container\">\n    <h2>購物車中有<span style=\"color: #68d6c1;\">{{ cart.length }}項商品</span></h2>\n    <ng-container *ngIf=\"cart.length > 0;\">\n      <div class=\"checkout-right\">\n        <table class=\"timetable_sub\">\n          <thead>\n            <tr>\n              <th></th>\n              <th>商品名稱</th>\n              <th>商品圖片</th>\n              <th>售價</th>\n              <th>數量</th>\n              <th>刪除</th>\n            </tr>\n          </thead>\n          <ng-container *ngFor=\"let item of cart; let index=index;\">\n            <tr>\n              <td>{{ index + 1 }}</td>\n              <td>{{ item.name }}</td>\n              <td class=\"invert-image\"><a [routerLink]=\"['/products/', item.id]\"><img [src]=\"item.photo\" alt=\" \" /></a></td>\n              <td>NT${{ item.price }}</td>\n              <td>\n                <div class=\"quantity\">\n                  <div class=\"quantity-select\">\n                    <a (click)=\"minor(index)\">\n                      <div class=\"entry value-minus\"></div>\n                    </a>\n                    <div class=\"entry value\"><span>{{ item.amount }}</span></div>\n                    <a (click)=\"plus(index)\">\n                      <div class=\"entry value-plus active\"></div>\n                    </a>\n                  </div>\n                </div>\n              </td>\n              <td>\n                <img src=\"assets/images/close_1.png\" style=\"text-align:center;\" (click)=\"delete_item(index)\">\n              </td>\n            </tr>\n          </ng-container>\n\n        </table>\n      </div>\n      <div class=\"checkout-left\">\n        <div class=\"checkout-left-basket\">\n          <h4>Continue to basket</h4>\n          <ul>\n            <ng-container *ngFor=\"let item of cart;\">\n              <li>{{item.name}} <span>NT${{item.price}} x {{item.amount}} = NT${{item.price*item.amount}} </span></li>\n            </ng-container>\n            <li>運費 <span>NT$65</span></li>\n            <li>----------------------------------------</li>\n            <li><strong>總金額 <span>NT${{ total }}</span></strong></li>\n          </ul>\n        </div>\n\n      </div>\n    </ng-container>\n    <div class=\"checkout-right-basket\">\n      <a [routerLink]=\"['/products']\"><span class=\"glyphicon glyphicon-menu-left\" aria-hidden=\"true\"></span>繼續購物</a>\n\n      <a [routerLink]=\"['/products']\"><span class=\"glyphicon glyphicon-menu-right\" aria-hidden=\"true\"></span>開始結帳</a>\n\n    </div>\n\n    <div class=\"clearfix\"> </div>\n  </div>\n\n</div>\n<!-- //checkout -->\n"
+module.exports = "<div class=\"clearfix\"></div>\n<!-- cartlist -->\n<div class=\"checkout\">\n  <div class=\"container\">\n    <h2>購物車中有<span style=\"color: #68d6c1;\">{{ showcart.length }}項商品</span></h2>\n    <ng-container *ngIf=\"showcart.length > 0;\">\n      <div class=\"checkout-right\">\n        <table class=\"timetable_sub\">\n          <thead>\n            <tr>\n              <th></th>\n              <th>商品名稱</th>\n              <th>商品圖片</th>\n              <th>售價</th>\n              <th>數量</th>\n              <th>刪除</th>\n            </tr>\n          </thead>\n          <ng-container *ngFor=\"let item of showcart; let index=index;\">\n            <tr>\n              <td>{{ index + 1 }}</td>\n              <td>{{ item.name }}</td>\n              <td class=\"invert-image\"><a [routerLink]=\"['/products/', item.id]\"><img [src]=\"item.photo\" alt=\" \" /></a></td>\n              <td>NT${{ item.price }}</td>\n              <td>\n                <div class=\"quantity\">\n                  <div class=\"quantity-select\">\n                    <a (click)=\"minor(index)\">\n                      <div class=\"entry value-minus\"></div>\n                    </a>\n                    <div class=\"entry value\"><span>{{ item.amount }}</span></div>\n                    <a (click)=\"plus(index)\">\n                      <div class=\"entry value-plus active\"></div>\n                    </a>\n                  </div>\n                </div>\n              </td>\n              <td>\n                <img src=\"assets/images/close_1.png\" style=\"text-align:center;\" (click)=\"delete_item(index)\">\n              </td>\n            </tr>\n          </ng-container>\n\n        </table>\n      </div>\n      <div class=\"checkout-left\">\n        <div class=\"checkout-left-basket\">\n          <h4>Continue to basket</h4>\n          <ul>\n            <ng-container *ngFor=\"let item of showcart;\">\n              <li>{{item.name}} <span>NT${{item.price}} x {{item.amount}} = NT${{item.price*item.amount}} </span></li>\n            </ng-container>\n            <li>運費 <span>NT$65</span></li>\n            <li>----------------------------------------</li>\n            <li><strong>總金額 <span>NT${{ total + 65 }}</span></strong></li>\n          </ul>\n        </div>\n\n      </div>\n    </ng-container>\n    <div class=\"checkout-right-basket\">\n      <a [routerLink]=\"['/products']\"><span class=\"glyphicon glyphicon-menu-left\" aria-hidden=\"true\"></span>繼續購物</a>\n\n      <a [routerLink]=\"['/checkout']\"><span class=\"glyphicon glyphicon-menu-right\" aria-hidden=\"true\"></span>開始結帳</a>\n\n    </div>\n\n    <div class=\"clearfix\"> </div>\n  </div>\n\n</div>\n<!-- //checkout -->\n"
 
 /***/ }),
 
@@ -436,7 +436,7 @@ var CartlistComponent = /** @class */ (function () {
         this.total = 0;
     }
     CartlistComponent.prototype.ngOnInit = function () { };
-    Object.defineProperty(CartlistComponent.prototype, "cart", {
+    Object.defineProperty(CartlistComponent.prototype, "showcart", {
         get: function () {
             var cart = [];
             for (var i = 0; i < this.cartService.cart.length; i++) {
@@ -493,7 +493,7 @@ var CartlistComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = ".product_list {\r\n  font-family: \"Trebuchet MS\", Arial, Helvetica, sans-serif;\r\n  width: 95%;\r\n  border-collapse: collapse;\r\n  display: block;\r\n  -ms-grid-row-align: center;\r\n      align-self: center;\r\n  color: #68D6C1;\r\n}\r\n\r\n.product_list td {\r\n  font-size: 16px;\r\n  border: 1px solid #68D6C1;\r\n  padding: 3px 10px 2px 10px;\r\n  color: #000000;\r\n  background-color: white;\r\n  width: 60%;\r\n}\r\n\r\n.product_list th {\r\n  padding: 5px 10px 4px 10px;\r\n  background-color: #68D6C1;\r\n  border: 1px solid white;\r\n  color: white;\r\n  text-align: center;\r\n  width: 20%;\r\n}\r\n\r\n/*-- quantity-end --*/\r\n\r\n.checkout-left-basket h4 {\r\n  padding: 1em;\r\n  background: #2fdab8;\r\n  font-size: 100%;\r\n  color: #fff;\r\n  text-transform: uppercase;\r\n  text-align: center;\r\n  margin: 0 0 1em;\r\n}\r\n\r\n.checkout-left {\r\n  margin: 2em 0 0;\r\n}\r\n\r\n.checkout-left-basket ul li {\r\n  list-style-type: none;\r\n  margin-bottom: 1em;\r\n  font-size: 100%;\r\n  color: #999;\r\n}\r\n\r\n.checkout-left-basket {\r\n  float: left;\r\n  width: 100%;\r\n}\r\n\r\n.checkout-right-basket {\r\n  float: right;\r\n  margin: 8em 0 0 0em;\r\n}\r\n\r\n.checkout-left-basket ul li span {\r\n  float: right;\r\n}\r\n\r\n.checkout-left-basket ul li:nth-child(5) {\r\n  font-size: 1em;\r\n  color: #212121;\r\n  font-weight: 600;\r\n  padding: 1em 0;\r\n  border-top: 1px solid #ddd;\r\n  border-bottom: 1px solid #ddd;\r\n  margin: 2em 0 0;\r\n}\r\n\r\n.checkout-right-basket a {\r\n  padding: 10px 30px;\r\n  color: #fff;\r\n  font-size: 1em;\r\n  background: #212121;\r\n  text-decoration: none;\r\n}\r\n\r\n.checkout-right-basket a:hover {\r\n  background: #68d6c1;\r\n}\r\n\r\n.checkout-right-basket a span {\r\n  left: -0.5em;\r\n  top: 0.1em;\r\n}\r\n\r\n.checkout {\r\n  padding: 30% 0% 30% 0%;\r\n}\r\n\r\n/*-- //checkout --*/\r\n"
 
 /***/ }),
 
@@ -504,7 +504,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = "<div class=\"checkout\">\r\n  <div class=\"container\">\r\n    <div class=\"checkout-left\">\r\n      <div class=\"checkout-left-basket\">\r\n        <h4>Continue to basket</h4>\r\n        <ul>\r\n          <ng-container *ngFor=\"let item of showcart;\">\r\n            <li>{{item.name}} <span>NT${{item.price}} x {{item.amount}} = NT${{item.price*item.amount}} </span></li>\r\n          </ng-container>\r\n          <li>運費 <span>NT$65</span></li>\r\n          <li>----------------------------------------</li>\r\n          <li><strong>總金額 <span>NT${{ total + 65 }}</span></strong></li>\r\n        </ul>\r\n      </div>\r\n    </div>\r\n    <div style=\"padding: 0% 20% 0% 20%;\">\r\n      <table class=\"product_list\">\r\n        <h3>填寫訂單資料</h3>\r\n        <tr>\r\n          <th>訂購人姓名：</th>\r\n          <td><input type=\"text\" name=\"name\" placeholder=\"請輸入姓名\"></td>\r\n        </tr>\r\n        <tr>\r\n          <th>電話：</th>\r\n          <td><input type=\"text\" name=\"phone\" placeholder=\"請輸入電話\"></td>\r\n        </tr>\r\n        <tr>\r\n          <th>E-mail：</th>\r\n          <td><input type=\"text\" name=\"email\" placeholder=\"請輸入E-mail\"></td>\r\n        </tr>\r\n        <tr>\r\n          <th>地址：</th>\r\n          <td><input type=\"text\" name=\"address\" placeholder=\"請輸入地址\"></td>\r\n        </tr>\r\n        <tr>\r\n          <th>付款方式：</th>\r\n          <td><input type=\"radio\" name=\"pay\" value=\"'信用卡付款'\">信用卡付款 <input type=\"radio\" name=\"pay\" value=\"'轉帳付款'\">轉帳付款\r\n          </td>\r\n        </tr>\r\n        <tr>\r\n          <th>運送方式：</th>\r\n          <td><input type=\"radio\" name=\"transmit\" value=\"'郵寄'\">郵寄 <input type=\"radio\" name=\"transmit\" value=\"'7-11取貨'\">7-11取貨\r\n          </td>\r\n        </tr>\r\n      </table>\r\n    </div>\r\n    <div class=\"checkout-right-basket\">\r\n        <a [routerLink]=\"['/products']\"><span class=\"glyphicon glyphicon-menu-left\" aria-hidden=\"true\"></span>返回購物</a>\r\n\r\n        <a [routerLink]=\"['/']\"><span class=\"glyphicon glyphicon-menu-right\" aria-hidden=\"true\"></span>送出訂單</a>\r\n\r\n      </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -537,8 +537,29 @@ var CheckoutComponent = /** @class */ (function () {
     function CheckoutComponent(cartService, dataService) {
         this.cartService = cartService;
         this.dataService = dataService;
+        this.total = 0;
     }
     CheckoutComponent.prototype.ngOnInit = function () { };
+    Object.defineProperty(CheckoutComponent.prototype, "showcart", {
+        get: function () {
+            var cart = [];
+            for (var i = 0; i < this.cartService.cart.length; i++) {
+                for (var j = 0; j < this.dataService.products.length; j++) {
+                    if (this.cartService.cart[i].id === this.dataService.products[j].id) {
+                        cart[i] = this.dataService.products[j];
+                        cart[i].amount = this.cartService.cart[i].item_amount;
+                    }
+                }
+            }
+            this.total = 0;
+            for (var i = 0; i < cart.length; i++) {
+                this.total += cart[i].price * cart[i].amount;
+            }
+            return cart;
+        },
+        enumerable: true,
+        configurable: true
+    });
     CheckoutComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-checkout',
