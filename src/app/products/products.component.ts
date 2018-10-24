@@ -31,7 +31,6 @@ export class ProductsComponent implements OnInit {
   }
   add_to_cart(id, item_amount) {
     this.cartService.add_to_cart(id, item_amount);
-    alert('已加入購物車');
   }
   search(search_list) {
     this.dataService.search(search_list);

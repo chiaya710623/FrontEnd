@@ -19,6 +19,5 @@ export class HomeComponent implements OnInit {
   }
   add_to_cart(id, item_amount) {
     this.cartService.add_to_cart(id, item_amount);
-    alert('已加入購物車');
   }
 }

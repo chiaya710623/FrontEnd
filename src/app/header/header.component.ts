@@ -31,9 +31,9 @@ export class HeaderComponent implements OnInit {
   get cart() {
     const cart = [];
     for (let i = 0; i < this.cartService.cart.length; i++) {
-      for (let j = 0; j < this.dataService.products.length; j++) {
-        if (this.cartService.cart[i].id === this.dataService.products[j].id) {
-          cart[i] = this.dataService.products[j];
+      for (let j = 0; j < this.dataService.originalProducts.length; j++) {
+        if (this.cartService.cart[i].id === this.dataService.originalProducts[j].id) {
+          cart[i] = this.dataService.originalProducts[j];
           cart[i].amount = this.cartService.cart[i].item_amount;
         }
       }
