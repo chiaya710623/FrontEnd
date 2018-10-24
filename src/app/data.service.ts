@@ -368,6 +368,7 @@ export class DataService {
       publish_year: 2017
     }
   ];
+  originalProducts = this.products;
   show_list = {
     name: '',
     author_name: '',
@@ -375,7 +376,6 @@ export class DataService {
     isbn: '',
     classification: ''
   };
-  originalProducts = this.products;
 
   search(search_list) {
     this.products = this.originalProducts;

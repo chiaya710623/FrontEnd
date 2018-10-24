@@ -14,8 +14,8 @@ export class HomeComponent implements OnInit {
   ) {}
   Today = new Date();
   ngOnInit() {}
-  get products() {
-    return this.dataService.products;
+  get originProducts() {
+    return this.dataService.originalProducts; // 這裡是get origin
   }
   add_to_cart(id, item_amount) {
     this.cartService.add_to_cart(id, item_amount);
