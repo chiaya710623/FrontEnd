@@ -1,3 +1,11 @@
+## FrontEnd
+# 全端系統開發與設計 作業
+
+aster：原始碼 <br>
+gh-pages：網站本人（https://chiaya710623.github.io/FrontEnd/）
+
+
+
 # FrontEnd
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.2.
