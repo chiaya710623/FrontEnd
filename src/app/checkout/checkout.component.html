@@ -1,0 +1,65 @@
+<div class="checkout">
+  <div class="container">
+    <div class="checkout-left">
+      <div class="checkout-left-basket">
+        <h4>Continue to basket</h4>
+        <ul>
+          <ng-container *ngFor="let item of showcart;">
+            <li>{{item.name}} <span>NT${{item.price}} x {{item.amount}} = NT${{item.price*item.amount}} </span></li>
+          </ng-container>
+          <li>運費 <span>NT$65</span></li>
+          <li>----------------------------------------</li>
+          <li><strong>總金額 <span>NT${{ total + 65 }}</span></strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="checkout">
+  <div class="container">
+    <div class="checkout-left">
+      <div class="checkout-left-basket">
+        <h4>Continue to basket</h4>
+        <ul>
+          <ng-container *ngFor="let item of showcart;">
+            <li>{{item.name}} <span>NT${{item.price}} x {{item.amount}} = NT${{item.price*item.amount}} </span></li>
+          </ng-container>
+          <li>運費 <span>NT$65</span></li>
+          <li>----------------------------------------</li>
+          <li><strong>總金額 <span>NT${{ total + 65 }}</span></strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="product_list">
+  <div class="container">
+    <table>
+      <tr>
+        <th>訂購人姓名：</th>
+        <td><input type="text" name="name" placeholder="請輸入姓名"></td>
+      </tr>
+      <tr>
+        <th>電話：</th>
+        <td><input type="text" name="phone" placeholder="請輸入電話"></td>
+      </tr>
+      <tr>
+        <th>E-mail：</th>
+        <td><input type="text" name="email" placeholder="請輸入E-mail"></td>
+      </tr>
+      <tr>
+        <th>地址：</th>
+        <td><input type="text" name="address" placeholder="請輸入地址"></td>
+      </tr>
+      <tr>
+        <th>付款方式：</th>
+        <td><input type="radio" name="pay" value="'信用卡付款'">信用卡付款 <input type="radio" name="pay" value="'轉帳付款'">轉帳付款 </td>
+      </tr>
+      <tr>
+        <th>運送方式：</th>
+        <td><input type="radio" name="transmit" value="'郵寄'">郵寄 <input type="radio" name="transmit" value="'7-11取貨'">7-11取貨
+        </td>
+      </tr>
+    </table>
+  </div>
+  </div>

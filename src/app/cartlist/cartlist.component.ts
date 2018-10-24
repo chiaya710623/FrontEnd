@@ -14,7 +14,7 @@ export class CartlistComponent implements OnInit {
     private dataService: DataService
   ) {}
   ngOnInit() {}
-  get cart() {
+  get showcart() {
     const cart = [];
     for (let i = 0; i < this.cartService.cart.length; i++) {
       for (let j = 0; j < this.dataService.products.length; j++) {

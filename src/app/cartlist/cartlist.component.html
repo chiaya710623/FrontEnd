@@ -2,8 +2,8 @@
 <!-- cartlist -->
 <div class="checkout">
   <div class="container">
-    <h2>購物車中有<span style="color: #68d6c1;">{{ cart.length }}項商品</span></h2>
-    <ng-container *ngIf="cart.length > 0;">
+    <h2>購物車中有<span style="color: #68d6c1;">{{ showcart.length }}項商品</span></h2>
+    <ng-container *ngIf="showcart.length > 0;">
       <div class="checkout-right">
         <table class="timetable_sub">
           <thead>
@@ -16,7 +16,7 @@
               <th>刪除</th>
             </tr>
           </thead>
-          <ng-container *ngFor="let item of cart; let index=index;">
+          <ng-container *ngFor="let item of showcart; let index=index;">
             <tr>
               <td>{{ index + 1 }}</td>
               <td>{{ item.name }}</td>
@@ -47,12 +47,12 @@
         <div class="checkout-left-basket">
           <h4>Continue to basket</h4>
           <ul>
-            <ng-container *ngFor="let item of cart;">
+            <ng-container *ngFor="let item of showcart;">
               <li>{{item.name}} <span>NT${{item.price}} x {{item.amount}} = NT${{item.price*item.amount}} </span></li>
             </ng-container>
             <li>運費 <span>NT$65</span></li>
             <li>----------------------------------------</li>
-            <li><strong>總金額 <span>NT${{ total }}</span></strong></li>
+            <li><strong>總金額 <span>NT${{ total + 65 }}</span></strong></li>
           </ul>
         </div>
 
@@ -61,7 +61,7 @@
     <div class="checkout-right-basket">
       <a [routerLink]="['/products']"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>繼續購物</a>
 
-      <a [routerLink]="['/products']"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>開始結帳</a>
+      <a [routerLink]="['/checkout']"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>開始結帳</a>
 
     </div>
 
