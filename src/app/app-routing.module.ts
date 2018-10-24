@@ -9,6 +9,7 @@ import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { ContactComponent } from './contact/contact.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { CartlistComponent } from './cartlist/cartlist.component';
 
 const routes: Routes = [
   {
@@ -42,6 +43,10 @@ const routes: Routes = [
       {
         path: 'contact',
         component: ContactComponent
+      },
+      {
+        path: 'cartlist',
+        component: CartlistComponent
       },
       {
         path: 'checkout',

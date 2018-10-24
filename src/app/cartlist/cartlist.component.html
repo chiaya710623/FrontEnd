@@ -1,0 +1,72 @@
+<div class="clearfix"></div>
+<!-- cartlist -->
+<div class="checkout">
+  <div class="container">
+    <h2>購物車中有<span style="color: #68d6c1;">{{ cart.length }}項商品</span></h2>
+    <ng-container *ngIf="cart.length > 0;">
+      <div class="checkout-right">
+        <table class="timetable_sub">
+          <thead>
+            <tr>
+              <th></th>
+              <th>商品名稱</th>
+              <th>商品圖片</th>
+              <th>售價</th>
+              <th>數量</th>
+              <th>刪除</th>
+            </tr>
+          </thead>
+          <ng-container *ngFor="let item of cart; let index=index;">
+            <tr>
+              <td>{{ index + 1 }}</td>
+              <td>{{ item.name }}</td>
+              <td class="invert-image"><a [routerLink]="['/products/', item.id]"><img [src]="item.photo" alt=" " /></a></td>
+              <td>NT${{ item.price }}</td>
+              <td>
+                <div class="quantity">
+                  <div class="quantity-select">
+                    <a (click)="minor(index)">
+                      <div class="entry value-minus"></div>
+                    </a>
+                    <div class="entry value"><span>{{ item.amount }}</span></div>
+                    <a (click)="plus(index)">
+                      <div class="entry value-plus active"></div>
+                    </a>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <img src="assets/images/close_1.png" style="text-align:center;" (click)="delete_item(index)">
+              </td>
+            </tr>
+          </ng-container>
+
+        </table>
+      </div>
+      <div class="checkout-left">
+        <div class="checkout-left-basket">
+          <h4>Continue to basket</h4>
+          <ul>
+            <ng-container *ngFor="let item of cart;">
+              <li>{{item.name}} <span>NT${{item.price}} x {{item.amount}} = NT${{item.price*item.amount}} </span></li>
+            </ng-container>
+            <li>運費 <span>NT$65</span></li>
+            <li>----------------------------------------</li>
+            <li><strong>總金額 <span>NT${{ total }}</span></strong></li>
+          </ul>
+        </div>
+
+      </div>
+    </ng-container>
+    <div class="checkout-right-basket">
+      <a [routerLink]="['/products']"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>繼續購物</a>
+
+      <a [routerLink]="['/products']"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>開始結帳</a>
+
+    </div>
+
+    <div class="clearfix"> </div>
+  </div>
+
+</div>
+<!-- //checkout -->

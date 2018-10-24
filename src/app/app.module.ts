@@ -14,6 +14,7 @@ import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { ContactComponent } from './contact/contact.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { CartlistComponent } from './cartlist/cartlist.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { CheckoutComponent } from './checkout/checkout.component';
     SignupComponent,
     LoginComponent,
     ContactComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    CartlistComponent
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],

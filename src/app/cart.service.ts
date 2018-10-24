@@ -16,13 +16,11 @@ export class CartService {
           this.cart[i].item_amount += item_amount;
           alert('已增加' + item_amount + '件此商品至購物車中。');
         }
-        console.log(this.cart);
         return;
       }
     }
     this.cart[this.list_amount] = { id, item_amount };
     this.list_amount++;
     alert('已加入' + item_amount + '件此商品至購物車。');
-    console.log(this.cart);
   }
 }
