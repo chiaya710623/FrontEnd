@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../data.service';
 import { CartService } from '../cart.service';
 
+declare let $: any;
+
 @Component({
   selector: 'app-content',
   templateUrl: './content.component.html',
@@ -26,6 +28,28 @@ export class ContentComponent implements OnInit {
           this.index = i;
         }
       }
+    });
+    $(document).ready(function() {
+      // 書籍介紹用的
+      $('#horizontalTab').easyResponsiveTabs({
+        type: 'default', // Types: default, vertical, accordion
+        width: 'auto', // auto or any width like 600px
+        fit: true, // 100% fit in a container
+        closed: 'accordion', // Start closed if in accordion view
+        activate: function(event) {
+          // Callback function if tab is switched
+          const $tab = $(this);
+          const $info = $('#tabInfo');
+          const $name = $('span', $info);
+          $name.text($tab.text());
+          $info.show();
+        }
+      });
+      $('#verticalTab').easyResponsiveTabs({
+        type: 'vertical',
+        width: 'auto',
+        fit: true
+      });
     });
   }
 
