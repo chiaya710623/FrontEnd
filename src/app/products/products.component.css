@@ -1,18 +1,18 @@
-.search_list {
+.keyword_list {
   align-self: center;
   width: 100%;
 }
-.search_list tr {
+.keyword_list tr {
   height: 50px;
 }
-.search_list th {
+.keyword_list th {
   text-align: end;
   padding: 0px 20px 0px 25px;
   width: 30%;
 }
-.search_list td {
+.keyword_list td {
   width: 70%;
 }
-.search_list input {
+.keyword_list input {
   width: 80%;
 }

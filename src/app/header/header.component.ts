@@ -54,7 +54,6 @@ export class HeaderComponent implements OnInit {
     this.dataService.origin();
   }
   checkout() {
-    console.log(this.cartService.cart);
     if (this.cartService.list_amount === 0) {
       alert('購物車中沒有商品。');
     } else {

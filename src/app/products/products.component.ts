@@ -15,7 +15,7 @@ export class ProductsComponent implements OnInit {
   amount = 6;
   page = 1;
   choice = 0;
-  search_list = {
+  keyword_list = {
     name: '',
     author_name: '',
     publisher: '',
@@ -32,8 +32,8 @@ export class ProductsComponent implements OnInit {
   add_to_cart(id, item_amount) {
     this.cartService.add_to_cart(id, item_amount);
   }
-  search(search_list) {
-    this.dataService.search(search_list);
+  search(keyword_list) {
+    this.dataService.search(keyword_list);
   }
   sort(choice) {
     this.dataService.sort(choice);

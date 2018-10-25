@@ -377,50 +377,50 @@ export class DataService {
     classification: ''
   };
 
-  search(search_list) {
+  search(keyword_list) {
     this.products = this.originalProducts;
     // tslint:disable-next-line:forin
-    for (const key in search_list) {
+    for (const key in keyword_list) {
       switch (key) {
         case 'name':
-          if (search_list[key].trim() !== '') {
+          if (keyword_list[key].trim() !== '') {
             this.products = this.products.filter(
-              products => products.name.indexOf(search_list[key]) !== -1
+              products => products.name.indexOf(keyword_list[key]) !== -1
             );
           }
           break;
         case 'author_name':
-          if (search_list[key].trim() !== '') {
+          if (keyword_list[key].trim() !== '') {
             this.products = this.products.filter(
-              products => products.author.name.indexOf(search_list[key]) !== -1
+              products => products.author.name.indexOf(keyword_list[key]) !== -1
             );
           }
           break;
         case 'publisher':
-          if (search_list[key].trim() !== '') {
+          if (keyword_list[key].trim() !== '') {
             this.products = this.products.filter(
-              products => products.publisher.indexOf(search_list[key]) !== -1
+              products => products.publisher.indexOf(keyword_list[key]) !== -1
             );
           }
           break;
         case 'isbn':
-          if (search_list[key].trim() !== '') {
+          if (keyword_list[key].trim() !== '') {
             this.products = this.products.filter(
-              products => products.isbn.indexOf(search_list[key]) !== -1
+              products => products.isbn.indexOf(keyword_list[key]) !== -1
             );
           }
           break;
         case 'classification':
-          if (search_list[key].trim() !== '') {
+          if (keyword_list[key].trim() !== '') {
             this.products = this.products.filter(
               products =>
-                products.classification.indexOf(search_list[key]) !== -1
+                products.classification.indexOf(keyword_list[key]) !== -1
             );
           }
           break;
       }
     }
-    this.show_list = search_list;
+    this.show_list = keyword_list;
   }
   origin() {
     this.products = this.originalProducts;
