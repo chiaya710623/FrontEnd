@@ -41,7 +41,11 @@ export class CheckoutComponent implements OnInit {
     return cart;
   }
   submit(order, products, total) {
-    console.log(order, products, total);
+    order.products = products;
+    order.total = total;
+    this.orderService.order[this.orderService.order_amount] = order;
+    this.orderService.order_amount++;
+    console.log(this.orderService.order);
     alert('訂單已送出，謝謝您的購買！');
   }
 }

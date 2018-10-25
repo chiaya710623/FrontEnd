@@ -12,7 +12,7 @@ export class ContentComponent implements OnInit {
   products = this.dataService.products;
   id = '1';
   index = 0;
-  item_amount = 1;
+  item_amount = '1';
   constructor(
     private route: ActivatedRoute,
     private dataService: DataService,
@@ -30,6 +30,6 @@ export class ContentComponent implements OnInit {
   }
 
   add_to_cart(id, item_amount) {
-    this.cartService.add_to_cart(id, item_amount);
+    this.cartService.add_to_cart(id, parseInt(item_amount, 10));
   }
 }

@@ -185,12 +185,15 @@
       <div style="text-align: center">
         <ul class="pagination pagination-lg">
           <li *ngIf="amount < products.length"><a (click)="page=1"><span aria-hidden="true">«</span></a></li>
+          <li *ngIf="page - 1 > 0"><a (click)="page=page-1"><span aria-hidden="true"><</span></a></li>
           <li *ngIf="page - 2 > 0"><a (click)="page=page-2">{{page-2}}</a></li>
           <li *ngIf="page - 1 > 0"><a (click)="page=page-1">{{page-1}}</a></li>
           <li class="active" *ngIf="amount < products.length"><a>{{page}}</a></li>
           <li *ngIf="(page + 1) * amount - products.length < amount"><a (click)="page=page+1">{{page+1}}</a></li>
           <li *ngIf="(page + 2) * amount - products.length < amount"><a (click)="page=page+2">{{page+2}}</a></li>
-          <li *ngIf="amount < products.length"><a (click)="page=(products.length - products.length % amount)/amount+1"
+
+          <li *ngIf="(page + 1) * amount - products.length < amount"><a (click)="page=page+1">></a></li>
+          <li *ngIf="(page + 1) * amount - products.length < amount"><a (click)="page=(products.length - products.length % amount)/amount+1"
               aria-label="Next"><span aria-hidden="true">»</span></a></li>
         </ul>
       </div>

@@ -2,20 +2,18 @@
   <div class="container">
     <div class="checkout-left">
       <div class="checkout-left-basket">
-        <h4>Continue to basket</h4>
+        <h4>訂單內容</h4>
         <ul>
           <ng-container *ngFor="let item of showcart;">
             <li>{{item.name}} <span>NT${{item.price}} x {{item.amount}} = NT${{item.price*item.amount}} </span></li>
           </ng-container>
           <li>運費 <span>NT$65</span></li>
-          <li>----------------------------------------</li>
           <li><strong>總金額 <span>NT${{ total + 65 }}</span></strong></li>
         </ul>
       </div>
     </div>
-    <div style="padding: 0% 20% 0% 20%;">
-      <table class="product_list">
-        <h3>填寫訂單資料</h3>
+    <div class="checkout-right">
+      <table class="timetable_sub">
         <tr>
           <th>訂購人姓名：</th>
           <td><input type="text" name="name" placeholder="請輸入姓名"[(ngModel)]="order.name"></td>

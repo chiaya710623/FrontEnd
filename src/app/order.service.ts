@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class OrderService {
-
-  constructor() { }
+  constructor() {}
+  order_amount = 0;
+  order = [];
 }
