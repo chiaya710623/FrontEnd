@@ -17,7 +17,7 @@ export class CheckoutComponent implements OnInit {
     private router: Router
   ) {}
   total = 0;
-  order = {
+  information = {
     name: '',
     phone: '',
     address: '',
@@ -42,23 +42,7 @@ export class CheckoutComponent implements OnInit {
     }
     return cart;
   }
-  submit(order, products, total) {
-    let x = 0;
-    for (const key in order) {
-      if (order[key] === '') {
-        x++;
-      }
-    }
-    if (x === 0) {
-      order.products = products;
-      order.total = total;
-      this.orderService.order[this.orderService.order_amount] = order;
-      this.orderService.order_amount++;
-      console.log(this.orderService.order);
-      alert('訂單已送出，謝謝您的購買！');
-      this.router.navigate(['/cartlist']);
-    } else {
-      alert('請確實填寫資料，謝謝！');
-    }
+  submit_order(information, products, total) {
+    return this.orderService.submit_order(information, products, total);
   }
 }
