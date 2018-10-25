@@ -32,7 +32,10 @@ export class HeaderComponent implements OnInit {
     const cart = [];
     for (let i = 0; i < this.cartService.cart.length; i++) {
       for (let j = 0; j < this.dataService.originalProducts.length; j++) {
-        if (this.cartService.cart[i].id === this.dataService.originalProducts[j].id) {
+        if (
+          this.cartService.cart[i].id ===
+          this.dataService.originalProducts[j].id
+        ) {
           cart[i] = this.dataService.originalProducts[j];
           cart[i].amount = this.cartService.cart[i].item_amount;
         }
@@ -49,5 +52,13 @@ export class HeaderComponent implements OnInit {
   }
   origin() {
     this.dataService.origin();
+  }
+  checkout() {
+    console.log(this.cartService.cart);
+    if (this.cartService.list_amount === 0) {
+      alert('購物車中沒有商品。');
+    } else {
+      this.router.navigate(['/cartlist']);
+    }
   }
 }

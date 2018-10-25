@@ -32,14 +32,14 @@
         </tr>
         <tr>
           <th>付款方式：</th>
-          <td><span style="padding-right: 3%;"><input type="radio" name="pay" value="'信用卡付款'" [(ngModel)]="order.pay">信用卡付款</span>
-            <input type="radio" name="pay" value="'轉帳付款'" [(ngModel)]="order.pay">轉帳付款
+          <td><span><input type="radio" name="pay" value="'信用卡付款'" [(ngModel)]="order.pay">信用卡付款</span>
+            <span><input type="radio" name="pay" value="'轉帳付款'" [(ngModel)]="order.pay">轉帳付款</span>
           </td>
         </tr>
         <tr>
           <th>運送方式：</th>
-          <td><input type="radio" name="transmit" value="'郵寄'" [(ngModel)]="order.transmit">郵寄
-            <input type="radio" name="transmit" value="'7-11取貨'" [(ngModel)]="order.transmit">7-11取貨
+          <td><span><input type="radio" name="transmit" value="'郵寄'" [(ngModel)]="order.transmit">郵寄</span>
+            <span><input type="radio" name="transmit" value="'7-11取貨'" [(ngModel)]="order.transmit">7-11取貨</span>
           </td>
         </tr>
       </table>

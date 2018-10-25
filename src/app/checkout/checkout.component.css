@@ -342,6 +342,9 @@ table.timetable_sub {
 .timetable_sub input[type="text"] {
   width: 98%;
 }
+.timetable_sub span {
+  padding-right: 3%;
+}
 
 td.invert-image a img {
   width: 25%;

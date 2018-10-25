@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CartService } from '../cart.service';
 import { DataService } from '../data.service';
 import { OrderService } from '../order.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-checkout',
@@ -12,7 +13,8 @@ export class CheckoutComponent implements OnInit {
   constructor(
     private cartService: CartService,
     private dataService: DataService,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private router: Router
   ) {}
   total = 0;
   order = {
@@ -47,5 +49,6 @@ export class CheckoutComponent implements OnInit {
     this.orderService.order_amount++;
     console.log(this.orderService.order);
     alert('訂單已送出，謝謝您的購買！');
+    this.router.navigate(['/cartlist']);
   }
 }
