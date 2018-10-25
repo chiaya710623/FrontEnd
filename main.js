@@ -506,7 +506,7 @@ module.exports = "ul li,\r\nol li {\r\n  font-size: 14px;\r\n}\r\np {\r\n  margi
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"checkout\">\r\n  <div class=\"container\">\r\n    <div class=\"checkout-left\">\r\n      <div class=\"checkout-left-basket\" style=\"width:100%;\">\r\n        <h4>訂單內容</h4>\r\n        <ul>\r\n          <ng-container *ngFor=\"let item of showcart;\">\r\n            <li>{{item.name}} <span>NT${{item.price}} x {{item.amount}} = NT${{item.price*item.amount}} </span></li>\r\n          </ng-container>\r\n          <li>運費 <span>NT$65</span></li>\r\n          <li><strong>總金額 <span>NT${{ total + 65 }}</span></strong></li>\r\n        </ul>\r\n      </div>\r\n    </div>\r\n    <div class=\"checkout-right\">\r\n      <table class=\"timetable_sub\">\r\n        <tr>\r\n          <th>訂購人姓名：</th>\r\n          <td><input type=\"text\" name=\"name\" placeholder=\"請輸入姓名\" [(ngModel)]=\"order.name\"></td>\r\n        </tr>\r\n        <tr>\r\n          <th>電話：</th>\r\n          <td><input type=\"text\" name=\"phone\" placeholder=\"請輸入電話\" [(ngModel)]=\"order.phone\"></td>\r\n        </tr>\r\n        <tr>\r\n          <th>E-mail：</th>\r\n          <td><input type=\"text\" name=\"email\" placeholder=\"請輸入E-mail\" [(ngModel)]=\"order.email\"></td>\r\n        </tr>\r\n        <tr>\r\n          <th>地址：</th>\r\n          <td><input type=\"text\" name=\"address\" placeholder=\"請輸入地址\" [(ngModel)]=\"order.address\"></td>\r\n        </tr>\r\n        <tr>\r\n          <th>付款方式：</th>\r\n          <td><span><input type=\"radio\" name=\"pay\" value=\"'信用卡付款'\" [(ngModel)]=\"order.pay\">信用卡付款</span>\r\n            <span><input type=\"radio\" name=\"pay\" value=\"'轉帳付款'\" [(ngModel)]=\"order.pay\">轉帳付款</span>\r\n          </td>\r\n        </tr>\r\n        <tr>\r\n          <th>運送方式：</th>\r\n          <td><span><input type=\"radio\" name=\"transmit\" value=\"'郵寄'\" [(ngModel)]=\"order.transmit\">郵寄</span>\r\n            <span><input type=\"radio\" name=\"transmit\" value=\"'7-11取貨'\" [(ngModel)]=\"order.transmit\">7-11取貨</span>\r\n          </td>\r\n        </tr>\r\n      </table>\r\n    </div>\r\n    <div class=\"checkout-right-basket\">\r\n      <a [routerLink]=\"['/products']\"><span class=\"glyphicon glyphicon-menu-left\" aria-hidden=\"true\"></span>返回購物</a>\r\n\r\n      <a (click)=\"submit(order, showcart, total)\"><span class=\"glyphicon glyphicon-menu-right\" aria-hidden=\"true\"></span>送出訂單</a>\r\n\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"checkout\">\r\n  <div class=\"container\">\r\n    <div class=\"checkout-left\">\r\n      <div class=\"checkout-left-basket\" style=\"width:100%;\">\r\n        <h4>訂單內容</h4>\r\n        <ul>\r\n          <ng-container *ngFor=\"let item of showcart;\">\r\n            <li>{{item.name}} <span>NT${{item.price}} x {{item.amount}} = NT${{item.price*item.amount}} </span></li>\r\n          </ng-container>\r\n          <li>運費 <span>NT$65</span></li>\r\n          <li><strong>總金額 <span>NT${{ total + 65 }}</span></strong></li>\r\n        </ul>\r\n      </div>\r\n    </div>\r\n    <div class=\"checkout-right\">\r\n      <table class=\"timetable_sub\">\r\n        <tr>\r\n          <th>訂購人姓名：</th>\r\n          <td><input type=\"text\" name=\"name\" placeholder=\"請輸入姓名\" [(ngModel)]=\"information.name\"></td>\r\n        </tr>\r\n        <tr>\r\n          <th>電話：</th>\r\n          <td><input type=\"text\" name=\"phone\" placeholder=\"請輸入電話\" [(ngModel)]=\"information.phone\"></td>\r\n        </tr>\r\n        <tr>\r\n          <th>E-mail：</th>\r\n          <td><input type=\"text\" name=\"email\" placeholder=\"請輸入E-mail\" [(ngModel)]=\"information.email\"></td>\r\n        </tr>\r\n        <tr>\r\n          <th>地址：</th>\r\n          <td><input type=\"text\" name=\"address\" placeholder=\"請輸入地址\" [(ngModel)]=\"information.address\"></td>\r\n        </tr>\r\n        <tr>\r\n          <th>付款方式：</th>\r\n          <td><span><input type=\"radio\" name=\"pay\" value=\"'信用卡付款'\" [(ngModel)]=\"information.pay\">信用卡付款</span>\r\n            <span><input type=\"radio\" name=\"pay\" value=\"'轉帳付款'\" [(ngModel)]=\"information.pay\">轉帳付款</span>\r\n          </td>\r\n        </tr>\r\n        <tr>\r\n          <th>運送方式：</th>\r\n          <td><span><input type=\"radio\" name=\"transmit\" value=\"'郵寄'\" [(ngModel)]=\"information.transmit\">郵寄</span>\r\n            <span><input type=\"radio\" name=\"transmit\" value=\"'7-11取貨'\" [(ngModel)]=\"information.transmit\">7-11取貨</span>\r\n          </td>\r\n        </tr>\r\n      </table>\r\n    </div>\r\n    <div class=\"checkout-right-basket\">\r\n      <a [routerLink]=\"['/products']\"><span class=\"glyphicon glyphicon-menu-left\" aria-hidden=\"true\"></span>返回購物</a>\r\n\r\n      <a (click)=\"submit_order(information, showcart, total)\"><span class=\"glyphicon glyphicon-menu-right\" aria-hidden=\"true\"></span>送出訂單</a>\r\n\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -546,7 +546,7 @@ var CheckoutComponent = /** @class */ (function () {
         this.orderService = orderService;
         this.router = router;
         this.total = 0;
-        this.order = {
+        this.information = {
             name: '',
             phone: '',
             address: '',
@@ -576,25 +576,8 @@ var CheckoutComponent = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    CheckoutComponent.prototype.submit = function (order, products, total) {
-        var x = 0;
-        for (var key in order) {
-            if (order[key] === '') {
-                x++;
-            }
-        }
-        if (x === 0) {
-            order.products = products;
-            order.total = total;
-            this.orderService.order[this.orderService.order_amount] = order;
-            this.orderService.order_amount++;
-            console.log(this.orderService.order);
-            alert('訂單已送出，謝謝您的購買！');
-            this.router.navigate(['/cartlist']);
-        }
-        else {
-            alert('請確實填寫資料，謝謝！');
-        }
+    CheckoutComponent.prototype.submit_order = function (information, products, total) {
+        return this.orderService.submit_order(information, products, total);
     };
     CheckoutComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -745,6 +728,28 @@ var ContentComponent = /** @class */ (function () {
                     _this.index = i;
                 }
             }
+        });
+        $(document).ready(function () {
+            // 書籍介紹用的
+            $('#horizontalTab').easyResponsiveTabs({
+                type: 'default',
+                width: 'auto',
+                fit: true,
+                closed: 'accordion',
+                activate: function (event) {
+                    // Callback function if tab is switched
+                    var $tab = $(this);
+                    var $info = $('#tabInfo');
+                    var $name = $('span', $info);
+                    $name.text($tab.text());
+                    $info.show();
+                }
+            });
+            $('#verticalTab').easyResponsiveTabs({
+                type: 'vertical',
+                width: 'auto',
+                fit: true
+            });
         });
     };
     ContentComponent.prototype.add_to_cart = function (id, item_amount) {
@@ -1161,34 +1166,34 @@ var DataService = /** @class */ (function () {
             classification: ''
         };
     }
-    DataService.prototype.search = function (search_list) {
+    DataService.prototype.search = function (keyword_list) {
         this.products = this.originalProducts;
         var _loop_1 = function (key) {
             switch (key) {
                 case 'name':
-                    if (search_list[key].trim() !== '') {
-                        this_1.products = this_1.products.filter(function (products) { return products.name.indexOf(search_list[key]) !== -1; });
+                    if (keyword_list[key].trim() !== '') {
+                        this_1.products = this_1.products.filter(function (products) { return products.name.indexOf(keyword_list[key]) !== -1; });
                     }
                     break;
                 case 'author_name':
-                    if (search_list[key].trim() !== '') {
-                        this_1.products = this_1.products.filter(function (products) { return products.author.name.indexOf(search_list[key]) !== -1; });
+                    if (keyword_list[key].trim() !== '') {
+                        this_1.products = this_1.products.filter(function (products) { return products.author.name.indexOf(keyword_list[key]) !== -1; });
                     }
                     break;
                 case 'publisher':
-                    if (search_list[key].trim() !== '') {
-                        this_1.products = this_1.products.filter(function (products) { return products.publisher.indexOf(search_list[key]) !== -1; });
+                    if (keyword_list[key].trim() !== '') {
+                        this_1.products = this_1.products.filter(function (products) { return products.publisher.indexOf(keyword_list[key]) !== -1; });
                     }
                     break;
                 case 'isbn':
-                    if (search_list[key].trim() !== '') {
-                        this_1.products = this_1.products.filter(function (products) { return products.isbn.indexOf(search_list[key]) !== -1; });
+                    if (keyword_list[key].trim() !== '') {
+                        this_1.products = this_1.products.filter(function (products) { return products.isbn.indexOf(keyword_list[key]) !== -1; });
                     }
                     break;
                 case 'classification':
-                    if (search_list[key].trim() !== '') {
+                    if (keyword_list[key].trim() !== '') {
                         this_1.products = this_1.products.filter(function (products) {
-                            return products.classification.indexOf(search_list[key]) !== -1;
+                            return products.classification.indexOf(keyword_list[key]) !== -1;
                         });
                     }
                     break;
@@ -1196,10 +1201,10 @@ var DataService = /** @class */ (function () {
         };
         var this_1 = this;
         // tslint:disable-next-line:forin
-        for (var key in search_list) {
+        for (var key in keyword_list) {
             _loop_1(key);
         }
-        this.show_list = search_list;
+        this.show_list = keyword_list;
     };
     DataService.prototype.origin = function () {
         this.products = this.originalProducts;
@@ -1419,7 +1424,6 @@ var HeaderComponent = /** @class */ (function () {
         this.dataService.origin();
     };
     HeaderComponent.prototype.checkout = function () {
-        console.log(this.cartService.cart);
         if (this.cartService.list_amount === 0) {
             alert('購物車中沒有商品。');
         }
@@ -1751,6 +1755,7 @@ var MemberService = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OrderService", function() { return OrderService; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1761,16 +1766,38 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var OrderService = /** @class */ (function () {
-    function OrderService() {
+    function OrderService(router) {
+        this.router = router;
         this.order_amount = 0;
         this.order = [];
     }
+    OrderService.prototype.submit_order = function (information, products, total) {
+        var x = 0;
+        for (var key in information) {
+            if (information[key] === '') {
+                x++;
+            }
+        }
+        if (x === 0) {
+            information.products = products;
+            information.total = total;
+            this.order[this.order_amount] = information;
+            this.order_amount++;
+            console.log(this.order);
+            alert('訂單已送出，謝謝您的購買！');
+            this.router.navigate(['/cartlist']);
+        }
+        else {
+            alert('請確實填寫資料，謝謝！');
+        }
+    };
     OrderService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
             providedIn: 'root'
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]])
     ], OrderService);
     return OrderService;
 }());
@@ -1786,7 +1813,7 @@ var OrderService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".search_list {\r\n  -ms-grid-row-align: center;\r\n      align-self: center;\r\n  width: 100%;\r\n}\r\n.search_list tr {\r\n  height: 50px;\r\n}\r\n.search_list th {\r\n  text-align: end;\r\n  padding: 0px 20px 0px 25px;\r\n  width: 30%;\r\n}\r\n.search_list td {\r\n  width: 70%;\r\n}\r\n.search_list input {\r\n  width: 80%;\r\n}\r\n"
+module.exports = ".keyword_list {\r\n  -ms-grid-row-align: center;\r\n      align-self: center;\r\n  width: 100%;\r\n}\r\n.keyword_list tr {\r\n  height: 50px;\r\n}\r\n.keyword_list th {\r\n  text-align: end;\r\n  padding: 0px 20px 0px 25px;\r\n  width: 30%;\r\n}\r\n.keyword_list td {\r\n  width: 70%;\r\n}\r\n.keyword_list input {\r\n  width: 80%;\r\n}\r\n"
 
 /***/ }),
 
@@ -1797,7 +1824,7 @@ module.exports = ".search_list {\r\n  -ms-grid-row-align: center;\r\n      align
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- title -->\r\n<div class=\"page-head_agile_info_w3l\">\r\n  <div class=\"container\">\r\n    <h3>Products</h3>\r\n    <div class=\"services-breadcrumb\">\r\n      <div class=\"agile_inner_breadcrumb\">\r\n\r\n        <ul class=\"w3_short\">\r\n          <li><a [routerLink]=\"['/']\" (click)=\"origin();\">Home</a><i>|</i></li>\r\n          <li>Products</li>\r\n        </ul>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n<!-- //title -->\r\n<div class=\"banner-bootom-w3-agileits\">\r\n  <div class=\"container\">\r\n    <!-- 左欄 -->\r\n    <div class=\"col-md-4 products-left\">\r\n      <div class=\"css-treeview\">\r\n        <h4>Categories</h4>\r\n        <ul class=\"tree-list-pad\">\r\n          <li><input type=\"checkbox\" checked=\"checked\" id=\"item-0\" (click)=\"origin();\" /><label for=\"item-0\"><i class=\"fa fa-long-arrow-right\"\r\n                aria-hidden=\"true\"></i> 所有商品</label>\r\n            <ul>\r\n              <li><input type=\"checkbox\" id=\"item-0-0\" (click)=\"search({name: '',author_name: '',publisher: '',isbn: '',classification: '文學叢書'})\" /><label\r\n                  for=\"item-0-0\"><i class=\"fa fa-long-arrow-right\" aria-hidden=\"true\"></i> 文學叢書</label>\r\n                <ul>\r\n                  <li><a (click)=\"search({name: '', author_name: '', publisher: '', isbn: '',classification: '文學叢書'})\">靈異奇幻</a></li>\r\n                  <li><a (click)=\"search({name: '', author_name: '', publisher: '', isbn: '',classification: '文學叢書'})\">心理勵志</a></li>\r\n                  <li><a (click)=\"search({name: '',author_name: '',publisher: '',isbn: '',classification: '文學叢書'})\">醫療保健</a></li>\r\n                </ul>\r\n              </li>\r\n              <li><input type=\"checkbox\" id=\"item-0-1\" (click)=\"search({name: '',author_name: '',publisher: '',isbn: '',classification: '考試用書'})\" /><label\r\n                  for=\"item-0-1\"><i class=\"fa fa-long-arrow-right\" aria-hidden=\"true\"></i> 考試用書</label>\r\n                <ul>\r\n                  <li><a (click)=\"search({name: '',author_name: '',publisher: '',isbn: '',classification: '考試用書'})\">小學</a></li>\r\n                  <li><a (click)=\"search({name: '',author_name: '',publisher: '',isbn: '',classification: '考試用書'})\">國中</a></li>\r\n                  <li><a (click)=\"search({name: '',author_name: '',publisher: '',isbn: '',classification: '考試用書'})\">高中</a></li>\r\n                  <li><a (click)=\"search({name: '',author_name: '',publisher: '',isbn: '',classification: '考試用書'})\">大學</a></li>\r\n                </ul>\r\n              </li>\r\n              <li><input type=\"checkbox\" id=\"item-0-2\" (click)=\"search({name: '',author_name: '',publisher: '',isbn: '',classification: '童書繪本'})\" /><label\r\n                  for=\"item-0-2\"><i class=\"fa fa-long-arrow-right\" aria-hidden=\"true\"></i> 童書繪本</label>\r\n                <ul>\r\n                  <li><a (click)=\"search({name: '',author_name: '',publisher: '',isbn: '',classification: '童書繪本'})\">學齡前</a></li>\r\n                  <li><a (click)=\"search({name: '',author_name: '',publisher: '',isbn: '',classification: '童書繪本'})\">學齡</a></li>\r\n                </ul>\r\n              </li>\r\n              <li><input type=\"checkbox\" id=\"item-0-3\" (click)=\"search({name: '',author_name: '',publisher: '',isbn: '',classification: '語言學習'})\" /><label\r\n                  for=\"item-0-3\"><i class=\"fa fa-long-arrow-right\" aria-hidden=\"true\"></i> 語言學習</label>\r\n                <ul>\r\n                  <li><a (click)=\"search({name: '',author_name: '',publisher: '',isbn: '',classification: '語言學習'})\">英文</a></li>\r\n                  <li><a (click)=\"search({name: '',author_name: '',publisher: '',isbn: '',classification: '語言學習'})\">日文</a></li>\r\n                </ul>\r\n              </li>\r\n              <li><input type=\"checkbox\" id=\"item-0-4\" (click)=\"search({name: '',author_name: '',publisher: '',isbn: '',classification: '漫畫'})\" /><label\r\n                  for=\"item-0-4\"><i class=\"fa fa-long-arrow-right\" aria-hidden=\"true\"></i> 漫畫</label>\r\n\r\n              </li>\r\n              <li><input type=\"checkbox\" id=\"item-0-5\" (click)=\"search({name: '',author_name: '',publisher: '',isbn: '',classification: '小說'})\" /><label\r\n                  for=\"item-0-5\"><i class=\"fa fa-long-arrow-right\" aria-hidden=\"true\"></i> 小說</label>\r\n\r\n              </li>\r\n              <li><input type=\"checkbox\" id=\"item-0-6\" (click)=\"search({name: '',author_name: '',publisher: '',isbn: '',classification: '雜誌'})\" /><label\r\n                  for=\"item-0-6\"><i class=\"fa fa-long-arrow-right\" aria-hidden=\"true\"></i> 雜誌</label>\r\n\r\n              </li>\r\n              <li><input type=\"checkbox\" id=\"item-0-7\" (click)=\"search({name: '',author_name: '',publisher: '',isbn: '',classification: '文具'})\" /><label\r\n                  for=\"item-0-7\"><i class=\"fa fa-long-arrow-right\" aria-hidden=\"true\"></i> 文具</label>\r\n\r\n              </li>\r\n            </ul>\r\n          </li>\r\n        </ul>\r\n      </div>\r\n      <div class=\"community-poll\">\r\n        <h4>Search</h4>\r\n        <div>\r\n\r\n          <table class=\"search_list\">\r\n            <tr>\r\n              <th>書名</th>\r\n              <td><input type=\"text\" placeholder=\"請輸入書名\" [(ngModel)]=\"search_list.name\"></td>\r\n            </tr>\r\n            <tr>\r\n              <th>作者</th>\r\n              <td><input type=\"text\" placeholder=\"請輸入作者\" [(ngModel)]=\"search_list.author_name\"></td>\r\n            </tr>\r\n            <tr>\r\n              <th>出版社</th>\r\n              <td><input type=\"text\" placeholder=\"請輸入出版社\" [(ngModel)]=\"search_list.publisher\"></td>\r\n            </tr>\r\n            <tr>\r\n              <th>ISBN</th>\r\n              <td><input type=\"text\" placeholder=\"請輸入ISBN\" [(ngModel)]=\"search_list.isbn\"></td>\r\n            </tr>\r\n            <tr>\r\n              <th>類別</th>\r\n              <td><select [(ngModel)]=\"search_list.classification\">\r\n                  <option value=\"\">請選擇類別</option>\r\n                  <option value=\"文學叢書\">文學叢書</option>\r\n                  <option value=\"童書繪本\">童書繪本</option>\r\n                  <option value=\"語言學習\">語言學習</option>\r\n                  <option value=\"考試用書\">考試用書</option>\r\n                </select></td>\r\n            </tr>\r\n          </table>\r\n          <div style=\"padding: 5px 0px 20px 0px; text-align: center\">\r\n            <input type=\"button\" class=\"function_button\" value=\"搜尋商品\" (click)=\"search(search_list)\">\r\n          </div>\r\n\r\n        </div>\r\n      </div>\r\n      <div class=\"clearfix\"></div>\r\n    </div>\r\n    <!-- //左欄 -->\r\n    <div class=\"col-md-8 products-right\">\r\n      <!-- 右上區塊 -->\r\n      <h5>商品 <span>列表（共{{products.length}}項）</span></h5>\r\n      <div style=\"padding-top: 5%;\">\r\n        <p *ngIf=\"show_list.classification !== '';\">類別：{{show_list.classification}} </p>\r\n        <p *ngIf=\"show_list.name !== '';\">書名：{{show_list.name}} </p>\r\n        <p *ngIf=\"show_list.author_name !== '';\">作者：{{show_list.author_name}} </p>\r\n        <p *ngIf=\"show_list.publisher !== '';\">出版社：{{show_list.publisher}} </p>\r\n        <p *ngIf=\"show_list.isbn !== '';\">isbn：{{show_list.isbn}} </p>\r\n      </div>\r\n      <div class=\"sort-grid\">\r\n        <div class=\"sorting\">\r\n          <h6>Sort By</h6>\r\n          <select id=\"country1\" [(ngModel)]=\"choice\" (change)=\"sort(choice); page=1;\" class=\"frm-field required sect\">\r\n            <option value=\"0\">請選擇排序方式</option>\r\n            <option value=\"1\">價格：由高到低</option>\r\n            <option value=\"2\">價格：由低到高</option>\r\n          </select>\r\n          <div class=\"clearfix\"></div>\r\n        </div>\r\n        <div class=\"sorting\">\r\n          <h6>Showing</h6>\r\n          <select id=\"amount\" [(ngModel)]=\"amount\" (change)=\"page=1;\">\r\n            <option value=\"3\">3</option>\r\n            <option value=\"6\">6</option>\r\n            <option value=\"9\">9</option>\r\n            <option value=\"12\">12</option>\r\n          </select>\r\n        </div>\r\n        <div class=\"clearfix\"></div>\r\n      </div>\r\n      <!-- //右上區塊 -->\r\n      <!-- 商品列表 -->\r\n      <ng-container *ngFor=\"let item of products;let index=index;let last=last;\">\r\n        <div class=\"col-md-4 product-men\" *ngIf=\"index >= amount * (page-1) && index < amount * page\">\r\n\r\n          <div class=\"men-pro-item simpleCart_shelfItem\">\r\n            <div class=\"men-thumb-item\">\r\n              <img [src]=\"item.photo\" alt=\"\" class=\"pro-image-front\">\r\n              <img [src]=\"item.photo\" alt=\"\" class=\"pro-image-back\">\r\n              <div class=\"men-cart-pro\">\r\n                <div class=\"inner-men-cart-pro\">\r\n                  <a [routerLink]=\"['/products/', item.id]\" class=\"link-product-add-cart\">商品資訊</a>\r\n                </div>\r\n              </div>\r\n              <span class=\"product-new-top\" *ngIf=\"item.publish_year>2017;\">New</span>\r\n\r\n            </div>\r\n            <div class=\"item-info-product \">\r\n              <h4><a [routerLink]=\"['/products/', item.id]\">{{ item.name }}</a></h4>\r\n              <div class=\"info-product-price\">\r\n                <span class=\"item_price\">${{ item.price}}</span>\r\n                <del>${{ item.price * 1.5}}</del>\r\n              </div>\r\n              <div>\r\n                <input type=\"button\" class=\"function_button\" value=\"加入購物車\" (click)=\"add_to_cart(item.id, 1)\">\r\n              </div>\r\n\r\n            </div>\r\n          </div>\r\n\r\n        </div>\r\n      </ng-container>\r\n      <!-- //商品列表 -->\r\n      <div class=\"clearfix\"></div>\r\n      <!-- 選頁 -->\r\n      <div style=\"text-align: center\">\r\n        <ul class=\"pagination pagination-lg\">\r\n          <li *ngIf=\"amount < products.length\"><a (click)=\"page=1\"><span aria-hidden=\"true\">«</span></a></li>\r\n          <li *ngIf=\"page - 1 > 0\"><a (click)=\"page=page-1\"><span aria-hidden=\"true\"><</span></a></li>\r\n          <li *ngIf=\"page - 2 > 0\"><a (click)=\"page=page-2\">{{page-2}}</a></li>\r\n          <li *ngIf=\"page - 1 > 0\"><a (click)=\"page=page-1\">{{page-1}}</a></li>\r\n          <li class=\"active\" *ngIf=\"amount < products.length\"><a>{{page}}</a></li>\r\n          <li *ngIf=\"(page + 1) * amount - products.length < amount\"><a (click)=\"page=page+1\">{{page+1}}</a></li>\r\n          <li *ngIf=\"(page + 2) * amount - products.length < amount\"><a (click)=\"page=page+2\">{{page+2}}</a></li>\r\n\r\n          <li *ngIf=\"(page + 1) * amount - products.length < amount\"><a (click)=\"page=page+1\">></a></li>\r\n          <li *ngIf=\"(page + 1) * amount - products.length < amount\"><a (click)=\"page=(products.length - products.length % amount)/amount+1\"\r\n              aria-label=\"Next\"><span aria-hidden=\"true\">»</span></a></li>\r\n        </ul>\r\n      </div>\r\n      <!-- //選頁 -->\r\n    </div>\r\n    <div class=\"clearfix\"></div>\r\n"
+module.exports = "<!-- title -->\r\n<div class=\"page-head_agile_info_w3l\">\r\n  <div class=\"container\">\r\n    <h3>Products</h3>\r\n    <div class=\"services-breadcrumb\">\r\n      <div class=\"agile_inner_breadcrumb\">\r\n\r\n        <ul class=\"w3_short\">\r\n          <li><a [routerLink]=\"['/']\" (click)=\"origin();\">Home</a><i>|</i></li>\r\n          <li>Products</li>\r\n        </ul>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n<!-- //title -->\r\n<div class=\"banner-bootom-w3-agileits\">\r\n  <div class=\"container\">\r\n    <!-- 左欄 -->\r\n    <div class=\"col-md-4 products-left\">\r\n      <div class=\"css-treeview\">\r\n        <h4>Categories</h4>\r\n        <ul class=\"tree-list-pad\">\r\n          <li><input type=\"checkbox\" checked=\"checked\" id=\"item-0\" (click)=\"origin();\" /><label for=\"item-0\"><i class=\"fa fa-long-arrow-right\"\r\n                aria-hidden=\"true\"></i> 所有商品</label>\r\n            <ul>\r\n              <li><input type=\"checkbox\" id=\"item-0-0\" (click)=\"search({name: '',author_name: '',publisher: '',isbn: '',classification: '文學叢書'})\" /><label\r\n                  for=\"item-0-0\"><i class=\"fa fa-long-arrow-right\" aria-hidden=\"true\"></i> 文學叢書</label>\r\n                <ul>\r\n                  <li><a (click)=\"search({name: '', author_name: '', publisher: '', isbn: '',classification: '文學叢書'})\">靈異奇幻</a></li>\r\n                  <li><a (click)=\"search({name: '', author_name: '', publisher: '', isbn: '',classification: '文學叢書'})\">心理勵志</a></li>\r\n                  <li><a (click)=\"search({name: '',author_name: '',publisher: '',isbn: '',classification: '文學叢書'})\">醫療保健</a></li>\r\n                </ul>\r\n              </li>\r\n              <li><input type=\"checkbox\" id=\"item-0-1\" (click)=\"search({name: '',author_name: '',publisher: '',isbn: '',classification: '考試用書'})\" /><label\r\n                  for=\"item-0-1\"><i class=\"fa fa-long-arrow-right\" aria-hidden=\"true\"></i> 考試用書</label>\r\n                <ul>\r\n                  <li><a (click)=\"search({name: '',author_name: '',publisher: '',isbn: '',classification: '考試用書'})\">小學</a></li>\r\n                  <li><a (click)=\"search({name: '',author_name: '',publisher: '',isbn: '',classification: '考試用書'})\">國中</a></li>\r\n                  <li><a (click)=\"search({name: '',author_name: '',publisher: '',isbn: '',classification: '考試用書'})\">高中</a></li>\r\n                  <li><a (click)=\"search({name: '',author_name: '',publisher: '',isbn: '',classification: '考試用書'})\">大學</a></li>\r\n                </ul>\r\n              </li>\r\n              <li><input type=\"checkbox\" id=\"item-0-2\" (click)=\"search({name: '',author_name: '',publisher: '',isbn: '',classification: '童書繪本'})\" /><label\r\n                  for=\"item-0-2\"><i class=\"fa fa-long-arrow-right\" aria-hidden=\"true\"></i> 童書繪本</label>\r\n                <ul>\r\n                  <li><a (click)=\"search({name: '',author_name: '',publisher: '',isbn: '',classification: '童書繪本'})\">學齡前</a></li>\r\n                  <li><a (click)=\"search({name: '',author_name: '',publisher: '',isbn: '',classification: '童書繪本'})\">學齡</a></li>\r\n                </ul>\r\n              </li>\r\n              <li><input type=\"checkbox\" id=\"item-0-3\" (click)=\"search({name: '',author_name: '',publisher: '',isbn: '',classification: '語言學習'})\" /><label\r\n                  for=\"item-0-3\"><i class=\"fa fa-long-arrow-right\" aria-hidden=\"true\"></i> 語言學習</label>\r\n                <ul>\r\n                  <li><a (click)=\"search({name: '',author_name: '',publisher: '',isbn: '',classification: '語言學習'})\">英文</a></li>\r\n                  <li><a (click)=\"search({name: '',author_name: '',publisher: '',isbn: '',classification: '語言學習'})\">日文</a></li>\r\n                </ul>\r\n              </li>\r\n              <li><input type=\"checkbox\" id=\"item-0-4\" (click)=\"search({name: '',author_name: '',publisher: '',isbn: '',classification: '漫畫'})\" /><label\r\n                  for=\"item-0-4\"><i class=\"fa fa-long-arrow-right\" aria-hidden=\"true\"></i> 漫畫</label>\r\n\r\n              </li>\r\n              <li><input type=\"checkbox\" id=\"item-0-5\" (click)=\"search({name: '',author_name: '',publisher: '',isbn: '',classification: '小說'})\" /><label\r\n                  for=\"item-0-5\"><i class=\"fa fa-long-arrow-right\" aria-hidden=\"true\"></i> 小說</label>\r\n\r\n              </li>\r\n              <li><input type=\"checkbox\" id=\"item-0-6\" (click)=\"search({name: '',author_name: '',publisher: '',isbn: '',classification: '雜誌'})\" /><label\r\n                  for=\"item-0-6\"><i class=\"fa fa-long-arrow-right\" aria-hidden=\"true\"></i> 雜誌</label>\r\n\r\n              </li>\r\n              <li><input type=\"checkbox\" id=\"item-0-7\" (click)=\"search({name: '',author_name: '',publisher: '',isbn: '',classification: '文具'})\" /><label\r\n                  for=\"item-0-7\"><i class=\"fa fa-long-arrow-right\" aria-hidden=\"true\"></i> 文具</label>\r\n\r\n              </li>\r\n            </ul>\r\n          </li>\r\n        </ul>\r\n      </div>\r\n      <div class=\"community-poll\">\r\n        <h4>Search</h4>\r\n        <div>\r\n\r\n          <table class=\"keyword_list\">\r\n            <tr>\r\n              <th>書名</th>\r\n              <td><input type=\"text\" placeholder=\"請輸入書名\" [(ngModel)]=\"keyword_list.name\"></td>\r\n            </tr>\r\n            <tr>\r\n              <th>作者</th>\r\n              <td><input type=\"text\" placeholder=\"請輸入作者\" [(ngModel)]=\"keyword_list.author_name\"></td>\r\n            </tr>\r\n            <tr>\r\n              <th>出版社</th>\r\n              <td><input type=\"text\" placeholder=\"請輸入出版社\" [(ngModel)]=\"keyword_list.publisher\"></td>\r\n            </tr>\r\n            <tr>\r\n              <th>ISBN</th>\r\n              <td><input type=\"text\" placeholder=\"請輸入ISBN\" [(ngModel)]=\"keyword_list.isbn\"></td>\r\n            </tr>\r\n            <tr>\r\n              <th>類別</th>\r\n              <td><select [(ngModel)]=\"keyword_list.classification\">\r\n                  <option value=\"\">請選擇類別</option>\r\n                  <option value=\"文學叢書\">文學叢書</option>\r\n                  <option value=\"童書繪本\">童書繪本</option>\r\n                  <option value=\"語言學習\">語言學習</option>\r\n                  <option value=\"考試用書\">考試用書</option>\r\n                </select></td>\r\n            </tr>\r\n          </table>\r\n          <div style=\"padding: 5px 0px 20px 0px; text-align: center\">\r\n            <input type=\"button\" class=\"function_button\" value=\"搜尋商品\" (click)=\"search(keyword_list)\">\r\n          </div>\r\n\r\n        </div>\r\n      </div>\r\n      <div class=\"clearfix\"></div>\r\n    </div>\r\n    <!-- //左欄 -->\r\n    <div class=\"col-md-8 products-right\">\r\n      <!-- 右上區塊 -->\r\n      <h5>商品 <span>列表（共{{products.length}}項）</span></h5>\r\n      <div style=\"padding-top: 5%;\">\r\n        <p *ngIf=\"show_list.classification !== '';\">類別：{{show_list.classification}} </p>\r\n        <p *ngIf=\"show_list.name !== '';\">書名：{{show_list.name}} </p>\r\n        <p *ngIf=\"show_list.author_name !== '';\">作者：{{show_list.author_name}} </p>\r\n        <p *ngIf=\"show_list.publisher !== '';\">出版社：{{show_list.publisher}} </p>\r\n        <p *ngIf=\"show_list.isbn !== '';\">isbn：{{show_list.isbn}} </p>\r\n      </div>\r\n      <div class=\"sort-grid\">\r\n        <div class=\"sorting\">\r\n          <h6>Sort By</h6>\r\n          <select id=\"country1\" [(ngModel)]=\"choice\" (change)=\"sort(choice); page=1;\" class=\"frm-field required sect\">\r\n            <option value=\"0\">請選擇排序方式</option>\r\n            <option value=\"1\">價格：由高到低</option>\r\n            <option value=\"2\">價格：由低到高</option>\r\n          </select>\r\n          <div class=\"clearfix\"></div>\r\n        </div>\r\n        <div class=\"sorting\">\r\n          <h6>Showing</h6>\r\n          <select id=\"amount\" [(ngModel)]=\"amount\" (change)=\"page=1;\">\r\n            <option value=\"3\">3</option>\r\n            <option value=\"6\">6</option>\r\n            <option value=\"9\">9</option>\r\n            <option value=\"12\">12</option>\r\n          </select>\r\n        </div>\r\n        <div class=\"clearfix\"></div>\r\n      </div>\r\n      <!-- //右上區塊 -->\r\n      <!-- 商品列表 -->\r\n      <ng-container *ngFor=\"let item of products;let index=index;let last=last;\">\r\n        <div class=\"col-md-4 product-men\" *ngIf=\"index >= amount * (page-1) && index < amount * page\">\r\n\r\n          <div class=\"men-pro-item simpleCart_shelfItem\">\r\n            <div class=\"men-thumb-item\">\r\n              <img [src]=\"item.photo\" alt=\"\" class=\"pro-image-front\">\r\n              <img [src]=\"item.photo\" alt=\"\" class=\"pro-image-back\">\r\n              <div class=\"men-cart-pro\">\r\n                <div class=\"inner-men-cart-pro\">\r\n                  <a [routerLink]=\"['/products/', item.id]\" class=\"link-product-add-cart\">商品資訊</a>\r\n                </div>\r\n              </div>\r\n              <span class=\"product-new-top\" *ngIf=\"item.publish_year>2017;\">New</span>\r\n\r\n            </div>\r\n            <div class=\"item-info-product \">\r\n              <h4><a [routerLink]=\"['/products/', item.id]\">{{ item.name }}</a></h4>\r\n              <div class=\"info-product-price\">\r\n                <span class=\"item_price\">${{ item.price}}</span>\r\n                <del>${{ item.price * 1.5}}</del>\r\n              </div>\r\n              <div>\r\n                <input type=\"button\" class=\"function_button\" value=\"加入購物車\" (click)=\"add_to_cart(item.id, 1)\">\r\n              </div>\r\n\r\n            </div>\r\n          </div>\r\n\r\n        </div>\r\n      </ng-container>\r\n      <!-- //商品列表 -->\r\n      <div class=\"clearfix\"></div>\r\n      <!-- 選頁 -->\r\n      <div style=\"text-align: center\">\r\n        <ul class=\"pagination pagination-lg\">\r\n          <li *ngIf=\"amount < products.length\"><a (click)=\"page=1\"><span aria-hidden=\"true\">«</span></a></li>\r\n          <li *ngIf=\"page - 1 > 0\"><a (click)=\"page=page-1\"><span aria-hidden=\"true\"><</span></a></li>\r\n          <li *ngIf=\"page - 2 > 0\"><a (click)=\"page=page-2\">{{page-2}}</a></li>\r\n          <li *ngIf=\"page - 1 > 0\"><a (click)=\"page=page-1\">{{page-1}}</a></li>\r\n          <li class=\"active\" *ngIf=\"amount < products.length\"><a>{{page}}</a></li>\r\n          <li *ngIf=\"(page + 1) * amount - products.length < amount\"><a (click)=\"page=page+1\">{{page+1}}</a></li>\r\n          <li *ngIf=\"(page + 2) * amount - products.length < amount\"><a (click)=\"page=page+2\">{{page+2}}</a></li>\r\n\r\n          <li *ngIf=\"(page + 1) * amount - products.length < amount\"><a (click)=\"page=page+1\">></a></li>\r\n          <li *ngIf=\"(page + 1) * amount - products.length < amount\"><a (click)=\"page=(products.length - products.length % amount)/amount+1\"\r\n              aria-label=\"Next\"><span aria-hidden=\"true\">»</span></a></li>\r\n        </ul>\r\n      </div>\r\n      <!-- //選頁 -->\r\n    </div>\r\n    <div class=\"clearfix\"></div>\r\n"
 
 /***/ }),
 
@@ -1833,7 +1860,7 @@ var ProductsComponent = /** @class */ (function () {
         this.amount = 6;
         this.page = 1;
         this.choice = 0;
-        this.search_list = {
+        this.keyword_list = {
             name: '',
             author_name: '',
             publisher: '',
@@ -1859,8 +1886,8 @@ var ProductsComponent = /** @class */ (function () {
     ProductsComponent.prototype.add_to_cart = function (id, item_amount) {
         this.cartService.add_to_cart(id, item_amount);
     };
-    ProductsComponent.prototype.search = function (search_list) {
-        this.dataService.search(search_list);
+    ProductsComponent.prototype.search = function (keyword_list) {
+        this.dataService.search(keyword_list);
     };
     ProductsComponent.prototype.sort = function (choice) {
         this.dataService.sort(choice);
