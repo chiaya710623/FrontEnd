@@ -324,8 +324,9 @@ table.timetable_sub {
   color: #fff !important;
   text-transform: capitalize;
   font-size: 13px;
-  border-right: 1px solid #68d6c1;
+  border: 1px solid #5ab3a2;
   text-align: center;
+  width:30%;
 }
 .timetable_sub th,
 .timetable_sub td {
@@ -335,12 +336,15 @@ table.timetable_sub {
 }
 .timetable_sub td {
   border: 1px solid #cdcdcd;
-  width: 80%;
-  padding-left: 1%;
-  text-align: left;
+  width: 75%;
+  padding-left: 2%;
 }
+.timetable_sub input[type="text"] {
+  width: 98%;
+}
+
 td.invert-image a img {
-  width: 30%;
+  width: 25%;
   margin: 0 auto;
 }
 

@@ -1,7 +1,7 @@
 <div class="checkout">
   <div class="container">
     <div class="checkout-left">
-      <div class="checkout-left-basket">
+      <div class="checkout-left-basket" style="width:100%;">
         <h4>訂單內容</h4>
         <ul>
           <ng-container *ngFor="let item of showcart;">
@@ -16,37 +16,39 @@
       <table class="timetable_sub">
         <tr>
           <th>訂購人姓名：</th>
-          <td><input type="text" name="name" placeholder="請輸入姓名"[(ngModel)]="order.name"></td>
+          <td><input type="text" name="name" placeholder="請輸入姓名" [(ngModel)]="order.name"></td>
         </tr>
         <tr>
           <th>電話：</th>
-          <td><input type="text" name="phone" placeholder="請輸入電話"[(ngModel)]="order.phone"></td>
+          <td><input type="text" name="phone" placeholder="請輸入電話" [(ngModel)]="order.phone"></td>
         </tr>
         <tr>
           <th>E-mail：</th>
-          <td><input type="text" name="email" placeholder="請輸入E-mail"[(ngModel)]="order.email"></td>
+          <td><input type="text" name="email" placeholder="請輸入E-mail" [(ngModel)]="order.email"></td>
         </tr>
         <tr>
           <th>地址：</th>
-          <td><input type="text" name="address" placeholder="請輸入地址"[(ngModel)]="order.address"></td>
+          <td><input type="text" name="address" placeholder="請輸入地址" [(ngModel)]="order.address"></td>
         </tr>
         <tr>
           <th>付款方式：</th>
-          <td><input type="radio" name="pay" value="'信用卡付款'"[(ngModel)]="order.pay">信用卡付款  <input type="radio" name="pay" value="'轉帳付款'"[(ngModel)]="order.pay">轉帳付款
+          <td><span style="padding-right: 3%;"><input type="radio" name="pay" value="'信用卡付款'" [(ngModel)]="order.pay">信用卡付款</span>
+            <input type="radio" name="pay" value="'轉帳付款'" [(ngModel)]="order.pay">轉帳付款
           </td>
         </tr>
         <tr>
           <th>運送方式：</th>
-          <td><input type="radio" name="transmit" value="'郵寄'"[(ngModel)]="order.transmit">郵寄 <input type="radio" name="transmit" value="'7-11取貨'"[(ngModel)]="order.transmit">7-11取貨
+          <td><input type="radio" name="transmit" value="'郵寄'" [(ngModel)]="order.transmit">郵寄
+            <input type="radio" name="transmit" value="'7-11取貨'" [(ngModel)]="order.transmit">7-11取貨
           </td>
         </tr>
       </table>
     </div>
     <div class="checkout-right-basket">
-        <a [routerLink]="['/products']"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>返回購物</a>
+      <a [routerLink]="['/products']"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>返回購物</a>
 
-        <a (click)="submit(order, showcart, total)"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>送出訂單</a>
+      <a (click)="submit(order, showcart, total)"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>送出訂單</a>
 
-      </div>
+    </div>
   </div>
 </div>
