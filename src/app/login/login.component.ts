@@ -12,12 +12,7 @@ export class LoginComponent implements OnInit {
   password = '';
   constructor(private memberService: MemberService, private router: Router) {}
   ngOnInit() {}
-  submit(email, password) {
-    if (this.memberService.check(email, password) > 0) {
-      alert('登入成功');
-      this.router.navigate(['/']);
-    } else {
-      alert('輸入錯誤');
-    }
+  login(email, password) {
+    return this.memberService.login(email, password);
   }
 }

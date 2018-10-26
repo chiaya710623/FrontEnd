@@ -1,46 +1,63 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MemberService {
-  constructor() {}
-  login = 0;
+  constructor(private router: Router) {}
+  login_id = 0;
   amount = 1;
   member = [
     {
       id: 1,
       name: 'Ada',
-      email: '456789@gmail.com',
+      email: '123@gmail.com',
       password: '123'
     }
   ];
-  create(name, email, password) {
-    this.member[this.amount] = {
-      // 其實沒什麼意義的一段程式碼
-      id: this.amount + 1,
-      name: name,
-      email: email,
-      password: password
-    };
-    this.amount++;
-    console.log(this.member);
-    console.log('會員資料進資料庫了呢');
+  signup(information) {
+    let x = 0;
+    for (const key in information) {
+      if (information[key] === '') {
+        x++;
+      }
+    }
+    if (x > 0) {
+      alert('請勿留白');
+    } else {
+      if (information.password === information.confirm) {
+        this.member[this.amount] = {
+          id: this.amount + 1,
+          name: information.name,
+          email: information.email,
+          password: information.password
+        };
+        this.amount++;
+        alert('註冊成功');
+        this.router.navigate(['/']);
+      } else {
+        alert('密碼不一致');
+      }
+    }
   }
-  check(email, password) {
-    for (let i = 0; i < this.amount; i++) {
+  login(email, password) {
+    let i;
+    for (i = 0; i < this.amount && this.login_id === 0; i++) {
       if (
         this.member[i].email === email &&
         this.member[i].password === password
       ) {
-        this.login = i + 1;
-        return i + 1;
+        this.login_id = i + 1;
+        alert('登入成功');
+        this.router.navigate(['/']);
       }
     }
-    this.login = 0;
-    return 0;
+    if (this.login_id === 0) {
+      alert('輸入錯誤');
+    }
   }
   logout() {
-    this.login = 0;
+    this.login_id = 0;
   }
 }

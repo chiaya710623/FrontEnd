@@ -17,8 +17,8 @@ export class HeaderComponent implements OnInit {
     private router: Router
   ) {}
   ngOnInit() {}
-  get login() {
-    return this.memberService.login;
+  get login_id() {
+    return this.memberService.login_id;
   }
   logout() {
     this.memberService.logout();
@@ -26,7 +26,7 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/']);
   }
   get username() {
-    return this.memberService.member[this.memberService.login - 1].name;
+    return this.memberService.member[this.memberService.login_id - 1].name;
   }
   get cart() {
     const cart = [];

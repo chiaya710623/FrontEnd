@@ -4,7 +4,7 @@
     <ul>
       <li><i class="fa fa-phone" aria-hidden="true"></i> Call : 01234567898</li>
       <li><i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:info@example.com">info@example.com</a></li>
-      <ng-container *ngIf="login === 0; else elseTag">
+      <ng-container *ngIf="login_id === 0; else elseTag">
         <li> <a [routerLink]="['/signup']"><i class="fa fa-pencil-square-o"></i>
             註冊 </a></li>
         <li> <a [routerLink]="['/login']"><i class="fa fa-unlock-alt"></i>
