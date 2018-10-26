@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MemberService } from '../member.service';
 import { Router } from '@angular/router';
-import { DataService } from '../data.service';
 import { CartService } from '../cart.service';
 import { ProductsComponent } from '../products/products.component';
+import { ProductsService } from '../products.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit {
   constructor(
     private memberService: MemberService,
     private cartService: CartService,
-    private dataService: DataService,
+    private productsService: ProductsService,
     private router: Router
   ) {}
   ngOnInit() {}
@@ -31,12 +31,12 @@ export class HeaderComponent implements OnInit {
   get cart() {
     const cart = [];
     for (let i = 0; i < this.cartService.cart.length; i++) {
-      for (let j = 0; j < this.dataService.originalProducts.length; j++) {
+      for (let j = 0; j < this.productsService.originalProducts.length; j++) {
         if (
           this.cartService.cart[i].id ===
-          this.dataService.originalProducts[j].id
+          this.productsService.originalProducts[j].id
         ) {
-          cart[i] = this.dataService.originalProducts[j];
+          cart[i] = this.productsService.originalProducts[j];
           cart[i].amount = this.cartService.cart[i].item_amount;
         }
       }
@@ -48,10 +48,10 @@ export class HeaderComponent implements OnInit {
     this.cartService.list_amount--;
   }
   search(search_list) {
-    this.dataService.search(search_list);
+    this.productsService.search(search_list);
   }
   origin() {
-    this.dataService.origin();
+    this.productsService.origin();
   }
   checkout() {
     if (this.cartService.list_amount === 0) {

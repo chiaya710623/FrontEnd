@@ -10,10 +10,10 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   email = '';
   password = '';
-  constructor(private dataService: MemberService, private router: Router) {}
+  constructor(private memberService: MemberService, private router: Router) {}
   ngOnInit() {}
   submit(email, password) {
-    if (this.dataService.check(email, password) > 0) {
+    if (this.memberService.check(email, password) > 0) {
       alert('登入成功');
       this.router.navigate(['/']);
     } else {

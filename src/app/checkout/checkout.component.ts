@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../cart.service';
-import { DataService } from '../data.service';
 import { OrderService } from '../order.service';
 import { Router } from '@angular/router';
+import { ProductsService } from '../products.service';
 
 @Component({
   selector: 'app-checkout',
@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class CheckoutComponent implements OnInit {
   constructor(
     private cartService: CartService,
-    private dataService: DataService,
+    private productsService: ProductsService,
     private orderService: OrderService,
     private router: Router
   ) {}
@@ -29,9 +29,9 @@ export class CheckoutComponent implements OnInit {
   get showcart() {
     const cart = [];
     for (let i = 0; i < this.cartService.cart.length; i++) {
-      for (let j = 0; j < this.dataService.products.length; j++) {
-        if (this.cartService.cart[i].id === this.dataService.products[j].id) {
-          cart[i] = this.dataService.products[j];
+      for (let j = 0; j < this.productsService.products.length; j++) {
+        if (this.cartService.cart[i].id === this.productsService.products[j].id) {
+          cart[i] = this.productsService.products[j];
           cart[i].amount = this.cartService.cart[i].item_amount;
         }
       }

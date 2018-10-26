@@ -12,7 +12,7 @@ export class SignupComponent implements OnInit {
   email = '';
   password = '';
   confirm = '';
-  constructor(private dataservice: MemberService, private router: Router) { }
+  constructor(private memberservice: MemberService, private router: Router) { }
   ngOnInit() {
   }
 
@@ -21,7 +21,7 @@ export class SignupComponent implements OnInit {
       alert('請勿留白');
     } else {
     if (password === confirm ) {
-      this.dataservice.create(name, email, password);
+      this.memberservice.create(name, email, password);
       alert('註冊成功');
       this.router.navigate(['/']);
     } else {

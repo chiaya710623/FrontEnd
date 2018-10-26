@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../cart.service';
-import { DataService } from '../data.service';
+import { ProductsService } from '../products.service';
 
 @Component({
   selector: 'app-home',
@@ -9,13 +9,13 @@ import { DataService } from '../data.service';
 })
 export class HomeComponent implements OnInit {
   constructor(
-    private dataService: DataService,
+    private productsService: ProductsService,
     private cartService: CartService
   ) {}
   Today = new Date();
   ngOnInit() {}
   get originProducts() {
-    return this.dataService.originalProducts; // 這裡是get origin
+    return this.productsService.originalProducts; // 這裡是get origin
   }
   add_to_cart(id, item_amount) {
     this.cartService.add_to_cart(id, item_amount);

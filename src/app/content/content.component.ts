@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { DataService } from '../data.service';
 import { CartService } from '../cart.service';
+import { ProductsService } from '../products.service';
 
 declare let $: any;
 
@@ -11,13 +11,13 @@ declare let $: any;
   styleUrls: ['./content.component.css']
 })
 export class ContentComponent implements OnInit {
-  products = this.dataService.products;
+  products = this.productsService.products;
   id = '1';
   index = 0;
   item_amount = '1';
   constructor(
     private route: ActivatedRoute,
-    private dataService: DataService,
+    private productsService: ProductsService,
     private cartService: CartService
   ) {}
   ngOnInit() {

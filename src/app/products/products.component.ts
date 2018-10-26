@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../data.service';
 import { CartService } from '../cart.service';
+import { ProductsService } from '../products.service';
 
 @Component({
   selector: 'app-products',
@@ -9,7 +9,7 @@ import { CartService } from '../cart.service';
 })
 export class ProductsComponent implements OnInit {
   constructor(
-    private dataService: DataService,
+    private productsService: ProductsService,
     private cartService: CartService
   ) {}
   amount = 6;
@@ -23,22 +23,22 @@ export class ProductsComponent implements OnInit {
     classification: ''
   };
   get show_list() {
-    return this.dataService.show_list;
+    return this.productsService.show_list;
   }
   ngOnInit() {}
   get products() {
-    return this.dataService.products;
+    return this.productsService.products;
   }
   add_to_cart(id, item_amount) {
     this.cartService.add_to_cart(id, item_amount);
   }
   search(keyword_list) {
-    this.dataService.search(keyword_list);
+    this.productsService.search(keyword_list);
   }
   sort(choice) {
-    this.dataService.sort(choice);
+    this.productsService.sort(choice);
   }
   origin() {
-    this.dataService.origin();
+    this.productsService.origin();
   }
 }

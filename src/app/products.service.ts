@@ -1,11 +1,11 @@
-import { Injectable, forwardRef } from '@angular/core';
-import { ProductsComponent } from './products/products.component';
+import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DataService {
-  constructor() {}
+export class ProductsService {
+
+  constructor() { }
   products = [
     {
       classification: '考試用書',
