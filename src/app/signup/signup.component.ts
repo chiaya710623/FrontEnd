@@ -8,15 +8,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
+  constructor(private memberservice: MemberService, private router: Router) {}
+
   information = {
     name: '',
     email: '',
     password: '',
     confirm: ''
   };
-  constructor(private memberservice: MemberService, private router: Router) {}
   ngOnInit() {}
-
   submit(information) {
     let x = 0;
     for (const key in information) {
