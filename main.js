@@ -750,6 +750,13 @@ var ContentComponent = /** @class */ (function () {
                 width: 'auto',
                 fit: true
             });
+            // Can also be used with $(document).ready()
+            $(window).load(function () {
+                $('.flexslider').flexslider({
+                    animation: 'slide',
+                    controlNav: 'thumbnails'
+                });
+            });
         });
     };
     ContentComponent.prototype.add_to_cart = function (id, item_amount) {
@@ -853,7 +860,7 @@ module.exports = ".product_list {\r\n  font-family: \"Trebuchet MS\", Arial, Hel
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- header：登入註冊 -->\r\n<div class=\"header\" id=\"home\">\r\n  <div class=\"container\">\r\n    <ul>\r\n      <li><i class=\"fa fa-phone\" aria-hidden=\"true\"></i> Call : 01234567898</li>\r\n      <li><i class=\"fa fa-envelope-o\" aria-hidden=\"true\"></i> <a href=\"mailto:info@example.com\">info@example.com</a></li>\r\n      <ng-container *ngIf=\"login === 0; else elseTag\">\r\n        <li> <a [routerLink]=\"['/signup']\"><i class=\"fa fa-pencil-square-o\"></i>\r\n            註冊 </a></li>\r\n        <li> <a [routerLink]=\"['/login']\"><i class=\"fa fa-unlock-alt\"></i>\r\n            登入 </a></li>\r\n      </ng-container>\r\n      <ng-template #elseTag>\r\n        <li>{{username}} 您好！</li>\r\n        <li> <a [routerLink]=\"\" (click)=\"logout()\"><i class=\"fa fa-unlock-alt\"></i>\r\n            登出 </a></li>\r\n      </ng-template>\r\n    </ul>\r\n  </div>\r\n</div>\r\n<!-- //header -->\r\n\r\n<!-- header-bot：搜尋 大標 -->\r\n<div class=\"header-bot\">\r\n  <div class=\"header-bot_inner_wthreeinfo_header_mid\">\r\n    <div class=\"col-md-4 header-middle\">\r\n      <form action=\"#\" method=\"post\">\r\n        <input type=\"search\" name=\"search\" placeholder=\"Search here...\" required=\"\">\r\n        <input type=\"submit\" value=\" \">\r\n        <div class=\"clearfix\"></div>\r\n      </form>\r\n    </div>\r\n    <!-- header-bot -->\r\n    <div class=\"col-md-4 logo_agile\">\r\n      <h1><a [routerLink]=\"['/']\"><span>Book</span>Store <i class=\"fa fa-shopping-bag top_logo_agile_bag\" aria-hidden=\"true\"></i></a></h1>\r\n    </div>\r\n    <!-- header-bot -->\r\n    <div class=\"col-md-4 agileits-social top_content\">\r\n      <ul class=\"social-nav model-3d-0 footer-social w3_agile_social\">\r\n        <li class=\"share\">Share On : </li>\r\n        <li><a href=\"#\" class=\"facebook\">\r\n            <div class=\"front\"><i class=\"fa fa-facebook\" aria-hidden=\"true\"></i></div>\r\n            <div class=\"back\"><i class=\"fa fa-facebook\" aria-hidden=\"true\"></i></div>\r\n          </a></li>\r\n        <li><a href=\"#\" class=\"twitter\">\r\n            <div class=\"front\"><i class=\"fa fa-twitter\" aria-hidden=\"true\"></i></div>\r\n            <div class=\"back\"><i class=\"fa fa-twitter\" aria-hidden=\"true\"></i></div>\r\n          </a></li>\r\n        <li><a href=\"#\" class=\"instagram\">\r\n            <div class=\"front\"><i class=\"fa fa-instagram\" aria-hidden=\"true\"></i></div>\r\n            <div class=\"back\"><i class=\"fa fa-instagram\" aria-hidden=\"true\"></i></div>\r\n          </a></li>\r\n        <li><a href=\"#\" class=\"pinterest\">\r\n            <div class=\"front\"><i class=\"fa fa-linkedin\" aria-hidden=\"true\"></i></div>\r\n            <div class=\"back\"><i class=\"fa fa-linkedin\" aria-hidden=\"true\"></i></div>\r\n          </a></li>\r\n      </ul>\r\n\r\n\r\n\r\n    </div>\r\n    <div class=\"clearfix\"></div>\r\n  </div>\r\n</div>\r\n<!-- //header-bot -->\r\n<!-- banner：選單 -->\r\n<div class=\"ban-top\">\r\n  <div class=\"container\">\r\n    <div class=\"top_nav_left\">\r\n      <nav class=\"navbar navbar-default\">\r\n        <div class=\"container-fluid\">\r\n          <!-- Brand and toggle get grouped for better mobile display -->\r\n          <div class=\"navbar-header\">\r\n            <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\"\r\n              aria-expanded=\"false\">\r\n              <span class=\"sr-only\">Toggle navigation</span>\r\n              <span class=\"icon-bar\"></span>\r\n              <span class=\"icon-bar\"></span>\r\n              <span class=\"icon-bar\"></span>\r\n            </button>\r\n          </div>\r\n          <!-- Collect the nav links, forms, and other content for toggling -->\r\n          <div class=\"collapse navbar-collapse menu--shylock\" id=\"bs-example-navbar-collapse-1\">\r\n            <ul class=\"nav navbar-nav menu__list\">\r\n              <li class=\" menu__item\"><a class=\"menu__link\" [routerLink]=\"['/']\" (click)=\"origin();\">Home</a></li>\r\n              <li class=\" menu__item\"><a class=\"menu__link\" [routerLink]=\"['/about']\">About</a></li>\r\n              <li class=\"dropdown menu__item\">\r\n                <a href=\"#\" class=\"dropdown-toggle menu__link\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\"\r\n                  aria-expanded=\"false\">Products <span class=\"caret\"></span></a>\r\n                <ul class=\"dropdown-menu multi-column columns-3\">\r\n                  <div class=\"agile_inner_drop_nav_info classification_font\">\r\n                    <div class=\"col-sm-6 multi-gd-img1 multi-gd-text \">\r\n                      <a [routerLink]=\"['/products']\">\r\n                        <p><img src=\"assets/images/top2.jpg\" alt=\" \" /></p>\r\n                      </a>\r\n                    </div>\r\n                    <div class=\"col-sm-3 multi-gd-img\">\r\n                      <ul class=\"multi-column-dropdown\">\r\n                        <li><a [routerLink]=\"['/products']\" (click)=\"search({name: '',\r\n                          author_name: '',\r\n                          publisher: '',\r\n                          isbn: '',classification: '文學叢書'})\">文學叢書</a></li>\r\n                        <li><a [routerLink]=\"['/products']\" (click)=\"search({name: '',\r\n                          author_name: '',\r\n                          publisher: '',\r\n                          isbn: '',classification: '考試用書'})\">考試用書</a></li>\r\n                        <li><a [routerLink]=\"['/products']\" (click)=\"search({name: '',\r\n                          author_name: '',\r\n                          publisher: '',\r\n                          isbn: '',classification: '童書繪本'})\">童書繪本</a></li>\r\n                        <li><a [routerLink]=\"['/products']\" (click)=\"search({name: '',\r\n                          author_name: '',\r\n                          publisher: '',\r\n                          isbn: '',classification: '語言學習'})\">語言學習</a></li>\r\n                      </ul>\r\n                    </div>\r\n                    <div class=\"col-sm-3 multi-gd-img\">\r\n                      <ul class=\"multi-column-dropdown\">\r\n                        <li><a [routerLink]=\"['/products']\" (click)=\"search({name: '',\r\n                          author_name: '',\r\n                          publisher: '',\r\n                          isbn: '',classification: '漫畫'})\">漫畫</a></li>\r\n                        <li><a [routerLink]=\"['/products']\" (click)=\"search({name: '',\r\n                          author_name: '',\r\n                          publisher: '',\r\n                          isbn: '',classification: '小說'})\">小說</a></li>\r\n                        <li><a [routerLink]=\"['/products']\" (click)=\"search({name: '',\r\n                          author_name: '',\r\n                          publisher: '',\r\n                          isbn: '',classification: '雜誌'})\">雜誌</a></li>\r\n                        <li><a [routerLink]=\"['/products']\" (click)=\"search({name: '',\r\n                          author_name: '',\r\n                          publisher: '',\r\n                          isbn: '',classification: '文具'})\">文具</a></li>\r\n                      </ul>\r\n                    </div>\r\n                    <div class=\"clearfix\"></div>\r\n                  </div>\r\n                </ul>\r\n              </li>\r\n              <li class=\" menu__item\"><a class=\"menu__link\" [routerLink]=\"['/contact']\">Contact</a></li>\r\n            </ul>\r\n          </div>\r\n        </div>\r\n      </nav>\r\n    </div>\r\n    <div class=\"top_nav_right\">\r\n      <div style=\"width: 50%;\">\r\n        <div class=\"wthreecartaits wthreecartaits2 cart cart box_1\">\r\n          <a href=\"#\" data-toggle=\"modal\" data-target=\"#cart\"><i class=\"fa fa-cart-arrow-down fa-lg\" aria-hidden=\"true\"></i></a>\r\n        </div>\r\n      </div>\r\n\r\n    </div>\r\n    <div class=\"clearfix\"></div>\r\n  </div>\r\n</div>\r\n<!-- //banner-top -->\r\n<!-- 購物車 -->\r\n<div class=\"modal fade\" id=\"cart\" tabindex=\"-1\" role=\"dialog\">\r\n  <div class=\"modal-dialog\">\r\n    <!-- Modal content-->\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\r\n      </div>\r\n      <div class=\"modal-body modal-body-sub_agile\">\r\n        <div class=\"\">\r\n          <h3 class=\"agileinfo_sign\">購物車 <span>清單</span></h3>\r\n          <div class=\"clearfix\"></div>\r\n          <div>\r\n            <div>\r\n              <h2>購物車中有<span>{{ cart.length }}項商品</span></h2>\r\n              <br>\r\n              <ng-container *ngIf=\"cart.length > 0;\">\r\n                <table class=\"product_list\">\r\n                  <thead>\r\n                    <tr>\r\n                      <th></th>\r\n                      <th>商品名稱</th>\r\n                      <th>售價</th>\r\n                      <th>數量</th>\r\n                      <th>刪除</th>\r\n                    </tr>\r\n                  </thead>\r\n                  <ng-container *ngFor=\"let item of cart; let index=index;\">\r\n                    <tr>\r\n                      <td>{{ index + 1 }}</td>\r\n                      <td><a [routerLink]=\"['/products/', item.id]\" data-dismiss=\"modal\">{{ item.name }}</a></td>\r\n                      <td>NT${{ item.price }}</td>\r\n                      <td>\r\n                        {{ item.amount }}\r\n                      </td>\r\n                      <td>\r\n                        <p style=\"text-align:center;\"><img src=\"assets/images/close_1.png\" (click)=\"delete_item(index)\"></p>\r\n                      </td>\r\n                    </tr>\r\n                  </ng-container>\r\n                </table>\r\n              </ng-container>\r\n              <div class=\"clearfix\"></div>\r\n              <br>\r\n              <input type=\"button\" class=\"function_button\" value=\"查看購物車\" (click)=\"checkout();\" data-dismiss=\"modal\">\r\n            </div>\r\n          </div>\r\n          <div class=\"clearfix\"></div>\r\n        </div>\r\n      </div>\r\n      <!-- //Modal content-->\r\n    </div>\r\n  </div>\r\n  <!-- //購物車 -->\r\n"
+module.exports = "<!-- header：登入註冊 -->\r\n<div class=\"header\" id=\"home\">\r\n  <div class=\"container\">\r\n    <ul>\r\n      <li><i class=\"fa fa-phone\" aria-hidden=\"true\"></i> Call : 01234567898</li>\r\n      <li><i class=\"fa fa-envelope-o\" aria-hidden=\"true\"></i> <a href=\"mailto:info@example.com\">info@example.com</a></li>\r\n      <ng-container *ngIf=\"login_id === 0; else elseTag\">\r\n        <li> <a [routerLink]=\"['/signup']\"><i class=\"fa fa-pencil-square-o\"></i>\r\n            註冊 </a></li>\r\n        <li> <a [routerLink]=\"['/login']\"><i class=\"fa fa-unlock-alt\"></i>\r\n            登入 </a></li>\r\n      </ng-container>\r\n      <ng-template #elseTag>\r\n        <li>{{username}} 您好！</li>\r\n        <li> <a [routerLink]=\"\" (click)=\"logout()\"><i class=\"fa fa-unlock-alt\"></i>\r\n            登出 </a></li>\r\n      </ng-template>\r\n    </ul>\r\n  </div>\r\n</div>\r\n<!-- //header -->\r\n\r\n<!-- header-bot：搜尋 大標 -->\r\n<div class=\"header-bot\">\r\n  <div class=\"header-bot_inner_wthreeinfo_header_mid\">\r\n    <div class=\"col-md-4 header-middle\">\r\n      <form action=\"#\" method=\"post\">\r\n        <input type=\"search\" name=\"search\" placeholder=\"Search here...\" required=\"\">\r\n        <input type=\"submit\" value=\" \">\r\n        <div class=\"clearfix\"></div>\r\n      </form>\r\n    </div>\r\n    <!-- header-bot -->\r\n    <div class=\"col-md-4 logo_agile\">\r\n      <h1><a [routerLink]=\"['/']\"><span>Book</span>Store <i class=\"fa fa-shopping-bag top_logo_agile_bag\" aria-hidden=\"true\"></i></a></h1>\r\n    </div>\r\n    <!-- header-bot -->\r\n    <div class=\"col-md-4 agileits-social top_content\">\r\n      <ul class=\"social-nav model-3d-0 footer-social w3_agile_social\">\r\n        <li class=\"share\">Share On : </li>\r\n        <li><a href=\"#\" class=\"facebook\">\r\n            <div class=\"front\"><i class=\"fa fa-facebook\" aria-hidden=\"true\"></i></div>\r\n            <div class=\"back\"><i class=\"fa fa-facebook\" aria-hidden=\"true\"></i></div>\r\n          </a></li>\r\n        <li><a href=\"#\" class=\"twitter\">\r\n            <div class=\"front\"><i class=\"fa fa-twitter\" aria-hidden=\"true\"></i></div>\r\n            <div class=\"back\"><i class=\"fa fa-twitter\" aria-hidden=\"true\"></i></div>\r\n          </a></li>\r\n        <li><a href=\"#\" class=\"instagram\">\r\n            <div class=\"front\"><i class=\"fa fa-instagram\" aria-hidden=\"true\"></i></div>\r\n            <div class=\"back\"><i class=\"fa fa-instagram\" aria-hidden=\"true\"></i></div>\r\n          </a></li>\r\n        <li><a href=\"#\" class=\"pinterest\">\r\n            <div class=\"front\"><i class=\"fa fa-linkedin\" aria-hidden=\"true\"></i></div>\r\n            <div class=\"back\"><i class=\"fa fa-linkedin\" aria-hidden=\"true\"></i></div>\r\n          </a></li>\r\n      </ul>\r\n\r\n\r\n\r\n    </div>\r\n    <div class=\"clearfix\"></div>\r\n  </div>\r\n</div>\r\n<!-- //header-bot -->\r\n<!-- banner：選單 -->\r\n<div class=\"ban-top\">\r\n  <div class=\"container\">\r\n    <div class=\"top_nav_left\">\r\n      <nav class=\"navbar navbar-default\">\r\n        <div class=\"container-fluid\">\r\n          <!-- Brand and toggle get grouped for better mobile display -->\r\n          <div class=\"navbar-header\">\r\n            <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\"\r\n              aria-expanded=\"false\">\r\n              <span class=\"sr-only\">Toggle navigation</span>\r\n              <span class=\"icon-bar\"></span>\r\n              <span class=\"icon-bar\"></span>\r\n              <span class=\"icon-bar\"></span>\r\n            </button>\r\n          </div>\r\n          <!-- Collect the nav links, forms, and other content for toggling -->\r\n          <div class=\"collapse navbar-collapse menu--shylock\" id=\"bs-example-navbar-collapse-1\">\r\n            <ul class=\"nav navbar-nav menu__list\">\r\n              <li class=\" menu__item\"><a class=\"menu__link\" [routerLink]=\"['/']\" (click)=\"origin();\">Home</a></li>\r\n              <li class=\" menu__item\"><a class=\"menu__link\" [routerLink]=\"['/about']\">About</a></li>\r\n              <li class=\"dropdown menu__item\">\r\n                <a href=\"#\" class=\"dropdown-toggle menu__link\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\"\r\n                  aria-expanded=\"false\">Products <span class=\"caret\"></span></a>\r\n                <ul class=\"dropdown-menu multi-column columns-3\">\r\n                  <div class=\"agile_inner_drop_nav_info classification_font\">\r\n                    <div class=\"col-sm-6 multi-gd-img1 multi-gd-text \">\r\n                      <a [routerLink]=\"['/products']\">\r\n                        <p><img src=\"assets/images/top2.jpg\" alt=\" \" /></p>\r\n                      </a>\r\n                    </div>\r\n                    <div class=\"col-sm-3 multi-gd-img\">\r\n                      <ul class=\"multi-column-dropdown\">\r\n                        <li><a [routerLink]=\"['/products']\" (click)=\"search({name: '',\r\n                          author_name: '',\r\n                          publisher: '',\r\n                          isbn: '',classification: '文學叢書'})\">文學叢書</a></li>\r\n                        <li><a [routerLink]=\"['/products']\" (click)=\"search({name: '',\r\n                          author_name: '',\r\n                          publisher: '',\r\n                          isbn: '',classification: '考試用書'})\">考試用書</a></li>\r\n                        <li><a [routerLink]=\"['/products']\" (click)=\"search({name: '',\r\n                          author_name: '',\r\n                          publisher: '',\r\n                          isbn: '',classification: '童書繪本'})\">童書繪本</a></li>\r\n                        <li><a [routerLink]=\"['/products']\" (click)=\"search({name: '',\r\n                          author_name: '',\r\n                          publisher: '',\r\n                          isbn: '',classification: '語言學習'})\">語言學習</a></li>\r\n                      </ul>\r\n                    </div>\r\n                    <div class=\"col-sm-3 multi-gd-img\">\r\n                      <ul class=\"multi-column-dropdown\">\r\n                        <li><a [routerLink]=\"['/products']\" (click)=\"search({name: '',\r\n                          author_name: '',\r\n                          publisher: '',\r\n                          isbn: '',classification: '漫畫'})\">漫畫</a></li>\r\n                        <li><a [routerLink]=\"['/products']\" (click)=\"search({name: '',\r\n                          author_name: '',\r\n                          publisher: '',\r\n                          isbn: '',classification: '小說'})\">小說</a></li>\r\n                        <li><a [routerLink]=\"['/products']\" (click)=\"search({name: '',\r\n                          author_name: '',\r\n                          publisher: '',\r\n                          isbn: '',classification: '雜誌'})\">雜誌</a></li>\r\n                        <li><a [routerLink]=\"['/products']\" (click)=\"search({name: '',\r\n                          author_name: '',\r\n                          publisher: '',\r\n                          isbn: '',classification: '文具'})\">文具</a></li>\r\n                      </ul>\r\n                    </div>\r\n                    <div class=\"clearfix\"></div>\r\n                  </div>\r\n                </ul>\r\n              </li>\r\n              <li class=\" menu__item\"><a class=\"menu__link\" [routerLink]=\"['/contact']\">Contact</a></li>\r\n            </ul>\r\n          </div>\r\n        </div>\r\n      </nav>\r\n    </div>\r\n    <div class=\"top_nav_right\">\r\n      <div style=\"width: 50%;\">\r\n        <div class=\"wthreecartaits wthreecartaits2 cart cart box_1\">\r\n          <a href=\"#\" data-toggle=\"modal\" data-target=\"#cart\"><i class=\"fa fa-cart-arrow-down fa-lg\" aria-hidden=\"true\"></i></a>\r\n        </div>\r\n      </div>\r\n\r\n    </div>\r\n    <div class=\"clearfix\"></div>\r\n  </div>\r\n</div>\r\n<!-- //banner-top -->\r\n<!-- 購物車 -->\r\n<div class=\"modal fade\" id=\"cart\" tabindex=\"-1\" role=\"dialog\">\r\n  <div class=\"modal-dialog\">\r\n    <!-- Modal content-->\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\r\n      </div>\r\n      <div class=\"modal-body modal-body-sub_agile\">\r\n        <div class=\"\">\r\n          <h3 class=\"agileinfo_sign\">購物車 <span>清單</span></h3>\r\n          <div class=\"clearfix\"></div>\r\n          <div>\r\n            <div>\r\n              <h2>購物車中有<span>{{ cart.length }}項商品</span></h2>\r\n              <br>\r\n              <ng-container *ngIf=\"cart.length > 0;\">\r\n                <table class=\"product_list\">\r\n                  <thead>\r\n                    <tr>\r\n                      <th></th>\r\n                      <th>商品名稱</th>\r\n                      <th>售價</th>\r\n                      <th>數量</th>\r\n                      <th>刪除</th>\r\n                    </tr>\r\n                  </thead>\r\n                  <ng-container *ngFor=\"let item of cart; let index=index;\">\r\n                    <tr>\r\n                      <td>{{ index + 1 }}</td>\r\n                      <td><a [routerLink]=\"['/products/', item.id]\" data-dismiss=\"modal\">{{ item.name }}</a></td>\r\n                      <td>NT${{ item.price }}</td>\r\n                      <td>\r\n                        {{ item.amount }}\r\n                      </td>\r\n                      <td>\r\n                        <p style=\"text-align:center;\"><img src=\"assets/images/close_1.png\" (click)=\"delete_item(index)\"></p>\r\n                      </td>\r\n                    </tr>\r\n                  </ng-container>\r\n                </table>\r\n              </ng-container>\r\n              <div class=\"clearfix\"></div>\r\n              <br>\r\n              <input type=\"button\" class=\"function_button\" value=\"查看購物車\" (click)=\"checkout();\" data-dismiss=\"modal\">\r\n            </div>\r\n          </div>\r\n          <div class=\"clearfix\"></div>\r\n        </div>\r\n      </div>\r\n      <!-- //Modal content-->\r\n    </div>\r\n  </div>\r\n  <!-- //購物車 -->\r\n"
 
 /***/ }),
 
@@ -894,9 +901,9 @@ var HeaderComponent = /** @class */ (function () {
         this.router = router;
     }
     HeaderComponent.prototype.ngOnInit = function () { };
-    Object.defineProperty(HeaderComponent.prototype, "login", {
+    Object.defineProperty(HeaderComponent.prototype, "login_id", {
         get: function () {
-            return this.memberService.login;
+            return this.memberService.login_id;
         },
         enumerable: true,
         configurable: true
@@ -908,7 +915,7 @@ var HeaderComponent = /** @class */ (function () {
     };
     Object.defineProperty(HeaderComponent.prototype, "username", {
         get: function () {
-            return this.memberService.member[this.memberService.login - 1].name;
+            return this.memberService.member[this.memberService.login_id - 1].name;
         },
         enumerable: true,
         configurable: true
@@ -1064,7 +1071,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- 登入 -->\n\n    <!-- Modal content-->\n    <div class=\"modal-content\" style=\"padding: 100px;\">\n      <div class=\"modal-body modal-body-sub_agile\">\n        <div class=\"col-md-8 modal_body_left modal_body_left1\">\n          <h3 class=\"agileinfo_sign\">Sign In <span>Now</span></h3>\n          <form action=\"#\" method=\"post\">\n            <div class=\"styled-input\">\n              <input type=\"email\" name=\"Email\" required=\"\" [(ngModel)] = \"email\">\n              <label>Email</label>\n              <span></span>\n            </div>\n            <div class=\"styled-input\">\n              <input type=\"password\" name=\"password\" required=\"\" [(ngModel)] = \"password\">\n              <label>Password</label>\n              <span></span>\n            </div>\n\n            <input type=\"button\" class=\"function_button\" value=\"登入\"  (click)=\"submit(email,password)\">\n          </form>\n          <ul class=\"social-nav model-3d-0 footer-social w3_agile_social top_agile_third\">\n            <li><a href=\"#\" class=\"facebook\">\n                <div class=\"front\"><i class=\"fa fa-facebook\" aria-hidden=\"true\"></i></div>\n                <div class=\"back\"><i class=\"fa fa-facebook\" aria-hidden=\"true\"></i></div>\n              </a></li>\n            <li><a href=\"#\" class=\"twitter\">\n                <div class=\"front\"><i class=\"fa fa-twitter\" aria-hidden=\"true\"></i></div>\n                <div class=\"back\"><i class=\"fa fa-twitter\" aria-hidden=\"true\"></i></div>\n              </a></li>\n            <li><a href=\"#\" class=\"instagram\">\n                <div class=\"front\"><i class=\"fa fa-instagram\" aria-hidden=\"true\"></i></div>\n                <div class=\"back\"><i class=\"fa fa-instagram\" aria-hidden=\"true\"></i></div>\n              </a></li>\n            <li><a href=\"#\" class=\"pinterest\">\n                <div class=\"front\"><i class=\"fa fa-linkedin\" aria-hidden=\"true\"></i></div>\n                <div class=\"back\"><i class=\"fa fa-linkedin\" aria-hidden=\"true\"></i></div>\n              </a></li>\n          </ul>\n          <div class=\"clearfix\"></div>\n          <p><a href=\"#\" data-toggle=\"modal\" data-target=\"#myModal2\"> Don't have an account?</a></p>\n\n        </div>\n        <div class=\"col-md-4 modal_body_right modal_body_right1\">\n          <img src=\"assets/images/log_pic.jpg\" alt=\" \" />\n        </div>\n        <div class=\"clearfix\"></div>\n      </div>\n    </div>\n    <!-- //Modal content-->\n\n<!-- //登入 -->\n"
+module.exports = "<!-- 登入 -->\n\n    <!-- Modal content-->\n    <div class=\"modal-content\" style=\"padding: 100px;\">\n      <div class=\"modal-body modal-body-sub_agile\">\n        <div class=\"col-md-8 modal_body_left modal_body_left1\">\n          <h3 class=\"agileinfo_sign\">Sign In <span>Now</span></h3>\n          <form action=\"#\" method=\"post\">\n            <div class=\"styled-input\">\n              <input type=\"email\" name=\"Email\" required=\"\" [(ngModel)] = \"email\">\n              <label>Email</label>\n              <span></span>\n            </div>\n            <div class=\"styled-input\">\n              <input type=\"password\" name=\"password\" required=\"\" [(ngModel)] = \"password\">\n              <label>Password</label>\n              <span></span>\n            </div>\n\n            <input type=\"button\" class=\"function_button\" value=\"登入\"  (click)=\"login(email,password)\">\n          </form>\n          <ul class=\"social-nav model-3d-0 footer-social w3_agile_social top_agile_third\">\n            <li><a href=\"#\" class=\"facebook\">\n                <div class=\"front\"><i class=\"fa fa-facebook\" aria-hidden=\"true\"></i></div>\n                <div class=\"back\"><i class=\"fa fa-facebook\" aria-hidden=\"true\"></i></div>\n              </a></li>\n            <li><a href=\"#\" class=\"twitter\">\n                <div class=\"front\"><i class=\"fa fa-twitter\" aria-hidden=\"true\"></i></div>\n                <div class=\"back\"><i class=\"fa fa-twitter\" aria-hidden=\"true\"></i></div>\n              </a></li>\n            <li><a href=\"#\" class=\"instagram\">\n                <div class=\"front\"><i class=\"fa fa-instagram\" aria-hidden=\"true\"></i></div>\n                <div class=\"back\"><i class=\"fa fa-instagram\" aria-hidden=\"true\"></i></div>\n              </a></li>\n            <li><a href=\"#\" class=\"pinterest\">\n                <div class=\"front\"><i class=\"fa fa-linkedin\" aria-hidden=\"true\"></i></div>\n                <div class=\"back\"><i class=\"fa fa-linkedin\" aria-hidden=\"true\"></i></div>\n              </a></li>\n          </ul>\n          <div class=\"clearfix\"></div>\n          <p><a href=\"#\" data-toggle=\"modal\" data-target=\"#myModal2\"> Don't have an account?</a></p>\n\n        </div>\n        <div class=\"col-md-4 modal_body_right modal_body_right1\">\n          <img src=\"assets/images/log_pic.jpg\" alt=\" \" />\n        </div>\n        <div class=\"clearfix\"></div>\n      </div>\n    </div>\n    <!-- //Modal content-->\n\n<!-- //登入 -->\n"
 
 /***/ }),
 
@@ -1101,14 +1108,8 @@ var LoginComponent = /** @class */ (function () {
         this.password = '';
     }
     LoginComponent.prototype.ngOnInit = function () { };
-    LoginComponent.prototype.submit = function (email, password) {
-        if (this.memberService.check(email, password) > 0) {
-            alert('登入成功');
-            this.router.navigate(['/']);
-        }
-        else {
-            alert('輸入錯誤');
-        }
+    LoginComponent.prototype.login = function (email, password) {
+        return this.memberService.login(email, password);
     };
     LoginComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -1199,6 +1200,7 @@ var MasterComponent = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MemberService", function() { return MemberService; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1209,50 +1211,70 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var MemberService = /** @class */ (function () {
-    function MemberService() {
-        this.login = 0;
+    function MemberService(router) {
+        this.router = router;
+        this.login_id = 0;
         this.amount = 1;
         this.member = [
             {
                 id: 1,
                 name: 'Ada',
-                email: '456789@gmail.com',
+                email: '123@gmail.com',
                 password: '123'
             }
         ];
     }
-    MemberService.prototype.create = function (name, email, password) {
-        this.member[this.amount] = {
-            // 其實沒什麼意義的一段程式碼
-            id: this.amount + 1,
-            name: name,
-            email: email,
-            password: password
-        };
-        this.amount++;
-        console.log(this.member);
-        console.log('會員資料進資料庫了呢');
-    };
-    MemberService.prototype.check = function (email, password) {
-        for (var i = 0; i < this.amount; i++) {
-            if (this.member[i].email === email &&
-                this.member[i].password === password) {
-                this.login = i + 1;
-                return i + 1;
+    MemberService.prototype.signup = function (information) {
+        var x = 0;
+        for (var key in information) {
+            if (information[key] === '') {
+                x++;
             }
         }
-        this.login = 0;
-        return 0;
+        if (x > 0) {
+            alert('請勿留白');
+        }
+        else {
+            if (information.password === information.confirm) {
+                this.member[this.amount] = {
+                    id: this.amount + 1,
+                    name: information.name,
+                    email: information.email,
+                    password: information.password
+                };
+                this.amount++;
+                alert('註冊成功');
+                this.router.navigate(['/']);
+            }
+            else {
+                alert('密碼不一致');
+            }
+        }
+    };
+    MemberService.prototype.login = function (email, password) {
+        var i;
+        for (i = 0; i < this.amount && this.login_id === 0; i++) {
+            if (this.member[i].email === email &&
+                this.member[i].password === password) {
+                this.login_id = i + 1;
+                alert('登入成功');
+                this.router.navigate(['/']);
+            }
+        }
+        if (this.login_id === 0) {
+            alert('輸入錯誤');
+        }
     };
     MemberService.prototype.logout = function () {
-        this.login = 0;
+        this.login_id = 0;
     };
     MemberService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
             providedIn: 'root'
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]])
     ], MemberService);
     return MemberService;
 }());
@@ -1929,7 +1951,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- 註冊 -->\n    <!-- Modal content-->\n    <div class=\"modal-content\" style=\"padding: 100px\">\n      <div class=\"modal-body modal-body-sub_agile\">\n        <div class=\"col-md-8 modal_body_left modal_body_left1\">\n          <h3 class=\"agileinfo_sign\">Sign Up <span>Now</span></h3>\n          <form action=\"#\" method=\"post\">\n            <div class=\"styled-input agile-styled-input-top\">\n              <input type=\"text\" name=\"Name\" required=\"\" [(ngModel)] = \"name\">\n              <label>暱稱</label>\n              <span></span>\n            </div>\n            <div class=\"styled-input\">\n              <input type=\"email\" name=\"Email\" required=\"\" [(ngModel)] = \"email\">\n              <label>Email</label>\n              <span></span>\n            </div>\n            <div class=\"styled-input\">\n              <input type=\"password\" name=\"password\" required=\"\" [(ngModel)] = \"password\">\n              <label>密碼</label>\n              <span></span>\n            </div>\n            <div class=\"styled-input\">\n              <input type=\"password\" name=\"Confirm Password\" required=\"\" [(ngModel)] = \"confirm\">\n              <label>確認密碼</label>\n              <span></span>\n            </div>\n            <input type=\"button\" class=\"function_button\" value=\"註冊\"  (click)=\"submit(name,email,password,confirm)\">\n            <ng-container *ngIf=\"password !== confirm\">  密碼不一致</ng-container>\n          </form>\n          <ul class=\"social-nav model-3d-0 footer-social w3_agile_social top_agile_third\">\n            <li><a href=\"#\" class=\"facebook\">\n                <div class=\"front\"><i class=\"fa fa-facebook\" aria-hidden=\"true\"></i></div>\n                <div class=\"back\"><i class=\"fa fa-facebook\" aria-hidden=\"true\"></i></div>\n              </a></li>\n            <li><a href=\"#\" class=\"twitter\">\n                <div class=\"front\"><i class=\"fa fa-twitter\" aria-hidden=\"true\"></i></div>\n                <div class=\"back\"><i class=\"fa fa-twitter\" aria-hidden=\"true\"></i></div>\n              </a></li>\n            <li><a href=\"#\" class=\"instagram\">\n                <div class=\"front\"><i class=\"fa fa-instagram\" aria-hidden=\"true\"></i></div>\n                <div class=\"back\"><i class=\"fa fa-instagram\" aria-hidden=\"true\"></i></div>\n              </a></li>\n            <li><a href=\"#\" class=\"pinterest\">\n                <div class=\"front\"><i class=\"fa fa-linkedin\" aria-hidden=\"true\"></i></div>\n                <div class=\"back\"><i class=\"fa fa-linkedin\" aria-hidden=\"true\"></i></div>\n              </a></li>\n          </ul>\n          <div class=\"clearfix\"></div>\n          <p><a href=\"#\">By clicking register, I agree to your terms</a></p>\n\n        </div>\n        <div class=\"col-md-4 modal_body_right modal_body_right1\">\n          <img src=\"assets/images/log_pic.jpg\" alt=\" \" />\n        </div>\n        <div class=\"clearfix\"></div>\n      </div>\n    </div>\n    <!-- //Modal content-->\n<!-- //註冊 -->\n"
+module.exports = "<!-- 註冊 -->\n<!-- Modal content-->\n<div class=\"modal-content\" style=\"padding: 100px\">\n  <div class=\"modal-body modal-body-sub_agile\">\n    <div class=\"col-md-8 modal_body_left modal_body_left1\">\n      <h3 class=\"agileinfo_sign\">Sign Up <span>Now</span></h3>\n      <form action=\"#\" method=\"post\">\n        <div class=\"styled-input agile-styled-input-top\">\n          <input type=\"text\" name=\"Name\" required=\"\" [(ngModel)]=\"information.name\">\n          <label>暱稱</label>\n          <span></span>\n        </div>\n        <div class=\"styled-input\">\n          <input type=\"email\" name=\"Email\" required=\"\" [(ngModel)]=\"information.email\">\n          <label>Email</label>\n          <span></span>\n        </div>\n        <div class=\"styled-input\">\n          <input type=\"password\" name=\"password\" required=\"\" [(ngModel)]=\"information.password\">\n          <label>密碼</label>\n          <span></span>\n        </div>\n        <div class=\"styled-input\">\n          <input type=\"password\" name=\"Confirm Password\" required=\"\" [(ngModel)]=\"information.confirm\">\n          <label>確認密碼</label>\n          <span></span>\n        </div>\n        <input type=\"button\" class=\"function_button\" value=\"註冊\" (click)=\"signup(information)\">\n        <ng-container *ngIf=\"information.password !== information.confirm\"> 密碼不一致</ng-container>\n      </form>\n      <ul class=\"social-nav model-3d-0 footer-social w3_agile_social top_agile_third\">\n        <li><a href=\"#\" class=\"facebook\">\n            <div class=\"front\"><i class=\"fa fa-facebook\" aria-hidden=\"true\"></i></div>\n            <div class=\"back\"><i class=\"fa fa-facebook\" aria-hidden=\"true\"></i></div>\n          </a></li>\n        <li><a href=\"#\" class=\"twitter\">\n            <div class=\"front\"><i class=\"fa fa-twitter\" aria-hidden=\"true\"></i></div>\n            <div class=\"back\"><i class=\"fa fa-twitter\" aria-hidden=\"true\"></i></div>\n          </a></li>\n        <li><a href=\"#\" class=\"instagram\">\n            <div class=\"front\"><i class=\"fa fa-instagram\" aria-hidden=\"true\"></i></div>\n            <div class=\"back\"><i class=\"fa fa-instagram\" aria-hidden=\"true\"></i></div>\n          </a></li>\n        <li><a href=\"#\" class=\"pinterest\">\n            <div class=\"front\"><i class=\"fa fa-linkedin\" aria-hidden=\"true\"></i></div>\n            <div class=\"back\"><i class=\"fa fa-linkedin\" aria-hidden=\"true\"></i></div>\n          </a></li>\n      </ul>\n      <div class=\"clearfix\"></div>\n      <p><a href=\"#\">By clicking register, I agree to your terms</a></p>\n\n    </div>\n    <div class=\"col-md-4 modal_body_right modal_body_right1\">\n      <img src=\"assets/images/log_pic.jpg\" alt=\" \" />\n    </div>\n    <div class=\"clearfix\"></div>\n  </div>\n</div>\n<!-- //Modal content-->\n<!-- //註冊 -->\n"
 
 /***/ }),
 
@@ -1945,7 +1967,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SignupComponent", function() { return SignupComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _member_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../member.service */ "./src/app/member.service.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1957,32 +1978,19 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
-
 var SignupComponent = /** @class */ (function () {
-    function SignupComponent(memberservice, router) {
+    function SignupComponent(memberservice) {
         this.memberservice = memberservice;
-        this.router = router;
-        this.name = '';
-        this.email = '';
-        this.password = '';
-        this.confirm = '';
+        this.information = {
+            name: '',
+            email: '',
+            password: '',
+            confirm: ''
+        };
     }
-    SignupComponent.prototype.ngOnInit = function () {
-    };
-    SignupComponent.prototype.submit = function (name, email, password, confirm) {
-        if (name === '' || email === '' || password === '' || confirm === '') {
-            alert('請勿留白');
-        }
-        else {
-            if (password === confirm) {
-                this.memberservice.create(name, email, password);
-                alert('註冊成功');
-                this.router.navigate(['/']);
-            }
-            else {
-                alert('密碼不一致');
-            }
-        }
+    SignupComponent.prototype.ngOnInit = function () { };
+    SignupComponent.prototype.signup = function (information) {
+        return this.memberservice.signup(this.information);
     };
     SignupComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -1990,7 +1998,7 @@ var SignupComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./signup.component.html */ "./src/app/signup/signup.component.html"),
             styles: [__webpack_require__(/*! ./signup.component.css */ "./src/app/signup/signup.component.css")]
         }),
-        __metadata("design:paramtypes", [_member_service__WEBPACK_IMPORTED_MODULE_1__["MemberService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+        __metadata("design:paramtypes", [_member_service__WEBPACK_IMPORTED_MODULE_1__["MemberService"]])
     ], SignupComponent);
     return SignupComponent;
 }());
