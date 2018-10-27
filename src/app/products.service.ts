@@ -421,6 +421,7 @@ export class ProductsService {
       }
     }
     this.show_list = keyword_list;
+    console.log(this.products);
   }
   origin() {
     this.products = this.originalProducts;
@@ -457,5 +458,6 @@ export class ProductsService {
         }
         break;
     }
+    console.log(this.products);
   }
 }

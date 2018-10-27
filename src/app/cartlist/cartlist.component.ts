@@ -17,14 +17,15 @@ export class CartlistComponent implements OnInit {
   get showcart() {
     const cart = [];
     for (let i = 0; i < this.cartService.cart.length; i++) {
-      for (let j = 0; j < this.productsService.products.length; j++) {
-        if (this.cartService.cart[i].id === this.productsService.products[j].id) {
-          cart[i] = this.productsService.products[j];
+      for (let j = 0; j < this.productsService.originalProducts.length; j++) {
+        if (this.cartService.cart[i].id === this.productsService.originalProducts[j].id) {
+          cart[i] = this.productsService.originalProducts[j];
           cart[i].amount = this.cartService.cart[i].item_amount;
         }
       }
     }
     this.total = 0;
+    console.log(cart);
     for (let i = 0; i < cart.length; i++) {
       this.total += cart[i].price * cart[i].amount;
     }
