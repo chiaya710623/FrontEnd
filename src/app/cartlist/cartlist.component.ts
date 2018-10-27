@@ -25,7 +25,6 @@ export class CartlistComponent implements OnInit {
       }
     }
     this.total = 0;
-    console.log(cart);
     for (let i = 0; i < cart.length; i++) {
       this.total += cart[i].price * cart[i].amount;
     }
