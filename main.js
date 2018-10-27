@@ -363,14 +363,12 @@ var CartService = /** @class */ (function () {
                         this.cart[i].item_amount += item_amount;
                         alert('已增加' + item_amount + '件此商品至購物車中。');
                     }
-                    console.log(this.list_amount, this.cart);
                     return;
                 }
             }
         }
         this.cart[this.list_amount] = { id: id, item_amount: item_amount };
         this.list_amount++;
-        console.log(this.list_amount, this.cart);
         alert('已加入' + item_amount + '件此商品至購物車。');
     };
     CartService = __decorate([
@@ -452,7 +450,6 @@ var CartlistComponent = /** @class */ (function () {
                 }
             }
             this.total = 0;
-            console.log(cart);
             for (var i = 0; i < cart.length; i++) {
                 this.total += cart[i].price * cart[i].amount;
             }
@@ -1781,7 +1778,6 @@ var ProductsService = /** @class */ (function () {
             _loop_1(key);
         }
         this.show_list = keyword_list;
-        console.log(this.products);
     };
     ProductsService.prototype.origin = function () {
         this.products = this.originalProducts;
@@ -1818,7 +1814,6 @@ var ProductsService = /** @class */ (function () {
                 }
                 break;
         }
-        console.log(this.products);
     };
     ProductsService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
