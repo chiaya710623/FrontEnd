@@ -34,9 +34,11 @@ export class ProductsComponent implements OnInit {
   }
   search(keyword_list) {
     this.productsService.search(keyword_list);
+    this.page = 1;
   }
   sort(choice) {
     this.productsService.sort(choice);
+    this.page = 1;
   }
   origin() {
     this.productsService.origin();
