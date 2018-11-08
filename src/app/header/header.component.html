@@ -1,4 +1,4 @@
-<!-- header：登入註冊 -->
+<!-- 登入註冊（最上面黑色的區塊） -->
 <div class="header" id="home">
   <div class="container">
     <ul>
@@ -18,11 +18,12 @@
     </ul>
   </div>
 </div>
-<!-- //header -->
+<!-- //登入註冊（最上面黑色的區塊） -->
 
-<!-- header-bot：搜尋 大標 -->
+<!-- 搜尋 大標（白色的區塊） -->
 <div class="header-bot">
   <div class="header-bot_inner_wthreeinfo_header_mid">
+    <!-- 搜尋 -->
     <div class="col-md-4 header-middle">
       <form action="#" method="post">
         <input type="search" name="search" placeholder="Search here..." required="">
@@ -30,40 +31,20 @@
         <div class="clearfix"></div>
       </form>
     </div>
-    <!-- header-bot -->
+    <!-- //搜尋 -->
+    <!-- 主標題 -->
     <div class="col-md-4 logo_agile">
-      <h1><a [routerLink]="['/']"><span>Book</span>Store <i class="fa fa-shopping-bag top_logo_agile_bag" aria-hidden="true"></i></a></h1>
+      <h1><a [routerLink]="['/']"><span>Cat</span>Read <i class="fa fa-shopping-bag top_logo_agile_bag" aria-hidden="true"></i></a></h1>
     </div>
-    <!-- header-bot -->
+    <!-- //主標題 -->
     <div class="col-md-4 agileits-social top_content">
-      <ul class="social-nav model-3d-0 footer-social w3_agile_social">
-        <li class="share">Share On : </li>
-        <li><a href="#" class="facebook">
-            <div class="front"><i class="fa fa-facebook" aria-hidden="true"></i></div>
-            <div class="back"><i class="fa fa-facebook" aria-hidden="true"></i></div>
-          </a></li>
-        <li><a href="#" class="twitter">
-            <div class="front"><i class="fa fa-twitter" aria-hidden="true"></i></div>
-            <div class="back"><i class="fa fa-twitter" aria-hidden="true"></i></div>
-          </a></li>
-        <li><a href="#" class="instagram">
-            <div class="front"><i class="fa fa-instagram" aria-hidden="true"></i></div>
-            <div class="back"><i class="fa fa-instagram" aria-hidden="true"></i></div>
-          </a></li>
-        <li><a href="#" class="pinterest">
-            <div class="front"><i class="fa fa-linkedin" aria-hidden="true"></i></div>
-            <div class="back"><i class="fa fa-linkedin" aria-hidden="true"></i></div>
-          </a></li>
-      </ul>
-
-
-
+      <!-- 這塊本來有放分享到FB那些圖示 可以再想想要放什麼 -->
     </div>
     <div class="clearfix"></div>
   </div>
 </div>
-<!-- //header-bot -->
-<!-- banner：選單 -->
+<!-- //搜尋 大標（白色的區塊） -->
+<!-- 選單跟購物車圖示 -->
 <div class="ban-top">
   <div class="container">
     <div class="top_nav_left">
@@ -155,15 +136,17 @@
     <div class="clearfix"></div>
   </div>
 </div>
-<!-- //banner-top -->
-<!-- 購物車 -->
+<!-- //選單跟購物車圖示 -->
+<!-- 點購物車圖示會跳出來的那一塊 -->
 <div class="modal fade" id="cart" tabindex="-1" role="dialog">
   <div class="modal-dialog">
-    <!-- Modal content-->
+    <!-- 那一塊裡的內容-->
     <div class="modal-content">
+      <!-- 那一塊的header（包含右上角的叉叉）-->
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
+      <!-- //那一塊的header-->
       <div class="modal-body modal-body-sub_agile">
         <div class="">
           <h3 class="agileinfo_sign">購物車 <span>清單</span></h3>
@@ -172,6 +155,7 @@
             <div>
               <h2>購物車中有<span>{{ cart.length }}項商品</span></h2>
               <br>
+              <!-- 購物車表格-->
               <ng-container *ngIf="cart.length > 0;">
                 <table class="product_list">
                   <thead>
@@ -198,6 +182,7 @@
                   </ng-container>
                 </table>
               </ng-container>
+              <!-- //購物車表格-->
               <div class="clearfix"></div>
               <br>
               <input type="button" class="function_button" value="查看購物車" (click)="checkout();" data-dismiss="modal">
@@ -206,7 +191,7 @@
           <div class="clearfix"></div>
         </div>
       </div>
-      <!-- //Modal content-->
+      <!-- //那一塊裡的內容-->
     </div>
   </div>
-  <!-- //購物車 -->
+  <!-- //點購物車圖示會跳出來的那一塊 -->

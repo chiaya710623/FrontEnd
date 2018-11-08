@@ -1,23 +1,22 @@
+<!-- 標題 -->
 <div class="page-head_agile_info_w3l">
   <div class="container">
     <h3>Product <span>Content </span></h3>
-    <!--/w3_short-->
     <div class="services-breadcrumb">
       <div class="agile_inner_breadcrumb">
-
         <ul class="w3_short">
           <li><a [routerLink]="['/']">Home</a><i>|</i></li>
           <li>Content</li>
         </ul>
       </div>
     </div>
-    <!--//w3_short-->
   </div>
 </div>
+<!-- //標題 -->
 
-<!-- banner-bootom-w3-agileits -->
 <div class="banner-bootom-w3-agileits">
   <div class="container">
+    <!-- 商品圖片 -->
     <div class="col-md-4 single-right-left ">
       <div class="grid assets/images_3_of_2">
         <div class="flexslider">
@@ -40,6 +39,8 @@
         </div>
       </div>
     </div>
+    <!-- //商品圖片 -->
+    <!-- 基本資料 -->
     <div class="col-md-8 single-right-left simpleCart_shelfItem">
       <h3>{{ products[index].name }}</h3>
       <p><span class="item_price">${{ products[index].price }}</span> <del>- ${{ products[index].price *1.5 }}</del></p>
@@ -72,6 +73,7 @@
       </form>
 
     </div>
+    <!-- //基本資料 -->
     <div class="clearfix"> </div>
     <!--詳細資訊-->
     <div class="responsive_tabs_agileits">
@@ -93,17 +95,16 @@
           <!--//書籍介紹-->
           <!--作者介紹 -->
           <div class="tab3">
-              <div class="single_page_agile_its_w3ls">
-                <h6>作者介紹</h6>
-                <h3>{{ products[index].author.name }}</h3>
-                <p class="w3ls_para">{{ products[index].author.description }}
-                </p>
-              </div>
+            <div class="single_page_agile_its_w3ls">
+              <h6>作者介紹</h6>
+              <h3>{{ products[index].author.name }}</h3>
+              <p class="w3ls_para">{{ products[index].author.description }}
+              </p>
             </div>
-            <!--//作者介紹 -->
+          </div>
+          <!--//作者介紹 -->
           <!--評價-->
           <div class="tab2">
-
             <div class="single_page_agile_its_w3ls">
               <div class="bootstrap-tab-text-grids">
                 <div class="bootstrap-tab-text-grid">
@@ -129,18 +130,12 @@
                   </form>
                 </div>
               </div>
-
             </div>
           </div>
           <!--//評價-->
-
         </div>
       </div>
     </div>
     <!--//詳細資訊-->
-    <!--/slider_owl-->
-
-
   </div>
 </div>
-<!--//single_page-->
