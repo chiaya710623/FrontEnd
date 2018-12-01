@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
-export class MemberService {
+export class UsersService {
   constructor(private router: Router) {}
   login_id = 0;
   amount = 1;

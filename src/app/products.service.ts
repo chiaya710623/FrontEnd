@@ -15,13 +15,13 @@ export class ProductsService {
   };
   Today = new Date();
   getNewProducts() {
-    return this.httpClient.get(`http://localhost:8004/api/products?publish_year=${this.Today.getFullYear}`);
+    return this.httpClient.get(`http://host.limaois.me:1723/api/products?publish_year=${this.Today.getFullYear}`);
   }
   getProducts(amount, page) {
-    return this.httpClient.get(`http://localhost:8004/api/products?count=${amount}?current_page=${page}`);
+    return this.httpClient.get(`http://host.limaois.me:1723/api/products?count=${amount}&current_page=${page}`);
   }
   getProduct(id) {
-    return this.httpClient.get(`http://localhost:8004/api/products?id=${id}`);
+    return this.httpClient.get(`http://host.limaois.me:1723/api/products?id=${id}`);
   }
 
   // products = [

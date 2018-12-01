@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MemberService } from '../member.service';
+import { UsersService } from '../users.service';
 import { Router } from '@angular/router';
 import { CartService } from '../cart.service';
 import { ProductsComponent } from '../products/products.component';
@@ -11,22 +11,22 @@ import { ProductsService } from '../products.service';
 })
 export class HeaderComponent implements OnInit {
   constructor(
-    private memberService: MemberService,
+    private usersService: UsersService,
     private cartService: CartService,
     private productsService: ProductsService,
     private router: Router
   ) {}
   ngOnInit() {}
   get login_id() {
-    return this.memberService.login_id;
+    return this.usersService.login_id;
   }
   logout() {
-    this.memberService.logout();
+    this.usersService.logout();
     alert('已登出');
     this.router.navigate(['/']);
   }
   get username() {
-    return this.memberService.member[this.memberService.login_id - 1].name;
+    return this.usersService.member[this.usersService.login_id - 1].name;
   }
   get cart() {
     const cart = [];

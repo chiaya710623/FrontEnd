@@ -30,6 +30,7 @@ export class ProductsComponent implements OnInit {
     this.productsService.getProducts(this.amount, this.page).subscribe(data => {
       this.data = data;
       this.page = this.data.meta.current_page;
+      console.log(this.data, this.page);
     });
   }
   add_to_cart(id, item_amount) {
@@ -42,8 +43,5 @@ export class ProductsComponent implements OnInit {
   // sort(choice) {
   //   this.productsService.sort(choice);
   //   this.page = 1;
-  // }
-  // origin() {
-  //   this.productsService.origin();
   // }
 }

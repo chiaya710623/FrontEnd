@@ -118,7 +118,7 @@
     <!-- //左欄 -->
     <div class="col-md-8 products-right">
       <!-- 右上區塊 -->
-      <h5>商品 <span>列表（共項）</span></h5>
+      <h5>商品 <span>列表（共{{ data.meta.total }}項）</span></h5>
       <div style="padding-top: 5%;">
         <p *ngIf="show_list.classification !== '';">類別：{{show_list.classification}} </p>
         <p *ngIf="show_list.name !== '';">書名：{{show_list.name}} </p>
@@ -138,7 +138,7 @@
         </div>
         <div class="sorting">
           <h6>Showing</h6>
-          <select id="amount" [(ngModel)]="amount" (change)="page=1;">
+          <select id="amount" [(ngModel)]="amount" (change)="ngOnInit()">
             <option value="3">3</option>
             <option value="6">6</option>
             <option value="9">9</option>
@@ -184,16 +184,16 @@
       <!-- 選頁 -->
       <div style="text-align: center">
         <ul class="pagination pagination-lg">
-          <li *ngIf="data.meta.current_page != data.meta.from"><a (click)="page = data.meta.from"><span aria-hidden="true">«</span></a></li>
-          <li *ngIf="page > 1"><a (click)="page=page-1"><span aria-hidden="true"><</span></a></li>
-          <li *ngIf="page > 2"><a (click)="page=page-2">{{page-2}}</a></li>
-          <li *ngIf="page > 1"><a (click)="page=page-1">{{page-1}}</a></li>
+          <li *ngIf="data.meta.current_page != data.meta.from"><a (click)="page = data.meta.from;ngOnInit();"><span aria-hidden="true">«</span></a></li>
+          <li *ngIf="page > 1"><a (click)="page=page-1;ngOnInit();"><span aria-hidden="true"><</span></a></li>
+          <li *ngIf="page > 2"><a (click)="page=page-2;ngOnInit();">{{page-2}}</a></li>
+          <li *ngIf="page > 1"><a (click)="page=page-1;ngOnInit();">{{page-1}}</a></li>
           <li class="active"><a>{{page}}</a></li>
-          <li *ngIf="data.meta.current_page < data.meta.last_page"><a (click)="page=page+1">{{page+1}}</a></li>
-          <li *ngIf="data.meta.current_page - data.meta.current_page > 1"><a (click)="page=page+2">{{page+2}}</a></li>
+          <li *ngIf="data.meta.current_page < data.meta.last_page"><a (click)="page=page+1;ngOnInit();">{{page+1}}</a></li>
+          <li *ngIf="data.meta.current_page - data.meta.current_page > 1"><a (click)="page=page+2;ngOnInit();">{{page+2}}</a></li>
 
-          <li *ngIf="data.meta.current_page < data.meta.last_page"><a (click)="page=page+1">></a></li>
-          <li *ngIf="data.meta.current_page != data.meta.last_page"><a (click)="page=data.meta.last_page"
+          <li *ngIf="data.meta.current_page < data.meta.last_page"><a (click)="page=page+1;ngOnInit();">></a></li>
+          <li *ngIf="data.meta.current_page != data.meta.last_page"><a (click)="page=data.meta.last_page;ngOnInit();"
               aria-label="Next"><span aria-hidden="true">»</span></a></li>
         </ul>
       </div>
