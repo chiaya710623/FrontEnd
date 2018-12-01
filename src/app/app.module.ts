@@ -15,6 +15,7 @@ import { LoginComponent } from './login/login.component';
 import { ContactComponent } from './contact/contact.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { CartlistComponent } from './cartlist/cartlist.component';
+import { OrderComponent } from './order/order.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { CartlistComponent } from './cartlist/cartlist.component';
     LoginComponent,
     ContactComponent,
     CheckoutComponent,
-    CartlistComponent
+    CartlistComponent,
+    OrderComponent
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],

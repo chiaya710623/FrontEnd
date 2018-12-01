@@ -1,0 +1,27 @@
+<div class="header-bot">訂單查詢
+  <div class="header-bot_inner_wthreeinfo_header_mid">
+    <div class="col-md-4 header-middle">
+    <form action="#" method="post">
+      <input type="search" name="search" placeholder="Search here..." required="" [(ngModel)]="keyword">
+      <input type="submit" value=" " (click)="search()">
+      <div class="clearfix"></div>
+    </form>
+    </div>
+  </div>
+</div>
+
+  <ng-container *ngFor="let item of orderlist; let index=index; let last=last;">
+    <div class="clearfix"></div>
+    <p>
+      <span class="header-bot">訂單{{item.orderId}}:
+          <ng-container *ngFor="let product of item.productlist; let index=index; let last=last;">
+            <div class="header-bot_inner_wthreeinfo_header_mid">商品:{{product.title}}</div>
+            <div class="header-bot_inner_wthreeinfo_header_mid">價格:{{product.price}}</div>
+            <br>
+          </ng-container>
+      </span>
+    </p>
+
+
+  </ng-container>
+
