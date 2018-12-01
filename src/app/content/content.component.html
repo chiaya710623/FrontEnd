@@ -42,20 +42,24 @@
     <!-- //商品圖片 -->
     <!-- 基本資料 -->
     <div class="col-md-8 single-right-left simpleCart_shelfItem">
-      <h3>{{ products[index].name }}</h3>
-      <p><span class="item_price">${{ products[index].price }}</span> <del>- ${{ products[index].price *1.5 }}</del></p>
+      <h3>{{ product.title }}</h3>
+      <p><span class="item_price">${{ product.sale_price }}</span> <del>- ${{ product.list_price }}</del></p>
       <div style="padding: 0px 0px 0px 18px">
         <ul>
-          <li>作者：{{ products[index].author.name }}</li>
-          <li>譯者：{{ products[index].translator }}</li>
-          <li>出版社：{{ products[index].publisher }}</li>
-          <li>出版年：{{ products[index].publish_year }}</li>
-          <li>ISBN：{{ products[index].isbn }}</li>
+          <li>作者：{{ product.author }}</li>
+          <li>譯者：{{ product.translator }}</li>
+          <li>出版社：{{ product.publisher }}</li>
+          <li>出版年：{{ product.publish_year }}</li>
+          <li>ISBN：{{ product.ISBN }}</li>
+
         </ul>
       </div>
 
       <form action="">
-        <div class="description">選擇商品數量：<select name="amount" [(ngModel)]="item_amount">
+
+        <div class="description">
+          <ul><li>庫存：{{ product.stock }}</li>
+          <li>選擇商品數量：<select name="amount" [(ngModel)]="item_amount">
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -65,10 +69,9 @@
             <option value="7">7</option>
             <option value="8">8</option>
             <option value="9">9</option>
-            <option value="10">10</option>
-
-
-          </select></div>
+            <option value="10">10</option></select></li>
+          </ul>
+        </div>
         <input type="button" class="function_button" value="加入購物車" (click)="add_to_cart(id, item_amount)">
       </form>
 
@@ -89,7 +92,7 @@
 
             <div class="single_page_agile_its_w3ls">
               <h6>書籍介紹</h6>
-              <p class="w3ls_para">{{ products[index].description }}</p>
+              <p class="w3ls_para">{{ product.description }}</p>
             </div>
           </div>
           <!--//書籍介紹-->
@@ -97,8 +100,8 @@
           <div class="tab3">
             <div class="single_page_agile_its_w3ls">
               <h6>作者介紹</h6>
-              <h3>{{ products[index].author.name }}</h3>
-              <p class="w3ls_para">{{ products[index].author.description }}
+              <h3>{{ product.author }}</h3>
+              <p class="w3ls_para">{{ product.author_description }}
               </p>
             </div>
           </div>

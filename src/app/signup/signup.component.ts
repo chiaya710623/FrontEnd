@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MemberService } from '../member.service';
+import { UsersService } from '../users.service';
 
 @Component({
   selector: 'app-signup',
@@ -7,7 +7,7 @@ import { MemberService } from '../member.service';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-  constructor(private memberservice: MemberService) {}
+  constructor(private memberservice: UsersService) {}
 
   information = {
     name: '',

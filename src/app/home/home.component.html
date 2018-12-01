@@ -72,12 +72,12 @@
     <h3 class="wthree_text_info">新書 <span>上架</span></h3>
 
 
-    <ng-container *ngFor="let item of originProducts; let index=index;">
-      <div class="col-md-3 product-men" *ngIf="item.publish_year > 2017;">
+    <ng-container *ngFor="let item of data.data; let index=index;">
+      <div class="col-md-3 product-men" *ngIf="1">
         <div class="men-pro-item simpleCart_shelfItem">
           <div class="men-thumb-item">
-            <img [src]="item.photo" alt="" class="pro-image-front">
-            <img [src]="item.photo" alt="" class="pro-image-back">
+            <img [src]="" alt="" class="pro-image-front">
+            <img [src]="" alt="" class="pro-image-back">
             <div class="men-cart-pro">
               <div class="inner-men-cart-pro">
                 <a [routerLink]="['/products/', item.id]" class="link-product-add-cart">商品資訊</a>
@@ -87,10 +87,10 @@
 
           </div>
           <div class="item-info-product ">
-            <h4><a [routerLink]="['/products/', item.id]">{{ item.name }}</a></h4>
+            <h4><a [routerLink]="['/products/', item.id]">{{ item.title }}</a></h4>
             <div class="info-product-price">
-              <span class="item_price">${{ item.price }}</span>
-              <del>${{ item.price * 1.5 }}</del>
+              <span class="item_price">${{ item.sale_price }}</span>
+              <del>${{ item.list_price }}</del>
             </div>
             <div>
               <input type="button" class="function_button" value="加入購物車" (click)="add_to_cart(item.id, 1)">

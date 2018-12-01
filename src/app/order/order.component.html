@@ -13,7 +13,7 @@
   <ng-container *ngFor="let item of orderlist; let index=index; let last=last;">
     <div class="clearfix"></div>
     <p>
-      <span class="header-bot">訂單{{item.orderId}}:
+      <span class="header-bot">訂單{{item.id}}:
           <ng-container *ngFor="let product of item.productlist; let index=index; let last=last;">
             <div class="header-bot_inner_wthreeinfo_header_mid">商品:{{product.title}}</div>
             <div class="header-bot_inner_wthreeinfo_header_mid">價格:{{product.price}}</div>

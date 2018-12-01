@@ -22,25 +22,26 @@ export class ProductsComponent implements OnInit {
     isbn: '',
     classification: ''
   };
+  data: any = { data: [], link: [], meta: [] };
   get show_list() {
     return this.productsService.show_list;
   }
-  ngOnInit() {}
-  get products() {
-    return this.productsService.products;
+  ngOnInit() {
+    this.productsService.getProducts(this.amount, this.page).subscribe(data => {
+      this.data = data;
+      this.page = this.data.meta.current_page;
+      console.log(this.data, this.page);
+    });
   }
   add_to_cart(id, item_amount) {
     this.cartService.add_to_cart(id, item_amount);
   }
-  search(keyword_list) {
-    this.productsService.search(keyword_list);
-    this.page = 1;
-  }
-  sort(choice) {
-    this.productsService.sort(choice);
-    this.page = 1;
-  }
-  origin() {
-    this.productsService.origin();
-  }
+  // search(keyword_list) {
+  //   this.productsService.search(keyword_list);
+  //   this.page = 1;
+  // }
+  // sort(choice) {
+  //   this.productsService.sort(choice);
+  //   this.page = 1;
+  // }
 }
