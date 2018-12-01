@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../cart.service';
 import { ProductsService } from '../products.service';
-import { Product } from '../product';
 
 @Component({
   selector: 'app-home',
@@ -16,8 +15,7 @@ export class HomeComponent implements OnInit {
   data: any = {data: []};
   Today = new Date();
   ngOnInit() {
-  this.productsService.getProducts().subscribe(data => {
-    // 這裡可以寫跟後端拿資料的程式
+  this.productsService.getNewProducts().subscribe(data => {
     this.data = data;
     console.log(this.data.data);
   });

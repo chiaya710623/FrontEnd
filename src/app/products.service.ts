@@ -13,8 +13,15 @@ export class ProductsService {
     isbn: '',
     classification: ''
   };
-  getProducts() {
-    return this.httpClient.get('http://localhost:8004/api/products');
+  Today = new Date();
+  getNewProducts() {
+    return this.httpClient.get(`http://localhost:8004/api/products?publish_year=${this.Today.getFullYear}`);
+  }
+  getProducts(amount, page) {
+    return this.httpClient.get(`http://localhost:8004/api/products?count=${amount}?current_page=${page}`);
+  }
+  getProduct(id) {
+    return this.httpClient.get(`http://localhost:8004/api/products?id=${id}`);
   }
 
   // products = [

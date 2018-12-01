@@ -118,7 +118,7 @@
     <!-- //左欄 -->
     <div class="col-md-8 products-right">
       <!-- 右上區塊 -->
-      <h5>商品 <span>列表（共{{data.data.length}}項）</span></h5>
+      <h5>商品 <span>列表（共項）</span></h5>
       <div style="padding-top: 5%;">
         <p *ngIf="show_list.classification !== '';">類別：{{show_list.classification}} </p>
         <p *ngIf="show_list.name !== '';">書名：{{show_list.name}} </p>
@@ -149,19 +149,19 @@
       </div>
       <!-- //右上區塊 -->
       <!-- 商品列表 -->
-      <ng-container *ngFor="let item of products;let index=index;let last=last;">
-        <div class="col-md-4 product-men" *ngIf="index >= amount * (page-1) && index < amount * page">
+      <ng-container *ngFor="let item of data.data;let index=index;let last=last;">
+        <div class="col-md-4 product-men" *ngIf="1">
 
           <div class="men-pro-item simpleCart_shelfItem">
             <div class="men-thumb-item">
-              <img [src]="item.photo" alt="" class="pro-image-front">
-              <img [src]="item.photo" alt="" class="pro-image-back">
+              <img [src]="" alt="" class="pro-image-front">
+              <img [src]="" alt="" class="pro-image-back">
               <div class="men-cart-pro">
                 <div class="inner-men-cart-pro">
                   <a [routerLink]="['/products/', item.id]" class="link-product-add-cart">商品資訊</a>
                 </div>
               </div>
-              <span class="product-new-top" *ngIf="item.publish_year>2017;">New</span>
+              <span class="product-new-top" *ngIf="1">New</span>
 
             </div>
             <div class="item-info-product ">
@@ -184,16 +184,16 @@
       <!-- 選頁 -->
       <div style="text-align: center">
         <ul class="pagination pagination-lg">
-          <li *ngIf="amount < products.length"><a (click)="page=1"><span aria-hidden="true">«</span></a></li>
-          <li *ngIf="page - 1 > 0"><a (click)="page=page-1"><span aria-hidden="true"><</span></a></li>
-          <li *ngIf="page - 2 > 0"><a (click)="page=page-2">{{page-2}}</a></li>
-          <li *ngIf="page - 1 > 0"><a (click)="page=page-1">{{page-1}}</a></li>
-          <li class="active" *ngIf="amount < products.length"><a>{{page}}</a></li>
-          <li *ngIf="(page + 1) * amount - products.length < amount"><a (click)="page=page+1">{{page+1}}</a></li>
-          <li *ngIf="(page + 2) * amount - products.length < amount"><a (click)="page=page+2">{{page+2}}</a></li>
+          <li *ngIf="data.meta.current_page != data.meta.from"><a (click)="page = data.meta.from"><span aria-hidden="true">«</span></a></li>
+          <li *ngIf="page > 1"><a (click)="page=page-1"><span aria-hidden="true"><</span></a></li>
+          <li *ngIf="page > 2"><a (click)="page=page-2">{{page-2}}</a></li>
+          <li *ngIf="page > 1"><a (click)="page=page-1">{{page-1}}</a></li>
+          <li class="active"><a>{{page}}</a></li>
+          <li *ngIf="data.meta.current_page < data.meta.last_page"><a (click)="page=page+1">{{page+1}}</a></li>
+          <li *ngIf="data.meta.current_page - data.meta.current_page > 1"><a (click)="page=page+2">{{page+2}}</a></li>
 
-          <li *ngIf="(page + 1) * amount - products.length < amount"><a (click)="page=page+1">></a></li>
-          <li *ngIf="(page + 1) * amount - products.length < amount"><a (click)="page=(products.length - products.length % amount)/amount+1"
+          <li *ngIf="data.meta.current_page < data.meta.last_page"><a (click)="page=page+1">></a></li>
+          <li *ngIf="data.meta.current_page != data.meta.last_page"><a (click)="page=data.meta.last_page"
               aria-label="Next"><span aria-hidden="true">»</span></a></li>
         </ul>
       </div>

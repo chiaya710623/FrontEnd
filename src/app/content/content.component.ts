@@ -11,10 +11,9 @@ declare let $: any;
   styleUrls: ['./content.component.css']
 })
 export class ContentComponent implements OnInit {
-  products = this.productsService.products;
   id = '1';
-  index = 0;
   item_amount = '1';
+  product: any = {};
   constructor(
     private route: ActivatedRoute,
     private productsService: ProductsService,
@@ -23,11 +22,11 @@ export class ContentComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(data => {
       this.id = data.id;
-      for (let i = 0; i < this.products.length; i++) {
-        if (this.products[i].id === this.id) {
-          this.index = i;
-        }
-      }
+      console.log(this.id);
+    });
+    this.productsService.getProduct(this.id).subscribe((data: any) => {
+      this.product = data.data[0];
+      console.log(this.product);
     });
     $(document).ready(function() {
       // 書籍介紹用的

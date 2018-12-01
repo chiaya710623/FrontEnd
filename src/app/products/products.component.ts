@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../cart.service';
 import { ProductsService } from '../products.service';
-import { Product } from '../product';
 
 @Component({
   selector: 'app-products',
@@ -23,15 +22,16 @@ export class ProductsComponent implements OnInit {
     isbn: '',
     classification: ''
   };
-  data: any = {data: []};
+  data: any = { data: [], link: [], meta: [] };
   get show_list() {
     return this.productsService.show_list;
   }
   ngOnInit() {
-  this.productsService.getProducts().subscribe(data => {
-    this.data = data;
-  });
-}
+    this.productsService.getProducts(this.amount, this.page).subscribe(data => {
+      this.data = data;
+      this.page = this.data.meta.current_page;
+    });
+  }
   add_to_cart(id, item_amount) {
     this.cartService.add_to_cart(id, item_amount);
   }
