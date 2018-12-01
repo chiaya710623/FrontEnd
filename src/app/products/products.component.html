@@ -118,7 +118,7 @@
     <!-- //左欄 -->
     <div class="col-md-8 products-right">
       <!-- 右上區塊 -->
-      <h5>商品 <span>列表（共{{products.length}}項）</span></h5>
+      <h5>商品 <span>列表（共{{data.data.length}}項）</span></h5>
       <div style="padding-top: 5%;">
         <p *ngIf="show_list.classification !== '';">類別：{{show_list.classification}} </p>
         <p *ngIf="show_list.name !== '';">書名：{{show_list.name}} </p>
@@ -165,10 +165,10 @@
 
             </div>
             <div class="item-info-product ">
-              <h4><a [routerLink]="['/products/', item.id]">{{ item.name }}</a></h4>
+              <h4><a [routerLink]="['/products/', item.id]">{{ item.title }}</a></h4>
               <div class="info-product-price">
-                <span class="item_price">${{ item.price}}</span>
-                <del>${{ item.price * 1.5}}</del>
+                <span class="item_price">${{ item.sale_price}}</span>
+                <del>${{ item.list_price}}</del>
               </div>
               <div>
                 <input type="button" class="function_button" value="加入購物車" (click)="add_to_cart(item.id, 1)">
