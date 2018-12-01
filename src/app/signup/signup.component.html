@@ -6,27 +6,28 @@
       <h3 class="agileinfo_sign">Sign Up <span>Now</span></h3>
       <form action="#" method="post">
         <div class="styled-input agile-styled-input-top">
-          <input type="text" name="Name" required="" [(ngModel)]="information.name">
+          <input type="text" name="Name" required="" [(ngModel)]="user.name">
           <label>暱稱</label>
           <span></span>
         </div>
         <div class="styled-input">
-          <input type="email" name="Email" required="" [(ngModel)]="information.email">
+          <input type="email" name="Email" required="" [(ngModel)]="user.email">
           <label>Email</label>
           <span></span>
         </div>
         <div class="styled-input">
-          <input type="password" name="password" required="" [(ngModel)]="information.password">
+          <input type="password" name="password" required="" [(ngModel)]="user.password">
           <label>密碼</label>
           <span></span>
         </div>
         <div class="styled-input">
-          <input type="password" name="Confirm Password" required="" [(ngModel)]="information.confirm">
+          <input type="password" name="password_confirmation" required="" [(ngModel)]="user.password_confirmation">
           <label>確認密碼</label>
           <span></span>
         </div>
-        <input type="button" class="function_button" value="註冊" (click)="signup(information)">
-        <ng-container *ngIf="information.password !== information.confirm"> 密碼不一致</ng-container>
+
+        <input type="button" class="function_button" value="註冊" (click)="signup()">
+        <ng-container *ngIf="user.password !== user.password_confirmation"> 密碼不一致</ng-container>
       </form>
       <ul class="social-nav model-3d-0 footer-social w3_agile_social top_agile_third">
         <li><a href="#" class="facebook">
