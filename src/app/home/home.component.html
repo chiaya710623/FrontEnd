@@ -73,7 +73,7 @@
 
 
     <ng-container *ngFor="let item of data.data; let index=index;">
-      <div class="col-md-3 product-men" *ngIf="1">
+      <div class="col-md-3 product-men" *ngIf="item.stock > 0;">
         <div class="men-pro-item simpleCart_shelfItem">
           <div class="men-thumb-item">
             <img [src]="" alt="" class="pro-image-front">
@@ -93,7 +93,7 @@
               <del>${{ item.list_price }}</del>
             </div>
             <div>
-              <input type="button" class="function_button" value="加入購物車" (click)="add_to_cart(item.id, 1)">
+              <input type="button" class="function_button" value="加入購物車" (click)="add_to_cart(item.id, 1, item.product_stock)">
             </div>
 
           </div>

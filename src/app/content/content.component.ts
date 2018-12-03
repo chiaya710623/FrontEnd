@@ -58,7 +58,7 @@ export class ContentComponent implements OnInit {
     });
   }
 
-  add_to_cart(id, item_amount) {
-    this.cartService.add_to_cart(id, parseInt(item_amount, 10));
+  add_to_cart(id, item_amount, stock) {
+    this.cartService.add_to_cart(id, parseInt(item_amount, 10), parseInt(stock, 10));
   }
 }

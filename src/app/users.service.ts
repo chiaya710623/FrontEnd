@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UsersService {
   constructor(private router: Router, private httpClient: HttpClient) {}
-  login_id = 0;
+  token = '';
   amount = 1;
 
   register(user) {
@@ -18,32 +18,15 @@ export class UsersService {
     return this.httpClient.post('http://host.limaois.me:1723/api/login', user);
   }
 
-  // isLogin(token) {
-  //   console.log(token);
-  //   return localStorage.getItem('token');
-  // }
+  getUser() {
+    return this.httpClient.get('http://host.limaois.me:1723/api/register');
+  }
 
-  // logout() {
-  //   return localStorage.removeItem('token');
-  // }
-
-  login(email, password) {
-    let i;
-    for (i = 0; i < this.amount && this.login_id === 0; i++) {
-      if (
-        this.member[i].email === email &&
-        this.member[i].password === password
-      ) {
-        this.login_id = i + 1;
-        alert('登入成功');
-        this.router.navigate(['/']);
-      }
-    }
-    if (this.login_id === 0) {
-      alert('輸入錯誤');
-    }
+  isLogin() {
+    return localStorage.getItem('token');
   }
   logout() {
-    this.login_id = 0;
+    return localStorage.removeItem('token');
   }
+
 }
