@@ -98,12 +98,12 @@
       <div class="sort-grid">
         <div class="sorting">
           <h6>Sort By</h6>
-          <select id="country1" [(ngModel)]="choice" (change)="ngOnInit();" class="frm-field required sect">
-            <option value="0">請選擇排序方式</option>
-            <option value="1">價格：由高到低</option>
-            <option value="2">價格：由低到高</option>
-            <option value="3">出版年份：由新到舊</option>
-            <option value="4">出版年份：由舊到新</option>
+          <select id="country1" [(ngModel)]="sort" (change)="ngOnInit();" class="frm-field required sect">
+            <option value="">請選擇排序方式</option>
+            <option value="sale_price:-">價格：由高到低</option>
+            <option value="sale_price:+">價格：由低到高</option>
+            <option value="publish_year:-">出版年份：由新到舊</option>
+            <option value="publish_year:+">出版年份：由舊到新</option>
           </select>
           <div class="clearfix"></div>
         </div>

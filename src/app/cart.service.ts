@@ -40,13 +40,14 @@ export class CartService {
     console.log(this.cart);
   }
   getCart() {
-    if (this.usersService.isLogin()) {
-      return this.httpClient.get(
-        `http://host.limaois.me:1723/api/orders?token=${this.usersService.isLogin()}&state=${0}`
-      );
-    } else {
-      return this.cart;
-    }
+    // return this.httpClient.get(
+    //   `http://host.limaois.me:1723/api/orders?state=0`,
+    //   {
+    //     headers: {
+    //       Authorization: `Bearer ${localStorage.getItem('token')}`
+    //     }
+    //   }
+    // );
   }
   postCart(cart) {
     if (this.usersService.isLogin()) {

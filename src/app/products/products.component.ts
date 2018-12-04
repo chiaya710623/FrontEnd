@@ -14,7 +14,6 @@ export class ProductsComponent implements OnInit {
   ) {}
   amount = 9;
   page = 1;
-  choice = '0';
   year = new Date().getFullYear();
   search = {
     catagory: '',
@@ -34,43 +33,9 @@ export class ProductsComponent implements OnInit {
     interpreter: '',
     ISBN: ''
   };
-  sort = {
-    id: '+',
-    sale_price: '',
-    publish_year: ''
-  };
+  sort = '';
   data: any = { data: [], link: [], meta: [] };
   ngOnInit() {
-    switch (this.choice) {
-      case '1':
-        this.sort = {
-          id: '',
-          sale_price: '-',
-          publish_year: ''
-        };
-        break;
-      case '2':
-        this.sort = {
-          id: '',
-          sale_price: '+',
-          publish_year: ''
-        };
-        break;
-      case '3':
-        this.sort = {
-          id: '',
-          sale_price: '',
-          publish_year: '-'
-        };
-        break;
-      case '4':
-        this.sort = {
-          id: '',
-          sale_price: '',
-          publish_year: '+'
-        };
-        break;
-    }
     this.productsService
       .getProducts(this.amount, this.page, this.sort, this.search)
       .subscribe(data => {

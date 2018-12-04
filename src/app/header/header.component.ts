@@ -3,6 +3,7 @@ import { UsersService } from '../users.service';
 import { Router } from '@angular/router';
 import { CartService } from '../cart.service';
 import { ProductsService } from '../products.service';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -13,12 +14,18 @@ export class HeaderComponent implements OnInit {
     private usersService: UsersService,
     private cartService: CartService,
     private productsService: ProductsService,
-    private router: Router
+    private router: Router,
+    private httpClient: HttpClient
   ) {}
-  ngOnInit() {}
+  cart = {};
+  ngOnInit() {
+    // this.cartService.getCart().subscribe(data => {
+    //   this.cart = data;
+    // });
+  }
 
   getCart() {
-    return this.cartService.getCart();
+    // return this.cartService.getCart();
   }
 
   getProduct(id) {
@@ -34,9 +41,6 @@ export class HeaderComponent implements OnInit {
   delete_item(index) {
     this.cartService.cart.splice(index, index + 1);
     this.cartService.list_amount--;
-  }
-  search(search_list) {
-    this.productsService.search(search_list);
   }
 
   checkout() {

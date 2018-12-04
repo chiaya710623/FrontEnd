@@ -17,7 +17,6 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   this.productsService.getNewProducts().subscribe(data => {
     this.data = data;
-    console.log(this.data.data);
   });
   }
   add_to_cart(id, item_amount, stock) {

@@ -8,13 +8,17 @@ export class ProductsService {
   constructor(private httpClient: HttpClient) {}
   year = new Date().getFullYear();
   getNewProducts() {
-    return this.httpClient.get(`http://host.limaois.me:1723/api/products?publish_year=${this.year}`);
+    return this.httpClient.get(
+      `http://host.limaois.me:1723/api/products?publish_year=${this.year}`
+    );
   }
   getProducts(amount, page, sort, search) {
-    return this.httpClient.get(`http://host.limaois.me:1723/api/products?count=${amount}&page=${page}&sort=${sort}&search=${search}`);
+    return this.httpClient.get(
+      `http://host.limaois.me:1723/api/products?count=${amount}&page=${page}&sort=${sort}&search=${JSON.stringify(search)}`);
   }
   getProduct(id) {
-    return this.httpClient.get(`http://host.limaois.me:1723/api/products/${id}`);
+    return this.httpClient.get(
+      `http://host.limaois.me:1723/api/products/${id}`
+    );
   }
-
 }
