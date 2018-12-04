@@ -129,26 +129,30 @@
       <div class="sort-grid">
         <div class="sorting">
           <h6>Sort By</h6>
-          <select id="country1" [(ngModel)]="choice" (change)=" page=1;" class="frm-field required sect">
+          <select id="country1" [(ngModel)]="choice" (change)="ngOnInit();" class="frm-field required sect">
             <option value="0">請選擇排序方式</option>
             <option value="1">價格：由高到低</option>
             <option value="2">價格：由低到高</option>
+            <option value="3">出版年份：由新到舊</option>
+            <option value="4">出版年份：由舊到新</option>
           </select>
           <div class="clearfix"></div>
         </div>
+        <!--排序（已完成）-->
         <div class="sorting">
           <h6>Showing</h6>
           <select id="amount" [(ngModel)]="amount" (change)="ngOnInit()">
             <option value="3">3</option>
-            <option value="6">6</option>
             <option value="9">9</option>
-            <option value="12">12</option>
+            <option value="12">15</option>
+            <option value="12">21</option>
           </select>
         </div>
+        <!--/排序-->
         <div class="clearfix"></div>
       </div>
       <!-- //右上區塊 -->
-      <!-- 商品列表 -->
+      <!-- 商品列表（完成） -->
       <ng-container *ngFor="let item of data.data;let index=index;let last=last;">
         <div class="col-md-4 product-men">
 
@@ -182,7 +186,7 @@
       </ng-container>
       <!-- //商品列表 -->
       <div class="clearfix"></div>
-      <!-- 選頁 -->
+      <!-- 選頁（完成） -->
       <div style="text-align: center">
         <ul class="pagination pagination-lg">
           <li *ngIf="data.meta.current_page != data.meta.from"><a (click)="page = data.meta.from;ngOnInit();"><span aria-hidden="true">«</span></a></li>

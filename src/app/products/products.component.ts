@@ -12,9 +12,9 @@ export class ProductsComponent implements OnInit {
     private productsService: ProductsService,
     private cartService: CartService
   ) {}
-  amount = 6;
+  amount = 9;
   page = 1;
-  choice = 0;
+  choice = '0';
   year = new Date().getFullYear();
   keyword_list = {
     name: '',
@@ -26,29 +26,56 @@ export class ProductsComponent implements OnInit {
   sort = {
     id: '+',
     sale_price: '',
-    publish_year: '',
+    publish_year: ''
   };
   data: any = { data: [], link: [], meta: [] };
   get show_list() {
     return this.productsService.show_list;
   }
   ngOnInit() {
-    this.productsService.getProducts(this.amount, this.page, this.sort).subscribe(data => {
-      this.data = data;
-      this.page = this.data.meta.current_page;
-      console.log(this.data, this.page);
-    });
+    switch (this.choice) {
+      case '1':
+        this.sort = {
+          id: '',
+          sale_price: '-',
+          publish_year: ''
+        };
+        break;
+      case '2':
+        this.sort = {
+          id: '',
+          sale_price: '+',
+          publish_year: ''
+        };
+        break;
+      case '3':
+        this.sort = {
+          id: '',
+          sale_price: '',
+          publish_year: '-'
+        };
+        break;
+      case '4':
+        this.sort = {
+          id: '',
+          sale_price: '',
+          publish_year: '+'
+        };
+        break;
+    }
+    this.productsService
+      .getProducts(this.amount, this.page, this.sort)
+      .subscribe(data => {
+        this.data = data;
+        this.page = this.data.meta.current_page;
+        console.log(this.data, this.page);
+      });
   }
   add_to_cart(id, item_amount, stock) {
     this.cartService.add_to_cart(id, item_amount, stock);
   }
 }
-  // search(keyword_list) {
-  //   this.productsService.search(keyword_list);
-  //   this.page = 1;
-  // }
-  // sort(choice) {
-  //   this.productsService.sort(choice);
-  //   this.page = 1;
-  // }
+// search(keyword_list) {
+//   this.productsService.search(keyword_list);
+//   this.page = 1;
 // }
