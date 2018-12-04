@@ -16,12 +16,23 @@ export class ProductsComponent implements OnInit {
   page = 1;
   choice = '0';
   year = new Date().getFullYear();
-  keyword_list = {
-    name: '',
-    author_name: '',
+  search = {
+    catagory: '',
+    subcatagory: '',
     publisher: '',
-    isbn: '',
-    classification: ''
+    title: '',
+    author: '',
+    interpreter: '',
+    ISBN: ''
+  };
+  show = {
+    catagory: '',
+    subcatagory: '',
+    publisher: '',
+    title: '',
+    author: '',
+    interpreter: '',
+    ISBN: ''
   };
   sort = {
     id: '+',
@@ -29,9 +40,6 @@ export class ProductsComponent implements OnInit {
     publish_year: ''
   };
   data: any = { data: [], link: [], meta: [] };
-  get show_list() {
-    return this.productsService.show_list;
-  }
   ngOnInit() {
     switch (this.choice) {
       case '1':
@@ -64,18 +72,23 @@ export class ProductsComponent implements OnInit {
         break;
     }
     this.productsService
-      .getProducts(this.amount, this.page, this.sort)
+      .getProducts(this.amount, this.page, this.sort, this.search)
       .subscribe(data => {
         this.data = data;
         this.page = this.data.meta.current_page;
-        console.log(this.data, this.page);
       });
   }
   add_to_cart(id, item_amount, stock) {
     this.cartService.add_to_cart(id, item_amount, stock);
   }
+  search_submit() {
+    this.show.catagory = this.search.catagory;
+    this.show.subcatagory = this.search.subcatagory;
+    this.show.publisher = this.search.publisher;
+    this.show.title = this.search.title;
+    this.show.author = this.search.author;
+    this.show.interpreter = this.search.interpreter;
+    this.show.ISBN = this.search.ISBN;
+    this.ngOnInit();
+  }
 }
-// search(keyword_list) {
-//   this.productsService.search(keyword_list);
-//   this.page = 1;
-// }
