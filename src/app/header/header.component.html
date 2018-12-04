@@ -120,7 +120,7 @@
     </div>
     <div class="top_nav_right">
       <div style="width: 50%;">
-        <div class="wthreecartaits wthreecartaits2 cart cart box_1">
+        <div class="wthreecartaits wthreecartaits2 cart cart box_1" (click)="ngOnInit();">
           <a href="#" data-toggle="modal" data-target="#cart"><i class="fa fa-cart-arrow-down fa-lg" aria-hidden="true"></i></a>
         </div>
       </div>
@@ -160,11 +160,11 @@
                       <th>刪除</th>
                     </tr>
                   </thead>
-                  <!-- <ng-container *ngFor="let item of cart; let index=index;">
+                  <ng-container *ngFor="let item of cart; let index=index;">
                     <tr>
                       <td>{{ index + 1 }}</td>
-                      <td><a [routerLink]="['/products/', item.id]" data-dismiss="modal">{{ getProduct(item.id).data[0].name }}</a></td>
-                      <td>NT${{ getProduct(item.id).data[0].sale_price }}</td>
+                      <td><a [routerLink]="['/products/', item.id]" data-dismiss="modal">{{ item.product.title }}</a></td>
+                      <td>NT${{ item.product.sale_price }}</td>
                       <td>
                         {{ item.item_amount }}
                       </td>
@@ -172,7 +172,7 @@
                         <p style="text-align:center;"><img src="assets/images/close_1.png" (click)="delete_item(index)"></p>
                       </td>
                     </tr>
-                  </ng-container> -->
+                  </ng-container>
                 </table>
               </ng-container>
               <!-- //購物車表格-->

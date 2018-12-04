@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { UsersService } from '../users.service';
 import { Router } from '@angular/router';
 import { CartService } from '../cart.service';
@@ -17,25 +17,31 @@ export class HeaderComponent implements OnInit {
     private router: Router,
     private httpClient: HttpClient
   ) {}
-  cart = [
-    { id: 3,
-      item_amount: 5,
-    },
-  ];
+  cart = [];
+  show_cart = [];
+  list_amount = 0;
   ngOnInit() {
-
-    this.cartService.postCart(this.cart);
-    this.cartService.getCart().subscribe(data => {
-      console.log('1', data);
-    });
-  }
-
-  getCart() {
-    // return this.cartService.getCart();
-  }
-
-  getProduct(id) {
-    return this.productsService.getProduct(id);
+    if (this.usersService.isLogin()) {
+      this.cartService.getCart().subscribe((data: any) => {
+        this.cart = data.data;
+      });
+    }
+    if (this.cart === []) {
+      alert('購物車內沒有商品');
+    } else {
+      for (let i = 0; i < this.cart.length; i++) {
+        this.productsService
+          .getProduct(this.cart[i].id)
+          .subscribe((data: any) => {
+            console.log(this.cart[i].id);
+            this.show_cart[i].id = this.cart[i].id;
+            this.show_cart[i].item_amount = this.cart[i].item_amount;
+            this.show_cart[i].product = data.data;
+          });
+      }
+    }
+    console.log(this.cart);
+    console.log(this.show_cart);
   }
 
   logout() {
@@ -45,12 +51,17 @@ export class HeaderComponent implements OnInit {
   }
 
   delete_item(index) {
-    this.cartService.cart.splice(index, index + 1);
-    this.cartService.list_amount--;
+    this.cart.splice(index, index + 1);
+    this.list_amount--;
+    this.cartService.cart = this.cart;
+    this.cartService.list_amount = this.list_amount;
+    if (this.usersService.isLogin()) {
+      this.cartService.postCart(this.cart);
+    }
   }
 
   checkout() {
-    if (this.cartService.list_amount === 0) {
+    if (this.list_amount === 0) {
       alert('購物車中沒有商品。');
     } else {
       this.router.navigate(['/cartlist']);

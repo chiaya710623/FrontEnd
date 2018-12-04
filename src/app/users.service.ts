@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { CartService } from './cart.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
-  constructor(private router: Router, private httpClient: HttpClient) {}
+  constructor(
+    private router: Router,
+    private httpClient: HttpClient
+  ) {}
   token = '';
   amount = 1;
   now = new Date();

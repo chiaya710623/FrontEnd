@@ -15,8 +15,7 @@ export class OrderComponent implements OnInit {
   originOrderlist = this.orderlist;
   keyword = '';
   ngOnInit() {
-    this.orderlist = this.orders.getOrders();
-    console.log(this.orderlist);
+
   }
 
   search() { /*
