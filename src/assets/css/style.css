@@ -1527,6 +1527,16 @@ button.w3view-cart {
     top: 0;
     z-index:99;
 }
+.product-out-of-stock-top {
+  background:black none repeat scroll 0 0;
+  color: #fff;
+  display: inline-block;
+  left: 0;
+  padding: 0 10px 1px;
+  position: absolute;
+  top: 0;
+  z-index:99;
+}
 .inner-men-cart-pro {
     height: 100%;
     position: relative;

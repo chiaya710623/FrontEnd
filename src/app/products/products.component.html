@@ -161,7 +161,8 @@
                   <a [routerLink]="['/products/', item.id]" class="link-product-add-cart">商品資訊</a>
                 </div>
               </div>
-              <span class="product-new-top" *ngIf="item.publish_year === year">New</span>
+              <span class="product-new-top" *ngIf="item.publish_year === year">新品</span>
+              <span class="product-out-of-stock-top" *ngIf="item.stock===0">缺貨</span>
 
             </div>
             <div class="item-info-product ">

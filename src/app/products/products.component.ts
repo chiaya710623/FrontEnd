@@ -34,9 +34,9 @@ export class ProductsComponent implements OnInit {
       console.log(this.data, this.page);
     });
   }
-  // add_to_cart(id, item_amount) {
-  //   this.cartService.add_to_cart(id, item_amount);
-  // }
+  add_to_cart(id, item_amount, stock) {
+    this.cartService.add_to_cart(id, item_amount, stock);
+  }
   // search(keyword_list) {
   //   this.productsService.search(keyword_list);
   //   this.page = 1;
