@@ -11,7 +11,7 @@ declare let $: any;
   styleUrls: ['./content.component.css']
 })
 export class ContentComponent implements OnInit {
-  id = '1';
+  id = 1;
   item_amount = '1';
   product: any = {};
   constructor(
@@ -21,12 +21,11 @@ export class ContentComponent implements OnInit {
   ) {}
   ngOnInit() {
     this.route.params.subscribe(data => {
-      this.id = data.id;
+      this.id = parseInt(data.id, 10);
       console.log(this.id);
     });
-    this.productsService.getProduct(this.id).subscribe((data: any) => {
-      this.product = data.data[0];
-      console.log(this.product);
+    this.productsService.getProduct(this.id).subscribe(data => {
+      this.product = data;
     });
     $(document).ready(function() {
       // 書籍介紹用的
@@ -59,6 +58,11 @@ export class ContentComponent implements OnInit {
   }
 
   add_to_cart(id, item_amount, stock) {
-    this.cartService.add_to_cart(id, parseInt(item_amount, 10), parseInt(stock, 10));
+    this.cartService.add_to_cart(
+      id,
+      parseInt(item_amount, 10),
+      parseInt(stock, 10)
+    );
   }
+
 }

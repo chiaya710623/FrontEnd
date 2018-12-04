@@ -15,6 +15,7 @@ export class ProductsComponent implements OnInit {
   amount = 6;
   page = 1;
   choice = 0;
+  year = new Date().getFullYear();
   keyword_list = {
     name: '',
     author_name: '',

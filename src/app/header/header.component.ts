@@ -17,6 +17,14 @@ export class HeaderComponent implements OnInit {
   ) {}
   ngOnInit() {}
 
+  getCart() {
+    return this.cartService.getCart();
+  }
+
+  getProduct(id) {
+    return this.productsService.getProduct(id);
+  }
+
   logout() {
     this.usersService.logout();
     alert('已登出');

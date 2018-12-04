@@ -34,9 +34,10 @@ export class CartService {
       this.list_amount++;
       alert('已加入' + item_amount + '件此商品至購物車。');
     } else {
-      alert('庫存不足。');
-      this.router.navigate(['/']);
+      alert('庫存不足，敬請見諒！');
     }
+    this.postCart(this.cart);
+    console.log(this.cart);
   }
   getCart() {
     if (this.usersService.isLogin()) {

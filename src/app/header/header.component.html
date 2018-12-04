@@ -23,22 +23,14 @@
 <!-- 搜尋 大標（白色的區塊） -->
 <div class="header-bot">
   <div class="header-bot_inner_wthreeinfo_header_mid">
-    <!-- 搜尋 -->
     <div class="col-md-4 header-middle">
-      <form action="#" method="post">
-        <input type="search" name="search" placeholder="Search here..." required="">
-        <input type="submit" value=" ">
-        <div class="clearfix"></div>
-      </form>
     </div>
-    <!-- //搜尋 -->
     <!-- 主標題 -->
     <div class="col-md-4 logo_agile">
       <h1><a [routerLink]="['/']"><span>Cat</span>Read <i class="fa fa-shopping-bag top_logo_agile_bag" aria-hidden="true"></i></a></h1>
     </div>
     <!-- //主標題 -->
     <div class="col-md-4 agileits-social top_content">
-      <!-- 這塊本來有放分享到FB那些圖示 可以再想想要放什麼 -->
     </div>
     <div class="clearfix"></div>
   </div>
@@ -171,10 +163,10 @@
                   <ng-container *ngFor="let item of cart; let index=index;">
                     <tr>
                       <td>{{ index + 1 }}</td>
-                      <td><a [routerLink]="['/products/', item.id]" data-dismiss="modal">{{ item.name }}</a></td>
-                      <td>NT${{ item.price }}</td>
+                      <td><a [routerLink]="['/products/', item.id]" data-dismiss="modal">{{ getProduct(item.id).data[0].name }}</a></td>
+                      <td>NT${{ getProduct(item.id).data[0].sale_price }}</td>
                       <td>
-                        {{ item.amount }}
+                        {{ item.item_amount }}
                       </td>
                       <td>
                         <p style="text-align:center;"><img src="assets/images/close_1.png" (click)="delete_item(index)"></p>

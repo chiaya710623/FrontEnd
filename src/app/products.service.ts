@@ -22,7 +22,7 @@ export class ProductsService {
     return this.httpClient.get(`http://host.limaois.me:1723/api/products?count=${amount}&current_page=${page}`);
   }
   getProduct(id) {
-    return this.httpClient.get(`http://host.limaois.me:1723/api/products?id=${id}`);
+    return this.httpClient.get(`http://host.limaois.me:1723/api/products/${id}`);
   }
 
   search(keyword_list) {

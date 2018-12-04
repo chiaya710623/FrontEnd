@@ -129,7 +129,7 @@
       <div class="sort-grid">
         <div class="sorting">
           <h6>Sort By</h6>
-          <select id="country1" [(ngModel)]="choice" (change)="sort(choice); page=1;" class="frm-field required sect">
+          <select id="country1" [(ngModel)]="choice" (change)=" page=1;" class="frm-field required sect">
             <option value="0">請選擇排序方式</option>
             <option value="1">價格：由高到低</option>
             <option value="2">價格：由低到高</option>
@@ -161,7 +161,7 @@
                   <a [routerLink]="['/products/', item.id]" class="link-product-add-cart">商品資訊</a>
                 </div>
               </div>
-              <span class="product-new-top" *ngIf="1">New</span>
+              <span class="product-new-top" *ngIf="item.publish_year === year">New</span>
 
             </div>
             <div class="item-info-product ">
@@ -171,7 +171,7 @@
                 <del>${{ item.list_price}}</del>
               </div>
               <div>
-                <input type="button" class="function_button" value="加入購物車" (click)="add_to_cart(item.id, 1)">
+                <input type="button" class="function_button" value="加入購物車" (click)="add_to_cart(item.id, 1, item.stock)">
               </div>
 
             </div>
