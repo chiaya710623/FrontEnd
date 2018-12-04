@@ -17,11 +17,17 @@ export class HeaderComponent implements OnInit {
     private router: Router,
     private httpClient: HttpClient
   ) {}
-  cart = {};
+  cart = [
+    { id: 3,
+      item_amount: 5,
+    },
+  ];
   ngOnInit() {
-    // this.cartService.getCart().subscribe(data => {
-    //   this.cart = data;
-    // });
+
+    this.cartService.postCart(this.cart);
+    this.cartService.getCart().subscribe(data => {
+      console.log('1', data);
+    });
   }
 
   getCart() {

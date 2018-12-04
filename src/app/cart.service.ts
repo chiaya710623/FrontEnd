@@ -34,25 +34,25 @@ export class CartService {
       this.list_amount++;
       alert('已加入' + item_amount + '件此商品至購物車。');
     } else {
-      alert('庫存不足，敬請見諒！');
+      alert('庫存不足，無法加入購物車。');
     }
     this.postCart(this.cart);
     console.log(this.cart);
   }
   getCart() {
-    // return this.httpClient.get(
-    //   `http://host.limaois.me:1723/api/orders?state=0`,
-    //   {
-    //     headers: {
-    //       Authorization: `Bearer ${localStorage.getItem('token')}`
-    //     }
-    //   }
-    // );
+    return this.httpClient.get(
+      `http://host.limaois.me:1723/api/orders`,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+      }
+    );
   }
   postCart(cart) {
     if (this.usersService.isLogin()) {
       return this.httpClient.post(
-        `http://host.limaois.me:1723/api/orders?products=${cart}&state=0`,
+        `http://host.limaois.me:1723/api/orders?products=${JSON.stringify(cart)}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
