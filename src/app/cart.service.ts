@@ -27,6 +27,12 @@ export class CartService {
               this.cart[i].item_amount += item_amount;
               alert('已增加' + item_amount + '件此商品至購物車中。');
             }
+            if (this.usersService.isLogin()) {
+              this.postCart(this.cart);
+            } else {
+              this.cookieService.set('cart', JSON.stringify(this.cart));
+              console.log('get', JSON.parse(this.cookieService.get('cart')));
+            }
             return;
           }
         }

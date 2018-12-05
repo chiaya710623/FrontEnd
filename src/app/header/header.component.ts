@@ -3,7 +3,6 @@ import { UsersService } from '../users.service';
 import { Router } from '@angular/router';
 import { CartService } from '../cart.service';
 import { ProductsService } from '../products.service';
-import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-header',
@@ -16,7 +15,6 @@ export class HeaderComponent implements OnInit {
     private cartService: CartService,
     private productsService: ProductsService,
     private router: Router,
-    private httpClient: HttpClient,
     private cookieService: CookieService
   ) {}
   show_cart = [];
@@ -36,17 +34,15 @@ export class HeaderComponent implements OnInit {
     } else {
       if (!this.cookieService.check('cart')) {
         this.cookieService.set('cart', JSON.stringify(this.cartService.cart));
-        this.cookieService.set(
-          'list_amount',
-          JSON.stringify(this.cartService.list_amount)
-        );
       } else {
         this.cartService.cart = JSON.parse(this.cookieService.get('cart'));
-        this.cartService.list_amount = JSON.parse(
-          this.cookieService.get('list_amount')
-        );
+        if (this.cart !== []) {
+          this.cartService.list_amount = this.cart.length;
+        } else {
+          this.cartService.list_amount = 0;
+        }
         console.log('get', JSON.parse(this.cookieService.get('cart')));
-        console.log('get', JSON.parse(this.cookieService.get('list_amount')));
+        console.log(this.list_amount);
       }
     }
     this.show_cart = [];
@@ -55,6 +51,11 @@ export class HeaderComponent implements OnInit {
         this.productsService
           .getProduct(this.cart[i].id)
           .subscribe((data: any) => {
+            console.log({
+              id: this.cart[i].id,
+              item_amount: this.cart[i].item_amount,
+              product: data
+            });
             this.show_cart[i] = {
               id: this.cart[i].id,
               item_amount: this.cart[i].item_amount,
@@ -95,6 +96,13 @@ export class HeaderComponent implements OnInit {
       alert('購物車中沒有商品。');
     } else {
       this.router.navigate(['/cartlist']);
+    }
+  }
+  clickItem(item) {
+    if (item !== null) {
+      this.router
+        .navigateByUrl('/reload', { skipLocationChange: true })
+        .then(() => this.router.navigate(['/products', item.id]));
     }
   }
 }

@@ -11,6 +11,7 @@ import { ContactComponent } from './contact/contact.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { CartlistComponent } from './cartlist/cartlist.component';
 import { OrderComponent } from './order/order.component';
+import { ReloadComponent } from './reload/reload.component';
 
 const routes: Routes = [
   {
@@ -56,6 +57,10 @@ const routes: Routes = [
       {
         path: 'orderlist',
         component: OrderComponent
+      },
+      {
+        path: 'reload',
+        component: ReloadComponent
       }
     ]
   }

@@ -20,11 +20,12 @@ export class LoginComponent implements OnInit {
   ngOnInit() {}
   login() {
     this.usersService.login(this.user).subscribe((data: any) => {
-      if (data.success) {
+        console.log(data);
+      if (data.token) {
+        localStorage.setItem('token', data.token);
         alert('登入成功');
         this.router.navigate(['/']);
       } else {
-        console.log(data);
         alert('登入失敗');
       }
     });

@@ -39,7 +39,7 @@
     <!-- 主標題 -->
     <div class="col-md-4 logo_agile">
       <h1>
-        <a [routerLink]="['/']"
+        <a [routerLink]="['/']" (click)="this.usersService.refresh()"
           ><span>Cat</span>Read
           <i
             class="fa fa-shopping-bag top_logo_agile_bag"
@@ -81,12 +81,20 @@
           >
             <ul class="nav navbar-nav menu__list">
               <li class=" menu__item">
-                <a class="menu__link" [routerLink]="['/']" (click)="origin()"
+                <a
+                  class="menu__link"
+                  [routerLink]="['/']"
+                  (click)="this.usersService.refresh()"
                   >Home</a
                 >
               </li>
               <li class=" menu__item">
-                <a class="menu__link" [routerLink]="['/about']">About</a>
+                <a
+                  class="menu__link"
+                  [routerLink]="['/about']"
+                  (click)="this.usersService.refresh()"
+                  >About</a
+                >
               </li>
               <li class="dropdown menu__item">
                 <a
@@ -120,9 +128,11 @@
                                   author: '',
                                   interpreter: '',
                                   ISBN: ''
-                                }
+                                };
+                                this.usersService.refresh();
                               "
-                              >{{ category?.name }}<span *ngIf="category.subcategory">：</span></a
+                              >{{ category?.name
+                              }}<span *ngIf="category.subcategory">：</span></a
                             >
                             <span
                               *ngFor="let subcategory of category?.subcategory"
@@ -138,10 +148,11 @@
                                     author: '',
                                     interpreter: '',
                                     ISBN: ''
-                                  }
+                                  };
+                                  this.usersService.refresh();
                                 "
-                                >{{ subcategory?.name }} </a
-                              >
+                                >{{ subcategory?.name }}
+                              </a>
                             </span>
                           </li></ng-container
                         >
@@ -152,10 +163,18 @@
                 </ul>
               </li>
               <li class=" menu__item">
-                <a class="menu__link" [routerLink]="['/contact']">Contact</a>
+                <a
+                  class="menu__link"
+                  [routerLink]="['/contact']"
+                  (click)="this.usersService.refresh()"
+                  >Contact</a
+                >
               </li>
               <li class=" menu__item">
-                <a class="menu__link" [routerLink]="['/orderlist']"
+                <a
+                  class="menu__link"
+                  [routerLink]="['/orderlist']"
+                  (click)="this.usersService.refresh()"
                   >Orderlist</a
                 >
               </li>
@@ -221,11 +240,9 @@
                     <tr>
                       <td>{{ index + 1 }}</td>
                       <td>
-                        <a
-                          [routerLink]="['/products/', item.id]"
-                          data-dismiss="modal"
-                          >{{ item?.product?.title }}</a
-                        >
+                        <a data-dismiss="modal" (click)="clickItem(item)">{{
+                          item?.product?.title
+                        }}</a>
                       </td>
                       <td>NT${{ item?.product?.sale_price }}</td>
                       <td>{{ item?.item_amount }}</td>

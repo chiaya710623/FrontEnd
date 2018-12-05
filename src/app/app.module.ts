@@ -18,6 +18,7 @@ import { CartlistComponent } from './cartlist/cartlist.component';
 import { HttpClientModule } from '@angular/common/http';
 import { OrderComponent } from './order/order.component';
 import { CookieService } from 'ngx-cookie-service';
+import { ReloadComponent } from './reload/reload.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { CookieService } from 'ngx-cookie-service';
     ContactComponent,
     CheckoutComponent,
     CartlistComponent,
-    OrderComponent
+    OrderComponent,
+    ReloadComponent
   ],
   imports: [
     BrowserModule,
