@@ -15,11 +15,10 @@ export class OrderComponent implements OnInit {
   originOrderlist = this.orderlist;
   keyword = '';
   ngOnInit() {
-    this.orderlist = this.orders.getOrders();
-    console.log(this.orderlist);
+
   }
 
-  search() { /*
+  search()  {/*
     if (this.keyword === '') {
       this.orderlist = this.originOrderlist;
     } else {
@@ -33,6 +32,4 @@ export class OrderComponent implements OnInit {
       //*/
     }
 
-  }
-
-
+}

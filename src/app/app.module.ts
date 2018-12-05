@@ -17,6 +17,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { CartlistComponent } from './cartlist/cartlist.component';
 import { HttpClientModule } from '@angular/common/http';
 import { OrderComponent } from './order/order.component';
+import { CookieService } from 'ngx-cookie-service';
 
 
 @NgModule({
@@ -42,7 +43,7 @@ import { OrderComponent } from './order/order.component';
     FormsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

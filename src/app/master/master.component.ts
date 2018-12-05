@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UsersService } from '../users.service';
 
 @Component({
   selector: 'app-master',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MasterComponent implements OnInit {
 
-  constructor() { }
+  constructor(private usersService: UsersService) { }
 
   ngOnInit() {
   }

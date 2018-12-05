@@ -73,11 +73,11 @@
 
 
     <ng-container *ngFor="let item of data.data; let index=index;">
-      <div class="col-md-3 product-men" *ngIf="1">
+      <div class="col-md-3 product-men" *ngIf="item.stock > 0">
         <div class="men-pro-item simpleCart_shelfItem">
           <div class="men-thumb-item">
-            <img [src]="" alt="" class="pro-image-front">
-            <img [src]="" alt="" class="pro-image-back">
+            <img [src]="item.picture" alt="" class="pro-image-front">
+            <img [src]="item.picture" alt="" class="pro-image-back">
             <div class="men-cart-pro">
               <div class="inner-men-cart-pro">
                 <a [routerLink]="['/products/', item.id]" class="link-product-add-cart">商品資訊</a>
@@ -93,7 +93,7 @@
               <del>${{ item.list_price }}</del>
             </div>
             <div>
-              <input type="button" class="function_button" value="加入購物車" (click)="add_to_cart(item.id, 1)">
+              <input type="button" class="function_button" value="加入購物車" (click)="add_to_cart(item.id, 1, item.product_stock)">
             </div>
 
           </div>

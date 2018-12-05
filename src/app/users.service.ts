@@ -1,49 +1,45 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { CartService } from './cart.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
-  constructor(private router: Router, private httpClient: HttpClient) {}
-  login_id = 0;
+  constructor(
+    private httpClient: HttpClient
+  ) {}
+  token = '';
   amount = 1;
+  now = new Date();
 
   register(user) {
-    return this.httpClient.post('http://host.limaois.me:1723/api/register', user);
+    return this.httpClient.post(
+      '${environment.api}register',
+      user
+    );
   }
 
   login(user) {
-    return this.httpClient.post('http://host.limaois.me:1723/api/login', user);
+    return this.httpClient.post(`${environment.api}login`, user);
   }
 
-  // isLogin(token) {
-  //   console.log(token);
-  //   return localStorage.getItem('token');
-  // }
+  getUser() {
+    return this.httpClient.get(`${environment.api}register`);
+  }
 
-  // logout() {
-  //   return localStorage.removeItem('token');
-  // }
+  refresh() {
+    if (this.now.getMinutes[1] === 0) {
+      return this.httpClient.get(`${environment.api}refresh`);
+    }
+  }
 
-  login(email, password) {
-    let i;
-    for (i = 0; i < this.amount && this.login_id === 0; i++) {
-      if (
-        this.member[i].email === email &&
-        this.member[i].password === password
-      ) {
-        this.login_id = i + 1;
-        alert('登入成功');
-        this.router.navigate(['/']);
-      }
-    }
-    if (this.login_id === 0) {
-      alert('輸入錯誤');
-    }
+  isLogin() {
+    return localStorage.getItem('token');
   }
   logout() {
-    this.login_id = 0;
+    return localStorage.removeItem('token');
   }
 }

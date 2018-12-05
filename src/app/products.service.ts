@@ -1,57 +1,41 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
   constructor(private httpClient: HttpClient) {}
- show_list = {
-    name: '',
-    author_name: '',
-    publisher: '',
-    isbn: '',
-    classification: ''
-  };
   year = new Date().getFullYear();
   getNewProducts() {
-    console.log(this.year);
-    return this.httpClient.get(`http://host.limaois.me:1723/api/products?publish_year=${this.year}`);
+    return this.httpClient.get(
+      `${environment.api}products?publish_year=${this.year}`
+    );
   }
-  getProducts(amount, page) {
-    return this.httpClient.get(`http://host.limaois.me:1723/api/products?count=${amount}&current_page=${page}`);
+  getProducts(amount, page, sort, search) {
+    console.log(
+      `${
+        environment.api
+      }products?count=${amount}&page=${page}&sort=${sort}&search=${JSON.stringify(
+        search
+      )}`
+    );
+    return this.httpClient.get(
+      `${
+        environment.api
+      }products?count=${amount}&page=${page}&sort=${sort}&search=${JSON.stringify(
+        search
+      )}`
+    );
   }
   getProduct(id) {
-    return this.httpClient.get(`http://host.limaois.me:1723/api/products?id=${id}`);
+    return this.httpClient.get(`${environment.api}api/products/${id}`);
   }
-
-  search(keyword_list) {
-    this.show_list = keyword_list;
+  getCatagories() {
+    return this.httpClient.get(`${environment.api}api/catagories/`);
   }
-  // sort(choice) {
-  //   switch (choice) {
-  //     case '1': // 價錢高到低
-  //       for (let i = 0; i < this.products.length; i++) {
-  //         for (let j = 1; j < this.products.length - i; j++) {
-  //           if (this.products[j].price > this.products[j - 1].price) {
-  //             const t = this.products[j];
-  //             this.products[j] = this.products[j - 1];
-  //             this.products[j - 1] = t;
-  //           }
-  //         }
-  //       }
-  //       break;
-  //     case '2': // 價錢低到高
-  //       for (let i = 0; i < this.products.length; i++) {
-  //         for (let j = 1; j < this.products.length - i; j++) {
-  //           if (this.products[j].price < this.products[j - 1].price) {
-  //             const t = this.products[j];
-  //             this.products[j] = this.products[j - 1];
-  //             this.products[j - 1] = t;
-  //           }
-  //         }
-  //       }
-  //       break;
-  //   }
-  // }
+  getSubcatagories(catagory) {
+    return this.httpClient.get(`${environment.api}api/catagories/${catagory}`);
+  }
 }

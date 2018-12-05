@@ -7,17 +7,17 @@
           <h3 class="agileinfo_sign">Sign In <span>Now</span></h3>
           <form action="#" method="post">
             <div class="styled-input">
-              <input type="email" name="Email" required="" [(ngModel)] = "email">
+              <input type="email" name="Email" required="" [(ngModel)] = "user.email">
               <label>Email</label>
               <span></span>
             </div>
             <div class="styled-input">
-              <input type="password" name="password" required="" [(ngModel)] = "password">
+              <input type="password" name="password" required="" [(ngModel)] = "user.password">
               <label>Password</label>
               <span></span>
             </div>
 
-            <input type="button" class="function_button" value="登入"  (click)="login(email,password)">
+            <input type="button" class="function_button" value="登入"  (click)="login(this.user)">
           </form>
           <ul class="social-nav model-3d-0 footer-social w3_agile_social top_agile_third">
             <li><a href="#" class="facebook">

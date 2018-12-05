@@ -37,7 +37,7 @@ export class SignupComponent implements OnInit {
               alert('註冊成功');
               this.router.navigate(['/']);
             } else {
-              alert('註冊失敗');
+                alert('註冊失敗');
             }
           },
           response => {

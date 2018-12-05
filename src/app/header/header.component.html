@@ -4,14 +4,14 @@
     <ul>
       <li><i class="fa fa-phone" aria-hidden="true"></i> Call : 01234567898</li>
       <li><i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:info@example.com">info@example.com</a></li>
-      <ng-container *ngIf="login_id === 0; else elseTag">
+      <ng-container *ngIf="!this.usersService.isLogin(); else elseTag">
         <li> <a [routerLink]="['/signup']"><i class="fa fa-pencil-square-o"></i>
             註冊 </a></li>
         <li> <a [routerLink]="['/login']"><i class="fa fa-unlock-alt"></i>
             登入 </a></li>
       </ng-container>
       <ng-template #elseTag>
-        <li>{{username}} 您好！</li>
+        <li>{{username}}您好！</li>
         <li> <a [routerLink]="" (click)="logout()"><i class="fa fa-unlock-alt"></i>
             登出 </a></li>
       </ng-template>
@@ -23,22 +23,14 @@
 <!-- 搜尋 大標（白色的區塊） -->
 <div class="header-bot">
   <div class="header-bot_inner_wthreeinfo_header_mid">
-    <!-- 搜尋 -->
     <div class="col-md-4 header-middle">
-      <form action="#" method="post">
-        <input type="search" name="search" placeholder="Search here..." required="">
-        <input type="submit" value=" ">
-        <div class="clearfix"></div>
-      </form>
     </div>
-    <!-- //搜尋 -->
     <!-- 主標題 -->
     <div class="col-md-4 logo_agile">
       <h1><a [routerLink]="['/']"><span>Cat</span>Read <i class="fa fa-shopping-bag top_logo_agile_bag" aria-hidden="true"></i></a></h1>
     </div>
     <!-- //主標題 -->
     <div class="col-md-4 agileits-social top_content">
-      <!-- 這塊本來有放分享到FB那些圖示 可以再想想要放什麼 -->
     </div>
     <div class="clearfix"></div>
   </div>
@@ -77,42 +69,29 @@
                     </div>
                     <div class="col-sm-3 multi-gd-img">
                       <ul class="multi-column-dropdown">
-                        <li><a [routerLink]="['/products']" (click)="search({name: '',
-                          author_name: '',
+                        <li *ngFor="let catagory of catagories"><a [routerLink]="['/products']" (click)="this.productsService.search = {
+                          catagory: catagory.name,
+                          subcatagory: '',
                           publisher: '',
-                          isbn: '',classification: '文學叢書'})">文學叢書</a></li>
-                        <li><a [routerLink]="['/products']" (click)="search({name: '',
-                          author_name: '',
-                          publisher: '',
-                          isbn: '',classification: '考試用書'})">考試用書</a></li>
-                        <li><a [routerLink]="['/products']" (click)="search({name: '',
-                          author_name: '',
-                          publisher: '',
-                          isbn: '',classification: '童書繪本'})">童書繪本</a></li>
-                        <li><a [routerLink]="['/products']" (click)="search({name: '',
-                          author_name: '',
-                          publisher: '',
-                          isbn: '',classification: '語言學習'})">語言學習</a></li>
-                      </ul>
-                    </div>
-                    <div class="col-sm-3 multi-gd-img">
-                      <ul class="multi-column-dropdown">
-                        <li><a [routerLink]="['/products']" (click)="search({name: '',
-                          author_name: '',
-                          publisher: '',
-                          isbn: '',classification: '漫畫'})">漫畫</a></li>
-                        <li><a [routerLink]="['/products']" (click)="search({name: '',
-                          author_name: '',
-                          publisher: '',
-                          isbn: '',classification: '小說'})">小說</a></li>
-                        <li><a [routerLink]="['/products']" (click)="search({name: '',
-                          author_name: '',
-                          publisher: '',
-                          isbn: '',classification: '雜誌'})">雜誌</a></li>
-                        <li><a [routerLink]="['/products']" (click)="search({name: '',
-                          author_name: '',
-                          publisher: '',
-                          isbn: '',classification: '文具'})">文具</a></li>
+                          title: '',
+                          author: '',
+                          interpreter: '',
+                          ISBN: ''
+                        };">{{ catagory?.name }}</a>
+                        <ul>
+                          <li *ngFor="let subcatagory of catagory?.subcatagory">
+                            <a (click)="this.productsService.search = {
+                              catagory: catagory.name,
+                              subcatagory: subcatagory.name,
+                              publisher: '',
+                              title: '',
+                              author: '',
+                              interpreter: '',
+                              ISBN: ''
+                            };">{{subcatagory?.name}}</a>
+                          </li>
+                        </ul>
+                        </li>
                       </ul>
                     </div>
                     <div class="clearfix"></div>
@@ -129,7 +108,7 @@
     <div class="top_nav_right">
       <div style="width: 50%;">
         <div class="wthreecartaits wthreecartaits2 cart cart box_1">
-          <a href="#" data-toggle="modal" data-target="#cart"><i class="fa fa-cart-arrow-down fa-lg" aria-hidden="true"></i></a>
+          <a href="#" data-toggle="modal" data-target="#cart"><i class="fa fa-cart-arrow-down fa-lg" aria-hidden="true" (click)="ngOnInit();"></i></a>
         </div>
       </div>
 
@@ -154,10 +133,10 @@
           <div class="clearfix"></div>
           <div>
             <div>
-              <h2>購物車中有<span>項商品</span></h2>
+              <h2>購物車中有<span>{{ list_amount }}項商品</span></h2>
               <br>
               <!-- 購物車表格-->
-              <ng-container *ngIf="1">
+              <ng-container *ngIf="list_amount !== 0;">
                 <table class="product_list">
                   <thead>
                     <tr>
@@ -168,16 +147,16 @@
                       <th>刪除</th>
                     </tr>
                   </thead>
-                  <ng-container *ngFor="let item of cart; let index=index;">
+                  <ng-container *ngFor="let item of this.show_cart; let index=index;">
                     <tr>
                       <td>{{ index + 1 }}</td>
-                      <td><a [routerLink]="['/products/', item.id]" data-dismiss="modal">{{ item.name }}</a></td>
-                      <td>NT${{ item.price }}</td>
+                      <td><a [routerLink]="['/products/', item.id]" data-dismiss="modal">{{ item?.product?.title }}</a></td>
+                      <td>NT${{ item?.product?.sale_price }}</td>
                       <td>
-                        {{ item.amount }}
+                        {{ item?.item_amount }}
                       </td>
                       <td>
-                        <p style="text-align:center;"><img src="assets/images/close_1.png" (click)="delete_item(index)"></p>
+                        <p style="text-align:center;"><img src="assets/images/close_1.png" (click)="delete_item(index);ngOnInit();"></p>
                       </td>
                     </tr>
                   </ng-container>

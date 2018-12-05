@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { UsersService } from '../users.service';
 import { Router } from '@angular/router';
 import { CartService } from '../cart.service';
 import { ProductsService } from '../products.service';
+import { HttpClient } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -13,47 +15,73 @@ export class HeaderComponent implements OnInit {
     private usersService: UsersService,
     private cartService: CartService,
     private productsService: ProductsService,
-    private router: Router
+    private router: Router,
+    private httpClient: HttpClient,
+    private cookieService: CookieService
   ) {}
-  ngOnInit() {}
-  get login_id() {
-    return this.usersService.login_id;
+  show_cart = [];
+  catagories: any = [];
+  ngOnInit() {
+    this.productsService.getCatagories().subscribe(data => {
+      this.catagories = data;
+      console.log(data);
+    });
+    if (this.usersService.isLogin()) {
+      this.cartService.getCart().subscribe((data: any) => {
+        this.cartService.cart = data.data;
+      });
+    } else {
+      if (!this.cookieService.check('cart')) {
+        this.cookieService.set('cart', JSON.stringify(this.cartService.cart));
+      } else {
+        this.cartService.cart = JSON.parse(this.cookieService.get('cart'));
+        console.log('get', JSON.parse(this.cookieService.get('cart')));
+      }
+    }
+    this.cartService.list_amount = this.cartService.cart.length;
+    this.show_cart = [];
+    if (this.list_amount !== 0) {
+      for (let i = 0; i < this.cart.length; i++) {
+        this.productsService
+          .getProduct(this.cart[i].id)
+          .subscribe((data: any) => {
+            this.show_cart[i] = {
+              id: this.cart[i].id,
+              item_amount: this.cart[i].item_amount,
+              product: data
+            };
+          });
+      }
+
+      console.log('cart', this.cart);
+      console.log('show_cart', this.show_cart);
+    }
   }
+
   logout() {
     this.usersService.logout();
     alert('已登出');
+    this.cartService.cart = [];
     this.router.navigate(['/']);
   }
-  get username() {
-    return this.usersService.member[this.usersService.login_id - 1].name;
-  }
-  /* get cart() {
-     const cart = [];
-     for (let i = 0; i < this.cartService.cart.length; i++) {
-       for (let j = 0; j < this.productsService.originalProducts.length; j++) {
-         if (
-           this.cartService.cart[i].id ===
-           this.productsService.originalProducts[j].id
-         ) {
-           cart[i] = this.productsService.originalProducts[j];
-           cart[i].amount = this.cartService.cart[i].item_amount;
-         }
-       }
-     }
-     return cart;
-   } //*/
   delete_item(index) {
-    this.cartService.cart.splice(index, index + 1);
-    this.cartService.list_amount--;
+    this.cartService.delete_item(index);
+    if (this.usersService.isLogin()) {
+      this.cartService.postCart(this.cart);
+    } else {
+      this.cookieService.set('cart', JSON.stringify(this.cartService.cart));
+    }
   }
-  search(search_list) {
-    this.productsService.search(search_list);
+
+  get cart() {
+    return this.cartService.cart;
   }
-  origin() {
-     this.productsService.origin();
-   }
+
+  get list_amount() {
+    return this.cartService.list_amount;
+  }
   checkout() {
-    if (this.cartService.list_amount === 0) {
+    if (this.list_amount === 0) {
       alert('購物車中沒有商品。');
     } else {
       this.router.navigate(['/cartlist']);
