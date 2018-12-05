@@ -69,42 +69,29 @@
                     </div>
                     <div class="col-sm-3 multi-gd-img">
                       <ul class="multi-column-dropdown">
-                        <li><a [routerLink]="['/products']" (click)="search({name: '',
-                          author_name: '',
+                        <li *ngFor="let catagory of catagories"><a [routerLink]="['/products']" (click)="this.productsService.search = {
+                          catagory: catagory.name,
+                          subcatagory: '',
                           publisher: '',
-                          isbn: '',classification: '文學叢書'})">文學叢書</a></li>
-                        <li><a [routerLink]="['/products']" (click)="search({name: '',
-                          author_name: '',
-                          publisher: '',
-                          isbn: '',classification: '考試用書'})">考試用書</a></li>
-                        <li><a [routerLink]="['/products']" (click)="search({name: '',
-                          author_name: '',
-                          publisher: '',
-                          isbn: '',classification: '童書繪本'})">童書繪本</a></li>
-                        <li><a [routerLink]="['/products']" (click)="search({name: '',
-                          author_name: '',
-                          publisher: '',
-                          isbn: '',classification: '語言學習'})">語言學習</a></li>
-                      </ul>
-                    </div>
-                    <div class="col-sm-3 multi-gd-img">
-                      <ul class="multi-column-dropdown">
-                        <li><a [routerLink]="['/products']" (click)="search({name: '',
-                          author_name: '',
-                          publisher: '',
-                          isbn: '',classification: '漫畫'})">漫畫</a></li>
-                        <li><a [routerLink]="['/products']" (click)="search({name: '',
-                          author_name: '',
-                          publisher: '',
-                          isbn: '',classification: '小說'})">小說</a></li>
-                        <li><a [routerLink]="['/products']" (click)="search({name: '',
-                          author_name: '',
-                          publisher: '',
-                          isbn: '',classification: '雜誌'})">雜誌</a></li>
-                        <li><a [routerLink]="['/products']" (click)="search({name: '',
-                          author_name: '',
-                          publisher: '',
-                          isbn: '',classification: '文具'})">文具</a></li>
+                          title: '',
+                          author: '',
+                          interpreter: '',
+                          ISBN: ''
+                        };">{{ catagory?.name }}</a>
+                        <ul>
+                          <li *ngFor="let subcatagory of catagory?.subcatagory">
+                            <a (click)="this.productsService.search = {
+                              catagory: catagory.name,
+                              subcatagory: subcatagory.name,
+                              publisher: '',
+                              title: '',
+                              author: '',
+                              interpreter: '',
+                              ISBN: ''
+                            };">{{subcatagory?.name}}</a>
+                          </li>
+                        </ul>
+                        </li>
                       </ul>
                     </div>
                     <div class="clearfix"></div>
@@ -146,7 +133,7 @@
           <div class="clearfix"></div>
           <div>
             <div>
-              <h2>購物車中有<span>{{list_amount}}項商品</span></h2>
+              <h2>購物車中有<span>{{ list_amount }}項商品</span></h2>
               <br>
               <!-- 購物車表格-->
               <ng-container *ngIf="list_amount !== 0;">

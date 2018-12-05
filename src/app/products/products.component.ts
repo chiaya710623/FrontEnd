@@ -34,8 +34,13 @@ export class ProductsComponent implements OnInit {
     ISBN: ''
   };
   sort = '';
+  catagories: any = [];
   data: any = { data: [], link: [], meta: [] };
   ngOnInit() {
+    this.productsService.getCatagories().subscribe(data => {
+      this.catagories = data;
+      console.log(data);
+    });
     this.productsService
       .getProducts(this.amount, this.page, this.sort, this.search)
       .subscribe(data => {

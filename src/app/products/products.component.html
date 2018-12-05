@@ -22,10 +22,26 @@
         <h4>Categories</h4>
         <ul class="tree-list-pad">
           <li><input type="checkbox" checked="checked" id="item-0" /><label for="item-0"><i class="fa fa-long-arrow-right" aria-hidden="true"></i> 所有商品</label>
-            <ul>
-              <li><input type="checkbox" id="item-0-0"/><label for="item-0-0"><i class="fa fa-long-arrow-right" aria-hidden="true"></i> 文學叢書</label>
-                <ul>
-                  <li><a>靈異奇幻</a></li>
+            <ul *ngFor="let catagory of catagories">
+              <li><input type="checkbox" id="item-0-0"/><label for="item-0-0"><a (click)="search = {
+                catagory: catagory.name,
+                subcatagory: '',
+                publisher: '',
+                title: '',
+                author: '',
+                interpreter: '',
+                ISBN: ''
+              };ngOnInit();"><i class="fa fa-long-arrow-right" aria-hidden="true"></i> {{ catagory?.name }}}</a></label>
+                <ul *ngFor="let subcatagory of catagory.subcatagory">
+                  <li><a (click)="search = {
+                    catagory: catagory.name,
+                    subcatagory: subcatagory.name,
+                    publisher: '',
+                    title: '',
+                    author: '',
+                    interpreter: '',
+                    ISBN: ''
+                  };ngOnInit();">{{ subcatagory?.name }}</a></li>
                 </ul>
               </li>
 
@@ -110,7 +126,7 @@
         <!--排序（已完成）-->
         <div class="sorting">
           <h6>Showing</h6>
-          <select id="amount" [(ngModel)]="amount" (change)="ngOnInit()">
+          <select id="amount" [(ngModel)]="amount" (change)="ngOnInit();">
             <option value="3">3</option>
             <option value="9">9</option>
             <option value="12">15</option>
