@@ -134,7 +134,7 @@ var AdminsService = /** @class */ (function () {
             {
                 id: '3',
                 display_name: '謝維毅',
-                discrimination: '',
+                discrimination: '專業貓奴，負責前台後端(?',
                 picture: 'assets/images/t3.jpg'
             },
             {
@@ -180,12 +180,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _contact_contact_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./contact/contact.component */ "./src/app/contact/contact.component.ts");
 /* harmony import */ var _checkout_checkout_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./checkout/checkout.component */ "./src/app/checkout/checkout.component.ts");
 /* harmony import */ var _cartlist_cartlist_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./cartlist/cartlist.component */ "./src/app/cartlist/cartlist.component.ts");
+/* harmony import */ var _order_order_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./order/order.component */ "./src/app/order/order.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -238,6 +240,10 @@ var routes = [
             {
                 path: 'checkout',
                 component: _checkout_checkout_component__WEBPACK_IMPORTED_MODULE_10__["CheckoutComponent"]
+            },
+            {
+                path: 'orderlist',
+                component: _order_order_component__WEBPACK_IMPORTED_MODULE_12__["OrderComponent"]
             }
         ]
     }
@@ -343,12 +349,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _contact_contact_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./contact/contact.component */ "./src/app/contact/contact.component.ts");
 /* harmony import */ var _checkout_checkout_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./checkout/checkout.component */ "./src/app/checkout/checkout.component.ts");
 /* harmony import */ var _cartlist_cartlist_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./cartlist/cartlist.component */ "./src/app/cartlist/cartlist.component.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _order_order_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./order/order.component */ "./src/app/order/order.component.ts");
+/* harmony import */ var ngx_cookie_service__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ngx-cookie-service */ "./node_modules/ngx-cookie-service/index.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
+
 
 
 
@@ -384,10 +396,16 @@ var AppModule = /** @class */ (function () {
                 _login_login_component__WEBPACK_IMPORTED_MODULE_13__["LoginComponent"],
                 _contact_contact_component__WEBPACK_IMPORTED_MODULE_14__["ContactComponent"],
                 _checkout_checkout_component__WEBPACK_IMPORTED_MODULE_15__["CheckoutComponent"],
-                _cartlist_cartlist_component__WEBPACK_IMPORTED_MODULE_16__["CartlistComponent"]
+                _cartlist_cartlist_component__WEBPACK_IMPORTED_MODULE_16__["CartlistComponent"],
+                _order_order_component__WEBPACK_IMPORTED_MODULE_18__["OrderComponent"]
             ],
-            imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_2__["AppRoutingModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormsModule"]],
-            providers: [],
+            imports: [
+                _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
+                _app_routing_module__WEBPACK_IMPORTED_MODULE_2__["AppRoutingModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormsModule"],
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_17__["HttpClientModule"],
+            ],
+            providers: [ngx_cookie_service__WEBPACK_IMPORTED_MODULE_19__["CookieService"]],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]]
         })
     ], AppModule);
@@ -409,6 +427,9 @@ var AppModule = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CartService", function() { return CartService; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _users_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./users.service */ "./src/app/users.service.ts");
+/* harmony import */ var ngx_cookie_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ngx-cookie-service */ "./node_modules/ngx-cookie-service/index.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -419,35 +440,78 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
+
 var CartService = /** @class */ (function () {
-    function CartService() {
-        this.list_amount = 0;
+    function CartService(httpClient, usersService, cookieService) {
+        this.httpClient = httpClient;
+        this.usersService = usersService;
+        this.cookieService = cookieService;
         this.cart = [];
+        this.list_amount = 0;
     }
-    CartService.prototype.add_to_cart = function (id, item_amount) {
-        if (this.cart !== []) {
-            for (var i = 0; i < this.cart.length; i++) {
-                if (this.cart[i].id === id) {
-                    if (this.cart[i].item_amount + item_amount > 10) {
-                        alert('超過訂購數量上限，單項商品最多訂購10件。');
+    CartService.prototype.add_to_cart = function (id, item_amount, stock) {
+        if (stock !== 0) {
+            if (this.cart !== []) {
+                for (var i = 0; i < this.cart.length; i++) {
+                    if (this.cart[i].id === id) {
+                        if (this.cart[i].item_amount + item_amount > stock) {
+                            alert('訂購數量超過庫存量。');
+                        }
+                        else {
+                            this.cart[i].item_amount += item_amount;
+                            alert('已增加' + item_amount + '件此商品至購物車中。');
+                        }
+                        return;
                     }
-                    else {
-                        this.cart[i].item_amount += item_amount;
-                        alert('已增加' + item_amount + '件此商品至購物車中。');
-                    }
-                    return;
                 }
             }
+            this.cart[this.list_amount] = { id: id, item_amount: item_amount };
+            this.list_amount++;
+            alert('已加入' + item_amount + '件此商品至購物車。');
         }
-        this.cart[this.list_amount] = { id: id, item_amount: item_amount };
-        this.list_amount++;
-        alert('已加入' + item_amount + '件此商品至購物車。');
+        else {
+            alert('庫存不足，無法加入購物車。');
+        }
+        if (this.usersService.isLogin()) {
+            this.postCart(this.cart);
+        }
+        else {
+            this.cookieService.set('cart', JSON.stringify(this.cart));
+            console.log('get', JSON.parse(this.cookieService.get('cart')));
+        }
+    };
+    CartService.prototype.delete_item = function (index) {
+        this.cart.splice(index, index + 1);
+        this.list_amount--;
+        console.log(this.cart);
+    };
+    CartService.prototype.getCart = function () {
+        if (this.usersService.isLogin()) {
+            return this.httpClient.get("http://host.limaois.me:1723/api/orders/cart", {
+                headers: {
+                    Authorization: "Bearer " + localStorage.getItem('token')
+                }
+            });
+        }
+    };
+    CartService.prototype.postCart = function (cart) {
+        if (this.usersService.isLogin()) {
+            return this.httpClient.post("http://host.limaois.me:1723/api/orders/cart?products=" + JSON.stringify(cart), {
+                headers: {
+                    Authorization: "Bearer " + localStorage.getItem('token')
+                }
+            });
+        }
     };
     CartService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
             providedIn: 'root'
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"],
+            _users_service__WEBPACK_IMPORTED_MODULE_2__["UsersService"],
+            ngx_cookie_service__WEBPACK_IMPORTED_MODULE_3__["CookieService"]])
     ], CartService);
     return CartService;
 }());
@@ -474,7 +538,7 @@ module.exports = "ul li,\r\nol li {\r\n  font-size: 14px;\r\n}\r\np {\r\n  margi
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"clearfix\"></div>\n<div class=\"checkout\">\n  <div class=\"container\">\n    <h2>購物車中有<span style=\"color: #68d6c1;\">{{ showcart.length }}項商品</span></h2>\n    <!-- 購物車清單-->\n    <div class=\"checkout-right\">\n      <table class=\"timetable_sub\">\n        <thead>\n          <tr>\n            <th></th>\n            <th>商品名稱</th>\n            <th>商品圖片</th>\n            <th>售價</th>\n            <th>數量</th>\n            <th>刪除</th>\n          </tr>\n        </thead>\n        <ng-container *ngFor=\"let item of showcart; let index=index;\">\n          <tr>\n            <td>{{ index + 1 }}</td>\n            <td><a [routerLink]=\"['/products/', item.id]\">{{ item.name }}</a></td>\n            <td class=\"invert-image\"><a [routerLink]=\"['/products/', item.id]\"><img [src]=\"item.photo\" alt=\" \" /></a></td>\n            <td>NT${{ item.price }}</td>\n            <td>\n              <div class=\"quantity\">\n                <div class=\"quantity-select\">\n                  <a (click)=\"minor(index)\">\n                    <div class=\"entry value-minus\"></div>\n                  </a>\n                  <div class=\"entry value\"><span>{{ item.amount }}</span></div>\n                  <a (click)=\"plus(index)\">\n                    <div class=\"entry value-plus active\"></div>\n                  </a>\n                </div>\n              </div>\n            </td>\n            <td>\n              <img src=\"assets/images/close_1.png\" style=\"text-align:center;\" (click)=\"delete_item(index)\">\n            </td>\n          </tr>\n        </ng-container>\n\n      </table>\n    </div>\n    <!-- //購物車清單-->\n    <!-- 計算金額的小表格-->\n    <div class=\"checkout-left\">\n      <div class=\"checkout-left-basket\">\n        <h4>訂單內容</h4>\n        <ul>\n          <ng-container *ngFor=\"let item of showcart;\">\n            <li>{{item.name}} <span>NT${{item.price}} x {{item.amount}} = NT${{item.price*item.amount}} </span></li>\n          </ng-container>\n          <li>運費 <span>NT$65</span></li>\n          <li>----------------------------------------</li>\n          <li><strong>總金額 <span>NT${{ total + 65 }}</span></strong></li>\n        </ul>\n      </div>\n    </div>\n    <!-- //計算金額的小表格-->\n    <!-- 兩個按鈕-->\n    <div class=\"checkout-right-basket\">\n      <a [routerLink]=\"['/products']\"><span class=\"glyphicon glyphicon-menu-left\" aria-hidden=\"true\"></span>繼續購物</a>\n\n      <a [routerLink]=\"['/checkout']\"><span class=\"glyphicon glyphicon-menu-right\" aria-hidden=\"true\"></span>開始結帳</a>\n\n    </div>\n    <!-- //兩個按鈕-->\n    <div class=\"clearfix\"> </div>\n  </div>\n\n</div>\n"
+module.exports = "<div class=\"clearfix\"></div>\n<div class=\"checkout\">\n  <div class=\"container\">\n    <h2>購物車中有<span style=\"color: #68d6c1;\">{{ show_cart.length }}項商品</span></h2>\n    <!-- 購物車清單-->\n    <div class=\"checkout-right\">\n      <table class=\"timetable_sub\">\n        <thead>\n          <tr>\n            <th></th>\n            <th>商品名稱</th>\n            <th>商品圖片</th>\n            <th>售價</th>\n            <th>數量</th>\n            <th>刪除</th>\n          </tr>\n        </thead>\n        <ng-container *ngFor=\"let item of show_cart; let index=index;\">\n          <tr>\n            <td>{{ index + 1 }}</td>\n            <td><a [routerLink]=\"['/products/', item.id]\">{{ item.name }}</a></td>\n            <td class=\"invert-image\"><a [routerLink]=\"['/products/', item.id]\"><img [src]=\"item.photo\" alt=\" \" /></a></td>\n            <td>NT${{ item.price }}</td>\n            <td>\n              <div class=\"quantity\">\n                <div class=\"quantity-select\">\n                  <a (click)=\"minor(index)\">\n                    <div class=\"entry value-minus\"></div>\n                  </a>\n                  <div class=\"entry value\"><span>{{ item.amount }}</span></div>\n                  <a (click)=\"plus(index)\">\n                    <div class=\"entry value-plus active\"></div>\n                  </a>\n                </div>\n              </div>\n            </td>\n            <td>\n              <img src=\"assets/images/close_1.png\" style=\"text-align:center;\" (click)=\"delete_item(index)\">\n            </td>\n          </tr>\n        </ng-container>\n\n      </table>\n    </div>\n    <!-- //購物車清單-->\n    <!-- 計算金額的小表格-->\n    <div class=\"checkout-left\">\n      <div class=\"checkout-left-basket\">\n        <h4>訂單內容</h4>\n        <ul>\n          <ng-container *ngFor=\"let item of showcart;\">\n            <li>{{item.name}} <span>NT${{item.price}} x {{item.amount}} = NT${{item.price*item.amount}} </span></li>\n          </ng-container>\n          <li>運費 <span>NT$65</span></li>\n          <li>----------------------------------------</li>\n          <li><strong>總金額 <span>NT${{ total + 65 }}</span></strong></li>\n        </ul>\n      </div>\n    </div>\n    <!-- //計算金額的小表格-->\n    <!-- 兩個按鈕-->\n    <div class=\"checkout-right-basket\">\n      <a [routerLink]=\"['/products']\"><span class=\"glyphicon glyphicon-menu-left\" aria-hidden=\"true\"></span>繼續購物</a>\n\n      <a [routerLink]=\"['/checkout']\"><span class=\"glyphicon glyphicon-menu-right\" aria-hidden=\"true\"></span>開始結帳</a>\n\n    </div>\n    <!-- //兩個按鈕-->\n    <div class=\"clearfix\"> </div>\n  </div>\n\n</div>\n"
 
 /***/ }),
 
@@ -510,26 +574,22 @@ var CartlistComponent = /** @class */ (function () {
         this.total = 0;
     }
     CartlistComponent.prototype.ngOnInit = function () { };
-    Object.defineProperty(CartlistComponent.prototype, "showcart", {
-        get: function () {
-            var cart = [];
-            for (var i = 0; i < this.cartService.cart.length; i++) {
-                for (var j = 0; j < this.productsService.originalProducts.length; j++) {
-                    if (this.cartService.cart[i].id === this.productsService.originalProducts[j].id) {
-                        cart[i] = this.productsService.originalProducts[j];
-                        cart[i].amount = this.cartService.cart[i].item_amount;
-                    }
-                }
-            }
-            this.total = 0;
-            for (var i = 0; i < cart.length; i++) {
-                this.total += cart[i].price * cart[i].amount;
-            }
-            return cart;
-        },
-        enumerable: true,
-        configurable: true
-    });
+    // get showcart() {
+    //   const cart = [];
+    //   for (let i = 0; i < this.cartService.cart.length; i++) {
+    //     for (let j = 0; j < this.productsService.originalProducts.length; j++) {
+    //       if (this.cartService.cart[i].id === this.productsService.originalProducts[j].id) {
+    //         cart[i] = this.productsService.originalProducts[j];
+    //         cart[i].amount = this.cartService.cart[i].item_amount;
+    //       }
+    //     }
+    //   }
+    //   this.total = 0;
+    //   for (let i = 0; i < cart.length; i++) {
+    //     this.total += cart[i].price * cart[i].amount;
+    //   }
+    //   return cart;
+    // }
     CartlistComponent.prototype.plus = function (index) {
         if (this.cartService.cart[index].item_amount < 10) {
             this.cartService.cart[index].item_amount++;
@@ -628,29 +688,6 @@ var CheckoutComponent = /** @class */ (function () {
         };
     }
     CheckoutComponent.prototype.ngOnInit = function () { };
-    Object.defineProperty(CheckoutComponent.prototype, "showcart", {
-        get: function () {
-            var cart = [];
-            for (var i = 0; i < this.cartService.cart.length; i++) {
-                for (var j = 0; j < this.productsService.originalProducts.length; j++) {
-                    if (this.cartService.cart[i].id === this.productsService.originalProducts[j].id) {
-                        cart[i] = this.productsService.originalProducts[j];
-                        cart[i].amount = this.cartService.cart[i].item_amount;
-                    }
-                }
-            }
-            this.total = 0;
-            for (var i = 0; i < cart.length; i++) {
-                this.total += cart[i].price * cart[i].amount;
-            }
-            return cart;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    CheckoutComponent.prototype.submit_order = function (information, products, total) {
-        return this.orderService.submit_order(information, products, total);
-    };
     CheckoutComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-checkout',
@@ -750,7 +787,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- 標題 -->\r\n<div class=\"page-head_agile_info_w3l\">\r\n  <div class=\"container\">\r\n    <h3>Product <span>Content </span></h3>\r\n    <div class=\"services-breadcrumb\">\r\n      <div class=\"agile_inner_breadcrumb\">\r\n        <ul class=\"w3_short\">\r\n          <li><a [routerLink]=\"['/']\">Home</a><i>|</i></li>\r\n          <li>Content</li>\r\n        </ul>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n<!-- //標題 -->\r\n\r\n<div class=\"banner-bootom-w3-agileits\">\r\n  <div class=\"container\">\r\n    <!-- 商品圖片 -->\r\n    <div class=\"col-md-4 single-right-left \">\r\n      <div class=\"grid assets/images_3_of_2\">\r\n        <div class=\"flexslider\">\r\n\r\n          <ul class=\"slides\">\r\n            <li data-thumb=\"assets/images/d2.jpg\">\r\n              <div class=\"thumb-image\"> <img src=\"assets/images/d2.jpg\" data-imagezoom=\"true\" class=\"img-responsive\">\r\n              </div>\r\n            </li>\r\n            <li data-thumb=\"assets/images/d1.jpg\">\r\n              <div class=\"thumb-image\"> <img src=\"assets/images/d1.jpg\" data-imagezoom=\"true\" class=\"img-responsive\">\r\n              </div>\r\n            </li>\r\n            <li data-thumb=\"assets/images/d3.jpg\">\r\n              <div class=\"thumb-image\"> <img src=\"assets/images/d3.jpg\" data-imagezoom=\"true\" class=\"img-responsive\">\r\n              </div>\r\n            </li>\r\n          </ul>\r\n          <div class=\"clearfix\"></div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <!-- //商品圖片 -->\r\n    <!-- 基本資料 -->\r\n    <div class=\"col-md-8 single-right-left simpleCart_shelfItem\">\r\n      <h3>{{ products[index].name }}</h3>\r\n      <p><span class=\"item_price\">${{ products[index].price }}</span> <del>- ${{ products[index].price *1.5 }}</del></p>\r\n      <div style=\"padding: 0px 0px 0px 18px\">\r\n        <ul>\r\n          <li>作者：{{ products[index].author.name }}</li>\r\n          <li>譯者：{{ products[index].translator }}</li>\r\n          <li>出版社：{{ products[index].publisher }}</li>\r\n          <li>出版年：{{ products[index].publish_year }}</li>\r\n          <li>ISBN：{{ products[index].isbn }}</li>\r\n        </ul>\r\n      </div>\r\n\r\n      <form action=\"\">\r\n        <div class=\"description\">選擇商品數量：<select name=\"amount\" [(ngModel)]=\"item_amount\">\r\n            <option value=\"1\">1</option>\r\n            <option value=\"2\">2</option>\r\n            <option value=\"3\">3</option>\r\n            <option value=\"4\">4</option>\r\n            <option value=\"5\">5</option>\r\n            <option value=\"6\">6</option>\r\n            <option value=\"7\">7</option>\r\n            <option value=\"8\">8</option>\r\n            <option value=\"9\">9</option>\r\n            <option value=\"10\">10</option>\r\n\r\n\r\n          </select></div>\r\n        <input type=\"button\" class=\"function_button\" value=\"加入購物車\" (click)=\"add_to_cart(id, item_amount)\">\r\n      </form>\r\n\r\n    </div>\r\n    <!-- //基本資料 -->\r\n    <div class=\"clearfix\"> </div>\r\n    <!--詳細資訊-->\r\n    <div class=\"responsive_tabs_agileits\">\r\n      <div id=\"horizontalTab\">\r\n        <ul class=\"resp-tabs-list\">\r\n          <li>內容介紹</li>\r\n          <li>作者介紹</li>\r\n          <li>書籍評價</li>\r\n        </ul>\r\n        <div class=\"resp-tabs-container\">\r\n          <!--書籍介紹-->\r\n          <div class=\"tab1\">\r\n\r\n            <div class=\"single_page_agile_its_w3ls\">\r\n              <h6>書籍介紹</h6>\r\n              <p class=\"w3ls_para\">{{ products[index].description }}</p>\r\n            </div>\r\n          </div>\r\n          <!--//書籍介紹-->\r\n          <!--作者介紹 -->\r\n          <div class=\"tab3\">\r\n            <div class=\"single_page_agile_its_w3ls\">\r\n              <h6>作者介紹</h6>\r\n              <h3>{{ products[index].author.name }}</h3>\r\n              <p class=\"w3ls_para\">{{ products[index].author.description }}\r\n              </p>\r\n            </div>\r\n          </div>\r\n          <!--//作者介紹 -->\r\n          <!--評價-->\r\n          <div class=\"tab2\">\r\n            <div class=\"single_page_agile_its_w3ls\">\r\n              <div class=\"bootstrap-tab-text-grids\">\r\n                <div class=\"bootstrap-tab-text-grid\">\r\n                  <div class=\"bootstrap-tab-text-grid-left\">\r\n                    <img src=\"assets/images/t1.jpg\" alt=\" \" class=\"img-responsive\">\r\n                  </div>\r\n                  <div class=\"bootstrap-tab-text-grid-right\">\r\n                    <ul>\r\n                      <li><a href=\"#\">路人甲</a></li>\r\n                      <li><a href=\"#\"><i class=\"fa fa-reply-all\" aria-hidden=\"true\"></i> Reply</a></li>\r\n                    </ul>\r\n                    <p>啊我覺得很好看</p>\r\n                  </div>\r\n                  <div class=\"clearfix\"> </div>\r\n                </div>\r\n                <div class=\"add-review\">\r\n                  <h4>留下你的好評</h4>\r\n                  <form action=\"#\" method=\"post\">\r\n                    <input type=\"text\" name=\"Name\" required=\"Name\" placeholder=\"請輸入您的暱稱\">\r\n                    <input type=\"email\" name=\"Email\" required=\"Email\" placeholder=\"請輸入您的E-mail\">\r\n                    <textarea name=\"Message\" required=\"\" placeholder=\"請輸入評語\"></textarea>\r\n                    <input type=\"submit\" value=\"SEND\">\r\n                  </form>\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n          <!--//評價-->\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <!--//詳細資訊-->\r\n  </div>\r\n</div>\r\n"
+module.exports = "<!-- 標題 -->\r\n<div class=\"page-head_agile_info_w3l\">\r\n  <div class=\"container\">\r\n    <h3>Product <span>Content </span></h3>\r\n    <div class=\"services-breadcrumb\">\r\n      <div class=\"agile_inner_breadcrumb\">\r\n        <ul class=\"w3_short\">\r\n          <li><a [routerLink]=\"['/']\">Home</a><i>|</i></li>\r\n          <li>Content</li>\r\n        </ul>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n<!-- //標題 -->\r\n\r\n<div class=\"banner-bootom-w3-agileits\">\r\n  <div class=\"container\">\r\n    <!-- 商品圖片 -->\r\n    <div class=\"col-md-4 single-right-left \">\r\n      <div class=\"grid assets/images_3_of_2\">\r\n        <div class=\"flexslider\">\r\n\r\n          <ul class=\"slides\">\r\n            <li data-thumb=\"assets/images/d2.jpg\">\r\n              <div class=\"thumb-image\"> <img src=\"assets/images/d2.jpg\" data-imagezoom=\"true\" class=\"img-responsive\">\r\n              </div>\r\n            </li>\r\n            <li data-thumb=\"assets/images/d1.jpg\">\r\n              <div class=\"thumb-image\"> <img src=\"assets/images/d1.jpg\" data-imagezoom=\"true\" class=\"img-responsive\">\r\n              </div>\r\n            </li>\r\n            <li data-thumb=\"assets/images/d3.jpg\">\r\n              <div class=\"thumb-image\"> <img src=\"assets/images/d3.jpg\" data-imagezoom=\"true\" class=\"img-responsive\">\r\n              </div>\r\n            </li>\r\n          </ul>\r\n          <div class=\"clearfix\"></div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <!-- //商品圖片 -->\r\n    <!-- 基本資料 -->\r\n    <div class=\"col-md-8 single-right-left simpleCart_shelfItem\">\r\n      <h3>{{ product.title }}</h3>\r\n      <p><span class=\"item_price\">${{ product.sale_price }}</span> <del>- ${{ product.list_price }}</del></p>\r\n      <div style=\"padding: 0px 0px 0px 18px\">\r\n        <ul>\r\n          <li>作者：{{ product.author }}</li>\r\n          <li>譯者：{{ product.translator }}</li>\r\n          <li>出版社：{{ product.publisher }}</li>\r\n          <li>出版年：{{ product.publish_year }}</li>\r\n          <li>ISBN：{{ product.ISBN }}</li>\r\n\r\n        </ul>\r\n      </div>\r\n\r\n      <form action=\"\">\r\n\r\n        <div class=\"description\">\r\n          <ul><li>庫存：{{ product.stock }}</li>\r\n          <li>選擇商品數量：<select name=\"amount\" [(ngModel)]=\"item_amount\">\r\n            <option value=\"1\">1</option>\r\n            <option value=\"2\">2</option>\r\n            <option value=\"3\">3</option>\r\n            <option value=\"4\">4</option>\r\n            <option value=\"5\">5</option>\r\n            <option value=\"6\">6</option>\r\n            <option value=\"7\">7</option>\r\n            <option value=\"8\">8</option>\r\n            <option value=\"9\">9</option>\r\n            <option value=\"10\">10</option></select></li>\r\n          </ul>\r\n        </div>\r\n        <input type=\"button\" class=\"function_button\" value=\"加入購物車\" (click)=\"add_to_cart(id, item_amount, product.stock)\">\r\n      </form>\r\n\r\n    </div>\r\n    <!-- //基本資料 -->\r\n    <div class=\"clearfix\"> </div>\r\n    <!--詳細資訊-->\r\n    <div class=\"responsive_tabs_agileits\">\r\n      <div id=\"horizontalTab\">\r\n        <ul class=\"resp-tabs-list\">\r\n          <li>內容介紹</li>\r\n          <li>作者介紹</li>\r\n          <li>書籍評價</li>\r\n        </ul>\r\n        <div class=\"resp-tabs-container\">\r\n          <!--書籍介紹-->\r\n          <div class=\"tab1\">\r\n\r\n            <div class=\"single_page_agile_its_w3ls\">\r\n              <h6>書籍介紹</h6>\r\n              <p class=\"w3ls_para\">{{ product.description }}</p>\r\n            </div>\r\n          </div>\r\n          <!--//書籍介紹-->\r\n          <!--作者介紹 -->\r\n          <div class=\"tab3\">\r\n            <div class=\"single_page_agile_its_w3ls\">\r\n              <h6>作者介紹</h6>\r\n              <h3>{{ product.author }}</h3>\r\n              <p class=\"w3ls_para\">{{ product.author_description }}\r\n              </p>\r\n            </div>\r\n          </div>\r\n          <!--//作者介紹 -->\r\n          <!--評價-->\r\n          <div class=\"tab2\">\r\n            <div class=\"single_page_agile_its_w3ls\">\r\n              <div class=\"bootstrap-tab-text-grids\">\r\n                <div class=\"bootstrap-tab-text-grid\">\r\n                  <div class=\"bootstrap-tab-text-grid-left\">\r\n                    <img src=\"assets/images/t1.jpg\" alt=\" \" class=\"img-responsive\">\r\n                  </div>\r\n                  <div class=\"bootstrap-tab-text-grid-right\">\r\n                    <ul>\r\n                      <li><a href=\"#\">路人甲</a></li>\r\n                      <li><a href=\"#\"><i class=\"fa fa-reply-all\" aria-hidden=\"true\"></i> Reply</a></li>\r\n                    </ul>\r\n                    <p>啊我覺得很好看</p>\r\n                  </div>\r\n                  <div class=\"clearfix\"> </div>\r\n                </div>\r\n                <div class=\"add-review\">\r\n                  <h4>留下你的好評</h4>\r\n                  <form action=\"#\" method=\"post\">\r\n                    <input type=\"text\" name=\"Name\" required=\"Name\" placeholder=\"請輸入您的暱稱\">\r\n                    <input type=\"email\" name=\"Email\" required=\"Email\" placeholder=\"請輸入您的E-mail\">\r\n                    <textarea name=\"Message\" required=\"\" placeholder=\"請輸入評語\"></textarea>\r\n                    <input type=\"submit\" value=\"SEND\">\r\n                  </form>\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n          <!--//評價-->\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <!--//詳細資訊-->\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -786,20 +823,18 @@ var ContentComponent = /** @class */ (function () {
         this.route = route;
         this.productsService = productsService;
         this.cartService = cartService;
-        this.products = this.productsService.products;
-        this.id = '1';
-        this.index = 0;
+        this.id = 1;
         this.item_amount = '1';
+        this.product = {};
     }
     ContentComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.route.params.subscribe(function (data) {
-            _this.id = data.id;
-            for (var i = 0; i < _this.products.length; i++) {
-                if (_this.products[i].id === _this.id) {
-                    _this.index = i;
-                }
-            }
+            _this.id = parseInt(data.id, 10);
+            console.log(_this.id);
+        });
+        this.productsService.getProduct(this.id).subscribe(function (data) {
+            _this.product = data;
         });
         $(document).ready(function () {
             // 書籍介紹用的
@@ -829,8 +864,8 @@ var ContentComponent = /** @class */ (function () {
             });
         });
     };
-    ContentComponent.prototype.add_to_cart = function (id, item_amount) {
-        this.cartService.add_to_cart(id, parseInt(item_amount, 10));
+    ContentComponent.prototype.add_to_cart = function (id, item_amount, stock) {
+        this.cartService.add_to_cart(id, parseInt(item_amount, 10), parseInt(stock, 10));
     };
     ContentComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -930,7 +965,7 @@ module.exports = ".product_list {\r\n  font-family: \"Trebuchet MS\", Arial, Hel
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- 登入註冊（最上面黑色的區塊） -->\r\n<div class=\"header\" id=\"home\">\r\n  <div class=\"container\">\r\n    <ul>\r\n      <li><i class=\"fa fa-phone\" aria-hidden=\"true\"></i> Call : 01234567898</li>\r\n      <li><i class=\"fa fa-envelope-o\" aria-hidden=\"true\"></i> <a href=\"mailto:info@example.com\">info@example.com</a></li>\r\n      <ng-container *ngIf=\"login_id === 0; else elseTag\">\r\n        <li> <a [routerLink]=\"['/signup']\"><i class=\"fa fa-pencil-square-o\"></i>\r\n            註冊 </a></li>\r\n        <li> <a [routerLink]=\"['/login']\"><i class=\"fa fa-unlock-alt\"></i>\r\n            登入 </a></li>\r\n      </ng-container>\r\n      <ng-template #elseTag>\r\n        <li>{{username}} 您好！</li>\r\n        <li> <a [routerLink]=\"\" (click)=\"logout()\"><i class=\"fa fa-unlock-alt\"></i>\r\n            登出 </a></li>\r\n      </ng-template>\r\n    </ul>\r\n  </div>\r\n</div>\r\n<!-- //登入註冊（最上面黑色的區塊） -->\r\n\r\n<!-- 搜尋 大標（白色的區塊） -->\r\n<div class=\"header-bot\">\r\n  <div class=\"header-bot_inner_wthreeinfo_header_mid\">\r\n    <!-- 搜尋 -->\r\n    <div class=\"col-md-4 header-middle\">\r\n      <form action=\"#\" method=\"post\">\r\n        <input type=\"search\" name=\"search\" placeholder=\"Search here...\" required=\"\">\r\n        <input type=\"submit\" value=\" \">\r\n        <div class=\"clearfix\"></div>\r\n      </form>\r\n    </div>\r\n    <!-- //搜尋 -->\r\n    <!-- 主標題 -->\r\n    <div class=\"col-md-4 logo_agile\">\r\n      <h1><a [routerLink]=\"['/']\"><span>Cat</span>Read <i class=\"fa fa-shopping-bag top_logo_agile_bag\" aria-hidden=\"true\"></i></a></h1>\r\n    </div>\r\n    <!-- //主標題 -->\r\n    <div class=\"col-md-4 agileits-social top_content\">\r\n      <!-- 這塊本來有放分享到FB那些圖示 可以再想想要放什麼 -->\r\n    </div>\r\n    <div class=\"clearfix\"></div>\r\n  </div>\r\n</div>\r\n<!-- //搜尋 大標（白色的區塊） -->\r\n<!-- 選單跟購物車圖示 -->\r\n<div class=\"ban-top\">\r\n  <div class=\"container\">\r\n    <div class=\"top_nav_left\">\r\n      <nav class=\"navbar navbar-default\">\r\n        <div class=\"container-fluid\">\r\n          <!-- Brand and toggle get grouped for better mobile display -->\r\n          <div class=\"navbar-header\">\r\n            <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\"\r\n              aria-expanded=\"false\">\r\n              <span class=\"sr-only\">Toggle navigation</span>\r\n              <span class=\"icon-bar\"></span>\r\n              <span class=\"icon-bar\"></span>\r\n              <span class=\"icon-bar\"></span>\r\n            </button>\r\n          </div>\r\n          <!-- Collect the nav links, forms, and other content for toggling -->\r\n          <div class=\"collapse navbar-collapse menu--shylock\" id=\"bs-example-navbar-collapse-1\">\r\n            <ul class=\"nav navbar-nav menu__list\">\r\n              <li class=\" menu__item\"><a class=\"menu__link\" [routerLink]=\"['/']\" (click)=\"origin();\">Home</a></li>\r\n              <li class=\" menu__item\"><a class=\"menu__link\" [routerLink]=\"['/about']\">About</a></li>\r\n              <li class=\"dropdown menu__item\">\r\n                <a href=\"#\" class=\"dropdown-toggle menu__link\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\"\r\n                  aria-expanded=\"false\">Products <span class=\"caret\"></span></a>\r\n                <ul class=\"dropdown-menu multi-column columns-3\">\r\n                  <div class=\"agile_inner_drop_nav_info classification_font\">\r\n                    <div class=\"col-sm-6 multi-gd-img1 multi-gd-text \">\r\n                      <a [routerLink]=\"['/products']\">\r\n                        <p><img src=\"assets/images/top2.jpg\" alt=\" \" /></p>\r\n                      </a>\r\n                    </div>\r\n                    <div class=\"col-sm-3 multi-gd-img\">\r\n                      <ul class=\"multi-column-dropdown\">\r\n                        <li><a [routerLink]=\"['/products']\" (click)=\"search({name: '',\r\n                          author_name: '',\r\n                          publisher: '',\r\n                          isbn: '',classification: '文學叢書'})\">文學叢書</a></li>\r\n                        <li><a [routerLink]=\"['/products']\" (click)=\"search({name: '',\r\n                          author_name: '',\r\n                          publisher: '',\r\n                          isbn: '',classification: '考試用書'})\">考試用書</a></li>\r\n                        <li><a [routerLink]=\"['/products']\" (click)=\"search({name: '',\r\n                          author_name: '',\r\n                          publisher: '',\r\n                          isbn: '',classification: '童書繪本'})\">童書繪本</a></li>\r\n                        <li><a [routerLink]=\"['/products']\" (click)=\"search({name: '',\r\n                          author_name: '',\r\n                          publisher: '',\r\n                          isbn: '',classification: '語言學習'})\">語言學習</a></li>\r\n                      </ul>\r\n                    </div>\r\n                    <div class=\"col-sm-3 multi-gd-img\">\r\n                      <ul class=\"multi-column-dropdown\">\r\n                        <li><a [routerLink]=\"['/products']\" (click)=\"search({name: '',\r\n                          author_name: '',\r\n                          publisher: '',\r\n                          isbn: '',classification: '漫畫'})\">漫畫</a></li>\r\n                        <li><a [routerLink]=\"['/products']\" (click)=\"search({name: '',\r\n                          author_name: '',\r\n                          publisher: '',\r\n                          isbn: '',classification: '小說'})\">小說</a></li>\r\n                        <li><a [routerLink]=\"['/products']\" (click)=\"search({name: '',\r\n                          author_name: '',\r\n                          publisher: '',\r\n                          isbn: '',classification: '雜誌'})\">雜誌</a></li>\r\n                        <li><a [routerLink]=\"['/products']\" (click)=\"search({name: '',\r\n                          author_name: '',\r\n                          publisher: '',\r\n                          isbn: '',classification: '文具'})\">文具</a></li>\r\n                      </ul>\r\n                    </div>\r\n                    <div class=\"clearfix\"></div>\r\n                  </div>\r\n                </ul>\r\n              </li>\r\n              <li class=\" menu__item\"><a class=\"menu__link\" [routerLink]=\"['/contact']\">Contact</a></li>\r\n            </ul>\r\n          </div>\r\n        </div>\r\n      </nav>\r\n    </div>\r\n    <div class=\"top_nav_right\">\r\n      <div style=\"width: 50%;\">\r\n        <div class=\"wthreecartaits wthreecartaits2 cart cart box_1\">\r\n          <a href=\"#\" data-toggle=\"modal\" data-target=\"#cart\"><i class=\"fa fa-cart-arrow-down fa-lg\" aria-hidden=\"true\"></i></a>\r\n        </div>\r\n      </div>\r\n\r\n    </div>\r\n    <div class=\"clearfix\"></div>\r\n  </div>\r\n</div>\r\n<!-- //選單跟購物車圖示 -->\r\n<!-- 點購物車圖示會跳出來的那一塊 -->\r\n<div class=\"modal fade\" id=\"cart\" tabindex=\"-1\" role=\"dialog\">\r\n  <div class=\"modal-dialog\">\r\n    <!-- 那一塊裡的內容-->\r\n    <div class=\"modal-content\">\r\n      <!-- 那一塊的header（包含右上角的叉叉）-->\r\n      <div class=\"modal-header\">\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\r\n      </div>\r\n      <!-- //那一塊的header-->\r\n      <div class=\"modal-body modal-body-sub_agile\">\r\n        <div class=\"\">\r\n          <h3 class=\"agileinfo_sign\">購物車 <span>清單</span></h3>\r\n          <div class=\"clearfix\"></div>\r\n          <div>\r\n            <div>\r\n              <h2>購物車中有<span>{{ cart.length }}項商品</span></h2>\r\n              <br>\r\n              <!-- 購物車表格-->\r\n              <ng-container *ngIf=\"cart.length > 0;\">\r\n                <table class=\"product_list\">\r\n                  <thead>\r\n                    <tr>\r\n                      <th></th>\r\n                      <th>商品名稱</th>\r\n                      <th>售價</th>\r\n                      <th>數量</th>\r\n                      <th>刪除</th>\r\n                    </tr>\r\n                  </thead>\r\n                  <ng-container *ngFor=\"let item of cart; let index=index;\">\r\n                    <tr>\r\n                      <td>{{ index + 1 }}</td>\r\n                      <td><a [routerLink]=\"['/products/', item.id]\" data-dismiss=\"modal\">{{ item.name }}</a></td>\r\n                      <td>NT${{ item.price }}</td>\r\n                      <td>\r\n                        {{ item.amount }}\r\n                      </td>\r\n                      <td>\r\n                        <p style=\"text-align:center;\"><img src=\"assets/images/close_1.png\" (click)=\"delete_item(index)\"></p>\r\n                      </td>\r\n                    </tr>\r\n                  </ng-container>\r\n                </table>\r\n              </ng-container>\r\n              <!-- //購物車表格-->\r\n              <div class=\"clearfix\"></div>\r\n              <br>\r\n              <input type=\"button\" class=\"function_button\" value=\"查看購物車\" (click)=\"checkout();\" data-dismiss=\"modal\">\r\n            </div>\r\n          </div>\r\n          <div class=\"clearfix\"></div>\r\n        </div>\r\n      </div>\r\n      <!-- //那一塊裡的內容-->\r\n    </div>\r\n  </div>\r\n  <!-- //點購物車圖示會跳出來的那一塊 -->\r\n"
+module.exports = "<!-- 登入註冊（最上面黑色的區塊） -->\r\n<div class=\"header\" id=\"home\">\r\n  <div class=\"container\">\r\n    <ul>\r\n      <li><i class=\"fa fa-phone\" aria-hidden=\"true\"></i> Call : 01234567898</li>\r\n      <li><i class=\"fa fa-envelope-o\" aria-hidden=\"true\"></i> <a href=\"mailto:info@example.com\">info@example.com</a></li>\r\n      <ng-container *ngIf=\"!this.usersService.isLogin(); else elseTag\">\r\n        <li> <a [routerLink]=\"['/signup']\"><i class=\"fa fa-pencil-square-o\"></i>\r\n            註冊 </a></li>\r\n        <li> <a [routerLink]=\"['/login']\"><i class=\"fa fa-unlock-alt\"></i>\r\n            登入 </a></li>\r\n      </ng-container>\r\n      <ng-template #elseTag>\r\n        <li>{{username}}您好！</li>\r\n        <li> <a [routerLink]=\"\" (click)=\"logout()\"><i class=\"fa fa-unlock-alt\"></i>\r\n            登出 </a></li>\r\n      </ng-template>\r\n    </ul>\r\n  </div>\r\n</div>\r\n<!-- //登入註冊（最上面黑色的區塊） -->\r\n\r\n<!-- 搜尋 大標（白色的區塊） -->\r\n<div class=\"header-bot\">\r\n  <div class=\"header-bot_inner_wthreeinfo_header_mid\">\r\n    <div class=\"col-md-4 header-middle\">\r\n    </div>\r\n    <!-- 主標題 -->\r\n    <div class=\"col-md-4 logo_agile\">\r\n      <h1><a [routerLink]=\"['/']\"><span>Cat</span>Read <i class=\"fa fa-shopping-bag top_logo_agile_bag\" aria-hidden=\"true\"></i></a></h1>\r\n    </div>\r\n    <!-- //主標題 -->\r\n    <div class=\"col-md-4 agileits-social top_content\">\r\n    </div>\r\n    <div class=\"clearfix\"></div>\r\n  </div>\r\n</div>\r\n<!-- //搜尋 大標（白色的區塊） -->\r\n<!-- 選單跟購物車圖示 -->\r\n<div class=\"ban-top\">\r\n  <div class=\"container\">\r\n    <div class=\"top_nav_left\">\r\n      <nav class=\"navbar navbar-default\">\r\n        <div class=\"container-fluid\">\r\n          <!-- Brand and toggle get grouped for better mobile display -->\r\n          <div class=\"navbar-header\">\r\n            <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\"\r\n              aria-expanded=\"false\">\r\n              <span class=\"sr-only\">Toggle navigation</span>\r\n              <span class=\"icon-bar\"></span>\r\n              <span class=\"icon-bar\"></span>\r\n              <span class=\"icon-bar\"></span>\r\n            </button>\r\n          </div>\r\n          <!-- Collect the nav links, forms, and other content for toggling -->\r\n          <div class=\"collapse navbar-collapse menu--shylock\" id=\"bs-example-navbar-collapse-1\">\r\n            <ul class=\"nav navbar-nav menu__list\">\r\n              <li class=\" menu__item\"><a class=\"menu__link\" [routerLink]=\"['/']\" (click)=\"origin();\">Home</a></li>\r\n              <li class=\" menu__item\"><a class=\"menu__link\" [routerLink]=\"['/about']\">About</a></li>\r\n              <li class=\"dropdown menu__item\">\r\n                <a href=\"#\" class=\"dropdown-toggle menu__link\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\"\r\n                  aria-expanded=\"false\">Products <span class=\"caret\"></span></a>\r\n                <ul class=\"dropdown-menu multi-column columns-3\">\r\n                  <div class=\"agile_inner_drop_nav_info classification_font\">\r\n                    <div class=\"col-sm-6 multi-gd-img1 multi-gd-text \">\r\n                      <a [routerLink]=\"['/products']\">\r\n                        <p><img src=\"assets/images/top2.jpg\" alt=\" \" /></p>\r\n                      </a>\r\n                    </div>\r\n                    <div class=\"col-sm-3 multi-gd-img\">\r\n                      <ul class=\"multi-column-dropdown\">\r\n                        <li><a [routerLink]=\"['/products']\" (click)=\"search({name: '',\r\n                          author_name: '',\r\n                          publisher: '',\r\n                          isbn: '',classification: '文學叢書'})\">文學叢書</a></li>\r\n                        <li><a [routerLink]=\"['/products']\" (click)=\"search({name: '',\r\n                          author_name: '',\r\n                          publisher: '',\r\n                          isbn: '',classification: '考試用書'})\">考試用書</a></li>\r\n                        <li><a [routerLink]=\"['/products']\" (click)=\"search({name: '',\r\n                          author_name: '',\r\n                          publisher: '',\r\n                          isbn: '',classification: '童書繪本'})\">童書繪本</a></li>\r\n                        <li><a [routerLink]=\"['/products']\" (click)=\"search({name: '',\r\n                          author_name: '',\r\n                          publisher: '',\r\n                          isbn: '',classification: '語言學習'})\">語言學習</a></li>\r\n                      </ul>\r\n                    </div>\r\n                    <div class=\"col-sm-3 multi-gd-img\">\r\n                      <ul class=\"multi-column-dropdown\">\r\n                        <li><a [routerLink]=\"['/products']\" (click)=\"search({name: '',\r\n                          author_name: '',\r\n                          publisher: '',\r\n                          isbn: '',classification: '漫畫'})\">漫畫</a></li>\r\n                        <li><a [routerLink]=\"['/products']\" (click)=\"search({name: '',\r\n                          author_name: '',\r\n                          publisher: '',\r\n                          isbn: '',classification: '小說'})\">小說</a></li>\r\n                        <li><a [routerLink]=\"['/products']\" (click)=\"search({name: '',\r\n                          author_name: '',\r\n                          publisher: '',\r\n                          isbn: '',classification: '雜誌'})\">雜誌</a></li>\r\n                        <li><a [routerLink]=\"['/products']\" (click)=\"search({name: '',\r\n                          author_name: '',\r\n                          publisher: '',\r\n                          isbn: '',classification: '文具'})\">文具</a></li>\r\n                      </ul>\r\n                    </div>\r\n                    <div class=\"clearfix\"></div>\r\n                  </div>\r\n                </ul>\r\n              </li>\r\n              <li class=\" menu__item\"><a class=\"menu__link\" [routerLink]=\"['/contact']\">Contact</a></li>\r\n              <li class=\" menu__item\"><a class=\"menu__link\" [routerLink]=\"['/orderlist']\">Orderlist</a></li>\r\n            </ul>\r\n          </div>\r\n        </div>\r\n      </nav>\r\n    </div>\r\n    <div class=\"top_nav_right\">\r\n      <div style=\"width: 50%;\">\r\n        <div class=\"wthreecartaits wthreecartaits2 cart cart box_1\">\r\n          <a href=\"#\" data-toggle=\"modal\" data-target=\"#cart\"><i class=\"fa fa-cart-arrow-down fa-lg\" aria-hidden=\"true\" (click)=\"ngOnInit();\"></i></a>\r\n        </div>\r\n      </div>\r\n\r\n    </div>\r\n    <div class=\"clearfix\"></div>\r\n  </div>\r\n</div>\r\n<!-- //選單跟購物車圖示 -->\r\n<!-- 點購物車圖示會跳出來的那一塊 -->\r\n<div class=\"modal fade\" id=\"cart\" tabindex=\"-1\" role=\"dialog\">\r\n  <div class=\"modal-dialog\">\r\n    <!-- 那一塊裡的內容-->\r\n    <div class=\"modal-content\">\r\n      <!-- 那一塊的header（包含右上角的叉叉）-->\r\n      <div class=\"modal-header\">\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\r\n      </div>\r\n      <!-- //那一塊的header-->\r\n      <div class=\"modal-body modal-body-sub_agile\">\r\n        <div class=\"\">\r\n          <h3 class=\"agileinfo_sign\">購物車 <span>清單</span></h3>\r\n          <div class=\"clearfix\"></div>\r\n          <div>\r\n            <div>\r\n              <h2>購物車中有<span>{{list_amount}}項商品</span></h2>\r\n              <br>\r\n              <!-- 購物車表格-->\r\n              <ng-container *ngIf=\"list_amount !== 0;\">\r\n                <table class=\"product_list\">\r\n                  <thead>\r\n                    <tr>\r\n                      <th></th>\r\n                      <th>商品名稱</th>\r\n                      <th>售價</th>\r\n                      <th>數量</th>\r\n                      <th>刪除</th>\r\n                    </tr>\r\n                  </thead>\r\n                  <ng-container *ngFor=\"let item of this.show_cart; let index=index;\">\r\n                    <tr>\r\n                      <td>{{ index + 1 }}</td>\r\n                      <td><a [routerLink]=\"['/products/', item.id]\" data-dismiss=\"modal\">{{ item?.product?.title }}</a></td>\r\n                      <td>NT${{ item?.product?.sale_price }}</td>\r\n                      <td>\r\n                        {{ item?.item_amount }}\r\n                      </td>\r\n                      <td>\r\n                        <p style=\"text-align:center;\"><img src=\"assets/images/close_1.png\" (click)=\"delete_item(index);ngOnInit();\"></p>\r\n                      </td>\r\n                    </tr>\r\n                  </ng-container>\r\n                </table>\r\n              </ng-container>\r\n              <!-- //購物車表格-->\r\n              <div class=\"clearfix\"></div>\r\n              <br>\r\n              <input type=\"button\" class=\"function_button\" value=\"查看購物車\" (click)=\"checkout();\" data-dismiss=\"modal\">\r\n            </div>\r\n          </div>\r\n          <div class=\"clearfix\"></div>\r\n        </div>\r\n      </div>\r\n      <!-- //那一塊裡的內容-->\r\n    </div>\r\n  </div>\r\n  <!-- //點購物車圖示會跳出來的那一塊 -->\r\n"
 
 /***/ }),
 
@@ -945,10 +980,12 @@ module.exports = "<!-- 登入註冊（最上面黑色的區塊） -->\r\n<div cl
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HeaderComponent", function() { return HeaderComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _member_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../member.service */ "./src/app/member.service.ts");
+/* harmony import */ var _users_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../users.service */ "./src/app/users.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _cart_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../cart.service */ "./src/app/cart.service.ts");
 /* harmony import */ var _products_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../products.service */ "./src/app/products.service.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var ngx_cookie_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ngx-cookie-service */ "./node_modules/ngx-cookie-service/index.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -963,62 +1000,87 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
 var HeaderComponent = /** @class */ (function () {
-    function HeaderComponent(memberService, cartService, productsService, router) {
-        this.memberService = memberService;
+    function HeaderComponent(usersService, cartService, productsService, router, httpClient, cookieService) {
+        this.usersService = usersService;
         this.cartService = cartService;
         this.productsService = productsService;
         this.router = router;
+        this.httpClient = httpClient;
+        this.cookieService = cookieService;
+        this.show_cart = [];
     }
-    HeaderComponent.prototype.ngOnInit = function () { };
-    Object.defineProperty(HeaderComponent.prototype, "login_id", {
-        get: function () {
-            return this.memberService.login_id;
-        },
-        enumerable: true,
-        configurable: true
-    });
+    HeaderComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        if (this.usersService.isLogin()) {
+            this.cartService.getCart().subscribe(function (data) {
+                _this.cartService.cart = data.data;
+            });
+        }
+        else {
+            if (!this.cookieService.check('cart')) {
+                this.cookieService.set('cart', JSON.stringify(this.cartService.cart));
+            }
+            else {
+                this.cartService.cart = JSON.parse(this.cookieService.get('cart'));
+                console.log('get', JSON.parse(this.cookieService.get('cart')));
+            }
+        }
+        this.cartService.list_amount = this.cartService.cart.length;
+        this.show_cart = [];
+        if (this.list_amount !== 0) {
+            var _loop_1 = function (i) {
+                this_1.productsService
+                    .getProduct(this_1.cart[i].id)
+                    .subscribe(function (data) {
+                    _this.show_cart[i] = {
+                        id: _this.cart[i].id,
+                        item_amount: _this.cart[i].item_amount,
+                        product: data
+                    };
+                });
+            };
+            var this_1 = this;
+            for (var i = 0; i < this.cart.length; i++) {
+                _loop_1(i);
+            }
+            console.log('cart', this.cart);
+            console.log('show_cart', this.show_cart);
+        }
+    };
     HeaderComponent.prototype.logout = function () {
-        this.memberService.logout();
+        this.usersService.logout();
         alert('已登出');
+        this.cartService.cart = [];
         this.router.navigate(['/']);
     };
-    Object.defineProperty(HeaderComponent.prototype, "username", {
-        get: function () {
-            return this.memberService.member[this.memberService.login_id - 1].name;
-        },
-        enumerable: true,
-        configurable: true
-    });
+    HeaderComponent.prototype.delete_item = function (index) {
+        this.cartService.delete_item(index);
+        if (this.usersService.isLogin()) {
+            this.cartService.postCart(this.cart);
+        }
+        else {
+            this.cookieService.set('cart', JSON.stringify(this.cartService.cart));
+        }
+    };
     Object.defineProperty(HeaderComponent.prototype, "cart", {
         get: function () {
-            var cart = [];
-            for (var i = 0; i < this.cartService.cart.length; i++) {
-                for (var j = 0; j < this.productsService.originalProducts.length; j++) {
-                    if (this.cartService.cart[i].id ===
-                        this.productsService.originalProducts[j].id) {
-                        cart[i] = this.productsService.originalProducts[j];
-                        cart[i].amount = this.cartService.cart[i].item_amount;
-                    }
-                }
-            }
-            return cart;
+            return this.cartService.cart;
         },
         enumerable: true,
         configurable: true
     });
-    HeaderComponent.prototype.delete_item = function (index) {
-        this.cartService.cart.splice(index, index + 1);
-        this.cartService.list_amount--;
-    };
-    HeaderComponent.prototype.search = function (search_list) {
-        this.productsService.search(search_list);
-    };
-    HeaderComponent.prototype.origin = function () {
-        this.productsService.origin();
-    };
+    Object.defineProperty(HeaderComponent.prototype, "list_amount", {
+        get: function () {
+            return this.cartService.list_amount;
+        },
+        enumerable: true,
+        configurable: true
+    });
     HeaderComponent.prototype.checkout = function () {
-        if (this.cartService.list_amount === 0) {
+        if (this.list_amount === 0) {
             alert('購物車中沒有商品。');
         }
         else {
@@ -1031,10 +1093,12 @@ var HeaderComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./header.component.html */ "./src/app/header/header.component.html"),
             styles: [__webpack_require__(/*! ./header.component.css */ "./src/app/header/header.component.css")]
         }),
-        __metadata("design:paramtypes", [_member_service__WEBPACK_IMPORTED_MODULE_1__["MemberService"],
+        __metadata("design:paramtypes", [_users_service__WEBPACK_IMPORTED_MODULE_1__["UsersService"],
             _cart_service__WEBPACK_IMPORTED_MODULE_3__["CartService"],
             _products_service__WEBPACK_IMPORTED_MODULE_4__["ProductsService"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+            _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"],
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_5__["HttpClient"],
+            ngx_cookie_service__WEBPACK_IMPORTED_MODULE_6__["CookieService"]])
     ], HeaderComponent);
     return HeaderComponent;
 }());
@@ -1061,7 +1125,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- 輪播牆 -->\r\n<div id=\"myCarousel\" class=\"carousel slide\" data-ride=\"carousel\">\r\n  <!-- Indicators -->\r\n  <ol class=\"carousel-indicators\">\r\n    <li data-target=\"#myCarousel\" data-slide-to=\"0\" class=\"active\"></li>\r\n    <li data-target=\"#myCarousel\" data-slide-to=\"1\" class=\"\"></li>\r\n    <li data-target=\"#myCarousel\" data-slide-to=\"2\" class=\"\"></li>\r\n    <li data-target=\"#myCarousel\" data-slide-to=\"3\" class=\"\"></li>\r\n    <li data-target=\"#myCarousel\" data-slide-to=\"4\" class=\"\"></li>\r\n  </ol>\r\n  <div class=\"carousel-inner\" role=\"listbox\">\r\n    <div class=\"item active\">\r\n      <div class=\"container\">\r\n        <div class=\"carousel-caption\">\r\n          <h3>The Biggest <span>Sale</span></h3>\r\n          <p>Special for today</p>\r\n          <a class=\"hvr-outline-out button2\" [routerLink]=\"['/products']\">Shop Now </a>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"item item2\">\r\n      <div class=\"container\">\r\n        <div class=\"carousel-caption\">\r\n          <h3>Summer <span>Collection</span></h3>\r\n          <p>New Arrivals On Sale</p>\r\n          <a class=\"hvr-outline-out button2\" [routerLink]=\"['/products']\">Shop Now </a>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"item item3\">\r\n      <div class=\"container\">\r\n        <div class=\"carousel-caption\">\r\n          <h3>The Biggest <span>Sale</span></h3>\r\n          <p>Special for today</p>\r\n          <a class=\"hvr-outline-out button2\" [routerLink]=\"['/products']\">Shop Now </a>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"item item4\">\r\n      <div class=\"container\">\r\n        <div class=\"carousel-caption\">\r\n          <h3>Summer <span>Collection</span></h3>\r\n          <p>New Arrivals On Sale</p>\r\n          <a class=\"hvr-outline-out button2\" [routerLink]=\"['/products']\">Shop Now </a>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"item item5\">\r\n      <div class=\"container\">\r\n        <div class=\"carousel-caption\">\r\n          <h3>The Biggest <span>Sale</span></h3>\r\n          <p>Special for today</p>\r\n          <a class=\"hvr-outline-out button2\" [routerLink]=\"['/products']\">Shop Now </a>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <a class=\"left carousel-control\" href=\"#myCarousel\" role=\"button\" data-slide=\"prev\">\r\n    <span class=\"glyphicon glyphicon-chevron-left\" aria-hidden=\"true\"></span>\r\n    <span class=\"sr-only\">Previous</span>\r\n  </a>\r\n  <a class=\"right carousel-control\" href=\"#myCarousel\" role=\"button\" data-slide=\"next\">\r\n    <span class=\"glyphicon glyphicon-chevron-right\" aria-hidden=\"true\"></span>\r\n    <span class=\"sr-only\">Next</span>\r\n  </a>\r\n  <!-- The Modal -->\r\n</div>\r\n<!-- //banner -->\r\n<!-- /new_arrivals -->\r\n<div class=\"new_arrivals_agile_w3ls_info\">\r\n  <div class=\"container\">\r\n    <h3 class=\"wthree_text_info\">新書 <span>上架</span></h3>\r\n\r\n\r\n    <ng-container *ngFor=\"let item of originProducts; let index=index;\">\r\n      <div class=\"col-md-3 product-men\" *ngIf=\"item.publish_year > 2017;\">\r\n        <div class=\"men-pro-item simpleCart_shelfItem\">\r\n          <div class=\"men-thumb-item\">\r\n            <img [src]=\"item.photo\" alt=\"\" class=\"pro-image-front\">\r\n            <img [src]=\"item.photo\" alt=\"\" class=\"pro-image-back\">\r\n            <div class=\"men-cart-pro\">\r\n              <div class=\"inner-men-cart-pro\">\r\n                <a [routerLink]=\"['/products/', item.id]\" class=\"link-product-add-cart\">商品資訊</a>\r\n              </div>\r\n            </div>\r\n            <span class=\"product-new-top\">New</span>\r\n\r\n          </div>\r\n          <div class=\"item-info-product \">\r\n            <h4><a [routerLink]=\"['/products/', item.id]\">{{ item.name }}</a></h4>\r\n            <div class=\"info-product-price\">\r\n              <span class=\"item_price\">${{ item.price }}</span>\r\n              <del>${{ item.price * 1.5 }}</del>\r\n            </div>\r\n            <div>\r\n              <input type=\"button\" class=\"function_button\" value=\"加入購物車\" (click)=\"add_to_cart(item.id, 1)\">\r\n            </div>\r\n\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </ng-container>\r\n\r\n    <div class=\"clearfix\"></div>\r\n\r\n\r\n\r\n\r\n  </div>\r\n</div>\r\n<!-- //new_arrivals -->\r\n"
+module.exports = "<!-- 輪播牆 -->\r\n<div id=\"myCarousel\" class=\"carousel slide\" data-ride=\"carousel\">\r\n  <!-- Indicators -->\r\n  <ol class=\"carousel-indicators\">\r\n    <li data-target=\"#myCarousel\" data-slide-to=\"0\" class=\"active\"></li>\r\n    <li data-target=\"#myCarousel\" data-slide-to=\"1\" class=\"\"></li>\r\n    <li data-target=\"#myCarousel\" data-slide-to=\"2\" class=\"\"></li>\r\n    <li data-target=\"#myCarousel\" data-slide-to=\"3\" class=\"\"></li>\r\n    <li data-target=\"#myCarousel\" data-slide-to=\"4\" class=\"\"></li>\r\n  </ol>\r\n  <div class=\"carousel-inner\" role=\"listbox\">\r\n    <div class=\"item active\">\r\n      <div class=\"container\">\r\n        <div class=\"carousel-caption\">\r\n          <h3>The Biggest <span>Sale</span></h3>\r\n          <p>Special for today</p>\r\n          <a class=\"hvr-outline-out button2\" [routerLink]=\"['/products']\">Shop Now </a>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"item item2\">\r\n      <div class=\"container\">\r\n        <div class=\"carousel-caption\">\r\n          <h3>Summer <span>Collection</span></h3>\r\n          <p>New Arrivals On Sale</p>\r\n          <a class=\"hvr-outline-out button2\" [routerLink]=\"['/products']\">Shop Now </a>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"item item3\">\r\n      <div class=\"container\">\r\n        <div class=\"carousel-caption\">\r\n          <h3>The Biggest <span>Sale</span></h3>\r\n          <p>Special for today</p>\r\n          <a class=\"hvr-outline-out button2\" [routerLink]=\"['/products']\">Shop Now </a>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"item item4\">\r\n      <div class=\"container\">\r\n        <div class=\"carousel-caption\">\r\n          <h3>Summer <span>Collection</span></h3>\r\n          <p>New Arrivals On Sale</p>\r\n          <a class=\"hvr-outline-out button2\" [routerLink]=\"['/products']\">Shop Now </a>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"item item5\">\r\n      <div class=\"container\">\r\n        <div class=\"carousel-caption\">\r\n          <h3>The Biggest <span>Sale</span></h3>\r\n          <p>Special for today</p>\r\n          <a class=\"hvr-outline-out button2\" [routerLink]=\"['/products']\">Shop Now </a>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <a class=\"left carousel-control\" href=\"#myCarousel\" role=\"button\" data-slide=\"prev\">\r\n    <span class=\"glyphicon glyphicon-chevron-left\" aria-hidden=\"true\"></span>\r\n    <span class=\"sr-only\">Previous</span>\r\n  </a>\r\n  <a class=\"right carousel-control\" href=\"#myCarousel\" role=\"button\" data-slide=\"next\">\r\n    <span class=\"glyphicon glyphicon-chevron-right\" aria-hidden=\"true\"></span>\r\n    <span class=\"sr-only\">Next</span>\r\n  </a>\r\n  <!-- The Modal -->\r\n</div>\r\n<!-- //banner -->\r\n<!-- /new_arrivals -->\r\n<div class=\"new_arrivals_agile_w3ls_info\">\r\n  <div class=\"container\">\r\n    <h3 class=\"wthree_text_info\">新書 <span>上架</span></h3>\r\n\r\n\r\n    <ng-container *ngFor=\"let item of data.data; let index=index;\">\r\n      <div class=\"col-md-3 product-men\" *ngIf=\"item.stock > 0\">\r\n        <div class=\"men-pro-item simpleCart_shelfItem\">\r\n          <div class=\"men-thumb-item\">\r\n            <img [src]=\"item.picture\" alt=\"\" class=\"pro-image-front\">\r\n            <img [src]=\"item.picture\" alt=\"\" class=\"pro-image-back\">\r\n            <div class=\"men-cart-pro\">\r\n              <div class=\"inner-men-cart-pro\">\r\n                <a [routerLink]=\"['/products/', item.id]\" class=\"link-product-add-cart\">商品資訊</a>\r\n              </div>\r\n            </div>\r\n            <span class=\"product-new-top\">New</span>\r\n\r\n          </div>\r\n          <div class=\"item-info-product \">\r\n            <h4><a [routerLink]=\"['/products/', item.id]\">{{ item.title }}</a></h4>\r\n            <div class=\"info-product-price\">\r\n              <span class=\"item_price\">${{ item.sale_price }}</span>\r\n              <del>${{ item.list_price }}</del>\r\n            </div>\r\n            <div>\r\n              <input type=\"button\" class=\"function_button\" value=\"加入購物車\" (click)=\"add_to_cart(item.id, 1, item.product_stock)\">\r\n            </div>\r\n\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </ng-container>\r\n\r\n    <div class=\"clearfix\"></div>\r\n\r\n\r\n\r\n\r\n  </div>\r\n</div>\r\n<!-- //new_arrivals -->\r\n"
 
 /***/ }),
 
@@ -1094,18 +1158,18 @@ var HomeComponent = /** @class */ (function () {
     function HomeComponent(productsService, cartService) {
         this.productsService = productsService;
         this.cartService = cartService;
-        this.Today = new Date();
+        this.data = { data: [] };
+        this.Today = new Date().getFullYear;
     }
-    HomeComponent.prototype.ngOnInit = function () { };
-    Object.defineProperty(HomeComponent.prototype, "originProducts", {
-        get: function () {
-            return this.productsService.originalProducts; // 這裡是get origin
-        },
-        enumerable: true,
-        configurable: true
-    });
-    HomeComponent.prototype.add_to_cart = function (id, item_amount) {
-        this.cartService.add_to_cart(id, item_amount);
+    HomeComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.productsService.getNewProducts().subscribe(function (data) {
+            _this.data = data;
+            console.log(data);
+        });
+    };
+    HomeComponent.prototype.add_to_cart = function (id, item_amount, stock) {
+        this.cartService.add_to_cart(id, parseInt(item_amount, 10), stock);
     };
     HomeComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -1141,7 +1205,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- 登入 -->\n\n    <!-- Modal content-->\n    <div class=\"modal-content\" style=\"padding: 100px;\">\n      <div class=\"modal-body modal-body-sub_agile\">\n        <div class=\"col-md-8 modal_body_left modal_body_left1\">\n          <h3 class=\"agileinfo_sign\">Sign In <span>Now</span></h3>\n          <form action=\"#\" method=\"post\">\n            <div class=\"styled-input\">\n              <input type=\"email\" name=\"Email\" required=\"\" [(ngModel)] = \"email\">\n              <label>Email</label>\n              <span></span>\n            </div>\n            <div class=\"styled-input\">\n              <input type=\"password\" name=\"password\" required=\"\" [(ngModel)] = \"password\">\n              <label>Password</label>\n              <span></span>\n            </div>\n\n            <input type=\"button\" class=\"function_button\" value=\"登入\"  (click)=\"login(email,password)\">\n          </form>\n          <ul class=\"social-nav model-3d-0 footer-social w3_agile_social top_agile_third\">\n            <li><a href=\"#\" class=\"facebook\">\n                <div class=\"front\"><i class=\"fa fa-facebook\" aria-hidden=\"true\"></i></div>\n                <div class=\"back\"><i class=\"fa fa-facebook\" aria-hidden=\"true\"></i></div>\n              </a></li>\n            <li><a href=\"#\" class=\"twitter\">\n                <div class=\"front\"><i class=\"fa fa-twitter\" aria-hidden=\"true\"></i></div>\n                <div class=\"back\"><i class=\"fa fa-twitter\" aria-hidden=\"true\"></i></div>\n              </a></li>\n            <li><a href=\"#\" class=\"instagram\">\n                <div class=\"front\"><i class=\"fa fa-instagram\" aria-hidden=\"true\"></i></div>\n                <div class=\"back\"><i class=\"fa fa-instagram\" aria-hidden=\"true\"></i></div>\n              </a></li>\n            <li><a href=\"#\" class=\"pinterest\">\n                <div class=\"front\"><i class=\"fa fa-linkedin\" aria-hidden=\"true\"></i></div>\n                <div class=\"back\"><i class=\"fa fa-linkedin\" aria-hidden=\"true\"></i></div>\n              </a></li>\n          </ul>\n          <div class=\"clearfix\"></div>\n          <p><a href=\"#\" data-toggle=\"modal\" data-target=\"#myModal2\"> Don't have an account?</a></p>\n\n        </div>\n        <div class=\"col-md-4 modal_body_right modal_body_right1\">\n          <img src=\"assets/images/log_pic.jpg\" alt=\" \" />\n        </div>\n        <div class=\"clearfix\"></div>\n      </div>\n    </div>\n    <!-- //Modal content-->\n\n<!-- //登入 -->\n"
+module.exports = "<!-- 登入 -->\n\n    <!-- Modal content-->\n    <div class=\"modal-content\" style=\"padding: 100px;\">\n      <div class=\"modal-body modal-body-sub_agile\">\n        <div class=\"col-md-8 modal_body_left modal_body_left1\">\n          <h3 class=\"agileinfo_sign\">Sign In <span>Now</span></h3>\n          <form action=\"#\" method=\"post\">\n            <div class=\"styled-input\">\n              <input type=\"email\" name=\"Email\" required=\"\" [(ngModel)] = \"user.email\">\n              <label>Email</label>\n              <span></span>\n            </div>\n            <div class=\"styled-input\">\n              <input type=\"password\" name=\"password\" required=\"\" [(ngModel)] = \"user.password\">\n              <label>Password</label>\n              <span></span>\n            </div>\n\n            <input type=\"button\" class=\"function_button\" value=\"登入\"  (click)=\"login(this.user)\">\n          </form>\n          <ul class=\"social-nav model-3d-0 footer-social w3_agile_social top_agile_third\">\n            <li><a href=\"#\" class=\"facebook\">\n                <div class=\"front\"><i class=\"fa fa-facebook\" aria-hidden=\"true\"></i></div>\n                <div class=\"back\"><i class=\"fa fa-facebook\" aria-hidden=\"true\"></i></div>\n              </a></li>\n            <li><a href=\"#\" class=\"twitter\">\n                <div class=\"front\"><i class=\"fa fa-twitter\" aria-hidden=\"true\"></i></div>\n                <div class=\"back\"><i class=\"fa fa-twitter\" aria-hidden=\"true\"></i></div>\n              </a></li>\n            <li><a href=\"#\" class=\"instagram\">\n                <div class=\"front\"><i class=\"fa fa-instagram\" aria-hidden=\"true\"></i></div>\n                <div class=\"back\"><i class=\"fa fa-instagram\" aria-hidden=\"true\"></i></div>\n              </a></li>\n            <li><a href=\"#\" class=\"pinterest\">\n                <div class=\"front\"><i class=\"fa fa-linkedin\" aria-hidden=\"true\"></i></div>\n                <div class=\"back\"><i class=\"fa fa-linkedin\" aria-hidden=\"true\"></i></div>\n              </a></li>\n          </ul>\n          <div class=\"clearfix\"></div>\n          <p><a href=\"#\" data-toggle=\"modal\" data-target=\"#myModal2\"> Don't have an account?</a></p>\n\n        </div>\n        <div class=\"col-md-4 modal_body_right modal_body_right1\">\n          <img src=\"assets/images/log_pic.jpg\" alt=\" \" />\n        </div>\n        <div class=\"clearfix\"></div>\n      </div>\n    </div>\n    <!-- //Modal content-->\n\n<!-- //登入 -->\n"
 
 /***/ }),
 
@@ -1156,7 +1220,7 @@ module.exports = "<!-- 登入 -->\n\n    <!-- Modal content-->\n    <div class=\
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginComponent", function() { return LoginComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _member_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../member.service */ "./src/app/member.service.ts");
+/* harmony import */ var _users_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../users.service */ "./src/app/users.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1171,15 +1235,28 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 var LoginComponent = /** @class */ (function () {
-    function LoginComponent(memberService, router) {
-        this.memberService = memberService;
+    function LoginComponent(usersService, router) {
+        this.usersService = usersService;
         this.router = router;
-        this.email = '';
-        this.password = '';
+        this.user = {
+            email: '',
+            password: ''
+        };
     }
     LoginComponent.prototype.ngOnInit = function () { };
-    LoginComponent.prototype.login = function (email, password) {
-        return this.memberService.login(email, password);
+    LoginComponent.prototype.login = function (user) {
+        var _this = this;
+        this.usersService.login(this.user).subscribe(function (data) {
+            console.log(data);
+            if (data.token) {
+                localStorage.setItem('token', data.token);
+                alert('登入成功');
+                _this.router.navigate(['/']);
+            }
+            else {
+                alert('登入失敗');
+            }
+        });
     };
     LoginComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -1187,7 +1264,8 @@ var LoginComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./login.component.html */ "./src/app/login/login.component.html"),
             styles: [__webpack_require__(/*! ./login.component.css */ "./src/app/login/login.component.css")]
         }),
-        __metadata("design:paramtypes", [_member_service__WEBPACK_IMPORTED_MODULE_1__["MemberService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+        __metadata("design:paramtypes", [_users_service__WEBPACK_IMPORTED_MODULE_1__["UsersService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
     ], LoginComponent);
     return LoginComponent;
 }());
@@ -1229,6 +1307,7 @@ module.exports = "<app-header></app-header>\n<router-outlet></router-outlet>\n<a
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MasterComponent", function() { return MasterComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _users_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../users.service */ "./src/app/users.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1239,8 +1318,10 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var MasterComponent = /** @class */ (function () {
-    function MasterComponent() {
+    function MasterComponent(usersService) {
+        this.usersService = usersService;
     }
     MasterComponent.prototype.ngOnInit = function () {
     };
@@ -1250,103 +1331,9 @@ var MasterComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./master.component.html */ "./src/app/master/master.component.html"),
             styles: [__webpack_require__(/*! ./master.component.css */ "./src/app/master/master.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_users_service__WEBPACK_IMPORTED_MODULE_1__["UsersService"]])
     ], MasterComponent);
     return MasterComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/member.service.ts":
-/*!***********************************!*\
-  !*** ./src/app/member.service.ts ***!
-  \***********************************/
-/*! exports provided: MemberService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MemberService", function() { return MemberService; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-var MemberService = /** @class */ (function () {
-    function MemberService(router) {
-        this.router = router;
-        this.login_id = 0;
-        this.amount = 1;
-        this.member = [
-            {
-                id: 1,
-                name: 'Ada',
-                email: '123@gmail.com',
-                password: '123'
-            }
-        ];
-    }
-    MemberService.prototype.signup = function (information) {
-        var x = 0;
-        for (var key in information) {
-            if (information[key] === '') {
-                x++;
-            }
-        }
-        if (x > 0) {
-            alert('請勿留白');
-        }
-        else {
-            if (information.password === information.confirm) {
-                this.member[this.amount] = {
-                    id: this.amount + 1,
-                    name: information.name,
-                    email: information.email,
-                    password: information.password
-                };
-                this.amount++;
-                alert('註冊成功');
-                this.router.navigate(['/']);
-            }
-            else {
-                alert('密碼不一致');
-            }
-        }
-    };
-    MemberService.prototype.login = function (email, password) {
-        var i;
-        for (i = 0; i < this.amount && this.login_id === 0; i++) {
-            if (this.member[i].email === email &&
-                this.member[i].password === password) {
-                this.login_id = i + 1;
-                alert('登入成功');
-                this.router.navigate(['/']);
-            }
-        }
-        if (this.login_id === 0) {
-            alert('輸入錯誤');
-        }
-    };
-    MemberService.prototype.logout = function () {
-        this.login_id = 0;
-    };
-    MemberService = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
-            providedIn: 'root'
-        }),
-        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]])
-    ], MemberService);
-    return MemberService;
 }());
 
 
@@ -1419,6 +1406,117 @@ var OrderService = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/order/order.component.css":
+/*!*******************************************!*\
+  !*** ./src/app/order/order.component.css ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/order/order.component.html":
+/*!********************************************!*\
+  !*** ./src/app/order/order.component.html ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"header-bot\">訂單查詢\r\n  <div class=\"header-bot_inner_wthreeinfo_header_mid\">\r\n    <div class=\"col-md-4 header-middle\">\r\n    <form action=\"#\" method=\"post\">\r\n      <input type=\"search\" name=\"search\" placeholder=\"Search here...\" required=\"\" [(ngModel)]=\"keyword\">\r\n      <input type=\"submit\" value=\" \" (click)=\"search()\">\r\n      <div class=\"clearfix\"></div>\r\n    </form>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n  <ng-container *ngFor=\"let item of orderlist; let index=index; let last=last;\">\r\n    <div class=\"clearfix\"></div>\r\n    <p>\r\n      <span class=\"header-bot\">訂單{{item.id}}:\r\n          <ng-container *ngFor=\"let product of item.productlist; let index=index; let last=last;\">\r\n            <div class=\"header-bot_inner_wthreeinfo_header_mid\">商品:{{product.title}}</div>\r\n            <div class=\"header-bot_inner_wthreeinfo_header_mid\">價格:{{product.price}}</div>\r\n            <br>\r\n          </ng-container>\r\n      </span>\r\n    </p>\r\n\r\n\r\n  </ng-container>\r\n\r\n"
+
+/***/ }),
+
+/***/ "./src/app/order/order.component.ts":
+/*!******************************************!*\
+  !*** ./src/app/order/order.component.ts ***!
+  \******************************************/
+/*! exports provided: OrderComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OrderComponent", function() { return OrderComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _orders_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../orders.service */ "./src/app/orders.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var OrderComponent = /** @class */ (function () {
+    function OrderComponent(orders) {
+        this.orders = orders;
+        this.originOrderlist = this.orderlist;
+        this.keyword = '';
+    }
+    OrderComponent.prototype.ngOnInit = function () {
+    };
+    OrderComponent.prototype.search = function () {
+        // }
+    };
+    OrderComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-order',
+            template: __webpack_require__(/*! ./order.component.html */ "./src/app/order/order.component.html"),
+            styles: [__webpack_require__(/*! ./order.component.css */ "./src/app/order/order.component.css")]
+        }),
+        __metadata("design:paramtypes", [_orders_service__WEBPACK_IMPORTED_MODULE_1__["OrdersService"]])
+    ], OrderComponent);
+    return OrderComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/orders.service.ts":
+/*!***********************************!*\
+  !*** ./src/app/orders.service.ts ***!
+  \***********************************/
+/*! exports provided: OrdersService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OrdersService", function() { return OrdersService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var OrdersService = /** @class */ (function () {
+    function OrdersService(httpClient) {
+        this.httpClient = httpClient;
+    }
+    OrdersService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
+    ], OrdersService);
+    return OrdersService;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/products.service.ts":
 /*!*************************************!*\
   !*** ./src/app/products.service.ts ***!
@@ -1430,6 +1528,7 @@ var OrderService = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProductsService", function() { return ProductsService; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1440,460 +1539,26 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var ProductsService = /** @class */ (function () {
-    function ProductsService() {
-        this.products = [
-            {
-                classification: '考試用書',
-                id: '1',
-                isbn: '9783456782135',
-                name: '作為小豬',
-                author: {
-                    name: '人',
-                    description: '是個有才華的朋友呢'
-                },
-                translator: '另一個人',
-                publisher: '有家出版社',
-                price: 200,
-                description: '就是一本很好看的書呀',
-                createdAt: '2018-04-11T21:58:27.358Z',
-                updatedAt: '2018-05-11T21:58:27.358Z',
-                photo: 'assets/images/m5.jpg',
-                publish_year: 2018
-            },
-            {
-                classification: '童書繪本',
-                id: '2',
-                isbn: '9783456734635',
-                name: '小綿羊',
-                author: {
-                    name: '阿低',
-                    description: '英雄不怕出生低'
-                },
-                translator: '阿督',
-                publisher: '地下出版社',
-                price: 290,
-                description: '瑪莉有隻小綿羊',
-                createdAt: '2013-06-11T21:58:27.358Z',
-                updatedAt: '2018-05-14T21:58:27.358Z',
-                photo: 'assets/images/m6.jpg',
-                publish_year: 2018
-            },
-            {
-                classification: '語言學習',
-                id: '3',
-                isbn: '9233455782135',
-                name: 'お腹がすいた',
-                author: {
-                    name: '小中大',
-                    description: '頭小身體大'
-                },
-                translator: '會日文的人',
-                publisher: '高橋会社',
-                price: 380,
-                description: '肚子餓的時候學日文的效果不太好呢',
-                createdAt: '2013-05-11T21:58:27.358Z',
-                updatedAt: '2014-05-11T21:58:27.358Z',
-                photo: 'assets/images/m7.jpg',
-                publish_year: 2018
-            },
-            {
-                classification: '文學叢書',
-                id: '4',
-                isbn: '9783456567135',
-                name: '養生雞湯',
-                author: {
-                    name: '廚師',
-                    description: '又會吃又會煮'
-                },
-                translator: '饕客',
-                publisher: '美食出版社',
-                price: 1000,
-                description: '人生就像一碗好喝的雞湯',
-                createdAt: '2003-05-11T16:58:27.358Z',
-                updatedAt: '2007-12-11T21:58:27.358Z',
-                photo: 'assets/images/m8.jpg',
-                publish_year: 2018
-            },
-            {
-                classification: '考試用書',
-                id: '5',
-                isbn: '9783456782135',
-                name: '三隻小豬',
-                author: {
-                    name: '人',
-                    description: '是個有才華的朋友呢'
-                },
-                translator: '另一個人',
-                publisher: '有家出版社',
-                price: 200,
-                description: '就是一本很好看的書呀',
-                createdAt: '2018-04-11T21:58:27.358Z',
-                updatedAt: '2018-05-11T21:58:27.358Z',
-                photo: 'assets/images/m5.jpg',
-                publish_year: 2018
-            },
-            {
-                classification: '童書繪本',
-                id: '6',
-                isbn: '9783456734635',
-                name: '天使平底鍋',
-                author: {
-                    name: '阿低',
-                    description: '英雄不怕出生低'
-                },
-                translator: '阿督',
-                publisher: '地下出版社',
-                price: 290,
-                description: '瑪莉有隻小綿羊',
-                createdAt: '2013-06-11T21:58:27.358Z',
-                updatedAt: '2018-05-14T21:58:27.358Z',
-                photo: 'assets/images/m6.jpg',
-                publish_year: 2018
-            },
-            {
-                classification: '語言學習',
-                id: '7',
-                isbn: '9233455782135',
-                name: '幸運數字七',
-                author: {
-                    name: '小中大',
-                    description: '頭小身體大'
-                },
-                translator: '隔壁鄰居',
-                publisher: '高橋会社',
-                price: 380,
-                description: '肚子餓的時候學日文的效果不太好呢',
-                createdAt: '2013-05-11T21:58:27.358Z',
-                updatedAt: '2014-05-11T21:58:27.358Z',
-                photo: 'assets/images/m7.jpg',
-                publish_year: 2015
-            },
-            {
-                classification: '文學叢書',
-                id: '8',
-                isbn: '9783456567135',
-                name: '望著你那窄窄的背影',
-                author: {
-                    name: '旺旺',
-                    description: '咚咚咚咚鏘'
-                },
-                translator: '愛讀書的人',
-                publisher: '愛悅出版社',
-                price: 1700,
-                description: '一個猶豫要不要多吃一點的故事',
-                createdAt: '2003-05-11T16:58:27.358Z',
-                updatedAt: '2007-12-11T21:58:27.358Z',
-                photo: 'assets/images/m3.jpg',
-                publish_year: 2015
-            },
-            {
-                classification: '考試用書',
-                id: '9',
-                isbn: '9232356782135',
-                name: '如何當個好工具',
-                author: {
-                    name: '工具人',
-                    description: '頭小身體大'
-                },
-                translator: '隔壁鄰居',
-                publisher: '高橋会社',
-                price: 380,
-                description: '在天上',
-                createdAt: '2011-05-11T21:58:27.358Z',
-                updatedAt: '2013-05-11T21:58:27.358Z',
-                photo: 'assets/images/m2.jpg',
-                publish_year: 2015
-            },
-            {
-                classification: '童書繪本',
-                id: '10',
-                isbn: '9783456567234',
-                name: '小魚與小蝦',
-                author: {
-                    name: '派大興',
-                    description: '住在海裡'
-                },
-                translator: '饕客',
-                publisher: '美食出版社',
-                price: 105,
-                description: '小魚跟小蝦很可愛，所以要吃掉',
-                createdAt: '2005-05-11T16:58:27.358Z',
-                updatedAt: '2007-12-11T21:58:27.358Z',
-                photo: 'assets/images/m1.jpg',
-                publish_year: 2015
-            },
-            {
-                classification: '漫畫',
-                id: '11',
-                isbn: '9783374682135',
-                name: '小豬與我',
-                author: {
-                    name: '寶特瓶',
-                    description: '是個有腰身的朋友呢'
-                },
-                translator: '阿愣',
-                publisher: '天堂出版社',
-                price: 200,
-                description: '就是一本很好看的書呀',
-                createdAt: '2011-04-11T21:58:27.358Z',
-                updatedAt: '2013-07-01T21:58:27.358Z',
-                photo: 'assets/images/m7.jpg',
-                publish_year: 2015
-            },
-            {
-                classification: '雜誌',
-                id: '12',
-                isbn: '9783456734000',
-                name: 'Women`s Style',
-                author: {
-                    name: '寶寶',
-                    description: '氣死寶寶了'
-                },
-                translator: '嘎嘎',
-                publisher: '地下出版社',
-                price: 210,
-                description: '教妳地下時尚',
-                createdAt: '2013-06-11T21:58:27.358Z',
-                updatedAt: '2014-12-14T21:58:27.358Z',
-                photo: 'assets/images/m1.jpg',
-                publish_year: 2016
-            },
-            {
-                classification: '文具',
-                id: '13',
-                isbn: '9233455222135',
-                name: '一枝筆一張紙一顆心',
-                author: {
-                    name: '阿創',
-                    description: '是個創作者來著'
-                },
-                translator: '阿創的鄰居',
-                publisher: '文創文創',
-                price: 3809,
-                description: '學習的好幫手，最佳文具套組',
-                createdAt: '2015-05-11T21:58:27.358Z',
-                updatedAt: '2016-07-04T22:28:27.358Z',
-                photo: 'assets/images/m2.jpg',
-                publish_year: 2016
-            },
-            {
-                classification: '文學叢書',
-                id: '14',
-                isbn: '9783456567125',
-                name: '養生雞湯2',
-                author: {
-                    name: '廚師',
-                    description: '又會吃又會煮'
-                },
-                translator: '饕客',
-                publisher: '美食出版社',
-                price: 10900,
-                description: '人生就像兩碗好喝的雞湯',
-                createdAt: '2012-05-11T16:38:27.358Z',
-                updatedAt: '2014-13-11T21:58:27.358Z',
-                photo: 'assets/images/m3.jpg',
-                publish_year: 2016
-            },
-            {
-                classification: '小說',
-                id: '15',
-                isbn: '9783452959135',
-                name: '我和你的故事',
-                author: {
-                    name: '我',
-                    description: '我就是我'
-                },
-                translator: '你',
-                publisher: '故事出版社',
-                price: 285,
-                description: '你懂的',
-                createdAt: '2000-04-11T21:58:27.258Z',
-                updatedAt: '2001-05-11T21:58:27.458Z',
-                photo: 'assets/images/m5.jpg',
-                publish_year: 2016
-            },
-            {
-                classification: '童書繪本',
-                id: '16',
-                isbn: '9783456734445',
-                name: '天使平底鍋',
-                author: {
-                    name: '阿低',
-                    description: '英雄不怕出生低'
-                },
-                translator: '阿督',
-                publisher: '地下出版社',
-                price: 770,
-                description: '瑪莉有隻小綿羊',
-                createdAt: '2013-06-11T21:58:27.358Z',
-                updatedAt: '2018-05-14T21:58:27.358Z',
-                photo: 'assets/images/m6.jpg',
-                publish_year: 2017
-            },
-            {
-                classification: '小說',
-                id: '17',
-                isbn: '9233445682135',
-                name: '果果新語',
-                author: {
-                    name: '果果',
-                    description: '好吃'
-                },
-                translator: '隔壁鄰居',
-                publisher: '高橋会社',
-                price: 70,
-                description: '肚子餓的時候學日文的效果不太好呢',
-                createdAt: '2013-05-11T21:58:27.358Z',
-                updatedAt: '2014-05-11T21:58:27.358Z',
-                photo: 'assets/images/m7.jpg',
-                publish_year: 2017
-            },
-            {
-                classification: '漫畫',
-                id: '18',
-                isbn: '9783345267135',
-                name: '偵探online',
-                author: {
-                    name: '廚師',
-                    description: '又會吃又會煮'
-                },
-                translator: '饕客',
-                publisher: '美食出版社',
-                price: 1670,
-                description: '人生就像一碗好喝的雞湯',
-                createdAt: '2001-05-11T16:58:27.358Z',
-                updatedAt: '2009-12-11T21:58:27.358Z',
-                photo: 'assets/images/m8.jpg',
-                publish_year: 2017
-            },
-            {
-                classification: '雜誌',
-                id: '19',
-                isbn: '9232456782135',
-                name: '阿里巴巴',
-                author: {
-                    name: '巴巴',
-                    description: '頭小身體大'
-                },
-                translator: '阿里',
-                publisher: '高橋会社',
-                price: 350,
-                description: '在天上',
-                createdAt: '2011-05-11T21:58:27.358Z',
-                updatedAt: '2013-05-11T21:58:27.358Z',
-                photo: 'assets/images/m2.jpg',
-                publish_year: 2017
-            },
-            {
-                classification: '童書繪本',
-                id: '20',
-                isbn: '9783456567234',
-                name: '深海的魚雷',
-                author: {
-                    name: '海龜',
-                    description: '住在海裡'
-                },
-                translator: '饕客',
-                publisher: '美食出版社',
-                price: 345,
-                description: '小魚跟小蝦很可愛，所以要吃掉',
-                createdAt: '2005-05-11T16:58:27.358Z',
-                updatedAt: '2007-12-11T21:58:27.358Z',
-                photo: 'assets/images/m1.jpg',
-                publish_year: 2017
-            }
-        ];
-        this.originalProducts = this.products;
-        this.show_list = {
-            name: '',
-            author_name: '',
-            publisher: '',
-            isbn: '',
-            classification: ''
-        };
+    function ProductsService(httpClient) {
+        this.httpClient = httpClient;
+        this.year = new Date().getFullYear();
     }
-    ProductsService.prototype.search = function (keyword_list) {
-        this.products = this.originalProducts;
-        var _loop_1 = function (key) {
-            switch (key) {
-                case 'name':
-                    if (keyword_list[key].trim() !== '') {
-                        this_1.products = this_1.products.filter(function (products) { return products.name.indexOf(keyword_list[key]) !== -1; });
-                    }
-                    break;
-                case 'author_name':
-                    if (keyword_list[key].trim() !== '') {
-                        this_1.products = this_1.products.filter(function (products) { return products.author.name.indexOf(keyword_list[key]) !== -1; });
-                    }
-                    break;
-                case 'publisher':
-                    if (keyword_list[key].trim() !== '') {
-                        this_1.products = this_1.products.filter(function (products) { return products.publisher.indexOf(keyword_list[key]) !== -1; });
-                    }
-                    break;
-                case 'isbn':
-                    if (keyword_list[key].trim() !== '') {
-                        this_1.products = this_1.products.filter(function (products) { return products.isbn.indexOf(keyword_list[key]) !== -1; });
-                    }
-                    break;
-                case 'classification':
-                    if (keyword_list[key].trim() !== '') {
-                        this_1.products = this_1.products.filter(function (products) {
-                            return products.classification.indexOf(keyword_list[key]) !== -1;
-                        });
-                    }
-                    break;
-            }
-        };
-        var this_1 = this;
-        // tslint:disable-next-line:forin
-        for (var key in keyword_list) {
-            _loop_1(key);
-        }
-        this.show_list = keyword_list;
+    ProductsService.prototype.getNewProducts = function () {
+        return this.httpClient.get("http://host.limaois.me:1723/api/products?publish_year=" + this.year);
     };
-    ProductsService.prototype.origin = function () {
-        this.products = this.originalProducts;
-        this.show_list = {
-            name: '',
-            author_name: '',
-            publisher: '',
-            isbn: '',
-            classification: ''
-        };
+    ProductsService.prototype.getProducts = function (amount, page, sort, search) {
+        return this.httpClient.get("http://host.limaois.me:1723/api/products?count=" + amount + "&page=" + page + "&sort=" + sort + "&search=" + JSON.stringify(search));
     };
-    ProductsService.prototype.sort = function (choice) {
-        switch (choice) {
-            case '1': // 價錢高到低
-                for (var i = 0; i < this.products.length; i++) {
-                    for (var j = 1; j < this.products.length - i; j++) {
-                        if (this.products[j].price > this.products[j - 1].price) {
-                            var t = this.products[j];
-                            this.products[j] = this.products[j - 1];
-                            this.products[j - 1] = t;
-                        }
-                    }
-                }
-                break;
-            case '2': // 價錢低到高
-                for (var i = 0; i < this.products.length; i++) {
-                    for (var j = 1; j < this.products.length - i; j++) {
-                        if (this.products[j].price < this.products[j - 1].price) {
-                            var t = this.products[j];
-                            this.products[j] = this.products[j - 1];
-                            this.products[j - 1] = t;
-                        }
-                    }
-                }
-                break;
-        }
+    ProductsService.prototype.getProduct = function (id) {
+        return this.httpClient.get("http://host.limaois.me:1723/api/products/" + id);
     };
     ProductsService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
             providedIn: 'root'
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
     ], ProductsService);
     return ProductsService;
 }());
@@ -1920,7 +1585,7 @@ module.exports = ".keyword_list {\r\n  -ms-grid-row-align: center;\r\n      alig
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- title -->\r\n<div class=\"page-head_agile_info_w3l\">\r\n  <div class=\"container\">\r\n    <h3>Products</h3>\r\n    <div class=\"services-breadcrumb\">\r\n      <div class=\"agile_inner_breadcrumb\">\r\n\r\n        <ul class=\"w3_short\">\r\n          <li><a [routerLink]=\"['/']\" (click)=\"origin();\">Home</a><i>|</i></li>\r\n          <li>Products</li>\r\n        </ul>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n<!-- //title -->\r\n<div class=\"banner-bootom-w3-agileits\">\r\n  <div class=\"container\">\r\n    <!-- 左欄 -->\r\n    <div class=\"col-md-4 products-left\">\r\n      <div class=\"css-treeview\">\r\n        <h4>Categories</h4>\r\n        <ul class=\"tree-list-pad\">\r\n          <li><input type=\"checkbox\" checked=\"checked\" id=\"item-0\" (click)=\"origin();\" /><label for=\"item-0\"><i class=\"fa fa-long-arrow-right\"\r\n                aria-hidden=\"true\"></i> 所有商品</label>\r\n            <ul>\r\n              <li><input type=\"checkbox\" id=\"item-0-0\" (click)=\"search({name: '',author_name: '',publisher: '',isbn: '',classification: '文學叢書'})\" /><label\r\n                  for=\"item-0-0\"><i class=\"fa fa-long-arrow-right\" aria-hidden=\"true\"></i> 文學叢書</label>\r\n                <ul>\r\n                  <li><a (click)=\"search({name: '', author_name: '', publisher: '', isbn: '',classification: '文學叢書'})\">靈異奇幻</a></li>\r\n                  <li><a (click)=\"search({name: '', author_name: '', publisher: '', isbn: '',classification: '文學叢書'})\">心理勵志</a></li>\r\n                  <li><a (click)=\"search({name: '',author_name: '',publisher: '',isbn: '',classification: '文學叢書'})\">醫療保健</a></li>\r\n                </ul>\r\n              </li>\r\n              <li><input type=\"checkbox\" id=\"item-0-1\" (click)=\"search({name: '',author_name: '',publisher: '',isbn: '',classification: '考試用書'})\" /><label\r\n                  for=\"item-0-1\"><i class=\"fa fa-long-arrow-right\" aria-hidden=\"true\"></i> 考試用書</label>\r\n                <ul>\r\n                  <li><a (click)=\"search({name: '',author_name: '',publisher: '',isbn: '',classification: '考試用書'})\">小學</a></li>\r\n                  <li><a (click)=\"search({name: '',author_name: '',publisher: '',isbn: '',classification: '考試用書'})\">國中</a></li>\r\n                  <li><a (click)=\"search({name: '',author_name: '',publisher: '',isbn: '',classification: '考試用書'})\">高中</a></li>\r\n                  <li><a (click)=\"search({name: '',author_name: '',publisher: '',isbn: '',classification: '考試用書'})\">大學</a></li>\r\n                </ul>\r\n              </li>\r\n              <li><input type=\"checkbox\" id=\"item-0-2\" (click)=\"search({name: '',author_name: '',publisher: '',isbn: '',classification: '童書繪本'})\" /><label\r\n                  for=\"item-0-2\"><i class=\"fa fa-long-arrow-right\" aria-hidden=\"true\"></i> 童書繪本</label>\r\n                <ul>\r\n                  <li><a (click)=\"search({name: '',author_name: '',publisher: '',isbn: '',classification: '童書繪本'})\">學齡前</a></li>\r\n                  <li><a (click)=\"search({name: '',author_name: '',publisher: '',isbn: '',classification: '童書繪本'})\">學齡</a></li>\r\n                </ul>\r\n              </li>\r\n              <li><input type=\"checkbox\" id=\"item-0-3\" (click)=\"search({name: '',author_name: '',publisher: '',isbn: '',classification: '語言學習'})\" /><label\r\n                  for=\"item-0-3\"><i class=\"fa fa-long-arrow-right\" aria-hidden=\"true\"></i> 語言學習</label>\r\n                <ul>\r\n                  <li><a (click)=\"search({name: '',author_name: '',publisher: '',isbn: '',classification: '語言學習'})\">英文</a></li>\r\n                  <li><a (click)=\"search({name: '',author_name: '',publisher: '',isbn: '',classification: '語言學習'})\">日文</a></li>\r\n                </ul>\r\n              </li>\r\n              <li><input type=\"checkbox\" id=\"item-0-4\" (click)=\"search({name: '',author_name: '',publisher: '',isbn: '',classification: '漫畫'})\" /><label\r\n                  for=\"item-0-4\"><i class=\"fa fa-long-arrow-right\" aria-hidden=\"true\"></i> 漫畫</label>\r\n\r\n              </li>\r\n              <li><input type=\"checkbox\" id=\"item-0-5\" (click)=\"search({name: '',author_name: '',publisher: '',isbn: '',classification: '小說'})\" /><label\r\n                  for=\"item-0-5\"><i class=\"fa fa-long-arrow-right\" aria-hidden=\"true\"></i> 小說</label>\r\n\r\n              </li>\r\n              <li><input type=\"checkbox\" id=\"item-0-6\" (click)=\"search({name: '',author_name: '',publisher: '',isbn: '',classification: '雜誌'})\" /><label\r\n                  for=\"item-0-6\"><i class=\"fa fa-long-arrow-right\" aria-hidden=\"true\"></i> 雜誌</label>\r\n\r\n              </li>\r\n              <li><input type=\"checkbox\" id=\"item-0-7\" (click)=\"search({name: '',author_name: '',publisher: '',isbn: '',classification: '文具'})\" /><label\r\n                  for=\"item-0-7\"><i class=\"fa fa-long-arrow-right\" aria-hidden=\"true\"></i> 文具</label>\r\n\r\n              </li>\r\n            </ul>\r\n          </li>\r\n        </ul>\r\n      </div>\r\n      <div class=\"community-poll\">\r\n        <h4>Search</h4>\r\n        <div>\r\n\r\n          <table class=\"keyword_list\">\r\n            <tr>\r\n              <th>書名</th>\r\n              <td><input type=\"text\" placeholder=\"請輸入書名\" [(ngModel)]=\"keyword_list.name\"></td>\r\n            </tr>\r\n            <tr>\r\n              <th>作者</th>\r\n              <td><input type=\"text\" placeholder=\"請輸入作者\" [(ngModel)]=\"keyword_list.author_name\"></td>\r\n            </tr>\r\n            <tr>\r\n              <th>出版社</th>\r\n              <td><input type=\"text\" placeholder=\"請輸入出版社\" [(ngModel)]=\"keyword_list.publisher\"></td>\r\n            </tr>\r\n            <tr>\r\n              <th>ISBN</th>\r\n              <td><input type=\"text\" placeholder=\"請輸入ISBN\" [(ngModel)]=\"keyword_list.isbn\"></td>\r\n            </tr>\r\n            <tr>\r\n              <th>類別</th>\r\n              <td><select [(ngModel)]=\"keyword_list.classification\">\r\n                  <option value=\"\">請選擇類別</option>\r\n                  <option value=\"文學叢書\">文學叢書</option>\r\n                  <option value=\"童書繪本\">童書繪本</option>\r\n                  <option value=\"語言學習\">語言學習</option>\r\n                  <option value=\"考試用書\">考試用書</option>\r\n                </select></td>\r\n            </tr>\r\n          </table>\r\n          <div style=\"padding: 5px 0px 20px 0px; text-align: center\">\r\n            <input type=\"button\" class=\"function_button\" value=\"搜尋商品\" (click)=\"search(keyword_list)\">\r\n          </div>\r\n\r\n        </div>\r\n      </div>\r\n      <div class=\"clearfix\"></div>\r\n    </div>\r\n    <!-- //左欄 -->\r\n    <div class=\"col-md-8 products-right\">\r\n      <!-- 右上區塊 -->\r\n      <h5>商品 <span>列表（共{{products.length}}項）</span></h5>\r\n      <div style=\"padding-top: 5%;\">\r\n        <p *ngIf=\"show_list.classification !== '';\">類別：{{show_list.classification}} </p>\r\n        <p *ngIf=\"show_list.name !== '';\">書名：{{show_list.name}} </p>\r\n        <p *ngIf=\"show_list.author_name !== '';\">作者：{{show_list.author_name}} </p>\r\n        <p *ngIf=\"show_list.publisher !== '';\">出版社：{{show_list.publisher}} </p>\r\n        <p *ngIf=\"show_list.isbn !== '';\">isbn：{{show_list.isbn}} </p>\r\n      </div>\r\n      <div class=\"sort-grid\">\r\n        <div class=\"sorting\">\r\n          <h6>Sort By</h6>\r\n          <select id=\"country1\" [(ngModel)]=\"choice\" (change)=\"sort(choice); page=1;\" class=\"frm-field required sect\">\r\n            <option value=\"0\">請選擇排序方式</option>\r\n            <option value=\"1\">價格：由高到低</option>\r\n            <option value=\"2\">價格：由低到高</option>\r\n          </select>\r\n          <div class=\"clearfix\"></div>\r\n        </div>\r\n        <div class=\"sorting\">\r\n          <h6>Showing</h6>\r\n          <select id=\"amount\" [(ngModel)]=\"amount\" (change)=\"page=1;\">\r\n            <option value=\"3\">3</option>\r\n            <option value=\"6\">6</option>\r\n            <option value=\"9\">9</option>\r\n            <option value=\"12\">12</option>\r\n          </select>\r\n        </div>\r\n        <div class=\"clearfix\"></div>\r\n      </div>\r\n      <!-- //右上區塊 -->\r\n      <!-- 商品列表 -->\r\n      <ng-container *ngFor=\"let item of products;let index=index;let last=last;\">\r\n        <div class=\"col-md-4 product-men\" *ngIf=\"index >= amount * (page-1) && index < amount * page\">\r\n\r\n          <div class=\"men-pro-item simpleCart_shelfItem\">\r\n            <div class=\"men-thumb-item\">\r\n              <img [src]=\"item.photo\" alt=\"\" class=\"pro-image-front\">\r\n              <img [src]=\"item.photo\" alt=\"\" class=\"pro-image-back\">\r\n              <div class=\"men-cart-pro\">\r\n                <div class=\"inner-men-cart-pro\">\r\n                  <a [routerLink]=\"['/products/', item.id]\" class=\"link-product-add-cart\">商品資訊</a>\r\n                </div>\r\n              </div>\r\n              <span class=\"product-new-top\" *ngIf=\"item.publish_year>2017;\">New</span>\r\n\r\n            </div>\r\n            <div class=\"item-info-product \">\r\n              <h4><a [routerLink]=\"['/products/', item.id]\">{{ item.name }}</a></h4>\r\n              <div class=\"info-product-price\">\r\n                <span class=\"item_price\">${{ item.price}}</span>\r\n                <del>${{ item.price * 1.5}}</del>\r\n              </div>\r\n              <div>\r\n                <input type=\"button\" class=\"function_button\" value=\"加入購物車\" (click)=\"add_to_cart(item.id, 1)\">\r\n              </div>\r\n\r\n            </div>\r\n          </div>\r\n\r\n        </div>\r\n      </ng-container>\r\n      <!-- //商品列表 -->\r\n      <div class=\"clearfix\"></div>\r\n      <!-- 選頁 -->\r\n      <div style=\"text-align: center\">\r\n        <ul class=\"pagination pagination-lg\">\r\n          <li *ngIf=\"amount < products.length\"><a (click)=\"page=1\"><span aria-hidden=\"true\">«</span></a></li>\r\n          <li *ngIf=\"page - 1 > 0\"><a (click)=\"page=page-1\"><span aria-hidden=\"true\"><</span></a></li>\r\n          <li *ngIf=\"page - 2 > 0\"><a (click)=\"page=page-2\">{{page-2}}</a></li>\r\n          <li *ngIf=\"page - 1 > 0\"><a (click)=\"page=page-1\">{{page-1}}</a></li>\r\n          <li class=\"active\" *ngIf=\"amount < products.length\"><a>{{page}}</a></li>\r\n          <li *ngIf=\"(page + 1) * amount - products.length < amount\"><a (click)=\"page=page+1\">{{page+1}}</a></li>\r\n          <li *ngIf=\"(page + 2) * amount - products.length < amount\"><a (click)=\"page=page+2\">{{page+2}}</a></li>\r\n\r\n          <li *ngIf=\"(page + 1) * amount - products.length < amount\"><a (click)=\"page=page+1\">></a></li>\r\n          <li *ngIf=\"(page + 1) * amount - products.length < amount\"><a (click)=\"page=(products.length - products.length % amount)/amount+1\"\r\n              aria-label=\"Next\"><span aria-hidden=\"true\">»</span></a></li>\r\n        </ul>\r\n      </div>\r\n      <!-- //選頁 -->\r\n    </div>\r\n    <div class=\"clearfix\"></div>\r\n"
+module.exports = "<!-- title -->\r\n<div class=\"page-head_agile_info_w3l\">\r\n  <div class=\"container\">\r\n    <h3>Products</h3>\r\n    <div class=\"services-breadcrumb\">\r\n      <div class=\"agile_inner_breadcrumb\">\r\n\r\n        <ul class=\"w3_short\">\r\n          <li><a [routerLink]=\"['/']\">Home</a><i>|</i></li>\r\n          <li>Products</li>\r\n        </ul>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n<!-- //title -->\r\n<div class=\"banner-bootom-w3-agileits\">\r\n  <div class=\"container\">\r\n    <!-- 左欄 -->\r\n    <div class=\"col-md-4 products-left\">\r\n      <div class=\"css-treeview\">\r\n        <h4>Categories</h4>\r\n        <ul class=\"tree-list-pad\">\r\n          <li><input type=\"checkbox\" checked=\"checked\" id=\"item-0\" /><label for=\"item-0\"><i class=\"fa fa-long-arrow-right\" aria-hidden=\"true\"></i> 所有商品</label>\r\n            <ul>\r\n              <li><input type=\"checkbox\" id=\"item-0-0\"/><label for=\"item-0-0\"><i class=\"fa fa-long-arrow-right\" aria-hidden=\"true\"></i> 文學叢書</label>\r\n                <ul>\r\n                  <li><a>靈異奇幻</a></li>\r\n                </ul>\r\n              </li>\r\n\r\n            </ul>\r\n          </li>\r\n        </ul>\r\n      </div>\r\n      <div class=\"community-poll\">\r\n        <h4>Search</h4>\r\n        <div>\r\n\r\n          <table class=\"keyword_list\">\r\n            <tr>\r\n              <th>主類別</th>\r\n              <td><select [(ngModel)]=\"search.catagory\">\r\n                  <option value=\"\">請選擇主類別</option>\r\n                  <option value=\"文學叢書\">文學叢書</option>\r\n                </select></td>\r\n            </tr>\r\n            <tr>\r\n              <th>次類別</th>\r\n              <td><select [(ngModel)]=\"search.subcatagory\">\r\n                  <option value=\"\">請選擇次類別</option>\r\n                  <option value=\"文學叢書\">文學叢書</option>\r\n                </select></td>\r\n            </tr>\r\n            <tr>\r\n              <th>書名</th>\r\n              <td><input type=\"text\" placeholder=\"請輸入書名\" [(ngModel)]=\"search.title\"></td>\r\n            </tr>\r\n            <tr>\r\n              <th>作者</th>\r\n              <td><input type=\"text\" placeholder=\"請輸入作者\" [(ngModel)]=\"search.author\"></td>\r\n            </tr>\r\n            <tr>\r\n              <th>譯者</th>\r\n              <td><input type=\"text\" placeholder=\"請輸入譯者\" [(ngModel)]=\"search.interpreter\"></td>\r\n            </tr>\r\n            <tr>\r\n              <th>出版社</th>\r\n              <td><input type=\"text\" placeholder=\"請輸入出版社\" [(ngModel)]=\"search.publisher\"></td>\r\n            </tr>\r\n            <tr>\r\n              <th>ISBN</th>\r\n              <td><input type=\"text\" placeholder=\"請輸入ISBN\" [(ngModel)]=\"search.isbn\"></td>\r\n            </tr>\r\n\r\n          </table>\r\n          <div style=\"padding: 5px 0px 20px 0px; text-align: center\">\r\n            <input type=\"button\" class=\"function_button\" value=\"搜尋商品\" (click)=\"search_submit();\">\r\n          </div>\r\n\r\n        </div>\r\n      </div>\r\n      <div class=\"clearfix\"></div>\r\n    </div>\r\n    <!-- //左欄 -->\r\n    <div class=\"col-md-8 products-right\">\r\n      <!-- 右上區塊 -->\r\n      <h5>商品 <span>列表（共{{ data.meta.total }}項）</span></h5>\r\n      <div style=\"padding-top: 5%;\">\r\n        <p *ngIf=\"show.catagory !== '';\">主類別：{{show.catagory}} </p>\r\n        <p *ngIf=\"show.subcatagory !== '';\">次類別：{{show.subcatagory}} </p>\r\n        <p *ngIf=\"show.title !== '';\">書名：{{show.title}} </p>\r\n        <p *ngIf=\"show.author !== '';\">作者：{{show.author}} </p>\r\n        <p *ngIf=\"show.interpreter !== '';\">譯者：{{show.interpreter}} </p>\r\n        <p *ngIf=\"show.publisher !== '';\">出版社：{{show.publisher}} </p>\r\n        <p *ngIf=\"show.ISBN !== '';\">ISBN：{{show.ISBN}} </p>\r\n      </div>\r\n      <div class=\"sort-grid\">\r\n        <div class=\"sorting\">\r\n          <h6>Sort By</h6>\r\n          <select id=\"country1\" [(ngModel)]=\"sort\" (change)=\"ngOnInit();\" class=\"frm-field required sect\">\r\n            <option value=\"\">請選擇排序方式</option>\r\n            <option value=\"sale_price:-\">價格：由高到低</option>\r\n            <option value=\"sale_price\">價格：由低到高</option>\r\n            <option value=\"publish_year:-\">出版年份：由新到舊</option>\r\n            <option value=\"publish_year\">出版年份：由舊到新</option>\r\n          </select>\r\n          <div class=\"clearfix\"></div>\r\n        </div>\r\n        <!--排序（已完成）-->\r\n        <div class=\"sorting\">\r\n          <h6>Showing</h6>\r\n          <select id=\"amount\" [(ngModel)]=\"amount\" (change)=\"ngOnInit()\">\r\n            <option value=\"3\">3</option>\r\n            <option value=\"9\">9</option>\r\n            <option value=\"12\">15</option>\r\n            <option value=\"12\">21</option>\r\n          </select>\r\n        </div>\r\n        <!--/排序-->\r\n        <div class=\"clearfix\"></div>\r\n      </div>\r\n      <!-- //右上區塊 -->\r\n      <!-- 商品列表（完成） -->\r\n      <ng-container *ngFor=\"let item of data.data;let index=index;let last=last;\">\r\n        <div class=\"col-md-4 product-men\">\r\n\r\n          <div class=\"men-pro-item simpleCart_shelfItem\">\r\n            <div class=\"men-thumb-item\">\r\n              <img [src]=\"item.picture\" alt=\"\" class=\"pro-image-front\">\r\n              <img [src]=\"item.picture\" alt=\"\" class=\"pro-image-back\">\r\n              <div class=\"men-cart-pro\">\r\n                <div class=\"inner-men-cart-pro\">\r\n                  <a [routerLink]=\"['/products/', item.id]\" class=\"link-product-add-cart\">商品資訊</a>\r\n                </div>\r\n              </div>\r\n              <span class=\"product-new-top\" *ngIf=\"item.publish_year === year\">新品</span>\r\n              <span class=\"product-out-of-stock-top\" *ngIf=\"item.stock===0\">缺貨</span>\r\n\r\n            </div>\r\n            <div class=\"item-info-product \">\r\n              <h4><a [routerLink]=\"['/products/', item.id]\">{{ item.title }}</a></h4>\r\n              <div class=\"info-product-price\">\r\n                <span class=\"item_price\">${{ item.sale_price}}</span>\r\n                <del>${{ item.list_price}}</del>\r\n              </div>\r\n              <div>\r\n                <input type=\"button\" class=\"function_button\" value=\"加入購物車\" (click)=\"add_to_cart(item.id, 1, item.stock)\">\r\n              </div>\r\n\r\n            </div>\r\n          </div>\r\n\r\n        </div>\r\n      </ng-container>\r\n      <!-- //商品列表 -->\r\n      <div class=\"clearfix\"></div>\r\n      <!-- 選頁（完成） -->\r\n      <div style=\"text-align: center\">\r\n        <ul class=\"pagination pagination-lg\">\r\n          <li *ngIf=\"data.meta.current_page != data.meta.from\"><a (click)=\"page = data.meta.from;ngOnInit();\"><span aria-hidden=\"true\">«</span></a></li>\r\n          <li *ngIf=\"page > 1\"><a (click)=\"page=page-1;ngOnInit();\"><span aria-hidden=\"true\"><</span></a></li>\r\n          <li *ngIf=\"page > 2\"><a (click)=\"page=page-2;ngOnInit();\">{{page-2}}</a></li>\r\n          <li *ngIf=\"page > 1\"><a (click)=\"page=page-1;ngOnInit();\">{{page-1}}</a></li>\r\n          <li class=\"active\"><a>{{page}}</a></li>\r\n          <li *ngIf=\"data.meta.current_page < data.meta.last_page\"><a (click)=\"page=page+1;ngOnInit();\">{{page+1}}</a></li>\r\n          <li *ngIf=\"data.meta.current_page - data.meta.current_page > 1\"><a (click)=\"page=page+2;ngOnInit();\">{{page+2}}</a></li>\r\n\r\n          <li *ngIf=\"data.meta.current_page < data.meta.last_page\"><a (click)=\"page=page+1;ngOnInit();\">></a></li>\r\n          <li *ngIf=\"data.meta.current_page != data.meta.last_page\"><a (click)=\"page=data.meta.last_page;ngOnInit();\" aria-label=\"Next\"><span aria-hidden=\"true\">»</span></a></li>\r\n        </ul>\r\n      </div>\r\n      <!-- //選頁 -->\r\n    </div>\r\n    <div class=\"clearfix\"></div>\r\n"
 
 /***/ }),
 
@@ -1953,45 +1618,52 @@ var ProductsComponent = /** @class */ (function () {
     function ProductsComponent(productsService, cartService) {
         this.productsService = productsService;
         this.cartService = cartService;
-        this.amount = 6;
+        this.amount = 9;
         this.page = 1;
-        this.choice = 0;
-        this.keyword_list = {
-            name: '',
-            author_name: '',
+        this.year = new Date().getFullYear();
+        this.search = {
+            catagory: '',
+            subcatagory: '',
             publisher: '',
-            isbn: '',
-            classification: ''
+            title: '',
+            author: '',
+            interpreter: '',
+            ISBN: ''
         };
+        this.show = {
+            catagory: '',
+            subcatagory: '',
+            publisher: '',
+            title: '',
+            author: '',
+            interpreter: '',
+            ISBN: ''
+        };
+        this.sort = '';
+        this.data = { data: [], link: [], meta: [] };
     }
-    Object.defineProperty(ProductsComponent.prototype, "show_list", {
-        get: function () {
-            return this.productsService.show_list;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    ProductsComponent.prototype.ngOnInit = function () { };
-    Object.defineProperty(ProductsComponent.prototype, "products", {
-        get: function () {
-            return this.productsService.products;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    ProductsComponent.prototype.add_to_cart = function (id, item_amount) {
-        this.cartService.add_to_cart(id, item_amount);
+    ProductsComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.productsService
+            .getProducts(this.amount, this.page, this.sort, this.search)
+            .subscribe(function (data) {
+            _this.data = data;
+            _this.page = _this.data.meta.current_page;
+            console.log(data);
+        });
     };
-    ProductsComponent.prototype.search = function (keyword_list) {
-        this.productsService.search(keyword_list);
-        this.page = 1;
+    ProductsComponent.prototype.add_to_cart = function (id, item_amount, stock) {
+        this.cartService.add_to_cart(id, item_amount, stock);
     };
-    ProductsComponent.prototype.sort = function (choice) {
-        this.productsService.sort(choice);
-        this.page = 1;
-    };
-    ProductsComponent.prototype.origin = function () {
-        this.productsService.origin();
+    ProductsComponent.prototype.search_submit = function () {
+        this.show.catagory = this.search.catagory;
+        this.show.subcatagory = this.search.subcatagory;
+        this.show.publisher = this.search.publisher;
+        this.show.title = this.search.title;
+        this.show.author = this.search.author;
+        this.show.interpreter = this.search.interpreter;
+        this.show.ISBN = this.search.ISBN;
+        this.ngOnInit();
     };
     ProductsComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -2027,7 +1699,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- 註冊 -->\n<!-- Modal content-->\n<div class=\"modal-content\" style=\"padding: 100px\">\n  <div class=\"modal-body modal-body-sub_agile\">\n    <div class=\"col-md-8 modal_body_left modal_body_left1\">\n      <h3 class=\"agileinfo_sign\">Sign Up <span>Now</span></h3>\n      <form action=\"#\" method=\"post\">\n        <div class=\"styled-input agile-styled-input-top\">\n          <input type=\"text\" name=\"Name\" required=\"\" [(ngModel)]=\"information.name\">\n          <label>暱稱</label>\n          <span></span>\n        </div>\n        <div class=\"styled-input\">\n          <input type=\"email\" name=\"Email\" required=\"\" [(ngModel)]=\"information.email\">\n          <label>Email</label>\n          <span></span>\n        </div>\n        <div class=\"styled-input\">\n          <input type=\"password\" name=\"password\" required=\"\" [(ngModel)]=\"information.password\">\n          <label>密碼</label>\n          <span></span>\n        </div>\n        <div class=\"styled-input\">\n          <input type=\"password\" name=\"Confirm Password\" required=\"\" [(ngModel)]=\"information.confirm\">\n          <label>確認密碼</label>\n          <span></span>\n        </div>\n        <input type=\"button\" class=\"function_button\" value=\"註冊\" (click)=\"signup(information)\">\n        <ng-container *ngIf=\"information.password !== information.confirm\"> 密碼不一致</ng-container>\n      </form>\n      <ul class=\"social-nav model-3d-0 footer-social w3_agile_social top_agile_third\">\n        <li><a href=\"#\" class=\"facebook\">\n            <div class=\"front\"><i class=\"fa fa-facebook\" aria-hidden=\"true\"></i></div>\n            <div class=\"back\"><i class=\"fa fa-facebook\" aria-hidden=\"true\"></i></div>\n          </a></li>\n        <li><a href=\"#\" class=\"twitter\">\n            <div class=\"front\"><i class=\"fa fa-twitter\" aria-hidden=\"true\"></i></div>\n            <div class=\"back\"><i class=\"fa fa-twitter\" aria-hidden=\"true\"></i></div>\n          </a></li>\n        <li><a href=\"#\" class=\"instagram\">\n            <div class=\"front\"><i class=\"fa fa-instagram\" aria-hidden=\"true\"></i></div>\n            <div class=\"back\"><i class=\"fa fa-instagram\" aria-hidden=\"true\"></i></div>\n          </a></li>\n        <li><a href=\"#\" class=\"pinterest\">\n            <div class=\"front\"><i class=\"fa fa-linkedin\" aria-hidden=\"true\"></i></div>\n            <div class=\"back\"><i class=\"fa fa-linkedin\" aria-hidden=\"true\"></i></div>\n          </a></li>\n      </ul>\n      <div class=\"clearfix\"></div>\n      <p><a href=\"#\">By clicking register, I agree to your terms</a></p>\n\n    </div>\n    <div class=\"col-md-4 modal_body_right modal_body_right1\">\n      <img src=\"assets/images/log_pic.jpg\" alt=\" \" />\n    </div>\n    <div class=\"clearfix\"></div>\n  </div>\n</div>\n<!-- //Modal content-->\n<!-- //註冊 -->\n"
+module.exports = "<!-- 註冊 -->\n<!-- Modal content-->\n<div class=\"modal-content\" style=\"padding: 100px\">\n  <div class=\"modal-body modal-body-sub_agile\">\n    <div class=\"col-md-8 modal_body_left modal_body_left1\">\n      <h3 class=\"agileinfo_sign\">Sign Up <span>Now</span></h3>\n      <form action=\"#\" method=\"post\">\n        <div class=\"styled-input agile-styled-input-top\">\n          <input type=\"text\" name=\"Name\" required=\"\" [(ngModel)]=\"user.name\">\n          <label>暱稱</label>\n          <span></span>\n        </div>\n        <div class=\"styled-input\">\n          <input type=\"email\" name=\"Email\" required=\"\" [(ngModel)]=\"user.email\">\n          <label>Email</label>\n          <span></span>\n        </div>\n        <div class=\"styled-input\">\n          <input type=\"password\" name=\"password\" required=\"\" [(ngModel)]=\"user.password\">\n          <label>密碼</label>\n          <span></span>\n        </div>\n        <div class=\"styled-input\">\n          <input type=\"password\" name=\"password_confirmation\" required=\"\" [(ngModel)]=\"user.password_confirmation\">\n          <label>確認密碼</label>\n          <span></span>\n        </div>\n\n        <input type=\"button\" class=\"function_button\" value=\"註冊\" (click)=\"signup()\">\n        <ng-container *ngIf=\"user.password !== user.password_confirmation\"> 密碼不一致</ng-container>\n      </form>\n      <ul class=\"social-nav model-3d-0 footer-social w3_agile_social top_agile_third\">\n        <li><a href=\"#\" class=\"facebook\">\n            <div class=\"front\"><i class=\"fa fa-facebook\" aria-hidden=\"true\"></i></div>\n            <div class=\"back\"><i class=\"fa fa-facebook\" aria-hidden=\"true\"></i></div>\n          </a></li>\n        <li><a href=\"#\" class=\"twitter\">\n            <div class=\"front\"><i class=\"fa fa-twitter\" aria-hidden=\"true\"></i></div>\n            <div class=\"back\"><i class=\"fa fa-twitter\" aria-hidden=\"true\"></i></div>\n          </a></li>\n        <li><a href=\"#\" class=\"instagram\">\n            <div class=\"front\"><i class=\"fa fa-instagram\" aria-hidden=\"true\"></i></div>\n            <div class=\"back\"><i class=\"fa fa-instagram\" aria-hidden=\"true\"></i></div>\n          </a></li>\n        <li><a href=\"#\" class=\"pinterest\">\n            <div class=\"front\"><i class=\"fa fa-linkedin\" aria-hidden=\"true\"></i></div>\n            <div class=\"back\"><i class=\"fa fa-linkedin\" aria-hidden=\"true\"></i></div>\n          </a></li>\n      </ul>\n      <div class=\"clearfix\"></div>\n      <p><a href=\"#\">By clicking register, I agree to your terms</a></p>\n\n    </div>\n    <div class=\"col-md-4 modal_body_right modal_body_right1\">\n      <img src=\"assets/images/log_pic.jpg\" alt=\" \" />\n    </div>\n    <div class=\"clearfix\"></div>\n  </div>\n</div>\n<!-- //Modal content-->\n<!-- //註冊 -->\n"
 
 /***/ }),
 
@@ -2042,7 +1714,8 @@ module.exports = "<!-- 註冊 -->\n<!-- Modal content-->\n<div class=\"modal-con
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SignupComponent", function() { return SignupComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _member_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../member.service */ "./src/app/member.service.ts");
+/* harmony import */ var _users_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../users.service */ "./src/app/users.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2054,19 +1727,49 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
 var SignupComponent = /** @class */ (function () {
-    function SignupComponent(memberservice) {
-        this.memberservice = memberservice;
-        this.information = {
+    function SignupComponent(usersService, router) {
+        this.usersService = usersService;
+        this.router = router;
+        this.user = {
             name: '',
             email: '',
             password: '',
-            confirm: ''
+            password_confirmation: ''
         };
     }
     SignupComponent.prototype.ngOnInit = function () { };
-    SignupComponent.prototype.signup = function (information) {
-        return this.memberservice.signup(this.information);
+    SignupComponent.prototype.signup = function () {
+        var _this = this;
+        var x = 0;
+        for (var key in this.user) {
+            if (this.user[key] === '') {
+                x++;
+            }
+        }
+        if (x > 0) {
+            alert('請勿留白');
+        }
+        else {
+            if (this.user.password !== this.user.password_confirmation) {
+                alert('密碼不一致');
+            }
+            else {
+                this.usersService.register(this.user).subscribe(function (data) {
+                    console.log(data);
+                    if (data.success) {
+                        alert('註冊成功');
+                        _this.router.navigate(['/']);
+                    }
+                    else {
+                        alert('註冊失敗');
+                    }
+                }, function (response) {
+                    console.log(response);
+                });
+            }
+        }
     };
     SignupComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -2074,9 +1777,72 @@ var SignupComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./signup.component.html */ "./src/app/signup/signup.component.html"),
             styles: [__webpack_require__(/*! ./signup.component.css */ "./src/app/signup/signup.component.css")]
         }),
-        __metadata("design:paramtypes", [_member_service__WEBPACK_IMPORTED_MODULE_1__["MemberService"]])
+        __metadata("design:paramtypes", [_users_service__WEBPACK_IMPORTED_MODULE_1__["UsersService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
     ], SignupComponent);
     return SignupComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/users.service.ts":
+/*!**********************************!*\
+  !*** ./src/app/users.service.ts ***!
+  \**********************************/
+/*! exports provided: UsersService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UsersService", function() { return UsersService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var UsersService = /** @class */ (function () {
+    function UsersService(httpClient) {
+        this.httpClient = httpClient;
+        this.token = '';
+        this.amount = 1;
+        this.now = new Date();
+    }
+    UsersService.prototype.register = function (user) {
+        return this.httpClient.post('http://host.limaois.me:1723/api/register', user);
+    };
+    UsersService.prototype.login = function (user) {
+        return this.httpClient.post('http://host.limaois.me:1723/api/login', user);
+    };
+    UsersService.prototype.getUser = function () {
+        return this.httpClient.get('http://host.limaois.me:1723/api/register');
+    };
+    UsersService.prototype.refresh = function () {
+        if (this.now.getMinutes[1] === 0) {
+            return this.httpClient.get('http://host.limaois.me:1723/api/refresh');
+        }
+    };
+    UsersService.prototype.isLogin = function () {
+        return localStorage.getItem('token');
+    };
+    UsersService.prototype.logout = function () {
+        return localStorage.removeItem('token');
+    };
+    UsersService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
+    ], UsersService);
+    return UsersService;
 }());
 
 
@@ -2144,7 +1910,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\Aya\FrontEnd\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! D:\Aya\全端\FrontEnd\src\main.ts */"./src/main.ts");
 
 
 /***/ })
