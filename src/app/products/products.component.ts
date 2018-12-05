@@ -35,6 +35,7 @@ export class ProductsComponent implements OnInit {
   };
   sort = '';
   catagories: any = [];
+  subcatagories: any = [];
   data: any = { data: [], link: [], meta: [] };
   ngOnInit() {
     this.productsService.getCatagories().subscribe(data => {
@@ -61,5 +62,11 @@ export class ProductsComponent implements OnInit {
     this.show.interpreter = this.search.interpreter;
     this.show.ISBN = this.search.ISBN;
     this.ngOnInit();
+  }
+  getSubcatagories(catagory) {
+    this.productsService.getSubcatagories(catagory).subscribe(data => {
+      this.subcatagories = data;
+      console.log(data);
+    });
   }
 }

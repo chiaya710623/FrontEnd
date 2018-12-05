@@ -4,7 +4,6 @@
     <h3>Products</h3>
     <div class="services-breadcrumb">
       <div class="agile_inner_breadcrumb">
-
         <ul class="w3_short">
           <li><a [routerLink]="['/']">Home</a><i>|</i></li>
           <li>Products</li>
@@ -21,30 +20,52 @@
       <div class="css-treeview">
         <h4>Categories</h4>
         <ul class="tree-list-pad">
-          <li><input type="checkbox" checked="checked" id="item-0" /><label for="item-0"><i class="fa fa-long-arrow-right" aria-hidden="true"></i> 所有商品</label>
+          <li>
+            <input type="checkbox" checked="checked" id="item-0" /><label
+              for="item-0"
+              ><i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+              所有商品</label
+            >
             <ul *ngFor="let catagory of catagories">
-              <li><input type="checkbox" id="item-0-0"/><label for="item-0-0"><a (click)="search = {
-                catagory: catagory.name,
-                subcatagory: '',
-                publisher: '',
-                title: '',
-                author: '',
-                interpreter: '',
-                ISBN: ''
-              };ngOnInit();"><i class="fa fa-long-arrow-right" aria-hidden="true"></i> {{ catagory?.name }}}</a></label>
+              <li>
+                <input type="checkbox" id="item-0-0" /><label for="item-0-0"
+                  ><a
+                    (click)="
+                      search = {
+                        catagory: catagory.name,
+                        subcatagory: '',
+                        publisher: '',
+                        title: '',
+                        author: '',
+                        interpreter: '',
+                        ISBN: ''
+                      };
+                      ngOnInit()
+                    "
+                    ><i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                    {{ catagory?.name }}}</a
+                  ></label
+                >
                 <ul *ngFor="let subcatagory of catagory.subcatagory">
-                  <li><a (click)="search = {
-                    catagory: catagory.name,
-                    subcatagory: subcatagory.name,
-                    publisher: '',
-                    title: '',
-                    author: '',
-                    interpreter: '',
-                    ISBN: ''
-                  };ngOnInit();">{{ subcatagory?.name }}</a></li>
+                  <li>
+                    <a
+                      (click)="
+                        search = {
+                          catagory: catagory.name,
+                          subcatagory: subcatagory.name,
+                          publisher: '',
+                          title: '',
+                          author: '',
+                          interpreter: '',
+                          ISBN: ''
+                        };
+                        ngOnInit()
+                      "
+                      >{{ subcatagory?.name }}</a
+                    >
+                  </li>
                 </ul>
               </li>
-
             </ul>
           </li>
         </ul>
@@ -52,48 +73,94 @@
       <div class="community-poll">
         <h4>Search</h4>
         <div>
-
           <table class="keyword_list">
             <tr>
               <th>主類別</th>
-              <td><select [(ngModel)]="search.catagory">
+              <td>
+                <select [(ngModel)]="search.catagory" (change)="getSubcatagories(search.catagory);">
                   <option value="">請選擇主類別</option>
-                  <option value="文學叢書">文學叢書</option>
-                </select></td>
+                  <ng-container *ngFor="let catagory of catagories" >
+                  <option value="catagory.name">{{catagory.name}}</option>
+                </ng-container>
+                </select>
+              </td>
             </tr>
             <tr>
               <th>次類別</th>
-              <td><select [(ngModel)]="search.subcatagory">
+              <td>
+                <select [(ngModel)]="search.subcatagory">
+                  <ng-container *ngIf="subcatagories !== []; else elseTag;">
                   <option value="">請選擇次類別</option>
-                  <option value="文學叢書">文學叢書</option>
-                </select></td>
+                  <ng-container *ngFor="let subcatagory of subcatagories" >
+                  <option value="subcatagory.name">{{ subcatagory?.name }}</option>
+                </ng-container>
+              </ng-container>
+              <ng-template #elseTag>
+                  <option value="">該類別沒有次類別</option>
+              </ng-template>
+                </select>
+              </td>
             </tr>
             <tr>
               <th>書名</th>
-              <td><input type="text" placeholder="請輸入書名" [(ngModel)]="search.title"></td>
+              <td>
+                <input
+                  type="text"
+                  placeholder="請輸入書名"
+                  [(ngModel)]="search.title"
+                />
+              </td>
             </tr>
             <tr>
               <th>作者</th>
-              <td><input type="text" placeholder="請輸入作者" [(ngModel)]="search.author"></td>
+              <td>
+                <input
+                  type="text"
+                  placeholder="請輸入作者"
+                  [(ngModel)]="search.author"
+                />
+              </td>
             </tr>
             <tr>
               <th>譯者</th>
-              <td><input type="text" placeholder="請輸入譯者" [(ngModel)]="search.interpreter"></td>
+              <td>
+                <input
+                  type="text"
+                  placeholder="請輸入譯者"
+                  [(ngModel)]="search.interpreter"
+                />
+              </td>
             </tr>
             <tr>
               <th>出版社</th>
-              <td><input type="text" placeholder="請輸入出版社" [(ngModel)]="search.publisher"></td>
+              <td>
+                <input
+                  type="text"
+                  placeholder="請輸入出版社"
+                  [(ngModel)]="search.publisher"
+                />
+              </td>
             </tr>
             <tr>
               <th>ISBN</th>
-              <td><input type="text" placeholder="請輸入ISBN" [(ngModel)]="search.isbn"></td>
+              <td>
+                <input
+                  type="text"
+                  placeholder="請輸入ISBN"
+                  [(ngModel)]="search.isbn"
+                />
+              </td>
             </tr>
-
           </table>
-          <div style="padding: 5px 0px 20px 0px; text-align: center">
-            <input type="button" class="function_button" value="搜尋商品" (click)="search_submit();">
-          </div>
 
+          <div style="padding: 5px 0px 20px 0px; text-align: center">
+            <input
+              type="button"
+              class="function_button"
+              value="搜尋商品"
+              (click)="search_submit()"
+            />
+          </div>
         </div>
       </div>
       <div class="clearfix"></div>
@@ -101,20 +168,27 @@
     <!-- //左欄 -->
     <div class="col-md-8 products-right">
       <!-- 右上區塊 -->
-      <h5>商品 <span>列表（共{{ data.meta.total }}項）</span></h5>
+      <h5>
+        商品 <span>列表（共{{ data.meta.total }}項）</span>
+      </h5>
       <div style="padding-top: 5%;">
-        <p *ngIf="show.catagory !== '';">主類別：{{show.catagory}} </p>
-        <p *ngIf="show.subcatagory !== '';">次類別：{{show.subcatagory}} </p>
-        <p *ngIf="show.title !== '';">書名：{{show.title}} </p>
-        <p *ngIf="show.author !== '';">作者：{{show.author}} </p>
-        <p *ngIf="show.interpreter !== '';">譯者：{{show.interpreter}} </p>
-        <p *ngIf="show.publisher !== '';">出版社：{{show.publisher}} </p>
-        <p *ngIf="show.ISBN !== '';">ISBN：{{show.ISBN}} </p>
+        <p *ngIf="show.catagory !== ''">主類別：{{ show.catagory }}</p>
+        <p *ngIf="show.subcatagory !== ''">次類別：{{ show.subcatagory }}</p>
+        <p *ngIf="show.title !== ''">書名：{{ show.title }}</p>
+        <p *ngIf="show.author !== ''">作者：{{ show.author }}</p>
+        <p *ngIf="show.interpreter !== ''">譯者：{{ show.interpreter }}</p>
+        <p *ngIf="show.publisher !== ''">出版社：{{ show.publisher }}</p>
+        <p *ngIf="show.ISBN !== ''">ISBN：{{ show.ISBN }}</p>
       </div>
       <div class="sort-grid">
         <div class="sorting">
           <h6>Sort By</h6>
-          <select id="country1" [(ngModel)]="sort" (change)="ngOnInit();" class="frm-field required sect">
+          <select
+            id="country1"
+            [(ngModel)]="sort"
+            (change)="ngOnInit()"
+            class="frm-field required sect"
+          >
             <option value="">請選擇排序方式</option>
             <option value="sale_price:-">價格：由高到低</option>
             <option value="sale_price">價格：由低到高</option>
@@ -123,69 +197,110 @@
           </select>
           <div class="clearfix"></div>
         </div>
-        <!--排序（已完成）-->
+        <!-- 排序（已完成） -->
         <div class="sorting">
           <h6>Showing</h6>
-          <select id="amount" [(ngModel)]="amount" (change)="ngOnInit();">
+          <select id="amount" [(ngModel)]="amount" (change)="ngOnInit()">
             <option value="3">3</option>
             <option value="9">9</option>
             <option value="12">15</option>
             <option value="12">21</option>
           </select>
         </div>
-        <!--/排序-->
+        <!-- /排序 -->
         <div class="clearfix"></div>
       </div>
       <!-- //右上區塊 -->
       <!-- 商品列表（完成） -->
-      <ng-container *ngFor="let item of data.data;let index=index;let last=last;">
+      <ng-container
+        *ngFor="let item of data.data; let index = index; let last = last"
+      >
         <div class="col-md-4 product-men">
-
           <div class="men-pro-item simpleCart_shelfItem">
             <div class="men-thumb-item">
-              <img [src]="item.picture" alt="" class="pro-image-front">
-              <img [src]="item.picture" alt="" class="pro-image-back">
+              <img [src]="item.picture" alt="" class="pro-image-front" />
+              <img [src]="item.picture" alt="" class="pro-image-back" />
               <div class="men-cart-pro">
                 <div class="inner-men-cart-pro">
-                  <a [routerLink]="['/products/', item.id]" class="link-product-add-cart">商品資訊</a>
+                  <a
+                    [routerLink]="['/products/', item.id]"
+                    class="link-product-add-cart"
+                    >商品資訊</a
+                  >
                 </div>
               </div>
-              <span class="product-new-top" *ngIf="item.publish_year === year">新品</span>
-              <span class="product-out-of-stock-top" *ngIf="item.stock===0">缺貨</span>
-
+              <span class="product-new-top" *ngIf="item.publish_year === year"
+                >新品</span
+              >
+              <span class="product-out-of-stock-top" *ngIf="item.stock === 0"
+                >缺貨</span
+              >
             </div>
             <div class="item-info-product ">
-              <h4><a [routerLink]="['/products/', item.id]">{{ item.title }}</a></h4>
+              <h4>
+                <a [routerLink]="['/products/', item.id]">{{ item.title }}</a>
+              </h4>
               <div class="info-product-price">
-                <span class="item_price">${{ item.sale_price}}</span>
-                <del>${{ item.list_price}}</del>
+                <span class="item_price">${{ item.sale_price }}</span>
+                <del>${{ item.list_price }}</del>
               </div>
               <div>
-                <input type="button" class="function_button" value="加入購物車" (click)="add_to_cart(item.id, 1, item.stock)">
+                <input
+                  type="button"
+                  class="function_button"
+                  value="加入購物車"
+                  (click)="add_to_cart(item.id, 1, item.stock)"
+                />
               </div>
-
             </div>
           </div>
-
         </div>
-      </ng-container>
+      </ng-complate>
       <!-- //商品列表 -->
       <div class="clearfix"></div>
       <!-- 選頁（完成） -->
       <div style="text-align: center">
         <ul class="pagination pagination-lg">
-          <li *ngIf="data.meta.current_page != data.meta.from"><a (click)="page = data.meta.from;ngOnInit();"><span aria-hidden="true">«</span></a></li>
-          <li *ngIf="page > 1"><a (click)="page=page-1;ngOnInit();"><span aria-hidden="true"><</span></a></li>
-          <li *ngIf="page > 2"><a (click)="page=page-2;ngOnInit();">{{page-2}}</a></li>
-          <li *ngIf="page > 1"><a (click)="page=page-1;ngOnInit();">{{page-1}}</a></li>
-          <li class="active"><a>{{page}}</a></li>
-          <li *ngIf="data.meta.current_page < data.meta.last_page"><a (click)="page=page+1;ngOnInit();">{{page+1}}</a></li>
-          <li *ngIf="data.meta.current_page - data.meta.current_page > 1"><a (click)="page=page+2;ngOnInit();">{{page+2}}</a></li>
+          <li *ngIf="data.meta.current_page != data.meta.from">
+            <a (click)="page = data.meta.from; ngOnInit()"
+              ><span aria-hidden="true">«</span></a
+            >
+          </li>
+          <li *ngIf="page > 1">
+            <a (click)="page = page - 1; ngOnInit()"
+              ><span aria-hidden="true"><</span></a
+            >
+          </li>
+          <li *ngIf="page > 2">
+            <a (click)="page = page - 2; ngOnInit()">{{ page - 2 }}</a>
+          </li>
+          <li *ngIf="page > 1">
+            <a (click)="page = page - 1; ngOnInit()">{{ page - 1 }}</a>
+          </li>
+          <li class="active">
+            <a>{{ page }}</a>
+          </li>
+          <li *ngIf="data.meta.current_page < data.meta.last_page">
+            <a (click)="page = page + 1; ngOnInit()">{{ page + 1 }}</a>
+          </li>
+          <li *ngIf="data.meta.current_page - data.meta.current_page > 1">
+            <a (click)="page = page + 2; ngOnInit()">{{ page + 2 }}</a>
+          </li>
 
-          <li *ngIf="data.meta.current_page < data.meta.last_page"><a (click)="page=page+1;ngOnInit();">></a></li>
-          <li *ngIf="data.meta.current_page != data.meta.last_page"><a (click)="page=data.meta.last_page;ngOnInit();" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+          <li *ngIf="data.meta.current_page < data.meta.last_page">
+            <a (click)="page = page + 1; ngOnInit()">></a>
+          </li>
+          <li *ngIf="data.meta.current_page != data.meta.last_page">
+            <a
+              (click)="page = data.meta.last_page; ngOnInit()"
+              aria-label="Next"
+              ><span aria-hidden="true">»</span></a
+            >
+          </li>
         </ul>
       </div>
       <!-- //選頁 -->
     </div>
     <div class="clearfix"></div>
+  </div>
+</div>

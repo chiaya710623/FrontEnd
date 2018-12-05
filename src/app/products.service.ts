@@ -35,4 +35,7 @@ export class ProductsService {
   getCatagories() {
     return this.httpClient.get(`${environment.api}api/catagories/`);
   }
+  getSubcatagories(catagory) {
+    return this.httpClient.get(`${environment.api}api/catagories/${catagory}`);
+  }
 }
