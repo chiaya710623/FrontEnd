@@ -7,13 +7,12 @@ import { UsersService } from './users.service';
   providedIn: 'root'
 })
 export class CartService {
-
   constructor(
     private httpClient: HttpClient,
     private usersService: UsersService
   ) {}
 
-  cart = [];
+  cart: any = [];
   list_amount = 0;
   add_to_cart(id, item_amount, stock) {
     if (stock !== 0) {
@@ -39,17 +38,18 @@ export class CartService {
     if (this.usersService.isLogin()) {
       this.postCart(this.cart);
     }
+    console.log(this.cart);
   }
 
   delete_item(index) {
     this.cart.splice(index, index + 1);
     this.list_amount--;
+    console.log(this.cart);
   }
-
 
   getCart() {
     if (this.usersService.isLogin()) {
-      return this.httpClient.get(`http://host.limaois.me:1723/api/orders`, {
+      return this.httpClient.get(`http://host.limaois.me:1723/api/orders/cart`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`
         }
@@ -59,7 +59,7 @@ export class CartService {
   postCart(cart) {
     if (this.usersService.isLogin()) {
       return this.httpClient.post(
-        `http://host.limaois.me:1723/api/orders?products=${JSON.stringify(
+        `http://host.limaois.me:1723/api/orders/cart?products=${JSON.stringify(
           cart
         )}`,
         {

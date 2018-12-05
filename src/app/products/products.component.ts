@@ -41,6 +41,7 @@ export class ProductsComponent implements OnInit {
       .subscribe(data => {
         this.data = data;
         this.page = this.data.meta.current_page;
+        console.log(data);
       });
   }
   add_to_cart(id, item_amount, stock) {

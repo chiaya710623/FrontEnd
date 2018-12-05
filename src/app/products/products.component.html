@@ -101,9 +101,9 @@
           <select id="country1" [(ngModel)]="sort" (change)="ngOnInit();" class="frm-field required sect">
             <option value="">請選擇排序方式</option>
             <option value="sale_price:-">價格：由高到低</option>
-            <option value="sale_price:+">價格：由低到高</option>
+            <option value="sale_price">價格：由低到高</option>
             <option value="publish_year:-">出版年份：由新到舊</option>
-            <option value="publish_year:+">出版年份：由舊到新</option>
+            <option value="publish_year">出版年份：由舊到新</option>
           </select>
           <div class="clearfix"></div>
         </div>
@@ -127,8 +127,8 @@
 
           <div class="men-pro-item simpleCart_shelfItem">
             <div class="men-thumb-item">
-              <img [src]="" alt="" class="pro-image-front">
-              <img [src]="" alt="" class="pro-image-back">
+              <img [src]="item.picture" alt="" class="pro-image-front">
+              <img [src]="item.picture" alt="" class="pro-image-back">
               <div class="men-cart-pro">
                 <div class="inner-men-cart-pro">
                   <a [routerLink]="['/products/', item.id]" class="link-product-add-cart">商品資訊</a>

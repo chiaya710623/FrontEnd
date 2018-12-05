@@ -73,7 +73,7 @@
 
 
     <ng-container *ngFor="let item of data.data; let index=index;">
-      <div class="col-md-3 product-men" *ngIf="item.stock > 0;">
+      <div class="col-md-3 product-men" *ngIf="item.stock > 0 && item.publish_year> 1800">
         <div class="men-pro-item simpleCart_shelfItem">
           <div class="men-thumb-item">
             <img [src]="item.picture" alt="" class="pro-image-front">

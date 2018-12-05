@@ -8,7 +8,6 @@ import { CartService } from './cart.service';
 })
 export class UsersService {
   constructor(
-    private router: Router,
     private httpClient: HttpClient
   ) {}
   token = '';

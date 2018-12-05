@@ -17,47 +17,52 @@ export class HeaderComponent implements OnInit {
     private router: Router,
     private httpClient: HttpClient
   ) {}
-  cart = [];
   show_cart = [];
-  list_amount = 0;
   ngOnInit() {
     if (this.usersService.isLogin()) {
       this.cartService.getCart().subscribe((data: any) => {
-        this.cart = data.data;
+        this.cartService.cart = data.data;
       });
     }
-    if (this.cart === []) {
-      alert('購物車內沒有商品');
-    } else {
+    this.show_cart = [];
+    if (this.list_amount !== 0) {
       for (let i = 0; i < this.cart.length; i++) {
         this.productsService
           .getProduct(this.cart[i].id)
           .subscribe((data: any) => {
-            console.log(this.cart[i].id);
-            this.show_cart[i].id = this.cart[i].id;
-            this.show_cart[i].item_amount = this.cart[i].item_amount;
-            this.show_cart[i].product = data.data;
+            this.show_cart[i] = {
+              id: this.cart[i].id,
+              item_amount: this.cart[i].item_amount,
+              product: data
+            };
           });
       }
+
+      console.log('cart', this.cart);
+      console.log('show_cart', this.show_cart);
     }
-    console.log(this.cart);
-    console.log(this.show_cart);
   }
 
   logout() {
     this.usersService.logout();
     alert('已登出');
+    this.cartService.cart = [];
     this.router.navigate(['/']);
   }
 
   delete_item(index) {
-    this.cart.splice(index, index + 1);
-    this.list_amount--;
-    this.cartService.cart = this.cart;
-    this.cartService.list_amount = this.list_amount;
+    this.cartService.delete_item(index);
     if (this.usersService.isLogin()) {
       this.cartService.postCart(this.cart);
     }
+  }
+
+  get cart() {
+    return this.cartService.cart;
+  }
+
+  get list_amount() {
+    return this.cartService.list_amount;
   }
 
   checkout() {
