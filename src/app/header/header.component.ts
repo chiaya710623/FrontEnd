@@ -26,9 +26,11 @@ export class HeaderComponent implements OnInit {
     });
     if (this.usersService.isLogin()) {
       this.cartService.getCart().subscribe((data: any) => {
-        this.cartService.cart = data.data;
-        if (data.data) {
+        if (data.data !== []) {
+          this.cartService.cart = data.data;
           this.cartService.list_amount = data.data.length;
+        } else {
+          this.cartService.postCart(this.cart);
         }
       });
     } else {
@@ -104,5 +106,11 @@ export class HeaderComponent implements OnInit {
         .navigateByUrl('/reload', { skipLocationChange: true })
         .then(() => this.router.navigate(['/products', item.id]));
     }
+  }
+
+  reload(url) {
+    this.router
+      .navigateByUrl('/reload', { skipLocationChange: true })
+      .then(() => this.router.navigate([url]));
   }
 }

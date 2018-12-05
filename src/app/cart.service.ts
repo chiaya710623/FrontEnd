@@ -58,7 +58,6 @@ export class CartService {
   }
 
   getCart() {
-    if (this.usersService.isLogin()) {
       return this.httpClient.get(
         `${environment.api}orders/cart`,
         {
@@ -67,7 +66,6 @@ export class CartService {
           }
         }
       );
-    }
   }
   postCart(cart) {
     if (this.usersService.isLogin()) {

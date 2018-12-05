@@ -24,16 +24,16 @@ export class UsersService {
   }
 
   refresh() {
-    this.httpClient
-      .get(`${environment.api}refresh`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`
-        }
-      })
-      .subscribe((data: any) => {
-        console.log(data);
-        localStorage.setItem('token', data.token);
-      });
+  //   this.httpClient
+  //     .get(`${environment.api}refresh`, {
+  //       headers: {
+  //         Authorization: `Bearer ${localStorage.getItem('token')}`
+  //       }
+  //     })
+  //     .subscribe((data: any) => {
+  //       console.log(data);
+  //       localStorage.setItem('token', data.token);
+  //     });
   }
 
   isLogin() {

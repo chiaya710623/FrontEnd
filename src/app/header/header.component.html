@@ -84,7 +84,6 @@
                 <a
                   class="menu__link"
                   [routerLink]="['/']"
-                  (click)="this.usersService.refresh()"
                   >Home</a
                 >
               </li>
@@ -92,7 +91,6 @@
                 <a
                   class="menu__link"
                   [routerLink]="['/about']"
-                  (click)="this.usersService.refresh()"
                   >About</a
                 >
               </li>
@@ -110,7 +108,18 @@
                   <div class="agile_inner_drop_nav_info classification_font">
                     <div class="col-sm-3 multi-gd-img1 multi-gd-text ">
                       <a [routerLink]="['/products']">
-                        <p><img src="assets/images/top2.jpg" alt=" " /></p>
+                        <p><img src="assets/images/top2.jpg" alt=" " (click)="
+                          this.productsService.search = {
+                            category: '',
+                            subcategory: '',
+                            publisher: '',
+                            title: '',
+                            author: '',
+                            interpreter: '',
+                            ISBN: ''
+                          };
+                          reload('/products');
+                        "/></p>
                       </a>
                     </div>
                     <div class="col-sm-9 multi-gd-img">
@@ -121,7 +130,7 @@
                               [routerLink]="['/products']"
                               (click)="
                                 this.productsService.search = {
-                                  category: category.name,
+                                  category: category.id,
                                   subcategory: '',
                                   publisher: '',
                                   title: '',
@@ -129,7 +138,7 @@
                                   interpreter: '',
                                   ISBN: ''
                                 };
-                                this.usersService.refresh();
+                                reload('/products');
                               "
                               >{{ category?.name
                               }}<span *ngIf="category.subcategory">：</span></a
@@ -141,15 +150,15 @@
                               <a
                                 (click)="
                                   this.productsService.search = {
-                                    category: category.name,
-                                    subcategory: subcategory.name,
+                                    category: category.id,
+                                    subcategory: subcategory.id,
                                     publisher: '',
                                     title: '',
                                     author: '',
                                     interpreter: '',
                                     ISBN: ''
                                   };
-                                  this.usersService.refresh();
+                                  reload('/products');
                                 "
                                 >{{ subcategory?.name }}
                               </a>

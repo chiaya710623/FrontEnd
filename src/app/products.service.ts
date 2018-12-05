@@ -8,6 +8,15 @@ import { environment } from 'src/environments/environment';
 export class ProductsService {
   constructor(private httpClient: HttpClient) {}
   year = new Date().getFullYear();
+  search = {
+    category: '',
+    subcategory: '',
+    publisher: '',
+    title: '',
+    author: '',
+    interpreter: '',
+    ISBN: ''
+  };
   getNewProducts() {
     return this.httpClient.get(
       `${environment.api}products?publish_year=${this.year}`

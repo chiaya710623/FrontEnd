@@ -24,7 +24,7 @@
             <input type="checkbox" checked="checked" id="" /><label
               for="item-0"
               (click)="
-                search = {
+                this.productsService.search = {
                   category: '',
                   subcategory: '',
                   publisher: '',
@@ -49,7 +49,7 @@
                     for="item-0-0"
                     ><a
                       (click)="
-                        search = {
+                        this.productsService.search = {
                           category: category.id,
                           subcategory: '',
                           publisher: '',
@@ -70,9 +70,8 @@
                       *ngFor="let subcategory of category.subcategory"
                     >
                       <li>
-                        <a
-                          (click)="
-                            search = {
+                        <a (click)="
+                            this.productsService.search = {
                               category: category.id,
                               subcategory: subcategory.id,
                               publisher: '',
@@ -103,8 +102,8 @@
               <th>主類別</th>
               <td>
                 <select
-                  [(ngModel)]="search.category"
-                  (change)="search.subcategory='';getSubcategories(search.category);"
+                  [(ngModel)]="this.productsService.search.category"
+                  (change)="this.productsService.search.subcategory='';getSubcategories(search.category);"
                 >
                   -->
                   <option value="">請選擇主類別</option>
@@ -120,7 +119,7 @@
             <tr>
               <th>次類別</th>
               <td>
-                <select [(ngModel)]="search.subcategory">
+                <select [(ngModel)]="this.productsService.search.subcategory">
                   <ng-container *ngIf="subcategories !== []; else: elseTag">
                     <option value="">請選擇次類別</option>
 
@@ -140,7 +139,7 @@
                 <input
                   type="text"
                   placeholder="請輸入書名"
-                  [(ngModel)]="search.title"
+                  [(ngModel)]="this.productsService.search.title"
                 />
               </td>
             </tr>
@@ -150,7 +149,7 @@
                 <input
                   type="text"
                   placeholder="請輸入作者"
-                  [(ngModel)]="search.author"
+                  [(ngModel)]="this.productsService.search.author"
                 />
               </td>
             </tr>
@@ -160,7 +159,7 @@
                 <input
                   type="text"
                   placeholder="請輸入譯者"
-                  [(ngModel)]="search.interpreter"
+                  [(ngModel)]="this.productsService.search.interpreter"
                 />
               </td>
             </tr>
@@ -170,7 +169,7 @@
                 <input
                   type="text"
                   placeholder="請輸入出版社"
-                  [(ngModel)]="search.publisher"
+                  [(ngModel)]="this.productsService.search.publisher"
                 />
               </td>
             </tr>
@@ -180,7 +179,7 @@
                 <input
                   type="text"
                   placeholder="請輸入ISBN"
-                  [(ngModel)]="search.ISBN"
+                  [(ngModel)]="this.productsService.search.ISBN"
                 />
               </td>
             </tr>
