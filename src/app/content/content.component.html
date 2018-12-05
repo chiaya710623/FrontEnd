@@ -20,21 +20,13 @@
     <div class="col-md-4 single-right-left ">
       <div class="grid assets/images_3_of_2">
         <div class="flexslider">
-
-          <ul class="slides">
-            <li data-thumb="assets/images/d2.jpg">
-              <div class="thumb-image"> <img src="assets/images/d2.jpg" data-imagezoom="true" class="img-responsive">
-              </div>
-            </li>
-            <li data-thumb="assets/images/d1.jpg">
-              <div class="thumb-image"> <img src="assets/images/d1.jpg" data-imagezoom="true" class="img-responsive">
-              </div>
-            </li>
-            <li data-thumb="assets/images/d3.jpg">
-              <div class="thumb-image"> <img src="assets/images/d3.jpg" data-imagezoom="true" class="img-responsive">
-              </div>
-            </li>
-          </ul>
+          <div class="thumb-image">
+            <img
+              [src]="product?.picture"
+              data-imagezoom="true"
+              class="img-responsive"
+            />
+          </div>
           <div class="clearfix"></div>
         </div>
       </div>
@@ -42,103 +34,128 @@
     <!-- //商品圖片 -->
     <!-- 基本資料 -->
     <div class="col-md-8 single-right-left simpleCart_shelfItem">
-      <h3>{{ product.title }}</h3>
-      <p><span class="item_price">${{ product.sale_price }}</span> <del>- ${{ product.list_price }}</del></p>
+      <h3>{{ product.title }}<span style="font-size: 70%;color:black;">－－{{ product.subtitle }}</span></h3>
+      <p>
+        <span class="item_price">${{ product.sale_price }}</span>
+        <del>- ${{ product.list_price }}</del>
+      </p>
       <div style="padding: 0px 0px 0px 18px">
         <ul>
           <li>作者：{{ product.author }}</li>
-          <li>譯者：{{ product.translator }}</li>
+          <li>譯者：{{ product.interpreter }}</li>
           <li>出版社：{{ product.publisher }}</li>
-          <li>出版年：{{ product.publish_year }}</li>
+          <li>出版年份：{{ product.publish_year }}</li>
           <li>ISBN：{{ product.ISBN }}</li>
-
         </ul>
       </div>
 
       <form action="">
-
         <div class="description">
-          <ul><li>庫存：{{ product.stock }}</li>
-          <li>選擇商品數量：<select name="amount" [(ngModel)]="item_amount">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option></select></li>
+          <ul>
+            <li>庫存：{{ product.stock }}</li>
+            <li>
+              選擇商品數量：<select name="amount" [(ngModel)]="item_amount">
+                <option
+                  *ngFor="let x of stock_range(product.stock)"
+                  [value]="x"
+                  >{{ x }}</option
+                >
+              </select>
+            </li>
           </ul>
         </div>
-        <input type="button" class="function_button" value="加入購物車" (click)="add_to_cart(id, item_amount, product.stock)">
+        <input
+          type="button"
+          class="function_button"
+          value="加入購物車"
+          (click)="add_to_cart(id, item_amount, product.stock)"
+        />
       </form>
-
     </div>
     <!-- //基本資料 -->
-    <div class="clearfix"> </div>
-    <!--詳細資訊-->
+    <div class="clearfix"></div>
+    <!-- 詳細資訊 -->
     <div class="responsive_tabs_agileits">
       <div id="horizontalTab">
         <ul class="resp-tabs-list">
           <li>內容介紹</li>
           <li>作者介紹</li>
-          <li>書籍評價</li>
+          <!-- <li>書籍評價</li> -->
         </ul>
         <div class="resp-tabs-container">
-          <!--書籍介紹-->
+          <!-- 書籍介紹 -->
           <div class="tab1">
-
             <div class="single_page_agile_its_w3ls">
               <h6>書籍介紹</h6>
               <p class="w3ls_para">{{ product.description }}</p>
             </div>
           </div>
-          <!--//書籍介紹-->
-          <!--作者介紹 -->
+          <!-- //書籍介紹 -->
+          <!-- 作者介紹 -->
           <div class="tab3">
             <div class="single_page_agile_its_w3ls">
               <h6>作者介紹</h6>
               <h3>{{ product.author }}</h3>
-              <p class="w3ls_para">{{ product.author_description }}
-              </p>
+              <p class="w3ls_para">{{ product.author_description }}</p>
             </div>
           </div>
-          <!--//作者介紹 -->
-          <!--評價-->
+          <!-- //作者介紹 -->
+          <!-- 評價 -->
           <div class="tab2">
-            <div class="single_page_agile_its_w3ls">
+            <!-- <div class="single_page_agile_its_w3ls">
               <div class="bootstrap-tab-text-grids">
                 <div class="bootstrap-tab-text-grid">
                   <div class="bootstrap-tab-text-grid-left">
-                    <img src="assets/images/t1.jpg" alt=" " class="img-responsive">
+                    <img
+                      src="assets/images/t1.jpg"
+                      alt=" "
+                      class="img-responsive"
+                    />
                   </div>
                   <div class="bootstrap-tab-text-grid-right">
                     <ul>
                       <li><a href="#">路人甲</a></li>
-                      <li><a href="#"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</a></li>
+                      <li>
+                        <a href="#"
+                          ><i class="fa fa-reply-all" aria-hidden="true"></i>
+                          Reply</a
+                        >
+                      </li>
                     </ul>
                     <p>啊我覺得很好看</p>
                   </div>
-                  <div class="clearfix"> </div>
+                  <div class="clearfix"></div>
                 </div>
                 <div class="add-review">
                   <h4>留下你的好評</h4>
                   <form action="#" method="post">
-                    <input type="text" name="Name" required="Name" placeholder="請輸入您的暱稱">
-                    <input type="email" name="Email" required="Email" placeholder="請輸入您的E-mail">
-                    <textarea name="Message" required="" placeholder="請輸入評語"></textarea>
-                    <input type="submit" value="SEND">
+                    <input
+                      type="text"
+                      name="Name"
+                      required="Name"
+                      placeholder="請輸入您的暱稱"
+                    />
+                    <input
+                      type="email"
+                      name="Email"
+                      required="Email"
+                      placeholder="請輸入您的E-mail"
+                    />
+                    <textarea
+                      name="Message"
+                      required=""
+                      placeholder="請輸入評語"
+                    ></textarea>
+                    <input type="submit" value="SEND" />
                   </form>
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
-          <!--//評價-->
+          <!-- //評價 -->
         </div>
       </div>
     </div>
-    <!--//詳細資訊-->
+    <!-- //詳細資訊 -->
   </div>
 </div>

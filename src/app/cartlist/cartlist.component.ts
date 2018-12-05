@@ -13,35 +13,57 @@ export class CartlistComponent implements OnInit {
     private cartService: CartService,
     private productsService: ProductsService
   ) {}
-  ngOnInit() {}
-  // get showcart() {
-  //   const cart = [];
-  //   for (let i = 0; i < this.cartService.cart.length; i++) {
-  //     for (let j = 0; j < this.productsService.originalProducts.length; j++) {
-  //       if (this.cartService.cart[i].id === this.productsService.originalProducts[j].id) {
-  //         cart[i] = this.productsService.originalProducts[j];
-  //         cart[i].amount = this.cartService.cart[i].item_amount;
-  //       }
-  //     }
-  //   }
-  //   this.total = 0;
-  //   for (let i = 0; i < cart.length; i++) {
-  //     this.total += cart[i].price * cart[i].amount;
-  //   }
-  //   return cart;
-  // }
+  ngOnInit() {
+    this.cartService.show_cart = [];
+    this.total = 0;
+    this.show();
+  }
+  show() {
+    if (this.list_amount !== 0) {
+      for (let i = 0; i < this.list_amount; i++) {
+        this.productsService
+          .getProduct(this.cart[i].id)
+          .subscribe((data: any) => {
+            this.cartService.show_cart[i] = {
+              id: this.cart[i].id,
+              item_amount: this.cart[i].item_amount,
+              product: data
+            };
+            this.total +=
+              this.show_cart[i].item_amount *
+              this.show_cart[i].product.sale_price;
+          });
+      }
+      console.log('cart', this.cart);
+      console.log('show_cart', this.show_cart);
+    }
+  }
+  get show_cart() {
+    return this.cartService.show_cart;
+  }
+  get cart() {
+    return this.cartService.cart;
+  }
+  get list_amount() {
+    return this.cartService.list_amount;
+  }
   plus(index) {
-    if (this.cartService.cart[index].item_amount < 10) {
+    if (
+      this.cartService.cart[index].item_amount <
+      this.cartService.show_cart[index].product.stock
+    ) {
       this.cartService.cart[index].item_amount++;
     }
+    this.ngOnInit();
   }
   minor(index) {
     if (this.cartService.cart[index].item_amount > 0) {
       this.cartService.cart[index].item_amount--;
     }
+    this.ngOnInit();
   }
   delete_item(index) {
-    this.cartService.cart.splice(index, index + 1);
-    this.cartService.list_amount--;
+    this.cartService.delete_item(index);
+    this.ngOnInit();
   }
 }

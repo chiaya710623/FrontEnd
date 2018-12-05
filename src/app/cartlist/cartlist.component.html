@@ -18,16 +18,16 @@
         <ng-container *ngFor="let item of show_cart; let index=index;">
           <tr>
             <td>{{ index + 1 }}</td>
-            <td><a [routerLink]="['/products/', item.id]">{{ item.name }}</a></td>
-            <td class="invert-image"><a [routerLink]="['/products/', item.id]"><img [src]="item.photo" alt=" " /></a></td>
-            <td>NT${{ item.price }}</td>
+            <td><a [routerLink]="['/products/', item.id]">{{ item.product.title }}</a></td>
+            <td class="invert-image"><a [routerLink]="['/products/', item.id]"><img [src]="item.product.picture" alt=" " /></a></td>
+            <td>NT${{ item.product.sale_price }}</td>
             <td>
               <div class="quantity">
                 <div class="quantity-select">
                   <a (click)="minor(index)">
                     <div class="entry value-minus"></div>
                   </a>
-                  <div class="entry value"><span>{{ item.amount }}</span></div>
+                  <div class="entry value"><span>{{ item.item_amount }}</span></div>
                   <a (click)="plus(index)">
                     <div class="entry value-plus active"></div>
                   </a>
@@ -48,12 +48,12 @@
       <div class="checkout-left-basket">
         <h4>訂單內容</h4>
         <ul>
-          <ng-container *ngFor="let item of showcart;">
-            <li>{{item.name}} <span>NT${{item.price}} x {{item.amount}} = NT${{item.price*item.amount}} </span></li>
+          <ng-container *ngFor="let item of show_cart;">
+            <li>{{item.product.title}} <span>NT${{item.product.sale_price}} x {{item.item_amount}} = NT${{item.product.sale_price*item.item_amount}} </span></li>
           </ng-container>
           <li>運費 <span>NT$65</span></li>
           <li>----------------------------------------</li>
-          <li><strong>總金額 <span>NT${{ total + 65 }}</span></strong></li>
+          <li><strong>總金額 <span>NT${{ total +65 }}</span></strong></li>
         </ul>
       </div>
     </div>

@@ -39,7 +39,7 @@
     <!-- 主標題 -->
     <div class="col-md-4 logo_agile">
       <h1>
-        <a [routerLink]="['/']" (click)="this.usersService.refresh()"
+        <a [routerLink]="['/']"
           ><span>Cat</span>Read
           <i
             class="fa fa-shopping-bag top_logo_agile_bag"
@@ -183,7 +183,6 @@
                 <a
                   class="menu__link"
                   [routerLink]="['/orderlist']"
-                  (click)="this.usersService.refresh()"
                   >Orderlist</a
                 >
               </li>

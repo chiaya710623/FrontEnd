@@ -13,7 +13,7 @@ export class CartService {
     private usersService: UsersService,
     private cookieService: CookieService,
   ) {}
-
+  show_cart = [];
   cart: any = [];
   list_amount = 0;
   add_to_cart(id, item_amount, stock) {

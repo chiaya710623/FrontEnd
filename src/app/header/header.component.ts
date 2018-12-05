@@ -17,7 +17,9 @@ export class HeaderComponent implements OnInit {
     private router: Router,
     private cookieService: CookieService
   ) {}
-  show_cart = [];
+  get show_cart(){
+    return this.cartService.show_cart;
+  }
   categories: any = [];
   ngOnInit() {
     this.productsService.getCategories().subscribe((data: any) => {
@@ -47,25 +49,19 @@ export class HeaderComponent implements OnInit {
         console.log(this.list_amount);
       }
     }
-    this.show_cart = [];
+    this.cartService.show_cart = [];
     if (this.list_amount !== 0) {
       for (let i = 0; i < this.list_amount; i++) {
         this.productsService
           .getProduct(this.cart[i].id)
           .subscribe((data: any) => {
-            console.log({
-              id: this.cart[i].id,
-              item_amount: this.cart[i].item_amount,
-              product: data
-            });
-            this.show_cart[i] = {
+            this.cartService.show_cart[i] = {
               id: this.cart[i].id,
               item_amount: this.cart[i].item_amount,
               product: data
             };
           });
       }
-
       console.log('cart', this.cart);
       console.log('show_cart', this.show_cart);
     }

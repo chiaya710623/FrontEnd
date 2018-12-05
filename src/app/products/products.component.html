@@ -274,18 +274,18 @@
             </div>
             <div class="item-info-product ">
               <h4>
-                <a [routerLink]="['/products/', item.id]">{{ item.title }}</a>
+                <a [routerLink]="['/products/', item?.id]">{{ item?.title }}</a>
               </h4>
               <div class="info-product-price">
-                <span class="item_price">${{ item.sale_price }}</span>
-                <del>${{ item.list_price }}</del>
+                <span class="item_price">${{ item?.sale_price }}</span>
+                <del>${{ item?.list_price }}</del>
               </div>
               <div>
                 <input
                   type="button"
                   class="function_button"
                   value="加入購物車"
-                  (click)="add_to_cart(item.id, 1, item.stock)"
+                  (click)="add_to_cart(item?.id, 1, item.stock)"
                 />
               </div>
             </div>
