@@ -29,19 +29,29 @@ export class HeaderComponent implements OnInit {
     if (this.usersService.isLogin()) {
       this.cartService.getCart().subscribe((data: any) => {
         this.cartService.cart = data.data;
+        if (data.data) {
+          this.cartService.list_amount = data.data.length;
+        }
       });
     } else {
       if (!this.cookieService.check('cart')) {
         this.cookieService.set('cart', JSON.stringify(this.cartService.cart));
+        this.cookieService.set(
+          'list_amount',
+          JSON.stringify(this.cartService.list_amount)
+        );
       } else {
         this.cartService.cart = JSON.parse(this.cookieService.get('cart'));
+        this.cartService.list_amount = JSON.parse(
+          this.cookieService.get('list_amount')
+        );
         console.log('get', JSON.parse(this.cookieService.get('cart')));
+        console.log('get', JSON.parse(this.cookieService.get('list_amount')));
       }
     }
-    this.cartService.list_amount = this.cartService.cart.length;
     this.show_cart = [];
     if (this.list_amount !== 0) {
-      for (let i = 0; i < this.cart.length; i++) {
+      for (let i = 0; i < this.list_amount; i++) {
         this.productsService
           .getProduct(this.cart[i].id)
           .subscribe((data: any) => {

@@ -21,51 +21,73 @@
         <h4>Categories</h4>
         <ul class="tree-list-pad">
           <li>
-            <input type="checkbox" checked="checked" id="item-0" /><label
+            <input type="checkbox" checked="checked" id="" /><label
               for="item-0"
-              ><i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-              所有商品</label
-            >
-            <ul *ngFor="let category of categories">
-              <li>
-                <input type="checkbox" id="item-0-0" /><label for="item-0-0"
-                  ><a
-                    (click)="
-                      search = {
-                        category: category.name,
-                        subcategory: '',
-                        publisher: '',
-                        title: '',
-                        author: '',
-                        interpreter: '',
-                        ISBN: ''
-                      };
-                      ngOnInit()
-                    "
-                    ><i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-                    {{ category?.name }}</a
-                  ></label
-                >
-                <ul *ngFor="let subcategory of category.subcategory">
-                  <li>
-                    <a
-                      (click)="
+              (click)="
                         search = {
-                          category: category.name,
-                          subcategory: subcategory.name,
+                          category: '',
+                          subcategory: '',
                           publisher: '',
                           title: '',
                           author: '',
                           interpreter: '',
                           ISBN: ''
                         };
-                        ngOnInit()
+                        page=1;
+                        getProducts();
                       "
-                      >{{ subcategory?.name }}</a
+              ><i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+              所有商品</label
+            >
+
+            <ul>
+              <ng-container *ngFor="let category of categories; let index=index">
+                <li>
+                  <input type="checkbox" id="" checked="checked" /><label for="item-0-0"
+                    ><a
+                      (click)="
+                        search = {
+                          category: category.id,
+                          subcategory: '',
+                          publisher: '',
+                          title: '',
+                          author: '',
+                          interpreter: '',
+                          ISBN: ''
+                        };
+                        page=1;
+                        getProducts();
+                      "
+                      ><i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                      {{ category?.name }}</a
+                    ></label
+                  >
+                  <ul>
+                    <ng-container
+                      *ngFor="let subcategory of category.subcategory"
                     >
-                  </li>
-                </ul>
-              </li>
+                      <li>
+                        <a
+                          (click)="
+                            search = {
+                              category: category.id,
+                              subcategory: subcategory.id,
+                              publisher: '',
+                              title: '',
+                              author: '',
+                              interpreter: '',
+                              ISBN: ''
+                            };
+                            page=1;
+                            getProducts();
+                          "
+                          >{{ subcategory?.name }}</a
+                        >
+                      </li></ng-container
+                    >
+                  </ul>
+                </li></ng-container
+              >
             </ul>
           </li>
         </ul>
@@ -77,22 +99,28 @@
             <tr>
               <th>主類別</th>
               <td>
-                <select [(ngModel)]="search.category" (change)="getSubcategories(search.category);"> -->
-                   <option value="">請選擇主類別</option>
-                  <ng-container *ngFor="let category of categories" >
-                  <option value="category.name">{{category.name}}</option>
-                </ng-container>
+                <select
+                  [(ngModel)]="search.category"
+                  (change)="getSubcategories(search.category)"
+                >
+                  -->
+                  <option value="">請選擇主類別</option>
+                  <ng-container *ngFor="let category of categories">
+                    <option value="category.name">{{ category.name }}</option>
+                  </ng-container>
                 </select>
               </td>
             </tr>
             <tr>
               <th>次類別</th>
               <td>
-                 <select [(ngModel)]="search.subcategory">
-                  <ng-container *ngIf="subcategories !== []; else elseTag;">
+                <select [(ngModel)]="search.subcategory">
+                  <ng-container *ngIf="subcategories !== []; else: elseTag">
                     <option value="">請選擇次類別</option>
-                    <ng-container *ngFor="let subcategory of subcategories" >
-                      <option value="subcategory.name">{{ subcategory?.name }}</option>
+                    <ng-container *ngFor="let subcategory of subcategories">
+                      <option value="subcategory.name">{{
+                        subcategory?.name
+                      }}</option>
                     </ng-container>
                   </ng-container>
                   <ng-template #elseTag>
@@ -186,7 +214,7 @@
           <select
             id="country1"
             [(ngModel)]="sort"
-            (change)="ngOnInit()"
+            (change)="page=1;ngOnInit();"
             class="frm-field required sect"
           >
             <option value="">請選擇排序方式</option>
@@ -200,7 +228,7 @@
         <!-- 排序（已完成） -->
         <div class="sorting">
           <h6>Showing</h6>
-          <select id="amount" [(ngModel)]="amount" (change)="ngOnInit()">
+          <select id="amount" [(ngModel)]="amount" (change)="page=1;ngOnInit()">
             <option value="3">3</option>
             <option value="9">9</option>
             <option value="12">15</option>

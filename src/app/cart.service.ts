@@ -19,7 +19,7 @@ export class CartService {
   add_to_cart(id, item_amount, stock) {
     if (stock !== 0) {
       if (this.cart !== []) {
-        for (let i = 0; i < this.cart.length; i++) {
+        for (let i = 0; i < this.list_amount; i++) {
           if (this.cart[i].id === id) {
             if (this.cart[i].item_amount + item_amount > stock) {
               alert('訂購數量超過庫存量。');
