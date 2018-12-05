@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit {
     private router: Router,
     private cookieService: CookieService
   ) {}
-  get show_cart(){
+  get show_cart() {
     return this.cartService.show_cart;
   }
   categories: any = [];

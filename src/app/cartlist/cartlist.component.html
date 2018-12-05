@@ -1,8 +1,12 @@
 <div class="clearfix"></div>
 <div class="checkout">
   <div class="container">
-    <h2>購物車中有<span style="color: #68d6c1;">{{ show_cart.length }}項商品</span></h2>
-    <!-- 購物車清單-->
+    <h2>
+      購物車中有<span style="color: #68d6c1;"
+        >{{ show_cart.length }}項商品</span
+      >
+    </h2>
+    <!-- 購物車清單 -->
     <div class="checkout-right">
       <table class="timetable_sub">
         <thead>
@@ -15,11 +19,19 @@
             <th>刪除</th>
           </tr>
         </thead>
-        <ng-container *ngFor="let item of show_cart; let index=index;">
+        <ng-container *ngFor="let item of show_cart; let index = index">
           <tr>
             <td>{{ index + 1 }}</td>
-            <td><a [routerLink]="['/products/', item.id]">{{ item.product.title }}</a></td>
-            <td class="invert-image"><a [routerLink]="['/products/', item.id]"><img [src]="item.product.picture" alt=" " /></a></td>
+            <td>
+              <a [routerLink]="['/products/', item.id]">{{
+                item.product.title
+              }}</a>
+            </td>
+            <td class="invert-image">
+              <a [routerLink]="['/products/', item.id]"
+                ><img [src]="item.product.picture" alt=" "
+              /></a>
+            </td>
             <td>NT${{ item.product.sale_price }}</td>
             <td>
               <div class="quantity">
@@ -27,46 +39,69 @@
                   <a (click)="minor(index)">
                     <div class="entry value-minus"></div>
                   </a>
-                  <div class="entry value"><span>{{ item.item_amount }}</span></div>
+                  <div class="entry value">
+                    <span>{{ item.item_amount }}</span>
+                  </div>
                   <a (click)="plus(index)">
-                    <div class="entry value-plus active"></div>
-                  </a>
-                </div>
+                    <div class="entry value-plus active"></div> </a
+                  >
+                </div><span
+                    *ngIf="item.item_amount == item.product.stock"
+                    style="color:red; z-index: 10;"
+                    >已達庫存上限</span
+                  >
               </div>
             </td>
             <td>
-              <img src="assets/images/close_1.png" style="text-align:center;" (click)="delete_item(index)">
+              <img
+                src="assets/images/close_1.png"
+                style="text-align:center;"
+                (click)="delete_item(index)"
+              />
             </td>
           </tr>
         </ng-container>
-
       </table>
     </div>
-    <!-- //購物車清單-->
-    <!-- 計算金額的小表格-->
+    <!-- //購物車清單 -->
+    <!-- 計算金額的小表格 -->
     <div class="checkout-left">
       <div class="checkout-left-basket">
         <h4>訂單內容</h4>
         <ul>
-          <ng-container *ngFor="let item of show_cart;">
-            <li>{{item.product.title}} <span>NT${{item.product.sale_price}} x {{item.item_amount}} = NT${{item.product.sale_price*item.item_amount}} </span></li>
+          <ng-container *ngFor="let item of show_cart">
+            <li>
+              {{ item.product.title }}
+              <span
+                >NT${{ item.product.sale_price }} x {{ item.item_amount }} =
+                NT${{ item.product.sale_price * item.item_amount }}
+              </span>
+            </li>
           </ng-container>
           <li>運費 <span>NT$65</span></li>
           <li>----------------------------------------</li>
-          <li><strong>總金額 <span>NT${{ total +65 }}</span></strong></li>
+          <li>
+            <strong
+              >總金額 <span>NT${{ total + 65 }}</span></strong
+            >
+          </li>
         </ul>
       </div>
     </div>
-    <!-- //計算金額的小表格-->
-    <!-- 兩個按鈕-->
+    <!-- //計算金額的小表格 -->
+    <!-- 兩個按鈕 -->
     <div class="checkout-right-basket">
-      <a [routerLink]="['/products']"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>繼續購物</a>
+      <a [routerLink]="['/products']"
+        ><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span
+        >繼續購物</a
+      >
 
-      <a [routerLink]="['/checkout']"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>開始結帳</a>
-
+      <a [routerLink]="['/checkout']"
+        ><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span
+        >開始結帳</a
+      >
     </div>
-    <!-- //兩個按鈕-->
-    <div class="clearfix"> </div>
+    <!-- //兩個按鈕 -->
+    <div class="clearfix"></div>
   </div>
-
 </div>
