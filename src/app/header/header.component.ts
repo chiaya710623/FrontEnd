@@ -29,8 +29,18 @@ export class HeaderComponent implements OnInit {
     if (this.usersService.isLogin()) {
       this.cartService.getCart().subscribe((data: any) => {
         if (data.data !== []) {
-          this.cartService.cart = data.data;
-          this.cartService.list_amount = data.data.length;
+          if (data.data !== this.cart) {
+            if (
+              confirm(
+                '您的帳號中有前次購物車紀錄，是否覆蓋之前的紀錄？\n（選擇取消則使用您帳號中的購物車紀錄。）'
+              )
+            ) {
+              this.cartService.postCart(this.cart);
+            } else {
+              this.cartService.cart = data.data;
+              this.cartService.list_amount = data.data.length;
+            }
+          }
         } else {
           this.cartService.postCart(this.cart);
         }
@@ -90,10 +100,15 @@ export class HeaderComponent implements OnInit {
     return this.cartService.list_amount;
   }
   checkout() {
-    if (this.list_amount === 0) {
-      alert('購物車中沒有商品。');
+    if (this.usersService.isLogin()) {
+      if (this.list_amount === 0) {
+        alert('購物車中沒有商品。');
+      } else {
+        this.router.navigate(['/cartlist']);
+      }
     } else {
-      this.router.navigate(['/cartlist']);
+      alert('請登入後結帳。');
+      this.router.navigate(['/login']);
     }
   }
   clickItem(item) {
