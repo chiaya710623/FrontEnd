@@ -24,26 +24,29 @@
             <input type="checkbox" checked="checked" id="" /><label
               for="item-0"
               (click)="
-                        search = {
-                          category: '',
-                          subcategory: '',
-                          publisher: '',
-                          title: '',
-                          author: '',
-                          interpreter: '',
-                          ISBN: ''
-                        };
-                        page=1;
-                        getProducts();
-                      "
+                search = {
+                  category: '',
+                  subcategory: '',
+                  publisher: '',
+                  title: '',
+                  author: '',
+                  interpreter: '',
+                  ISBN: ''
+                };
+                page = 1;
+                search_submit();
+              "
               ><i class="fa fa-long-arrow-right" aria-hidden="true"></i>
               所有商品</label
             >
 
             <ul>
-              <ng-container *ngFor="let category of categories; let index=index">
+              <ng-container
+                *ngFor="let category of categories; let index = index"
+              >
                 <li>
-                  <input type="checkbox" id="" checked="checked" /><label for="item-0-0"
+                  <input type="checkbox" id="" checked="checked" /><label
+                    for="item-0-0"
                     ><a
                       (click)="
                         search = {
@@ -55,8 +58,8 @@
                           interpreter: '',
                           ISBN: ''
                         };
-                        page=1;
-                        getProducts();
+                        page = 1;
+                        search_submit();
                       "
                       ><i class="fa fa-long-arrow-right" aria-hidden="true"></i>
                       {{ category?.name }}</a
@@ -78,8 +81,8 @@
                               interpreter: '',
                               ISBN: ''
                             };
-                            page=1;
-                            getProducts();
+                            page = 1;
+                            search_submit();
                           "
                           >{{ subcategory?.name }}</a
                         >
@@ -101,13 +104,16 @@
               <td>
                 <select
                   [(ngModel)]="search.category"
-                  (change)="getSubcategories(search.category)"
+                  (change)="search.subcategory='';getSubcategories(search.category);"
                 >
                   -->
                   <option value="">請選擇主類別</option>
-                  <ng-container *ngFor="let category of categories">
-                    <option value="category.name">{{ category.name }}</option>
-                  </ng-container>
+
+                  <option
+                    *ngFor="let category of categories"
+                    [value]="category.id"
+                    >{{ category?.name }}</option
+                  >
                 </select>
               </td>
             </tr>
@@ -117,14 +123,13 @@
                 <select [(ngModel)]="search.subcategory">
                   <ng-container *ngIf="subcategories !== []; else: elseTag">
                     <option value="">請選擇次類別</option>
-                    <ng-container *ngFor="let subcategory of subcategories">
-                      <option value="subcategory.name">{{
+
+                      <option *ngFor="let subcategory of subcategories" [value]="subcategory.id">{{
                         subcategory?.name
                       }}</option>
-                    </ng-container>
                   </ng-container>
                   <ng-template #elseTag>
-                    <option value="">該類別沒有次類別</option>
+                    <option value="">該類別沒有次類別。</option>
                   </ng-template>
                 </select>
               </td>
@@ -175,7 +180,7 @@
                 <input
                   type="text"
                   placeholder="請輸入ISBN"
-                  [(ngModel)]="search.isbn"
+                  [(ngModel)]="search.ISBN"
                 />
               </td>
             </tr>
@@ -186,7 +191,7 @@
               type="button"
               class="function_button"
               value="搜尋商品"
-              (click)="search_submit()"
+              (click)="search_submit();"
             />
           </div>
         </div>
@@ -214,7 +219,7 @@
           <select
             id="country1"
             [(ngModel)]="sort"
-            (change)="page=1;ngOnInit();"
+            (change)="page = 1; ngOnInit()"
             class="frm-field required sect"
           >
             <option value="">請選擇排序方式</option>
@@ -228,7 +233,11 @@
         <!-- 排序（已完成） -->
         <div class="sorting">
           <h6>Showing</h6>
-          <select id="amount" [(ngModel)]="amount" (change)="page=1;ngOnInit()">
+          <select
+            id="amount"
+            [(ngModel)]="amount"
+            (change)="page = 1; ngOnInit()"
+          >
             <option value="3">3</option>
             <option value="9">9</option>
             <option value="12">15</option>

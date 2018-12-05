@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { CartService } from './cart.service';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -17,7 +16,7 @@ export class UsersService {
 
   register(user) {
     return this.httpClient.post(
-      '${environment.api}register',
+      `${environment.api}register`,
       user
     );
   }

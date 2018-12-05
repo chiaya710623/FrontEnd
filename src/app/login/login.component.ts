@@ -18,14 +18,13 @@ export class LoginComponent implements OnInit {
     private router: Router,
   ) {}
   ngOnInit() {}
-  login(user) {
+  login() {
     this.usersService.login(this.user).subscribe((data: any) => {
-      console.log(data);
-      if (data.token) {
-        localStorage.setItem('token', data.token);
+      if (data.success) {
         alert('登入成功');
         this.router.navigate(['/']);
       } else {
+        console.log(data);
         alert('登入失敗');
       }
     });
