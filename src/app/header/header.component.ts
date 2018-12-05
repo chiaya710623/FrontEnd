@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { CartService } from '../cart.service';
 import { ProductsService } from '../products.service';
 import { HttpClient } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -15,7 +16,8 @@ export class HeaderComponent implements OnInit {
     private cartService: CartService,
     private productsService: ProductsService,
     private router: Router,
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private cookieService: CookieService
   ) {}
   show_cart = [];
   ngOnInit() {
@@ -23,7 +25,15 @@ export class HeaderComponent implements OnInit {
       this.cartService.getCart().subscribe((data: any) => {
         this.cartService.cart = data.data;
       });
+    } else {
+      if (!this.cookieService.check('cart')) {
+        this.cookieService.set('cart', JSON.stringify(this.cartService.cart));
+      } else {
+        this.cartService.cart = JSON.parse(this.cookieService.get('cart'));
+        console.log('get', JSON.parse(this.cookieService.get('cart')));
+      }
     }
+    this.cartService.list_amount = this.cartService.cart.length;
     this.show_cart = [];
     if (this.list_amount !== 0) {
       for (let i = 0; i < this.cart.length; i++) {
@@ -54,6 +64,8 @@ export class HeaderComponent implements OnInit {
     this.cartService.delete_item(index);
     if (this.usersService.isLogin()) {
       this.cartService.postCart(this.cart);
+    } else {
+      this.cookieService.set('cart', JSON.stringify(this.cartService.cart));
     }
   }
 

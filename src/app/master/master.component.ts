@@ -11,7 +11,6 @@ export class MasterComponent implements OnInit {
   constructor(private usersService: UsersService) { }
 
   ngOnInit() {
-    return this.usersService.refresh();
   }
 
 }

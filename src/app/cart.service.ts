@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
 import { UsersService } from './users.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,8 @@ import { UsersService } from './users.service';
 export class CartService {
   constructor(
     private httpClient: HttpClient,
-    private usersService: UsersService
+    private usersService: UsersService,
+    private cookieService: CookieService,
   ) {}
 
   cart: any = [];
@@ -37,8 +38,10 @@ export class CartService {
     }
     if (this.usersService.isLogin()) {
       this.postCart(this.cart);
+    } else {
+      this.cookieService.set('cart', JSON.stringify(this.cart));
+      console.log('get', JSON.parse(this.cookieService.get('cart')));
     }
-    console.log(this.cart);
   }
 
   delete_item(index) {
@@ -49,11 +52,14 @@ export class CartService {
 
   getCart() {
     if (this.usersService.isLogin()) {
-      return this.httpClient.get(`http://host.limaois.me:1723/api/orders/cart`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`
+      return this.httpClient.get(
+        `http://host.limaois.me:1723/api/orders/cart`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+          }
         }
-      });
+      );
     }
   }
   postCart(cart) {
