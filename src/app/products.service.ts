@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,16 +10,17 @@ export class ProductsService {
   year = new Date().getFullYear();
   getNewProducts() {
     return this.httpClient.get(
-      `http://host.limaois.me:1723/api/products?publish_year=${this.year}`
+      `${environment.api}products?publish_year=${this.year}`
     );
   }
   getProducts(amount, page, sort, search) {
+    console.log(`${environment.api}products?count=${amount}&page=${page}&sort=${sort}&search=${JSON.stringify(search)}`);
     return this.httpClient.get(
-      `http://host.limaois.me:1723/api/products?count=${amount}&page=${page}&sort=${sort}&search=${JSON.stringify(search)}`);
+      `${environment.api}products?count=${amount}&page=${page}&sort=${sort}&search=${JSON.stringify(search)}`);
   }
   getProduct(id) {
     return this.httpClient.get(
-      `http://host.limaois.me:1723/api/products/${id}`
+      `${environment.api}api/products/${id}`
     );
   }
 }

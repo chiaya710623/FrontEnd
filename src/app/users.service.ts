@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { CartService } from './cart.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -16,22 +17,22 @@ export class UsersService {
 
   register(user) {
     return this.httpClient.post(
-      'http://host.limaois.me:1723/api/register',
+      '${environment.api}register',
       user
     );
   }
 
   login(user) {
-    return this.httpClient.post('http://host.limaois.me:1723/api/login', user);
+    return this.httpClient.post(`${environment.api}login`, user);
   }
 
   getUser() {
-    return this.httpClient.get('http://host.limaois.me:1723/api/register');
+    return this.httpClient.get(`${environment.api}register`);
   }
 
   refresh() {
     if (this.now.getMinutes[1] === 0) {
-      return this.httpClient.get('http://host.limaois.me:1723/api/refresh');
+      return this.httpClient.get(`${environment.api}refresh`);
     }
   }
 

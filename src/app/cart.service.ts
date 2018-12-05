@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UsersService } from './users.service';
 import { CookieService } from 'ngx-cookie-service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -53,7 +54,7 @@ export class CartService {
   getCart() {
     if (this.usersService.isLogin()) {
       return this.httpClient.get(
-        `http://host.limaois.me:1723/api/orders/cart`,
+        `${environment.api}orders/cart`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -65,7 +66,7 @@ export class CartService {
   postCart(cart) {
     if (this.usersService.isLogin()) {
       return this.httpClient.post(
-        `http://host.limaois.me:1723/api/orders/cart?products=${JSON.stringify(
+        `${environment.api}orders/cart?products=${JSON.stringify(
           cart
         )}`,
         {
