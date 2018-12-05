@@ -26,14 +26,14 @@
               ><i class="fa fa-long-arrow-right" aria-hidden="true"></i>
               所有商品</label
             >
-            <ul *ngFor="let catagory of catagories">
+            <ul *ngFor="let category of categories">
               <li>
                 <input type="checkbox" id="item-0-0" /><label for="item-0-0"
                   ><a
                     (click)="
                       search = {
-                        catagory: catagory.name,
-                        subcatagory: '',
+                        category: category.name,
+                        subcategory: '',
                         publisher: '',
                         title: '',
                         author: '',
@@ -43,16 +43,16 @@
                       ngOnInit()
                     "
                     ><i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-                    {{ catagory?.name }}}</a
+                    {{ category?.name }}</a
                   ></label
                 >
-                <ul *ngFor="let subcatagory of catagory.subcatagory">
+                <ul *ngFor="let subcategory of category.subcategory">
                   <li>
                     <a
                       (click)="
                         search = {
-                          catagory: catagory.name,
-                          subcatagory: subcatagory.name,
+                          category: category.name,
+                          subcategory: subcategory.name,
                           publisher: '',
                           title: '',
                           author: '',
@@ -61,7 +61,7 @@
                         };
                         ngOnInit()
                       "
-                      >{{ subcatagory?.name }}</a
+                      >{{ subcategory?.name }}</a
                     >
                   </li>
                 </ul>
@@ -77,10 +77,10 @@
             <tr>
               <th>主類別</th>
               <td>
-                <select [(ngModel)]="search.catagory" (change)="getSubcatagories(search.catagory);">
-                  <option value="">請選擇主類別</option>
-                  <ng-container *ngFor="let catagory of catagories" >
-                  <option value="catagory.name">{{catagory.name}}</option>
+                <select [(ngModel)]="search.category" (change)="getSubcategories(search.category);"> -->
+                   <option value="">請選擇主類別</option>
+                  <ng-container *ngFor="let category of categories" >
+                  <option value="category.name">{{category.name}}</option>
                 </ng-container>
                 </select>
               </td>
@@ -88,16 +88,16 @@
             <tr>
               <th>次類別</th>
               <td>
-                <select [(ngModel)]="search.subcatagory">
-                  <ng-container *ngIf="subcatagories !== []; else elseTag;">
-                  <option value="">請選擇次類別</option>
-                  <ng-container *ngFor="let subcatagory of subcatagories" >
-                  <option value="subcatagory.name">{{ subcatagory?.name }}</option>
-                </ng-container>
-              </ng-container>
-              <ng-template #elseTag>
-                  <option value="">該類別沒有次類別</option>
-              </ng-template>
+                 <select [(ngModel)]="search.subcategory">
+                  <ng-container *ngIf="subcategories !== []; else elseTag;">
+                    <option value="">請選擇次類別</option>
+                    <ng-container *ngFor="let subcategory of subcategories" >
+                      <option value="subcategory.name">{{ subcategory?.name }}</option>
+                    </ng-container>
+                  </ng-container>
+                  <ng-template #elseTag>
+                    <option value="">該類別沒有次類別</option>
+                  </ng-template>
                 </select>
               </td>
             </tr>
@@ -172,8 +172,8 @@
         商品 <span>列表（共{{ data.meta.total }}項）</span>
       </h5>
       <div style="padding-top: 5%;">
-        <p *ngIf="show.catagory !== ''">主類別：{{ show.catagory }}</p>
-        <p *ngIf="show.subcatagory !== ''">次類別：{{ show.subcatagory }}</p>
+        <p *ngIf="show.category !== ''">主類別：{{ show.category }}</p>
+        <p *ngIf="show.subcategory !== ''">次類別：{{ show.subcategory }}</p>
         <p *ngIf="show.title !== ''">書名：{{ show.title }}</p>
         <p *ngIf="show.author !== ''">作者：{{ show.author }}</p>
         <p *ngIf="show.interpreter !== ''">譯者：{{ show.interpreter }}</p>
@@ -255,7 +255,7 @@
             </div>
           </div>
         </div>
-      </ng-complate>
+      </ng-container>
       <!-- //商品列表 -->
       <div class="clearfix"></div>
       <!-- 選頁（完成） -->

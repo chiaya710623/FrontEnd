@@ -16,8 +16,8 @@ export class ProductsComponent implements OnInit {
   page = 1;
   year = new Date().getFullYear();
   search = {
-    catagory: '',
-    subcatagory: '',
+    category: '',
+    subcategory: '',
     publisher: '',
     title: '',
     author: '',
@@ -25,8 +25,8 @@ export class ProductsComponent implements OnInit {
     ISBN: ''
   };
   show = {
-    catagory: '',
-    subcatagory: '',
+    category: '',
+    subcategory: '',
     publisher: '',
     title: '',
     author: '',
@@ -34,12 +34,12 @@ export class ProductsComponent implements OnInit {
     ISBN: ''
   };
   sort = '';
-  catagories: any = [];
-  subcatagories: any = [];
+  categories: any = [];
+  subcategories: any = [];
   data: any = { data: [], link: [], meta: [] };
   ngOnInit() {
-    this.productsService.getCatagories().subscribe(data => {
-      this.catagories = data;
+    this.productsService.getCategories().subscribe(data => {
+      this.categories = data;
       console.log(data);
     });
     this.productsService
@@ -54,8 +54,8 @@ export class ProductsComponent implements OnInit {
     this.cartService.add_to_cart(id, item_amount, stock);
   }
   search_submit() {
-    this.show.catagory = this.search.catagory;
-    this.show.subcatagory = this.search.subcatagory;
+    this.show.category = this.search.category;
+    this.show.subcategory = this.search.subcategory;
     this.show.publisher = this.search.publisher;
     this.show.title = this.search.title;
     this.show.author = this.search.author;
@@ -63,9 +63,9 @@ export class ProductsComponent implements OnInit {
     this.show.ISBN = this.search.ISBN;
     this.ngOnInit();
   }
-  getSubcatagories(catagory) {
-    this.productsService.getSubcatagories(catagory).subscribe(data => {
-      this.subcatagories = data;
+  getSubcategories(category) {
+    this.productsService.getSubcategories(category).subscribe(data => {
+      this.subcategories = data;
       console.log(data);
     });
   }

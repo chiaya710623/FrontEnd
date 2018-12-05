@@ -20,11 +20,11 @@ export class HeaderComponent implements OnInit {
     private cookieService: CookieService
   ) {}
   show_cart = [];
-  catagories: any = [];
+  categories: any = [];
   ngOnInit() {
-    this.productsService.getCatagories().subscribe(data => {
-      this.catagories = data;
-      console.log(data);
+    this.productsService.getCategories().subscribe((data: any) => {
+      this.categories = data.data;
+      console.log(data.data);
     });
     if (this.usersService.isLogin()) {
       this.cartService.getCart().subscribe((data: any) => {

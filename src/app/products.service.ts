@@ -30,12 +30,12 @@ export class ProductsService {
     );
   }
   getProduct(id) {
-    return this.httpClient.get(`${environment.api}api/products/${id}`);
+    return this.httpClient.get(`${environment.api}products/${id}`);
   }
-  getCatagories() {
-    return this.httpClient.get(`${environment.api}api/catagories/`);
+  getCategories() {
+    return this.httpClient.get(`${environment.api}categories/`);
   }
-  getSubcatagories(catagory) {
-    return this.httpClient.get(`${environment.api}api/catagories/${catagory}`);
+  getSubcategories(category) {
+    return this.httpClient.get(`${environment.api}categories/${category}`);
   }
 }
