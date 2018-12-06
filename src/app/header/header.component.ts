@@ -33,10 +33,12 @@ export class HeaderComponent implements OnInit {
           Object.keys(data.products).forEach(product => {
             this.cartService.cart.push({
               id: product,
-              item_amount: data.products[product],
+              item_amount: data.products[product]
             });
+            this.cartService.show();
           });
-      }});
+        }
+      });
     } else {
       // not logged in
       if (this.cookieService.check('cart') === false) {
@@ -44,26 +46,7 @@ export class HeaderComponent implements OnInit {
       } else {
         this.cartService.cart = JSON.parse(this.cookieService.get('cart'));
       }
-      this.show();
-    }
-  }
-
-  show() {
-    this.cartService.show_cart = [];
-    if (JSON.stringify(this.cart) !== '[]') {
-      for (let i = 0; i < this.cart.length; i++) {
-        console.log(this.cart);
-        this.productsService
-          .getProduct(this.cart[i].id)
-          .subscribe((data: any) => {
-            this.cartService.show_cart[i] = {
-              id: this.cart[i].id,
-              item_amount: this.cart[i].item_amount,
-              product: data
-            };
-          });
-      }
-      console.log('show_cart', this.show_cart);
+      this.cartService.show();
     }
   }
 
@@ -88,7 +71,7 @@ export class HeaderComponent implements OnInit {
 
   checkout() {
     if (this.usersService.isLogin()) {
-      if (JSON.stringify(this.cart) !== '[]') {
+      if (JSON.stringify(this.cart) === '[]') {
         alert('購物車中沒有商品。');
       } else {
         this.router.navigate(['/cartlist']);

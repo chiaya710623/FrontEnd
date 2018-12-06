@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { UsersService } from './users.service';
 import { CookieService } from 'ngx-cookie-service';
 import { environment } from 'src/environments/environment';
+import { ProductsService } from './products.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,8 @@ export class CartService {
   constructor(
     private httpClient: HttpClient,
     private usersService: UsersService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private productsService: ProductsService
   ) {}
   show_cart = [];
   cart: any = [];
@@ -30,6 +32,7 @@ export class CartService {
               } else {
                 this.cookieService.set('cart', JSON.stringify(this.cart));
               }
+              this.show();
             }
             return;
           }
@@ -41,6 +44,7 @@ export class CartService {
         } else {
           this.cookieService.set('cart', JSON.stringify(this.cart));
         }
+        this.show();
       } else {
         this.cart.push({ id: id, item_amount: item_amount });
         alert('已加入' + item_amount + '件此商品至購物車。');
@@ -49,6 +53,7 @@ export class CartService {
         } else {
           this.cookieService.set('cart', JSON.stringify(this.cart));
         }
+        this.show();
       }
     } else {
       alert('庫存不足，無法加入購物車。');
@@ -57,6 +62,26 @@ export class CartService {
 
   delete_item(index) {
     this.cart.splice(index, index + 1);
+    this.show();
+  }
+
+  show() {
+    this.show_cart = [];
+    if (JSON.stringify(this.cart) !== '[]') {
+      for (let i = 0; i < this.cart.length; i++) {
+        console.log(this.cart);
+        this.productsService
+          .getProduct(this.cart[i].id)
+          .subscribe((data: any) => {
+            this.show_cart[i] = {
+              id: this.cart[i].id,
+              item_amount: this.cart[i].item_amount,
+              product: data
+            };
+          });
+      }
+      console.log('show_cart', this.show_cart);
+    }
   }
 
   getCart() {
@@ -73,16 +98,19 @@ export class CartService {
       cart.forEach(product => {
         cartdata[product.id] = product.item_amount;
       });
-      return this.httpClient.patch(
-        `${environment.api}orders/cart`,
-        encodeURI(`products=${JSON.stringify(cartdata)}`),
-        {
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            Authorization: `Bearer ${localStorage.getItem('token')}`
+      console.log(cartdata);
+      return this.httpClient
+        .patch(
+          `${environment.api}orders/cart`,
+          encodeURI(`products=${JSON.stringify(cartdata)}`),
+          {
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+              Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
           }
-        }
-      ).subscribe(_ => {});
+        )
+        .subscribe(_ => {});
     }
   }
 }
