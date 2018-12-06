@@ -52,7 +52,6 @@ export class ProductsComponent implements OnInit {
     this.show.author = this.productsService.search.author;
     this.show.interpreter = this.productsService.search.interpreter;
     this.show.ISBN = this.productsService.search.ISBN;
-    console.log(this.show);
     this.getProducts();
     });
   }
@@ -80,13 +79,11 @@ export class ProductsComponent implements OnInit {
     this.show.author = this.productsService.search.author;
     this.show.interpreter = this.productsService.search.interpreter;
     this.show.ISBN = this.productsService.search.ISBN;
-    console.log(this.show);
     this.getProducts();
   }
   getSubcategories(category) {
     this.productsService.getSubcategories(category).subscribe((data: any) => {
       this.subcategories = data.data;
-      console.log(data);
     });
   }
   getProducts() {
@@ -100,7 +97,6 @@ export class ProductsComponent implements OnInit {
       .subscribe((data: any) => {
         this.data = data;
         this.page = this.data.meta.current_page;
-        console.log(data);
       });
   }
 }

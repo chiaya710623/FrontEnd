@@ -36,7 +36,7 @@ export class HeaderComponent implements OnInit {
                 '您的帳號中有前次購物車紀錄，是否覆蓋之前的紀錄？\n（選擇取消則使用您帳號中的購物車紀錄。）'
               )
             ) {
-              this.cartService.postCart(this.cart).subscribe((_: any) => {
+              this.cartService.patchCart(this.cart).subscribe((_: any) => {
               });
             } else {
               this.cartService.cart = data.products;
@@ -44,7 +44,7 @@ export class HeaderComponent implements OnInit {
             }
           }
         } else {
-          this.cartService.postCart(this.cart);
+          this.cartService.patchCart(this.cart);
         }
       });
     } else {
@@ -92,7 +92,7 @@ export class HeaderComponent implements OnInit {
   delete_item(index) {
     this.cartService.delete_item(index);
     if (this.usersService.isLogin()) {
-      this.cartService.postCart(this.cart);
+      this.cartService.patchCart(this.cart);
     } else {
       this.cookieService.set('cart', JSON.stringify(this.cartService.cart));
     }
