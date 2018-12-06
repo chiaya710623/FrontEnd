@@ -115,4 +115,17 @@ export class HeaderComponent implements OnInit {
       this.router.navigate(['/login']);
     }
   }
+  clickItem(item) {
+    if (item !== null) {
+      this.router
+        .navigateByUrl('/reload', { skipLocationChange: true })
+        .then(() => this.router.navigate(['/products', item.id]));
+    }
+  }
+
+  reload(url) {
+    this.router
+      .navigateByUrl('/reload', { skipLocationChange: true })
+      .then(() => this.router.navigate([url]));
+  }
 }
