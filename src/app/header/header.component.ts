@@ -21,52 +21,39 @@ export class HeaderComponent implements OnInit {
     return this.cartService.show_cart;
   }
   categories: any = [];
-  username = [];
   ngOnInit() {
+    // read categories
     this.productsService.getCategories().subscribe((data: any) => {
       this.categories = data.data;
-      console.log(data.data);
     });
+    // read cart
     if (this.usersService.isLogin()) {
       this.cartService.getCart().subscribe((data: any) => {
-        if (data.products !== []) {
-          if (data.products !== this.cart) {
-            if (
-              confirm(
-                '您的帳號中有前次購物車紀錄，是否覆蓋之前的紀錄？\n（選擇取消則使用您帳號中的購物車紀錄。）'
-              )
-            ) {
-              this.cartService.patchCart(this.cart).subscribe((_: any) => {
-              });
-            } else {
-              this.cartService.cart = data.products;
-              this.cartService.list_amount = data.products.length;
-            }
-          }
-        } else {
-          this.cartService.patchCart(this.cart);
-        }
-      });
+        if (data.products !== {}) {
+          Object.keys(data.products).forEach(product => {
+            this.cartService.cart.push({
+              id: product,
+              item_amount: data.products[product],
+            });
+          });
+      }});
+      this.show();
     } else {
-      if (!this.cookieService.check('cart')) {
+      // not logged in
+      if (this.cookieService.check('cart') === false) {
         this.cookieService.set('cart', JSON.stringify(this.cartService.cart));
       } else {
         this.cartService.cart = JSON.parse(this.cookieService.get('cart'));
-        this.cartService.list_amount = JSON.parse(
-          this.cookieService.get('list_amount')
-        );
-        console.log(this.cookieService.get('cart'));
-        console.log('get', JSON.parse(this.cookieService.get('cart')));
-        if (this.cart !== []) {
-          this.cartService.list_amount = this.cart.length;
-        } else {
-          this.cartService.list_amount = 0;
-        }
       }
+      this.show();
     }
+  }
+
+  show() {
     this.cartService.show_cart = [];
-    if (this.list_amount !== 0) {
-      for (let i = 0; i < this.list_amount; i++) {
+    if (JSON.stringify(this.cart) !== '[]') {
+      for (let i = 0; i < this.cart.length; i++) {
+        console.log(this.cart);
         this.productsService
           .getProduct(this.cart[i].id)
           .subscribe((data: any) => {
@@ -77,8 +64,6 @@ export class HeaderComponent implements OnInit {
             };
           });
       }
-
-      console.log('cart', this.cart);
       console.log('show_cart', this.show_cart);
     }
   }
@@ -102,12 +87,9 @@ export class HeaderComponent implements OnInit {
     return this.cartService.cart;
   }
 
-  get list_amount() {
-    return this.cartService.list_amount;
-  }
   checkout() {
     if (this.usersService.isLogin()) {
-      if (this.list_amount === 0) {
+      if (JSON.stringify(this.cart) !== '[]') {
         alert('購物車中沒有商品。');
       } else {
         this.router.navigate(['/cartlist']);

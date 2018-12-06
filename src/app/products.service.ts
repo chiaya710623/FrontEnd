@@ -23,13 +23,6 @@ export class ProductsService {
     );
   }
   getProducts(amount, page, sort, search) {
-    console.log(
-      `${
-        environment.api
-      }products?count=${amount}&page=${page}&sort=${sort}&search=${JSON.stringify(
-        search
-      )}`
-    );
     return this.httpClient.get(
       `${
         environment.api
