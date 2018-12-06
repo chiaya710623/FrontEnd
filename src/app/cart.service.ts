@@ -19,7 +19,7 @@ export class CartService {
   add_to_cart(id, item_amount, stock) {
     if (stock !== 0) {
       if (this.cart !== []) {
-        for (let i = 0; i < this.list_amount; i++) {
+        for (let i = 0; i < this.cart.length; i++) {
           if (this.cart[i].id === id) {
             if (this.cart[i].item_amount + item_amount > stock) {
               alert('訂購數量超過庫存量。');
@@ -36,7 +36,7 @@ export class CartService {
       alert('已加入' + item_amount + '件此商品至購物車。');
     } else {
       alert('庫存不足，無法加入購物車。');
-    }
+      }
     if (this.usersService.isLogin()) {
       this.postCart(this.cart);
     } else {
