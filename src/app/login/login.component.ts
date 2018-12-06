@@ -16,13 +16,15 @@ export class LoginComponent implements OnInit {
   };
   constructor(
     private usersService: UsersService,
+    private cartService: CartService,
+
     private router: Router,
     private httpClient: HttpClient,
+
   ) {}
   ngOnInit() {}
   login() {
     this.usersService.login(this.user).subscribe((data: any) => {
-        console.log(data);
       if (data.token) {
         localStorage.setItem('token', data.token);
         alert('登入成功');
@@ -30,6 +32,9 @@ export class LoginComponent implements OnInit {
       } else {
         alert('登入失敗');
       }
+    }, (err: any) => {
+      console.log(err);
+      alert('登入失敗');
     });
   }
 }
