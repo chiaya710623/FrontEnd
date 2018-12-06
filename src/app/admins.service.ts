@@ -27,7 +27,7 @@ export class AdminsService {
     {
       id: '4',
       display_name: '黃千綾',
-      discrimination: '抹茶控．負責前台前端部分',
+      discrimination: '抹茶控．負責前台部分',
       picture: 'assets/images/t4.jpg'
     },
   ];

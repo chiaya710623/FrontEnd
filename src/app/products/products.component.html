@@ -24,29 +24,32 @@
             <input type="checkbox" checked="checked" id="" /><label
               for="item-0"
               (click)="
-                        search = {
-                          category: '',
-                          subcategory: '',
-                          publisher: '',
-                          title: '',
-                          author: '',
-                          interpreter: '',
-                          ISBN: ''
-                        };
-                        page=1;
-                        getProducts();
-                      "
+                this.productsService.search = {
+                  category: '',
+                  subcategory: '',
+                  publisher: '',
+                  title: '',
+                  author: '',
+                  interpreter: '',
+                  ISBN: ''
+                };
+                page = 1;
+                search_submit();
+              "
               ><i class="fa fa-long-arrow-right" aria-hidden="true"></i>
               所有商品</label
             >
 
             <ul>
-              <ng-container *ngFor="let category of categories; let index=index">
+              <ng-container
+                *ngFor="let category of categories; let index = index"
+              >
                 <li>
-                  <input type="checkbox" id="" checked="checked" /><label for="item-0-0"
+                  <input type="checkbox" id="" checked="checked" /><label
+                    for="item-0-0"
                     ><a
                       (click)="
-                        search = {
+                        this.productsService.search = {
                           category: category.id,
                           subcategory: '',
                           publisher: '',
@@ -55,8 +58,8 @@
                           interpreter: '',
                           ISBN: ''
                         };
-                        page=1;
-                        getProducts();
+                        page = 1;
+                        search_submit();
                       "
                       ><i class="fa fa-long-arrow-right" aria-hidden="true"></i>
                       {{ category?.name }}</a
@@ -67,9 +70,8 @@
                       *ngFor="let subcategory of category.subcategory"
                     >
                       <li>
-                        <a
-                          (click)="
-                            search = {
+                        <a (click)="
+                            this.productsService.search = {
                               category: category.id,
                               subcategory: subcategory.id,
                               publisher: '',
@@ -78,8 +80,8 @@
                               interpreter: '',
                               ISBN: ''
                             };
-                            page=1;
-                            getProducts();
+                            page = 1;
+                            search_submit();
                           "
                           >{{ subcategory?.name }}</a
                         >
@@ -100,31 +102,33 @@
               <th>主類別</th>
               <td>
                 <select
-                  [(ngModel)]="search.category"
-                  (change)="getSubcategories(search.category)"
+                  [(ngModel)]="this.productsService.search.category"
+                  (change)="this.productsService.search.subcategory='';getSubcategories(search.category);"
                 >
                   -->
                   <option value="">請選擇主類別</option>
-                  <ng-container *ngFor="let category of categories">
-                    <option value="category.name">{{ category.name }}</option>
-                  </ng-container>
+
+                  <option
+                    *ngFor="let category of categories"
+                    [value]="category.id"
+                    >{{ category?.name }}</option
+                  >
                 </select>
               </td>
             </tr>
             <tr>
               <th>次類別</th>
               <td>
-                <select [(ngModel)]="search.subcategory">
+                <select [(ngModel)]="this.productsService.search.subcategory">
                   <ng-container *ngIf="subcategories !== []; else: elseTag">
                     <option value="">請選擇次類別</option>
-                    <ng-container *ngFor="let subcategory of subcategories">
-                      <option value="subcategory.name">{{
+
+                      <option *ngFor="let subcategory of subcategories" [value]="subcategory.id">{{
                         subcategory?.name
                       }}</option>
-                    </ng-container>
                   </ng-container>
                   <ng-template #elseTag>
-                    <option value="">該類別沒有次類別</option>
+                    <option value="">該類別沒有次類別。</option>
                   </ng-template>
                 </select>
               </td>
@@ -135,7 +139,7 @@
                 <input
                   type="text"
                   placeholder="請輸入書名"
-                  [(ngModel)]="search.title"
+                  [(ngModel)]="this.productsService.search.title"
                 />
               </td>
             </tr>
@@ -145,7 +149,7 @@
                 <input
                   type="text"
                   placeholder="請輸入作者"
-                  [(ngModel)]="search.author"
+                  [(ngModel)]="this.productsService.search.author"
                 />
               </td>
             </tr>
@@ -155,7 +159,7 @@
                 <input
                   type="text"
                   placeholder="請輸入譯者"
-                  [(ngModel)]="search.interpreter"
+                  [(ngModel)]="this.productsService.search.interpreter"
                 />
               </td>
             </tr>
@@ -165,7 +169,7 @@
                 <input
                   type="text"
                   placeholder="請輸入出版社"
-                  [(ngModel)]="search.publisher"
+                  [(ngModel)]="this.productsService.search.publisher"
                 />
               </td>
             </tr>
@@ -175,7 +179,7 @@
                 <input
                   type="text"
                   placeholder="請輸入ISBN"
-                  [(ngModel)]="search.ISBN"
+                  [(ngModel)]="this.productsService.search.ISBN"
                 />
               </td>
             </tr>
@@ -186,7 +190,7 @@
               type="button"
               class="function_button"
               value="搜尋商品"
-              (click)="search_submit()"
+              (click)="search_submit();"
             />
           </div>
         </div>
@@ -214,7 +218,7 @@
           <select
             id="country1"
             [(ngModel)]="sort"
-            (change)="page=1;ngOnInit();"
+            (change)="page = 1; ngOnInit()"
             class="frm-field required sect"
           >
             <option value="">請選擇排序方式</option>
@@ -228,7 +232,11 @@
         <!-- 排序（已完成） -->
         <div class="sorting">
           <h6>Showing</h6>
-          <select id="amount" [(ngModel)]="amount" (change)="page=1;ngOnInit()">
+          <select
+            id="amount"
+            [(ngModel)]="amount"
+            (change)="page = 1; ngOnInit()"
+          >
             <option value="3">3</option>
             <option value="9">9</option>
             <option value="12">15</option>
@@ -266,18 +274,18 @@
             </div>
             <div class="item-info-product ">
               <h4>
-                <a [routerLink]="['/products/', item.id]">{{ item.title }}</a>
+                <a [routerLink]="['/products/', item?.id]">{{ item?.title }}</a>
               </h4>
               <div class="info-product-price">
-                <span class="item_price">${{ item.sale_price }}</span>
-                <del>${{ item.list_price }}</del>
+                <span class="item_price">${{ item?.sale_price }}</span>
+                <del>${{ item?.list_price }}</del>
               </div>
               <div>
                 <input
                   type="button"
                   class="function_button"
                   value="加入購物車"
-                  (click)="add_to_cart(item.id, 1, item.stock)"
+                  (click)="add_to_cart(item?.id, 1, item.stock)"
                 />
               </div>
             </div>

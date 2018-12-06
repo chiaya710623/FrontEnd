@@ -21,6 +21,7 @@ export class HeaderComponent implements OnInit {
   ) {}
   show_cart = [];
   categories: any = [];
+  username = [];
   ngOnInit() {
     this.productsService.getCategories().subscribe((data: any) => {
       this.categories = data.data;

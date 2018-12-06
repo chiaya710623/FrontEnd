@@ -20,9 +20,9 @@ export class LoginComponent implements OnInit {
     private httpClient: HttpClient,
   ) {}
   ngOnInit() {}
-  login(user) {
+  login() {
     this.usersService.login(this.user).subscribe((data: any) => {
-      console.log(data);
+        console.log(data);
       if (data.token) {
         localStorage.setItem('token', data.token);
         alert('登入成功');

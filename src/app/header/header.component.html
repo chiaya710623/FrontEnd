@@ -80,13 +80,19 @@
             id="bs-example-navbar-collapse-1"
           >
             <ul class="nav navbar-nav menu__list">
-              <li class=" menu__item">  <!--home-->
-                <a class="menu__link" [routerLink]="['/']"
+              <li class=" menu__item">
+                <a
+                  class="menu__link"
+                  [routerLink]="['/']"
                   >Home</a
                 >
               </li>
-              <li class=" menu__item"> <!--about-->
-                <a class="menu__link" [routerLink]="['/about']">About</a>
+              <li class=" menu__item">
+                <a
+                  class="menu__link"
+                  [routerLink]="['/about']"
+                  >About</a
+                >
               </li>
               <li class="dropdown menu__item"> <!--Products-->
                 <a
@@ -102,7 +108,18 @@
                   <div class="agile_inner_drop_nav_info classification_font">
                     <div class="col-sm-3 multi-gd-img1 multi-gd-text ">
                       <a [routerLink]="['/products']">
-                        <p><img src="assets/images/top2.jpg" alt=" " /></p>
+                        <p><img src="assets/images/top2.jpg" alt=" " (click)="
+                          this.productsService.search = {
+                            category: '',
+                            subcategory: '',
+                            publisher: '',
+                            title: '',
+                            author: '',
+                            interpreter: '',
+                            ISBN: ''
+                          };
+                          reload('/products');
+                        "/></p>
                       </a>
                     </div>
                     <div class="col-sm-9 multi-gd-img">
@@ -113,16 +130,18 @@
                               [routerLink]="['/products']"
                               (click)="
                                 this.productsService.search = {
-                                  category: category.name,
+                                  category: category.id,
                                   subcategory: '',
                                   publisher: '',
                                   title: '',
                                   author: '',
                                   interpreter: '',
                                   ISBN: ''
-                                }
+                                };
+                                reload('/products');
                               "
-                              >{{ category?.name }}<span *ngIf="category.subcategory">：</span></a
+                              >{{ category?.name
+                              }}<span *ngIf="category.subcategory">：</span></a
                             >
                             <span
                               *ngFor="let subcategory of category?.subcategory"
@@ -131,17 +150,18 @@
                               <a
                                 (click)="
                                   this.productsService.search = {
-                                    category: category.name,
-                                    subcategory: subcategory.name,
+                                    category: category.id,
+                                    subcategory: subcategory.id,
                                     publisher: '',
                                     title: '',
                                     author: '',
                                     interpreter: '',
                                     ISBN: ''
-                                  }
+                                  };
+                                  reload('/products');
                                 "
-                                >{{ subcategory?.name }} </a
-                              >
+                                >{{ subcategory?.name }}
+                              </a>
                             </span>
                           </li></ng-container
                         >
@@ -152,10 +172,17 @@
                 </ul>
               </li>
               <li class=" menu__item">
-                <a class="menu__link" [routerLink]="['/contact']">Contact</a>
+                <a
+                  class="menu__link"
+                  [routerLink]="['/contact']"
+                  (click)="this.usersService.refresh()"
+                  >Contact</a
+                >
               </li>
               <li class=" menu__item">
-                <a class="menu__link" [routerLink]="['/orderlist']"
+                <a
+                  class="menu__link"
+                  [routerLink]="['/orderlist']"
                   >Orderlist</a
                 >
               </li>
@@ -221,11 +248,9 @@
                     <tr>
                       <td>{{ index + 1 }}</td>
                       <td>
-                        <a
-                          [routerLink]="['/products/', item.id]"
-                          data-dismiss="modal"
-                          >{{ item?.product?.title }}</a
-                        >
+                        <a data-dismiss="modal" (click)="clickItem(item)">{{
+                          item?.product?.title
+                        }}</a>
                       </td>
                       <td>NT${{ item?.product?.sale_price }}</td>
                       <td>{{ item?.item_amount }}</td>

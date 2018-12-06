@@ -13,7 +13,7 @@ export class CartService {
     private usersService: UsersService,
     private cookieService: CookieService,
   ) {}
-
+  show_cart = [];
   cart: any = [];
   list_amount = 0;
   add_to_cart(id, item_amount, stock) {
@@ -26,6 +26,12 @@ export class CartService {
             } else {
               this.cart[i].item_amount += item_amount;
               alert('已增加' + item_amount + '件此商品至購物車中。');
+            }
+            if (this.usersService.isLogin()) {
+              this.postCart(this.cart);
+            } else {
+              this.cookieService.set('cart', JSON.stringify(this.cart));
+              console.log('get', JSON.parse(this.cookieService.get('cart')));
             }
             return;
           }
@@ -52,7 +58,6 @@ export class CartService {
   }
 
   getCart() {
-    if (this.usersService.isLogin()) {
       return this.httpClient.get(
         `${environment.api}orders/cart`,
         {
@@ -61,7 +66,6 @@ export class CartService {
           }
         }
       );
-    }
   }
   postCart(cart) {
     if (this.usersService.isLogin()) {

@@ -15,15 +15,9 @@ export class ProductsComponent implements OnInit {
   amount = 9;
   page = 1;
   year = new Date().getFullYear();
-  search = {
-    category: '',
-    subcategory: '',
-    publisher: '',
-    title: '',
-    author: '',
-    interpreter: '',
-    ISBN: ''
-  };
+  get search() {
+    return this.productsService.search;
+  }
   show = {
     category: '',
     subcategory: '',
@@ -38,9 +32,29 @@ export class ProductsComponent implements OnInit {
   subcategories: any = [];
   data: any = { data: [], link: [], meta: [] };
   ngOnInit() {
+    if (this.search.category !== '') {
+      this.show.category = this.categories[
+        parseInt(this.search.category, 10) - 1
+      ].name;
+    } else {
+      this.show.category = '';
+    }
+    if (this.search.subcategory !== '') {
+      this.getSubcategories(this.search.category);
+      this.show.subcategory = this.subcategories[
+        parseInt(this.search.subcategory, 10) - 1
+      ].name;
+    } else {
+      this.show.subcategory = '';
+    }
+    this.show.publisher = this.search.publisher;
+    this.show.title = this.search.title;
+    this.show.author = this.search.author;
+    this.show.interpreter = this.search.interpreter;
+    this.show.ISBN = this.search.ISBN;
+    console.log(this.show);
     this.productsService.getCategories().subscribe((data: any) => {
       this.categories = data.data;
-      console.log(data.data);
     });
     this.getProducts();
   }
@@ -48,13 +62,27 @@ export class ProductsComponent implements OnInit {
     this.cartService.add_to_cart(id, item_amount, stock);
   }
   search_submit() {
-    this.show.category = this.search.category;
-    this.show.subcategory = this.search.subcategory;
+    if (this.search.category !== '') {
+      this.show.category = this.categories[
+        parseInt(this.search.category, 10) - 1
+      ].name;
+    } else {
+      this.show.category = '';
+    }
+    if (this.search.subcategory !== '') {
+      this.getSubcategories(this.search.category);
+      this.show.subcategory = this.subcategories[
+        parseInt(this.search.subcategory, 10) - 1
+      ].name;
+    } else {
+      this.show.subcategory = '';
+    }
     this.show.publisher = this.search.publisher;
     this.show.title = this.search.title;
     this.show.author = this.search.author;
     this.show.interpreter = this.search.interpreter;
     this.show.ISBN = this.search.ISBN;
+    console.log(this.show);
     this.ngOnInit();
   }
   getSubcategories(category) {

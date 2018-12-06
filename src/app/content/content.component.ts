@@ -64,5 +64,11 @@ export class ContentComponent implements OnInit {
       parseInt(stock, 10)
     );
   }
-
+  stock_range(stock) {
+    const range = [];
+    for (let i = 0; i < stock; i++) {
+      range[i] = i + 1;
+    }
+    return range;
+  }
 }

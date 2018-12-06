@@ -1,25 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { CartService } from './cart.service';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
-  constructor(
-    private httpClient: HttpClient
-  ) {}
-  token = '';
+  constructor(private httpClient: HttpClient) {}
   amount = 1;
   now = new Date();
 
   register(user) {
-    return this.httpClient.post(
-      '${environment.api}register',
-      user
-    );
+    return this.httpClient.post(`${environment.api}register`, user);
   }
 
   login(user) {
@@ -31,9 +24,16 @@ export class UsersService {
   }
 
   refresh() {
-    if (this.now.getMinutes[1] === 0) {
-      return this.httpClient.get(`${environment.api}refresh`);
-    }
+  //   this.httpClient
+  //     .get(`${environment.api}refresh`, {
+  //       headers: {
+  //         Authorization: `Bearer ${localStorage.getItem('token')}`
+  //       }
+  //     })
+  //     .subscribe((data: any) => {
+  //       console.log(data);
+  //       localStorage.setItem('token', data.token);
+  //     });
   }
 
   isLogin() {
