@@ -29,6 +29,7 @@ export class HeaderComponent implements OnInit {
     // read cart
     if (this.usersService.isLogin()) {
       this.cartService.getCart().subscribe((data: any) => {
+<<<<<<< HEAD
         if (JSON.stringify(data.products) !== '[]') {
           if (this.cookieService.check('cart')) {
             // check cookie
@@ -55,6 +56,16 @@ export class HeaderComponent implements OnInit {
           } else { // 資料庫有資料 沒有cookie
             this.cartService.cart = data.products;
           }
+=======
+        if (data.products !== {}) {
+          Object.keys(data.products).forEach(product => {
+            this.cartService.cart.push({
+              id: product,
+              item_amount: data.products[product],
+            });
+          });
+          this.cartService.list_amount = Object.keys(data.products).length;
+>>>>>>> 2069f689844db6ae6405b50fece1eee0aefc798f
         } else {
           // 資料庫沒資料
           if (this.cookieService.check('cart')) {
