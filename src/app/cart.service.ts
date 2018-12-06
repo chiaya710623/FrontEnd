@@ -69,16 +69,20 @@ export class CartService {
   }
   postCart(cart) {
     if (this.usersService.isLogin()) {
+      const cartdata = {};
+      cart.forEach(product => {
+        cartdata[product.id] = product.item_amount;
+      });
       return this.httpClient.patch(
         `${environment.api}orders/cart`,
-        encodeURI(`products=${JSON.stringify(cart)}`),
+        encodeURI(`products=${JSON.stringify(cartdata)}`),
         {
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
             Authorization: `Bearer ${localStorage.getItem('token')}`
           }
         }
-      );
+      ).subscribe(_ => {});
     }
   }
 }

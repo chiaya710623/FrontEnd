@@ -29,20 +29,14 @@ export class HeaderComponent implements OnInit {
     });
     if (this.usersService.isLogin()) {
       this.cartService.getCart().subscribe((data: any) => {
-        if (data.products !== []) {
-          if (data.products !== this.cart) {
-            if (
-              confirm(
-                '您的帳號中有前次購物車紀錄，是否覆蓋之前的紀錄？\n（選擇取消則使用您帳號中的購物車紀錄。）'
-              )
-            ) {
-              this.cartService.postCart(this.cart).subscribe((_: any) => {
-              });
-            } else {
-              this.cartService.cart = data.products;
-              this.cartService.list_amount = data.products.length;
-            }
-          }
+        if (data.products !== {}) {
+          Object.keys(data.products).forEach(product => {
+            this.cartService.cart.push({
+              id: product,
+              item_amount: data.products[product];
+            });
+          });
+          this.cartService.list_amount = Object.keys(data.products).length;
         } else {
           this.cartService.postCart(this.cart);
         }
