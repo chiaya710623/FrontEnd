@@ -69,12 +69,12 @@ export class CartService {
   }
   postCart(cart) {
     if (this.usersService.isLogin()) {
-      return this.httpClient.post(
-        `${environment.api}orders/cart?products=${JSON.stringify(
-          cart
-        )}`,
+      return this.httpClient.patch(
+        `${environment.api}orders/cart`,
+        encodeURI(`products=${JSON.stringify(cart)}`),
         {
           headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
             Authorization: `Bearer ${localStorage.getItem('token')}`
           }
         }

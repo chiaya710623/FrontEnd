@@ -29,17 +29,20 @@ export class HeaderComponent implements OnInit {
     });
     if (this.usersService.isLogin()) {
       this.cartService.getCart().subscribe((data: any) => {
-        if (data.data !== []) {
-          if (data.data !== this.cart) {
+        if (data.products !== []) {
+          if (data.products !== this.cart) {
             if (
               confirm(
                 '您的帳號中有前次購物車紀錄，是否覆蓋之前的紀錄？\n（選擇取消則使用您帳號中的購物車紀錄。）'
               )
             ) {
-              this.cartService.postCart(this.cart);
+              console.log('overriding');
+              this.cartService.postCart(this.cart).subscribe((_: any) => {
+                console.log('overrided');
+              });
             } else {
-              this.cartService.cart = data.data;
-              this.cartService.list_amount = data.data.length;
+              this.cartService.cart = data.products;
+              this.cartService.list_amount = data.products.length;
             }
           }
         } else {
@@ -58,6 +61,7 @@ export class HeaderComponent implements OnInit {
         this.cartService.list_amount = JSON.parse(
           this.cookieService.get('list_amount')
         );
+        console.log(this.cookieService.get('cart'));
         console.log('get', JSON.parse(this.cookieService.get('cart')));
         console.log('get', JSON.parse(this.cookieService.get('list_amount')));
       }
