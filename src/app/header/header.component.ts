@@ -3,7 +3,6 @@ import { UsersService } from '../users.service';
 import { Router } from '@angular/router';
 import { CartService } from '../cart.service';
 import { ProductsService } from '../products.service';
-import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-header',
@@ -16,7 +15,6 @@ export class HeaderComponent implements OnInit {
     private cartService: CartService,
     private productsService: ProductsService,
     private router: Router,
-    private httpClient: HttpClient,
     private cookieService: CookieService
   ) {}
   get show_cart() {
