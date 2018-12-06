@@ -1,3 +1,4 @@
+import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../users.service';
 import { Router } from '@angular/router';
@@ -16,6 +17,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private usersService: UsersService,
     private router: Router,
+    private httpClient: HttpClient,
   ) {}
   ngOnInit() {}
   login() {

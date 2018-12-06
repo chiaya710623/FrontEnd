@@ -42,7 +42,7 @@ export class CartService {
       alert('已加入' + item_amount + '件此商品至購物車。');
     } else {
       alert('庫存不足，無法加入購物車。');
-    }
+      }
     if (this.usersService.isLogin()) {
       this.postCart(this.cart);
     } else {
