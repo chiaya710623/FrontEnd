@@ -31,65 +31,68 @@
           訂單{{item.id}}:
         </td>
         <td>
-          <tr>
-            <td >
-              商品列:
-            </td>
-            <td>
-              <ng-container *ngFor="let product of item.productlist; let index=index; let last=last;">
-                <tr align="center">
-                  <td>
-                    {{product.title}}
-                  </td>
-                  <td>
-                    <tr align="center">價格:{{product.sale_price}}</tr>
-                    <tr align="center">數量:{{item.products[product.id]}}</tr>
-                  </td>
+          <table width="100%">
+            <tr>
+              <td >
+                商品列:
+              </td>
+              <td>
+                <ng-container *ngFor="let product of item.productlist; let index=index; let last=last;">
+                  <tr align="center">
+                    <td>
+                      {{product.title}}
+                    </td>
+                    <td>
+                      <tr align="center">價格:{{product.sale_price}}</tr>
+                      <tr align="center">數量:{{item.products[product.id]}}</tr>
+                    </td>
 
-                </tr>
-              </ng-container>
-            </td>
-          </tr>
-          <tr>
-            <td>訂單狀態:</td>
-            <td>{{item.status}}</td>
-          </tr>
-          <tr>
-            <td>付款方式:</td>
-            <td>{{item.pay_method}}</td>
-          </tr>
-          <tr>
-            <td>付款資訊:</td>
-            <td>{{item.payment_information}}</td>
-          </tr>
-          <tr>
-            <td>訂單留言:</td>
-            <td>{{item.message}}</td>
-          </tr>
-          <tr>
-            <td>配送方式:</td>
-            <td>{{item.ship_method}}</td>
-          </tr>
-          <tr>
-            <td>配送資訊:</td>
-            <td>{{item.ship_information}}</td>
-          </tr>
-          <tr>
-            <td>物流單號:</td>
-            <td>{{item.ship_order}}</td>
-          </tr>
-          <tr>
-            <td>收件人:</td>
-            <td>{{item.receiver}}</td>
-          </tr>
-          <tr>
-            <td>收件人電話:</td>
-            <td>{{item.receiver_phone}}</td>
-          </tr>
-          <tr>
-            <td>發票號碼:</td>
-            <td>{{item.invoice_number}}</td>
-          </tr>
+                  </tr>
+                </ng-container>
+              </td>
+            </tr>
+            <tr>
+              <td>訂單狀態:</td>
+              <td>{{item.status}}</td>
+            </tr>
+            <tr>
+              <td>付款方式:</td>
+              <td>{{item.pay_method}}</td>
+            </tr>
+            <tr>
+              <td>付款資訊:</td>
+              <td>{{item.payment_information}}</td>
+            </tr>
+            <tr>
+              <td>訂單留言:</td>
+              <td>{{item.message}}</td>
+            </tr>
+            <tr>
+              <td>配送方式:</td>
+              <td>{{item.ship_method}}</td>
+            </tr>
+            <tr>
+              <td>配送資訊:</td>
+              <td>{{item.ship_information}}</td>
+            </tr>
+            <tr>
+              <td>物流單號:</td>
+              <td>{{item.ship_order}}</td>
+            </tr>
+            <tr>
+              <td>收件人:</td>
+              <td>{{item.receiver}}</td>
+            </tr>
+            <tr>
+              <td>收件人電話:</td>
+              <td>{{item.receiver_phone}}</td>
+            </tr>
+            <tr>
+              <td>發票號碼:</td>
+              <td>{{item.invoice_number}}</td>
+            </tr>
+          </table>
+
         </td>
       </tr>
     </ng-container>
