@@ -17,7 +17,10 @@ export class OrderComponent implements OnInit {
   productlist: any;
   originOrderlist = this.orderlist;
   keyword = '';
-  productsNumber = 0;
+  status = ['未出貨', '已出貨', '交易已完成'];
+  pay_method = ['信用卡', '超商付款'];
+  skipMethod = ['超商', '宅配'];
+  totalAmount = 0;
   ngOnInit() {
     this.orders.getOrders().subscribe((response: any) => {
       console.log(response);
@@ -25,17 +28,16 @@ export class OrderComponent implements OnInit {
       this.orderlist.forEach(order => {
         order.productlist = [];
         Object.keys(order.products).forEach(key => {
-          this.products.getProduct(key).subscribe(product => {
+          this.products.getProduct(key).subscribe((product: any) => {
             order.productlist.push(product);
             console.log(product);
-            this.productsNumber++;
+            this.totalAmount += product.sale_price ;
+            console.log(response.Products[product.id]);
           });
         });
       });
-      this.productsNumber = 0;
     });
   }
-
   search() {
     /*
     if (this.keyword === '') {
