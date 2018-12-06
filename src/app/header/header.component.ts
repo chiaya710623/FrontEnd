@@ -19,7 +19,9 @@ export class HeaderComponent implements OnInit {
     private httpClient: HttpClient,
     private cookieService: CookieService
   ) {}
-  show_cart = [];
+  get show_cart() {
+    return this.cartService.show_cart;
+  }
   categories: any = [];
   username = [];
   ngOnInit() {
@@ -37,9 +39,16 @@ export class HeaderComponent implements OnInit {
               )
             ) {
               this.cartService.postCart(this.cart);
+              this.cartService.getCart().subscribe((data2: any) => {
+                console.log(data2.data);
+              });
             } else {
               this.cartService.cart = data.data;
-              this.cartService.list_amount = data.data.length;
+              if (data.data !== []) {
+                this.cartService.list_amount = data.data.length;
+              } else {
+                this.cartService.list_amount = 0;
+              }
             }
           }
         } else {
@@ -49,26 +58,23 @@ export class HeaderComponent implements OnInit {
     } else {
       if (!this.cookieService.check('cart')) {
         this.cookieService.set('cart', JSON.stringify(this.cartService.cart));
-        this.cookieService.set(
-          'list_amount',
-          JSON.stringify(this.cartService.list_amount)
-        );
       } else {
         this.cartService.cart = JSON.parse(this.cookieService.get('cart'));
-        this.cartService.list_amount = JSON.parse(
-          this.cookieService.get('list_amount')
-        );
         console.log('get', JSON.parse(this.cookieService.get('cart')));
-        console.log('get', JSON.parse(this.cookieService.get('list_amount')));
+        if (this.cart !== []) {
+          this.cartService.list_amount = this.cart.length;
+        } else {
+          this.cartService.list_amount = 0;
+        }
       }
     }
-    this.show_cart = [];
+    this.cartService.show_cart = [];
     if (this.list_amount !== 0) {
       for (let i = 0; i < this.list_amount; i++) {
         this.productsService
           .getProduct(this.cart[i].id)
           .subscribe((data: any) => {
-            this.show_cart[i] = {
+            this.cartService.show_cart[i] = {
               id: this.cart[i].id,
               item_amount: this.cart[i].item_amount,
               product: data
