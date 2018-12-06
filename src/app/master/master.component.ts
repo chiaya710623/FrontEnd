@@ -7,10 +7,11 @@ import { UsersService } from '../users.service';
   styleUrls: ['./master.component.css']
 })
 export class MasterComponent implements OnInit {
-
-  constructor(private usersService: UsersService) { }
+  constructor(private usersService: UsersService) {}
 
   ngOnInit() {
+    if (this.usersService.isLogin()) {
+      setInterval(this.usersService.refresh, 30 * 60 * 1000);
+    }
   }
-
 }

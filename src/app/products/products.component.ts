@@ -9,15 +9,13 @@ import { ProductsService } from '../products.service';
 })
 export class ProductsComponent implements OnInit {
   constructor(
-    private productsService: ProductsService,
+    public productsService: ProductsService,
     private cartService: CartService
   ) {}
   amount = 9;
   page = 1;
   year = new Date().getFullYear();
-  get search() {
-    return this.productsService.search;
-  }
+
   show = {
     category: '',
     subcategory: '',
@@ -32,56 +30,56 @@ export class ProductsComponent implements OnInit {
   subcategories: any = [];
   data: any = { data: [], link: [], meta: [] };
   ngOnInit() {
-    if (this.search.category !== '') {
+    this.productsService.getCategories().subscribe((data: any) => {
+      this.categories = data.data;
+    });
+    if (this.productsService.search.category !== '') {
       this.show.category = this.categories[
-        parseInt(this.search.category, 10) - 1
+        parseInt(this.productsService.search.category, 10) - 1
       ].name;
     } else {
       this.show.category = '';
     }
-    if (this.search.subcategory !== '') {
-      this.getSubcategories(this.search.category);
+    if (this.productsService.search.subcategory !== '') {
+      this.getSubcategories(this.productsService.search.category);
       this.show.subcategory = this.subcategories[
-        parseInt(this.search.subcategory, 10) - 1
+        parseInt(this.productsService.search.subcategory, 10) - 1
       ].name;
     } else {
       this.show.subcategory = '';
     }
-    this.show.publisher = this.search.publisher;
-    this.show.title = this.search.title;
-    this.show.author = this.search.author;
-    this.show.interpreter = this.search.interpreter;
-    this.show.ISBN = this.search.ISBN;
+    this.show.publisher = this.productsService.search.publisher;
+    this.show.title = this.productsService.search.title;
+    this.show.author = this.productsService.search.author;
+    this.show.interpreter = this.productsService.search.interpreter;
+    this.show.ISBN = this.productsService.search.ISBN;
     console.log(this.show);
-    this.productsService.getCategories().subscribe((data: any) => {
-      this.categories = data.data;
-    });
     this.getProducts();
   }
   add_to_cart(id, item_amount, stock) {
     this.cartService.add_to_cart(id, item_amount, stock);
   }
   search_submit() {
-    if (this.search.category !== '') {
+    if (this.productsService.search.category !== '') {
       this.show.category = this.categories[
-        parseInt(this.search.category, 10) - 1
+        parseInt(this.productsService.search.category, 10) - 1
       ].name;
     } else {
       this.show.category = '';
     }
-    if (this.search.subcategory !== '') {
-      this.getSubcategories(this.search.category);
+    if (this.productsService.search.subcategory !== '') {
+      this.getSubcategories(this.productsService.search.category);
       this.show.subcategory = this.subcategories[
-        parseInt(this.search.subcategory, 10) - 1
+        parseInt(this.productsService.search.subcategory, 10) - 1
       ].name;
     } else {
       this.show.subcategory = '';
     }
-    this.show.publisher = this.search.publisher;
-    this.show.title = this.search.title;
-    this.show.author = this.search.author;
-    this.show.interpreter = this.search.interpreter;
-    this.show.ISBN = this.search.ISBN;
+    this.show.publisher = this.productsService.search.publisher;
+    this.show.title = this.productsService.search.title;
+    this.show.author = this.productsService.search.author;
+    this.show.interpreter = this.productsService.search.interpreter;
+    this.show.ISBN = this.productsService.search.ISBN;
     console.log(this.show);
     this.ngOnInit();
   }
@@ -93,7 +91,7 @@ export class ProductsComponent implements OnInit {
   }
   getProducts() {
     this.productsService
-      .getProducts(this.amount, this.page, this.sort, this.search)
+      .getProducts(this.amount, this.page, this.sort, this.productsService.search)
       .subscribe((data: any) => {
         this.data = data;
         this.page = this.data.meta.current_page;
