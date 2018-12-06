@@ -10,6 +10,8 @@ export class MasterComponent implements OnInit {
   constructor(private usersService: UsersService) {}
 
   ngOnInit() {
-    setInterval(this.usersService.refresh, 30 * 60 * 1000);
+    if (this.usersService.isLogin()) {
+      setInterval(this.usersService.refresh, 30 * 60 * 1000);
+    }
   }
 }
