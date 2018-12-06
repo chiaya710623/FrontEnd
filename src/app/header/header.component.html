@@ -227,11 +227,11 @@
           <div>
             <div>
               <h2>
-                購物車中有<span>{{ list_amount }}項商品</span>
+                購物車中有<span>{{ cart?.length }}項商品</span>
               </h2>
               <br />
               <!-- 購物車表格 -->
-              <ng-container *ngIf="list_amount !== 0">
+              <ng-container *ngIf="cart">
                 <table class="product_list">
                   <thead>
                     <tr>

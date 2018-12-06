@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   };
   constructor(
     private usersService: UsersService,
+    private cartService: CartService,
     private router: Router,
   ) {}
   ngOnInit() {}
@@ -24,6 +25,7 @@ export class LoginComponent implements OnInit {
       if (data.token) {
         localStorage.setItem('token', data.token);
         alert('登入成功');
+        this.cartService.cart = [];
         this.router.navigate(['/']);
       } else {
         alert('登入失敗');

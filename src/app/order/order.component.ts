@@ -9,18 +9,17 @@ declare let $: any;
   styleUrls: ['./order.component.css']
 })
 export class OrderComponent implements OnInit {
-
   constructor(
     private orders: OrdersService,
     private products: ProductsService
-  ) { }
+  ) {}
   orderlist: any;
   productlist: any;
   originOrderlist = this.orderlist;
   keyword = '';
   productsNumber = 0;
   ngOnInit() {
-    this.orders.getOrders().subscribe(response => {
+    this.orders.getOrders().subscribe((response: any) => {
       console.log(response);
       this.orderlist = response.data;
       this.orderlist.forEach(order => {
@@ -37,7 +36,8 @@ export class OrderComponent implements OnInit {
     });
   }
 
-  search()  {/*
+  search() {
+    /*
     if (this.keyword === '') {
       this.orderlist = this.originOrderlist;
     } else {
@@ -49,6 +49,5 @@ export class OrderComponent implements OnInit {
         }
       );
       //*/
-    }
-
+  }
 }
