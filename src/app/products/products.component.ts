@@ -32,7 +32,6 @@ export class ProductsComponent implements OnInit {
   ngOnInit() {
     this.productsService.getCategories().subscribe((data: any) => {
       this.categories = data.data;
-    });
     if (this.productsService.search.category !== '') {
       this.show.category = this.categories[
         parseInt(this.productsService.search.category, 10) - 1
@@ -55,6 +54,7 @@ export class ProductsComponent implements OnInit {
     this.show.ISBN = this.productsService.search.ISBN;
     console.log(this.show);
     this.getProducts();
+    });
   }
   add_to_cart(id, item_amount, stock) {
     this.cartService.add_to_cart(id, item_amount, stock);
@@ -81,7 +81,7 @@ export class ProductsComponent implements OnInit {
     this.show.interpreter = this.productsService.search.interpreter;
     this.show.ISBN = this.productsService.search.ISBN;
     console.log(this.show);
-    this.ngOnInit();
+    this.getProducts();
   }
   getSubcategories(category) {
     this.productsService.getSubcategories(category).subscribe((data: any) => {
@@ -91,7 +91,12 @@ export class ProductsComponent implements OnInit {
   }
   getProducts() {
     this.productsService
-      .getProducts(this.amount, this.page, this.sort, this.productsService.search)
+      .getProducts(
+        this.amount,
+        this.page,
+        this.sort,
+        this.productsService.search
+      )
       .subscribe((data: any) => {
         this.data = data;
         this.page = this.data.meta.current_page;
