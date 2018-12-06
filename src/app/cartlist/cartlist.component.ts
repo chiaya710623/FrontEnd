@@ -19,7 +19,9 @@ export class CartlistComponent implements OnInit {
     this.show();
   }
   show() {
+    console.log('show cart');
     if (this.list_amount !== 0) {
+      console.log('ee');
       for (let i = 0; i < this.list_amount; i++) {
         this.productsService
           .getProduct(this.cart[i].id)

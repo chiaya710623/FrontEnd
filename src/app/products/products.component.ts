@@ -9,7 +9,7 @@ import { ProductsService } from '../products.service';
 })
 export class ProductsComponent implements OnInit {
   constructor(
-    private productsService: ProductsService,
+    public productsService: ProductsService,
     private cartService: CartService
   ) {}
   amount = 9;

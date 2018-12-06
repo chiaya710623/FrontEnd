@@ -11,7 +11,7 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class HeaderComponent implements OnInit {
   constructor(
-    private usersService: UsersService,
+    public usersService: UsersService,
     private cartService: CartService,
     private productsService: ProductsService,
     private router: Router,
@@ -29,24 +29,18 @@ export class HeaderComponent implements OnInit {
     });
     if (this.usersService.isLogin()) {
       this.cartService.getCart().subscribe((data: any) => {
-        if (data.data !== []) {
-          if (data.data !== this.cart) {
+        if (data.products !== []) {
+          if (data.products !== this.cart) {
             if (
               confirm(
                 '您的帳號中有前次購物車紀錄，是否覆蓋之前的紀錄？\n（選擇取消則使用您帳號中的購物車紀錄。）'
               )
             ) {
-              this.cartService.postCart(this.cart);
-              this.cartService.getCart().subscribe((data2: any) => {
-                console.log(data2.data);
+              this.cartService.postCart(this.cart).subscribe((_: any) => {
               });
             } else {
-              this.cartService.cart = data.data;
-              if (data.data !== []) {
-                this.cartService.list_amount = data.data.length;
-              } else {
-                this.cartService.list_amount = 0;
-              }
+              this.cartService.cart = data.products;
+              this.cartService.list_amount = data.products.length;
             }
           }
         } else {
@@ -58,6 +52,10 @@ export class HeaderComponent implements OnInit {
         this.cookieService.set('cart', JSON.stringify(this.cartService.cart));
       } else {
         this.cartService.cart = JSON.parse(this.cookieService.get('cart'));
+        this.cartService.list_amount = JSON.parse(
+          this.cookieService.get('list_amount')
+        );
+        console.log(this.cookieService.get('cart'));
         console.log('get', JSON.parse(this.cookieService.get('cart')));
         if (this.cart !== []) {
           this.cartService.list_amount = this.cart.length;

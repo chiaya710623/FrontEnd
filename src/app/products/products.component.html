@@ -103,7 +103,7 @@
               <td>
                 <select
                   [(ngModel)]="this.productsService.search.category"
-                  (change)="this.productsService.search.subcategory='';getSubcategories(search.category);"
+                  (change)="this.productsService.search.subcategory='';getSubcategories($event.target.value);"
                 >
                   -->
                   <option value="">請選擇主類別</option>
