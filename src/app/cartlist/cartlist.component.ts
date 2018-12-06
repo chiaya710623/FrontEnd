@@ -20,9 +20,9 @@ export class CartlistComponent implements OnInit {
   }
   show() {
     console.log('show cart');
-    if (this.list_amount !== 0) {
+    if (JSON.stringify(this.cart) !== '[]') {
       console.log('ee');
-      for (let i = 0; i < this.list_amount; i++) {
+      for (let i = 0; i < this.cart.length; i++) {
         this.productsService
           .getProduct(this.cart[i].id)
           .subscribe((data: any) => {
@@ -46,9 +46,7 @@ export class CartlistComponent implements OnInit {
   get cart() {
     return this.cartService.cart;
   }
-  get list_amount() {
-    return this.cartService.list_amount;
-  }
+
   plus(index) {
     if (
       this.cartService.cart[index].item_amount <
