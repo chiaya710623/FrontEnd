@@ -33,12 +33,12 @@ export class HeaderComponent implements OnInit {
           Object.keys(data.products).forEach(product => {
             this.cartService.cart.push({
               id: product,
-              item_amount: data.products[product];
+              item_amount: data.products[product],
             });
           });
           this.cartService.list_amount = Object.keys(data.products).length;
         } else {
-          this.cartService.postCart(this.cart);
+          this.cartService.patchCart(this.cart);
         }
       });
     } else {
@@ -86,7 +86,7 @@ export class HeaderComponent implements OnInit {
   delete_item(index) {
     this.cartService.delete_item(index);
     if (this.usersService.isLogin()) {
-      this.cartService.postCart(this.cart);
+      this.cartService.patchCart(this.cart);
     } else {
       this.cookieService.set('cart', JSON.stringify(this.cartService.cart));
     }

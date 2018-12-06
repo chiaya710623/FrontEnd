@@ -28,7 +28,7 @@ export class CartService {
               alert('已增加' + item_amount + '件此商品至購物車中。');
             }
             if (this.usersService.isLogin()) {
-              this.postCart(this.cart);
+              this.patchCart(this.cart);
             } else {
               this.cookieService.set('cart', JSON.stringify(this.cart));
               console.log('get', JSON.parse(this.cookieService.get('cart')));
@@ -44,7 +44,7 @@ export class CartService {
       alert('庫存不足，無法加入購物車。');
       }
     if (this.usersService.isLogin()) {
-      this.postCart(this.cart);
+      this.patchCart(this.cart);
     } else {
       this.cookieService.set('cart', JSON.stringify(this.cart));
       console.log('get', JSON.parse(this.cookieService.get('cart')));
@@ -67,7 +67,7 @@ export class CartService {
         }
       );
   }
-  postCart(cart) {
+  patchCart(cart) {
     if (this.usersService.isLogin()) {
       const cartdata = {};
       cart.forEach(product => {
