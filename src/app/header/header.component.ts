@@ -37,7 +37,6 @@ export class HeaderComponent implements OnInit {
             });
           });
       }});
-      this.show();
     } else {
       // not logged in
       if (this.cookieService.check('cart') === false) {
