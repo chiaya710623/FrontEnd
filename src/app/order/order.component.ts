@@ -1,5 +1,4 @@
 import { ProductsService } from './../products.service';
-
 import { Component, OnInit } from '@angular/core';
 import { OrdersService } from '../orders.service';
 declare let $: any;
@@ -31,8 +30,7 @@ export class OrderComponent implements OnInit {
           this.products.getProduct(key).subscribe((product: any) => {
             order.productlist.push(product);
             // console.log(product);
-            this.totalAmount += product.sale_price ;
-            // console.log(response.Products[product.id]);
+            this.totalAmount += product.sale_price * order.products[product.id];
           });
         });
       });
@@ -43,12 +41,15 @@ export class OrderComponent implements OnInit {
       this.newOrderlist = this.orderlist;
     } else {
       this.newOrderlist = this.orderlist.filter(
-          results => {
+        results => {
           let flag = false;
           results.products.forEach(products => flag = flag || products.title.indexOf(this.keyword) !== -1);
           return flag;
         }
+
       );
     }
     console.log(keyword);
+    console.log(this.orderlist);
   }
+}

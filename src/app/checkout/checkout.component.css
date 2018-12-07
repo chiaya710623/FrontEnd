@@ -339,7 +339,7 @@ table.timetable_sub {
   width: 75%;
   padding-left: 2%;
 }
-.timetable_sub input[type="text"] {
+.timetable_sub input[type="text"], textarea {
   width: 98%;
 }
 .timetable_sub span {
