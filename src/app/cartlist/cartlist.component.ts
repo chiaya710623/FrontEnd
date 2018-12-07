@@ -57,7 +57,7 @@ export class CartlistComponent implements OnInit {
     }
   }
   minor(index) {
-    if (this.cartService.cart[index].item_amount > 0) {
+    if (this.cartService.cart[index].item_amount > 1) {
       this.cartService.cart[index].item_amount--;
       this.cartService.show_cart[index].item_amount--;
     }

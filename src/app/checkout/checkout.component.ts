@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../cart.service';
-import { OrderService } from '../order.service';
+import { OrdersService } from '../orders.service';
 import { Router } from '@angular/router';
 import { ProductsService } from '../products.service';
 
@@ -13,36 +13,21 @@ export class CheckoutComponent implements OnInit {
   constructor(
     private cartService: CartService,
     private productsService: ProductsService,
-    private orderService: OrderService,
+    private ordersService: OrdersService,
     private router: Router
   ) {}
   total = 0;
-  information = {
-    name: '',
-    phone: '',
-    address: '',
-    email: '',
-    pay: '',
-    transmit: ''
-  };
-  ngOnInit() {}
-  // get showcart() {
-  //   const cart = [];
-  //   for (let i = 0; i < this.cartService.cart.length; i++) {
-  //     for (let j = 0; j < this.productsService.originalProducts.length; j++) {
-  //       if (this.cartService.cart[i].id === this.productsService.originalProducts[j].id) {
-  //         cart[i] = this.productsService.originalProducts[j];
-  //         cart[i].amount = this.cartService.cart[i].item_amount;
-  //       }
-  //     }
-  //   }
-  //   this.total = 0;
-  //   for (let i = 0; i < cart.length; i++) {
-  //     this.total += cart[i].price * cart[i].amount;
-  //   }
-  //   return cart;
-  // }
-  // submit_order(information, products, total) {
-  //   return this.orderService.submit_order(information, products, total);
-  // }
+
+  ngOnInit() {
+    this.cartService.patchCart(this.cartService.cart);
+    this.cartService.show();
+  }
+
+  get order() {
+    return this.ordersService.order;
+  }
+
+  submit() {
+    this.ordersService.patchOrder();
+  }
 }

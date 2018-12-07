@@ -5,11 +5,21 @@
       <div class="checkout-left-basket" style="width:100%;">
         <h4>訂單內容</h4>
         <ul>
-          <ng-container *ngFor="let item of showcart;">
-            <li>{{item.name}} <span>NT${{item.price}} x {{item.amount}} = NT${{item.price*item.amount}} </span></li>
+          <ng-container *ngFor="let item of this.cartService.show_cart">
+            <li>
+              {{ item.product.title }}
+              <span
+                >NT${{ item.product.sale_price }} x {{ item.item_amount }} =
+                NT${{ item.product.sale_price * item.item_amount }}
+              </span>
+            </li>
           </ng-container>
           <li>運費 <span>NT$65</span></li>
-          <li><strong>總金額 <span>NT${{ total + 65 }}</span></strong></li>
+          <li>
+            <strong
+              >總金額 <span>NT${{ total + 65 }}</span></strong
+            >
+          </li>
         </ul>
       </div>
     </div>
@@ -18,41 +28,107 @@
     <div class="checkout-right">
       <table class="timetable_sub">
         <tr>
-          <th>訂購人姓名：</th>
-          <td><input type="text" name="name" placeholder="請輸入姓名" [(ngModel)]="information.name"></td>
+          <th>收件人姓名：</th>
+          <td>
+            <input
+              type="text"
+              name="name"
+              placeholder="請輸入姓名"
+              [(ngModel)]="order.receiver"
+            />
+          </td>
         </tr>
         <tr>
           <th>電話：</th>
-          <td><input type="text" name="phone" placeholder="請輸入電話" [(ngModel)]="information.phone"></td>
-        </tr>
-        <tr>
-          <th>E-mail：</th>
-          <td><input type="text" name="email" placeholder="請輸入E-mail" [(ngModel)]="information.email"></td>
-        </tr>
-        <tr>
-          <th>地址：</th>
-          <td><input type="text" name="address" placeholder="請輸入地址" [(ngModel)]="information.address"></td>
+          <td>
+            <input
+              type="text"
+              name="phone"
+              placeholder="請輸入電話"
+              [(ngModel)]="order.receiver_phone"
+            />
+          </td>
         </tr>
         <tr>
           <th>付款方式：</th>
-          <td><span><input type="radio" name="pay" value="'信用卡付款'" [(ngModel)]="information.pay">信用卡付款</span>
-            <span><input type="radio" name="pay" value="'轉帳付款'" [(ngModel)]="information.pay">轉帳付款</span>
+          <td>
+            <span
+              ><input
+                type="radio"
+                name="pay"
+                value="信用卡付款"
+                [(ngModel)]="order.pay_method"
+              />信用卡付款</span
+            >
+            <span
+              ><input
+                type="radio"
+                name="pay"
+                value="轉帳付款"
+                [(ngModel)]="order.pay_method"
+              />轉帳付款</span
+            >
           </td>
         </tr>
         <tr>
           <th>運送方式：</th>
-          <td><span><input type="radio" name="transmit" value="'郵寄'" [(ngModel)]="information.transmit">郵寄</span>
-            <span><input type="radio" name="transmit" value="'7-11取貨'" [(ngModel)]="information.transmit">7-11取貨</span>
+          <td>
+            <span
+              ><input
+                type="radio"
+                name="transmit"
+                value="0"
+                [(ngModel)]="order.ship_method"
+              />郵寄</span
+            >
+            <span
+              ><input
+                type="radio"
+                name="transmit"
+                value="1"
+                [(ngModel)]="order.ship_method"
+              />超商取貨</span
+            >
           </td>
         </tr>
+        <ng-container
+          *ngIf="this.ordersService.order.ship_method === '0'; else: elseTag"
+        >
+          <tr>
+            <th>地址：</th>
+            <td>
+              <input
+                type="text"
+                name="address"
+                placeholder="請輸入地址"
+                [(ngModel)]="order.ship_information"
+              />
+            </td></tr></ng-container
+        ><ng-template #elseTag>
+          <tr>
+            <th>指定門市：</th>
+            <td>
+              <input
+                type="text"
+                name="address"
+                placeholder="請輸入指定門市名稱及地址"
+                [(ngModel)]="order.ship_information"
+              />
+            </td></tr
+        ></ng-template>
       </table>
     </div>
     <!-- //填寫資料 -->
     <div class="checkout-right-basket">
-      <a [routerLink]="['/products']"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>返回購物</a>
+      <a [routerLink]="['/products']"
+        ><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span
+        >返回購物</a
+      >
 
-      <a (click)="submit_order(information, showcart, total)"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>送出訂單</a>
-
+      <a (click)="submit()"
+        ><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span
+        >送出訂單</a
+      >
     </div>
   </div>
 </div>
