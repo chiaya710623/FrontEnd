@@ -20,9 +20,38 @@ export class CheckoutComponent implements OnInit {
 
   ngOnInit() {
     this.cartService.patchCart(this.cartService.cart);
-    this.cartService.show();
+    this.cartService.show_cart = [];
+    this.total = 0;
+    this.show();
   }
-
+  get cart() {
+    return this.cartService.cart;
+  }
+  get show_cart() {
+    return this.cartService.show_cart;
+  }
+  show() {
+    console.log('show cart');
+    if (JSON.stringify(this.cart) !== '[]') {
+      console.log('ee');
+      for (let i = 0; i < this.cart.length; i++) {
+        this.productsService
+          .getProduct(this.cart[i].id)
+          .subscribe((data: any) => {
+            this.cartService.show_cart[i] = {
+              id: this.cart[i].id,
+              item_amount: this.cart[i].item_amount,
+              product: data
+            };
+            this.total +=
+              this.show_cart[i].item_amount *
+              this.show_cart[i].product.sale_price;
+          });
+      }
+      console.log('cart', this.cart);
+      console.log('show_cart', this.show_cart);
+    }
+  }
   get order() {
     return this.ordersService.order;
   }
