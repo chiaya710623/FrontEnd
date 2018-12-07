@@ -34,7 +34,6 @@ export class HeaderComponent implements OnInit {
     // 等下處理成 註冊新會員後跟結帳完自動patch一個空購物車
     this.usersService.logout();
     alert('已登出');
-    this.usersService.isLogin = 0;
     if (this.cookieService.check('cart') === true) {
       this.cartService.cart = JSON.parse(this.cookieService.get('cart'));
     }
@@ -50,7 +49,7 @@ export class HeaderComponent implements OnInit {
   }
 
   checkout() {
-    if (this.usersService.isLogin) {
+    if (this.usersService.isLogin()) {
       if (JSON.stringify(this.cart) === '[]') {
         alert('購物車中沒有商品。');
       } else {

@@ -27,7 +27,7 @@ export class CartService {
             } else {
               this.cart[i].item_amount += item_amount;
               alert('已增加' + item_amount + '件此商品至購物車中。');
-              if (this.usersService.isLogin === 0) {
+              if (this.usersService.isLogin()) {
                 this.cookieService.set('cart', JSON.stringify(this.cart));
               }
             }
@@ -36,13 +36,13 @@ export class CartService {
         }
         this.cart.push({ id: id, item_amount: item_amount });
         alert('已加入' + item_amount + '件此商品至購物車。');
-        if (this.usersService.isLogin === 0) {
+        if (this.usersService.isLogin()) {
           this.cookieService.set('cart', JSON.stringify(this.cart));
         }
       } else {
         this.cart.push({ id: id, item_amount: item_amount });
         alert('已加入' + item_amount + '件此商品至購物車。');
-        if (this.usersService.isLogin === 0) {
+        if (this.usersService.isLogin()) {
           this.cookieService.set('cart', JSON.stringify(this.cart));
         }
       }
@@ -54,7 +54,7 @@ export class CartService {
   delete_item(index) {
     this.cart.splice(index, index + 1);
       this.show_cart.splice(index, index + 1);
-    if (this.usersService.isLogin === 0) {
+    if (this.usersService.isLogin()) {
       this.cookieService.set('cart', JSON.stringify(this.cart));
     }
   }
@@ -86,7 +86,7 @@ export class CartService {
   }
 
   patchCart(cart) {
-    if (this.usersService.isLogin) {
+    if (this.usersService.isLogin()) {
       const cartdata = {};
       cart.forEach(product => {
         cartdata[product.id] = product.item_amount;
@@ -103,7 +103,9 @@ export class CartService {
             }
           }
         )
-        .subscribe(_ => {});
+        .subscribe(response => {
+          console.log(response);
+        });
     }
   }
 }

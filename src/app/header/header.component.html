@@ -7,7 +7,7 @@
         <i class="fa fa-envelope-o" aria-hidden="true"></i>
         <a href="mailto:info@example.com">info@example.com</a>
       </li>
-      <ng-container *ngIf="this.usersService.isLogin === 0; else: elseTag">
+      <ng-container *ngIf="!this.usersService.isLogin(); else: elseTag">
         <li>
           <a [routerLink]="['/signup']"
             ><i class="fa fa-pencil-square-o"></i> 註冊

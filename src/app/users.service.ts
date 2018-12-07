@@ -10,7 +10,10 @@ export class UsersService {
   constructor(private httpClient: HttpClient) {}
   amount = 1;
   now = new Date();
-isLogin = 0;
+
+  isLogin() {
+    return localStorage.getItem('token');
+  }
   register(user) {
     return this.httpClient.post(`${environment.api}register`, user);
   }

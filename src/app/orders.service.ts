@@ -26,14 +26,13 @@ export class OrdersService {
 
   patchOrder() {
     let orderstring = '';
+    const orderobject = {};
     for (const key in this.order) {
       if (1) {
-        orderstring = orderstring.concat(key, '=', this.order[key]);
-        if (key !== 'ship_method') {
-          orderstring = orderstring.concat('&');
-        }
+        orderobject[key] = this.order[key];
       }
     }
+    orderstring = JSON.stringify(orderobject);
     return this.httpClient
       .patch(`${environment.api}orders`, encodeURI(`${orderstring}`), {
         headers: {

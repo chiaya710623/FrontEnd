@@ -16,10 +16,10 @@ export class MasterComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    if (this.usersService.isLogin) {
+    if (this.usersService.isLogin()) {
       setInterval(this.usersService.refresh, 30 * 60 * 1000);
     }
-    if (this.usersService.isLogin === 0) {
+    if (this.usersService.isLogin()) {
       if (this.cookieService.check('cart') === true) {
         this.cartService.cart = JSON.parse(this.cookieService.get('cart'));
       } else {

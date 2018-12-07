@@ -32,7 +32,6 @@ export class LoginComponent implements OnInit {
       (data: any) => {
         if (data.token) {
           localStorage.setItem('token', data.token);
-          this.usersService.isLogin = 1;
           this.cartService.getCart().subscribe(
             (cartdata: any) => {
               // 放入資料庫中的購物車
