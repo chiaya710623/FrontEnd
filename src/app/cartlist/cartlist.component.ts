@@ -49,21 +49,20 @@ export class CartlistComponent implements OnInit {
 
   plus(index) {
     if (
-      this.cartService.cart[index].item_amount <
+      this.cartService.show_cart[index].item_amount <
       this.cartService.show_cart[index].product.stock
     ) {
       this.cartService.cart[index].item_amount++;
+      this.cartService.show_cart[index].item_amount++;
     }
-    this.ngOnInit();
   }
   minor(index) {
     if (this.cartService.cart[index].item_amount > 0) {
       this.cartService.cart[index].item_amount--;
+      this.cartService.show_cart[index].item_amount--;
     }
-    this.ngOnInit();
   }
   delete_item(index) {
     this.cartService.delete_item(index);
-    this.ngOnInit();
   }
 }

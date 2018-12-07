@@ -23,16 +23,16 @@
           <tr>
             <td>{{ index + 1 }}</td>
             <td>
-              <a [routerLink]="['/products/', item.id]">{{
-                item.product.title
+              <a [routerLink]="['/products/', item?.id]">{{
+                item?.product?.title
               }}</a>
             </td>
             <td class="invert-image">
-              <a [routerLink]="['/products/', item.id]"
+              <a [routerLink]="['/products/', item?.id]"
                 ><img [src]="item.product.picture" alt=" "
               /></a>
             </td>
-            <td>NT${{ item.product.sale_price }}</td>
+            <td>NT${{ item?.product?.sale_price }}</td>
             <td>
               <div class="quantity">
                 <div class="quantity-select">
@@ -40,7 +40,7 @@
                     <div class="entry value-minus"></div>
                   </a>
                   <div class="entry value">
-                    <span>{{ item.item_amount }}</span>
+                    <span>{{ item?.item_amount }}</span>
                   </div>
                   <a (click)="plus(index)">
                     <div class="entry value-plus active"></div> </a
@@ -70,11 +70,11 @@
         <h4>訂單內容</h4>
         <ul>
           <ng-container *ngFor="let item of show_cart">
-            <li>
-              {{ item.product.title }}
+            <li *ngIf="item.item_amount !== 0">
+              {{ item?.product?.title }}
               <span
-                >NT${{ item.product.sale_price }} x {{ item.item_amount }} =
-                NT${{ item.product.sale_price * item.item_amount }}
+                >NT${{ item?.product?.sale_price }} x {{ item?.item_amount }} =
+                NT${{ item?.product?.sale_price * item?.item_amount }}
               </span>
             </li>
           </ng-container>
