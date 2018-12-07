@@ -23,6 +23,7 @@ export class OrderComponent implements OnInit {
   pay_method = ['信用卡', '超商付款'];
   skipMethod = ['超商', '宅配'];
   totalAmount = 0;
+  bookTitle: any;
   ngOnInit() {
     this.orders.getOrders().subscribe((response: any) => {
       console.log(response);
@@ -32,7 +33,9 @@ export class OrderComponent implements OnInit {
         Object.keys(order.products).forEach(key => {
           this.products.getProduct(key).subscribe((product: any) => {
             order.productlist.push(product);
-            // console.log(product);
+            console.log(product);
+            this.bookTitle[product.id] = product.title;
+            console.log(this.bookTitle);
             this.totalAmount += product.sale_price * order.products[product.id];
           });
         });
@@ -40,16 +43,15 @@ export class OrderComponent implements OnInit {
     });
   }
   search(keyword) {
-    if (this.keyword === '') {
+    if (keyword === '') {
       this.newOrderlist = this.orderlist;
     } else {
       this.newOrderlist = this.orderlist.filter(
         results => {
           let flag = false;
-          results.products.forEach(products => flag = flag || products.title.indexOf(this.keyword) !== -1);
+          results.productlist.forEach(products => flag = flag || this.bookTitle[products.id].indexOf(keyword) !== -1);
           return flag;
         }
-
       );
     }
     console.log(keyword);

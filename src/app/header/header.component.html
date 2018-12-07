@@ -20,7 +20,7 @@
         </li>
       </ng-container>
       <ng-template #elseTag>
-        <li>{{ username }}您好！</li>
+        <li>歡迎回來！</li>
         <li>
           <a [routerLink]="" (click)="logout()"
             ><i class="fa fa-unlock-alt"></i> 登出
@@ -172,11 +172,11 @@
               <li class=" menu__item">
                 <a class="menu__link" [routerLink]="['/contact']">Contact</a>
               </li>
-              <ng-container *ngIf="this.usersService.isLogin">
+              <ng-container *ngIf="this.usersService.isLogin()">
                 <li class=" menu__item">
                   <a class="menu__link" [routerLink]="['/orderlist']"
-                    >Orderlist</a
-                  >
+                    >Orderlist</a>
+
                 </li>
               </ng-container>
             </ul>
