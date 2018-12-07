@@ -1,34 +1,62 @@
 <!-- 登入 -->
 
-    <!-- Modal content-->
-    <div class="modal-content" style="padding: 100px;">
-      <div class="modal-body modal-body-sub_agile">
-        <div class="col-md-8 modal_body_left modal_body_left1">
-          <h3 class="agileinfo_sign">Sign In <span>Now</span></h3>
-          <form action="#" method="post">
-            <div class="styled-input">
-              <input type="email" name="Email" required="" [(ngModel)] = "user.email">
-              <label>Email</label>
-              <span></span>
-            </div>
-            <div class="styled-input">
-              <input type="password" name="password" required="" [(ngModel)] = "user.password">
-              <label>Password</label>
-              <span></span>
-            </div>
-
-            <input type="button" class="function_button" value="登入"  (click)="login()">
-          </form>
-          <div class="clearfix"></div>
-          <p><a href="#"  [routerLink]="['/signup']"> Don't have an account?</a></p>
-
+<!-- Modal content -->
+<div class="modal-content" style="padding: 100px;">
+  <div class="modal-body modal-body-sub_agile">
+    <div class="col-md-8 modal_body_left modal_body_left1">
+      <h3 class="agileinfo_sign">Sign In <span>Now</span></h3>
+      <form name="loginForm">
+        <div class="styled-input">
+          <input
+            ng-model="email"
+            name="email"
+            required=""
+            [(ngModel)]="user.email"
+            required
+            type="email"
+          />
+          <label>Email</label
+          ><label
+            style="padding-left: 80%; color:red;"
+            ng-show="loginForm.email.$error.required && loginForm.email.$dirty"
+            >請勿空白。</label
+          >
         </div>
-        <div class="col-md-4 modal_body_right modal_body_right1">
-          <img src="assets/images/log_pic.jpg" alt=" " />
+        <div class="styled-input">
+          <input
+            type="password"
+            name="password"
+            ng-modle="password"
+            required=""
+            [(ngModel)]="user.password"
+            ng-minlength="6"
+            required
+          />
+          <label>Password</label>
+          <label
+            style="padding-left: 80%; color:red;"
+            ng-show="loginForm.password.$error.required && loginForm.email.$dirty"
+            >請勿空白。</label
+          >
         </div>
-        <div class="clearfix"></div>
-      </div>
+
+        <input
+          type="button"
+          class="function_button"
+          value="登入"
+          (click)="login()"
+          ng-disable="loginForm.$invalid"
+        />
+      </form>
+      <div class="clearfix"></div>
+      <p><a href="#" [routerLink]="['/signup']"> 點我註冊會員</a></p>
     </div>
-    <!-- //Modal content-->
+    <div class="col-md-4 modal_body_right modal_body_right1">
+      <img src="assets/images/log_pic.jpg" alt=" " />
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</div>
+<!-- //Modal content -->
 
 <!-- //登入 -->

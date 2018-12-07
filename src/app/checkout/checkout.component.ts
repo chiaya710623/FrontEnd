@@ -29,5 +29,15 @@ export class CheckoutComponent implements OnInit {
 
   submit() {
     this.ordersService.patchOrder();
+    this.ordersService.order = {
+      message: '',
+      pay_method: '0',
+      receiver: '',
+      receiver_phone: '',
+      ship_information: '',
+      ship_method: '0'
+    };
+    alert('訂單已送出，謝謝您的購買！');
+    this.router.navigate(['/']);
   }
 }

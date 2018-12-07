@@ -1,5 +1,4 @@
 import { ProductsService } from './../products.service';
-import { OrderService } from './../order.service';
 import { Component, OnInit } from '@angular/core';
 import { OrdersService } from '../orders.service';
 declare let $: any;

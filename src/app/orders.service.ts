@@ -9,7 +9,7 @@ export class OrdersService {
   constructor(private httpClient: HttpClient) {}
   order = {
     message: '',
-    pay_method: '',
+    pay_method: '0',
     receiver: '',
     receiver_phone: '',
     ship_information: '',
@@ -34,7 +34,6 @@ export class OrdersService {
         }
       }
     }
-    console.log(orderstring);
     return this.httpClient
       .patch(`${environment.api}orders`, encodeURI(`${orderstring}`), {
         headers: {
