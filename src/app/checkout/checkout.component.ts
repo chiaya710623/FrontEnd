@@ -63,9 +63,11 @@ export class CheckoutComponent implements OnInit {
       pay_method: '0',
       receiver: '',
       receiver_phone: '',
+      products: [],
       ship_method: '0'
     };
-    this.cartService.patchCart([]);
+    this.cartService.cart = [];
+    this.cartService.patchCart(this.cartService.cart);
     alert('訂單已送出，謝謝您的購買！');
     this.router.navigate(['/']);
   }

@@ -7,10 +7,10 @@
         <ul>
           <ng-container *ngFor="let item of this.cartService.show_cart">
             <li>
-              {{ item.product.title }}
+              {{ item?.product?.title }}
               <span
-                >NT${{ item.product.sale_price }} x {{ item.item_amount }} =
-                NT${{ item.product.sale_price * item.item_amount }}
+                >NT${{ item?.product?.sale_price }} x {{ item?.item_amount }} =
+                NT${{ item?.product?.sale_price * item?.item_amount }}
               </span>
             </li>
           </ng-container>
@@ -93,7 +93,7 @@
         <tr>
           <th>備註：</th>
           <td>
-            <textarea [(ngModel)]="order.message" placeholder="請輸入備註訊息"></textarea>
+            <textarea [(ngModel)]="order.message" placeholder="請輸入運送地址或指定超商等資訊。"></textarea>
           </td></tr>
       </table>
     </div>

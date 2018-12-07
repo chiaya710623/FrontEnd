@@ -1,18 +1,23 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { CartService } from './cart.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrdersService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(
+    private httpClient: HttpClient,
+    private cartService: CartService
+  ) {}
   order = {
     state: '1',
     message: '',
     pay_method: '0',
     receiver: '',
     receiver_phone: '',
+    products: [],
     ship_method: '0'
   };
 
@@ -26,22 +31,26 @@ export class OrdersService {
 
   patchOrder() {
     let orderstring = '';
-    // const orderobject = {};
-    // for (const key in this.order) {
-    //   if (1) {
-    //     orderobject[key] = this.order[key];
-    //   }
-    // }
-    // orderstring = JSON.stringify(orderobject);
-
+    this.cartService.cart.forEach(product => {
+      this.order.products[product.id] = product.item_amount;
+    });
+    console.log(this.order.products);
     for (const key in this.order) {
-      if (1) {
+      if (key === 'products') {
+        orderstring = orderstring.concat(
+          key,
+          '=',
+          JSON.stringify(this.order[key]),
+          '&'
+        );
+      } else {
         orderstring = orderstring.concat(key, '=', this.order[key]);
         if (key !== 'ship_method') {
           orderstring = orderstring.concat('&');
         }
       }
     }
+
     console.log(`${environment.api}orders`, `?${orderstring}`);
     return this.httpClient
       .patch(`${environment.api}orders`, `?${orderstring}`, {
@@ -50,6 +59,8 @@ export class OrdersService {
           Authorization: `Bearer ${localStorage.getItem('token')}`
         }
       })
-      .subscribe(_ => {});
+      .subscribe(response => {
+        console.log(response);
+      });
   }
 }
