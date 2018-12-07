@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit {
     private cartService: CartService,
     private productsService: ProductsService,
     private router: Router,
-    private cookieService: CookieService,
+    private cookieService: CookieService
   ) {}
   get show_cart() {
     return this.cartService.show_cart;
@@ -25,8 +25,8 @@ export class HeaderComponent implements OnInit {
     // read categories
     this.productsService.getCategories().subscribe((data: any) => {
       this.categories = data.data;
+      this.cartService.show();
     });
-    this.cartService.show();
   }
 
   logout() {

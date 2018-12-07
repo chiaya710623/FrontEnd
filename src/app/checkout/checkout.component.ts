@@ -59,11 +59,11 @@ export class CheckoutComponent implements OnInit {
   submit() {
     this.ordersService.patchOrder();
     this.ordersService.order = {
+      state: '1',
       message: '',
       pay_method: '0',
       receiver: '',
       receiver_phone: '',
-      ship_information: '',
       ship_method: '0'
     };
     this.cartService.patchCart([]);

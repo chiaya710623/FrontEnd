@@ -40,7 +40,8 @@ export class SignupComponent implements OnInit {
             console.log(data);
             if (data.success) {
               alert('註冊成功');
-              this.cartService.patchCart([]);
+              const cart = [];
+              this.cartService.patchCart(cart);
               this.router.navigate(['/']);
             } else {
               alert('註冊失敗');

@@ -12,13 +12,18 @@ export class HomeComponent implements OnInit {
     private productsService: ProductsService,
     private cartService: CartService
   ) {}
-  data: any = {data: []};
+  data: any = { data: [] };
   Today = new Date().getFullYear;
   ngOnInit() {
-  this.productsService.getNewProducts().subscribe(data => {
-    this.data = data;
-    console.log(data);
-  });
+    this.productsService.getNewProducts().subscribe(
+      data => {
+        this.data = data;
+        console.log(data);
+      },
+      (response: any) => {
+        console.log(response);
+      }
+    );
   }
   add_to_cart(id, item_amount, stock) {
     this.cartService.add_to_cart(id, parseInt(item_amount, 10), stock);
