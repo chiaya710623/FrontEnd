@@ -17,6 +17,106 @@
   <div class="container">
     <!-- 左欄 -->
     <div class="col-md-4 products-left">
+      <div class="community-poll">
+        <h4>Search</h4>
+          <div>
+            <table class="keyword_list">
+              <tr>
+                <th>主類別</th>
+                  <td>
+                    <select
+                      [(ngModel)]="this.productsService.search.category"
+                      (change)="this.productsService.search.subcategory='';getSubcategories($event.target.value);"
+                    >
+                      -->
+                      <option value="">請選擇主類別</option>
+
+                      <option
+                        *ngFor="let category of categories"
+                        [value]="category.id"
+                        >{{ category?.name }}</option
+                      >
+                    </select>
+                  </td>
+              </tr>
+              <tr>
+                <th>次類別</th>
+                  <td>
+                    <select [(ngModel)]="this.productsService.search.subcategory">
+                      <ng-container *ngIf="subcategories !== []; else: elseTag">
+                        <option value="">請選擇次類別</option>
+
+                          <option *ngFor="let subcategory of subcategories" [value]="subcategory.id">{{
+                            subcategory?.name
+                          }}</option>
+                      </ng-container>
+                      <ng-template #elseTag>
+                        <option value="">該類別沒有次類別。</option>
+                      </ng-template>
+                    </select>
+                  </td>
+              </tr>
+              <tr>
+                <th>書名</th>
+                <td>
+                  <input
+                     type="text"
+                    placeholder="請輸入書名"
+                    [(ngModel)]="this.productsService.search.title"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <th>作者</th>
+                <td>
+                  <input
+                    type="text"
+                    placeholder="請輸入作者"
+                    [(ngModel)]="this.productsService.search.author"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <th>譯者</th>
+                <td>
+                  <input
+                    type="text"
+                    placeholder="請輸入譯者"
+                    [(ngModel)]="this.productsService.search.interpreter"                    />
+                </td>
+              </tr>
+              <tr>
+                <th>出版社</th>
+                <td>
+                  <input
+                    type="text"
+                    placeholder="請輸入出版社"
+                    [(ngModel)]="this.productsService.search.publisher"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <th>ISBN</th>
+                <td>
+                  <input
+                    type="text"
+                    placeholder="請輸入ISBN"
+                    [(ngModel)]="this.productsService.search.ISBN"
+                  />
+                </td>
+              </tr>
+            </table>
+
+              <div style="padding: 5px 0px 20px 0px; text-align: center">
+                <input
+                  type="button"
+                  class="function_button"
+                  value="搜尋商品"
+                  (click)="search_submit();"
+                />
+              </div>
+            </div>
+      </div>
       <div class="css-treeview">
         <h4>Categories</h4>
         <ul class="tree-list-pad">
@@ -94,107 +194,7 @@
           </li>
         </ul>
       </div>
-      <div class="community-poll">
-        <h4>Search</h4>
-        <div>
-          <table class="keyword_list">
-            <tr>
-              <th>主類別</th>
-              <td>
-                <select
-                  [(ngModel)]="this.productsService.search.category"
-                  (change)="this.productsService.search.subcategory='';getSubcategories($event.target.value);"
-                >
-                  -->
-                  <option value="">請選擇主類別</option>
 
-                  <option
-                    *ngFor="let category of categories"
-                    [value]="category.id"
-                    >{{ category?.name }}</option
-                  >
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <th>次類別</th>
-              <td>
-                <select [(ngModel)]="this.productsService.search.subcategory">
-                  <ng-container *ngIf="subcategories !== []; else: elseTag">
-                    <option value="">請選擇次類別</option>
-
-                      <option *ngFor="let subcategory of subcategories" [value]="subcategory.id">{{
-                        subcategory?.name
-                      }}</option>
-                  </ng-container>
-                  <ng-template #elseTag>
-                    <option value="">該類別沒有次類別。</option>
-                  </ng-template>
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <th>書名</th>
-              <td>
-                <input
-                  type="text"
-                  placeholder="請輸入書名"
-                  [(ngModel)]="this.productsService.search.title"
-                />
-              </td>
-            </tr>
-            <tr>
-              <th>作者</th>
-              <td>
-                <input
-                  type="text"
-                  placeholder="請輸入作者"
-                  [(ngModel)]="this.productsService.search.author"
-                />
-              </td>
-            </tr>
-            <tr>
-              <th>譯者</th>
-              <td>
-                <input
-                  type="text"
-                  placeholder="請輸入譯者"
-                  [(ngModel)]="this.productsService.search.interpreter"
-                />
-              </td>
-            </tr>
-            <tr>
-              <th>出版社</th>
-              <td>
-                <input
-                  type="text"
-                  placeholder="請輸入出版社"
-                  [(ngModel)]="this.productsService.search.publisher"
-                />
-              </td>
-            </tr>
-            <tr>
-              <th>ISBN</th>
-              <td>
-                <input
-                  type="text"
-                  placeholder="請輸入ISBN"
-                  [(ngModel)]="this.productsService.search.ISBN"
-                />
-              </td>
-            </tr>
-          </table>
-
-          <div style="padding: 5px 0px 20px 0px; text-align: center">
-            <input
-              type="button"
-              class="function_button"
-              value="搜尋商品"
-              (click)="search_submit();"
-            />
-          </div>
-        </div>
-      </div>
       <div class="clearfix"></div>
     </div>
     <!-- //左欄 -->

@@ -17,7 +17,7 @@ export class OrderComponent implements OnInit {
   ) {}
   orderlist: any;
   productlist: any;
-  status = ['未出貨', '已出貨', '交易已完成'];
+  status = ['未出貨(購物車中)', '已出貨', '交易已完成'];
   pay_method = ['信用卡', '超商付款'];
   skipMethod = ['超商', '宅配'];
   ngOnInit() {
@@ -31,7 +31,6 @@ export class OrderComponent implements OnInit {
           this.products.getProduct(key).subscribe((product: any) => {
             order.productlist.push(product);
             order.totalAmount += product.sale_price * order.products[product.id];
-            console.log(order.totalAmount);
           });
         });
       });
