@@ -1,103 +1,112 @@
-<div class="header-bot" align="center"><font color="green"  face="微軟正黑體" size = "7" > 訂單查詢 </font>
-  <div class="header-bot_inner_wthreeinfo_header_mid">
-    <div class="col-md-4 header-middle">
-    <form action="#" method="post">
-      <input type="search" name="search" placeholder="請輸入訂單編號" required="" [(ngModel)]="keyword">
-      <input type="submit" value=" " (click)="search(this.keyword)">
-      <div class="clearfix"></div>
-    </form>
+<ng-container *ngIf="this.usersService.isLogin; else elseTmpl ">
+  <div class="header-bot" align="center"><font color="green"  face="微軟正黑體" size = "7" > 訂單查詢 </font>
+    <div class="header-bot_inner_wthreeinfo_header_mid">
+      <div class="col-md-4 header-middle">
+      <form action="#" method="post">
+        <input type="search" name="search" placeholder="請輸入訂單編號" required="" [(ngModel)]="keyword">
+        <input type="submit" value=" " (click)="search(this.keyword)">
+        <div class="clearfix"></div>
+      </form>
+      </div>
     </div>
   </div>
-</div>
-<br><br>
+  <br><br>
 
-<table width="1000" border="1" align="center" valign="center" >
-  　<tr  align="center">
-      <td colspan="2">
-        <font size="5" color="red" >查詢結果</font>
-      </td>
-  　</tr>
-    <tr>
-  　  <td align="center" width="20%">
-        <font size="5" color="red">訂單編號</font>
-      </td>
-      <td align="center" width="80%">
-        <font size="5" color="red">訂單內容</font>
-      </td>
-    </tr>
-    <ng-container *ngFor="let item of this.orderlist; let index=index; let last=last;">
-      <tr align="center">
-        <td>
-          訂單{{item.id}}
+  <table width="1000" border="1" align="center" valign="center" >
+    　<tr  align="center">
+        <td colspan="2">
+          <font size="5" color="red" face="微軟正黑體">查詢結果</font>
         </td>
-        <td>
-          <table width="100%" border="1">
-            <tr>
-              <td width="20%">
-                商品列
+    　</tr>
+      <tr>
+    　  <td align="center" width="20%">
+          <font size="5" color="red" face="微軟正黑體">訂單編號</font>
+        </td>
+        <td align="center" width="80%">
+          <font size="5" color="red" face="微軟正黑體">訂單內容</font>
+        </td>
+      </tr>
+      <ng-container *ngFor="let item of this.orderlist; let index=index; let last=last;">
+        <ng-container *ngIf="this.orderlist.state==1">
+          <tr align="center">
+              <td>
+                訂單{{item.id}}
               </td>
               <td>
                 <table width="100%" border="1">
-                  <ng-container *ngFor="let product of item.productlist; let index=index; let last=last;">
-                    <tr align="center" >
-                      <td width="30%" rowspan="2">
-                        {{product.title}}
-                      </td>
-                      <td>
-                        <tr align="center">價格：{{product.sale_price}}</tr>
-                      </td>
-                    </tr>
-                    <tr><td align="center">數量：{{item.products[product.id]}}</td></tr>
-                  </ng-container>
+                  <tr>
+                    <td width="20%">
+                      商品列
+                    </td>
+                    <td>
+                      <table width="100%" border="1">
+                        <ng-container *ngFor="let product of item.productlist; let index=index; let last=last;">
+                          <tr align="center" >
+                            <td width="30%" rowspan="2">
+                              {{product.title}}
+                            </td>
+                            <td>
+                              <tr align="center">價格：{{product.sale_price}}</tr>
+                            </td>
+                          </tr>
+                          <tr><td align="center">數量：{{item.products[product.id]}}</td></tr>
+                        </ng-container>
+                      </table>
+
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>訂單狀態:</td>
+                    <td>{{status[item.state]}}</td>
+                  </tr>
+                  <tr>
+                    <td>付款方式:</td>
+                    <td>{{pay_method[item.pay_method]}}</td>
+                  </tr>
+                  <tr>
+                    <td>付款總金額:</td>
+                    <td>{{totalAmount+65}}</td>
+                  </tr>
+                  <tr>
+                    <td>訂單留言:</td>
+                    <td>{{item.message}}</td>
+                  </tr>
+                  <tr>
+                    <td>配送方式:</td>
+                    <td>{{skipMethod[item.ship_method]}}</td>
+                  </tr>
+                  <tr>
+                    <td>配送資訊:</td>
+                    <td>{{item.ship_information}}</td>
+                  </tr>
+                  <tr>
+                    <td>物流單號:</td>
+                    <td>{{item.ship_order}}</td>
+                  </tr>
+                  <tr>
+                    <td>收件人:</td>
+                    <td>{{item.receiver}}</td>
+                  </tr>
+                  <tr>
+                    <td>收件人電話:</td>
+                    <td>{{item.receiver_phone}}</td>
+                  </tr>
+                  <tr>
+                    <td>發票號碼:</td>
+                    <td>{{item.invoice_number}}</td>
+                  </tr>
                 </table>
-
               </td>
-            </tr>
-            <tr>
-              <td>訂單狀態:</td>
-              <td>{{status[item.state]}}</td>
-            </tr>
-            <tr>
-              <td>付款方式:</td>
-              <td>{{pay_method[item.pay_method]}}</td>
-            </tr>
-            <tr>
-              <td>付款總金額:</td>
-              <td>{{totalAmount+65}}</td>
-            </tr>
-            <tr>
-              <td>訂單留言:</td>
-              <td>{{item.message}}</td>
-            </tr>
-            <tr>
-              <td>配送方式:</td>
-              <td>{{skipMethod[item.ship_method]}}</td>
-            </tr>
-            <tr>
-              <td>配送資訊:</td>
-              <td>{{item.ship_information}}</td>
-            </tr>
-            <tr>
-              <td>物流單號:</td>
-              <td>{{item.ship_order}}</td>
-            </tr>
-            <tr>
-              <td>收件人:</td>
-              <td>{{item.receiver}}</td>
-            </tr>
-            <tr>
-              <td>收件人電話:</td>
-              <td>{{item.receiver_phone}}</td>
-            </tr>
-            <tr>
-              <td>發票號碼:</td>
-              <td>{{item.invoice_number}}</td>
-            </tr>
-          </table>
-        </td>
-      </tr>
-    </ng-container>
-  </table><br>
+          </tr>
+        </ng-container>
+      </ng-container>
+    </table><br>
 
+</ng-container>
+<ng-template #elseTmpl>
+    <div align= "center">
+      <font color="red" size = "9" >請先登入</font>
+    </div>
+</ng-template>
 
 

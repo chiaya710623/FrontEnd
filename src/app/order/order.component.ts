@@ -1,6 +1,8 @@
 import { ProductsService } from './../products.service';
 import { Component, OnInit } from '@angular/core';
 import { OrdersService } from '../orders.service';
+import { UsersService } from './../users.service';
+
 declare let $: any;
 @Component({
   selector: 'app-order',
@@ -10,7 +12,8 @@ declare let $: any;
 export class OrderComponent implements OnInit {
   constructor(
     private orders: OrdersService,
-    private products: ProductsService
+    private products: ProductsService,
+    public usersService: UsersService
   ) {}
   orderlist: any;
   productlist: any;
