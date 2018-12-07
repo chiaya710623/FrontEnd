@@ -1,21 +1,11 @@
 <ng-container *ngIf="this.usersService.isLogin(); else elseTmpl ">
-  <div class="header-bot" align="center"><font color="green"  face="微軟正黑體" size = "7" > 訂單查詢 </font>
-    <div class="header-bot_inner_wthreeinfo_header_mid">
-      <div class="col-md-4 header-middle">
-      <form action="#" method="post">
-        <input type="search" name="search" placeholder="請輸入訂單編號" required="" [(ngModel)]="keyword">
-        <input type="submit" value=" " (click)="search(this.keyword)">
-        <div class="clearfix"></div>
-      </form>
-      </div>
-    </div>
+  <div class="header-bot" align="center"><font color="green"  face="微軟正黑體" size = "7" > 歷史訂單 </font>
   </div>
-  <br><br>
 
   <table width="1000" border="1" align="center" valign="center" >
     　<tr  align="center">
         <td colspan="2">
-          <font size="5" color="red" face="微軟正黑體">查詢結果</font>
+          <font size="5" color="red" face="微軟正黑體">訂單紀錄</font>
         </td>
     　</tr>
       <tr>
@@ -27,7 +17,6 @@
         </td>
       </tr>
       <ng-container *ngFor="let item of this.orderlist; let index=index; let last=last;">
-        <ng-container *ngIf="this.orderlist.state==1">
           <tr align="center">
               <td>
                 訂單{{item.id}}
@@ -65,7 +54,7 @@
                   </tr>
                   <tr>
                     <td>付款總金額:</td>
-                    <td>{{totalAmount+65}}</td>
+                    <td>{{item.totalAmount+65}}</td>
                   </tr>
                   <tr>
                     <td>訂單留言:</td>
@@ -99,7 +88,6 @@
               </td>
           </tr>
         </ng-container>
-      </ng-container>
     </table><br>
 
 </ng-container>
