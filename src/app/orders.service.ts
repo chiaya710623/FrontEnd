@@ -33,6 +33,7 @@ export class OrdersService {
       }
     }
     orderstring = JSON.stringify(orderobject);
+    console.log('1', orderstring);
     return this.httpClient
       .patch(`${environment.api}orders`, encodeURI(`${orderstring}`), {
         headers: {
