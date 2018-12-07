@@ -21,7 +21,7 @@ export class AdminsService {
     {
       id: '3',
       display_name: '謝維毅',
-      discrimination: '專業貓奴，負責前台後端(?',
+      discrimination: '專業貓奴，負責前台',
       picture: 'assets/images/t3.jpg'
     },
     {
