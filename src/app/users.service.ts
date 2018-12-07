@@ -10,7 +10,7 @@ export class UsersService {
   constructor(private httpClient: HttpClient) {}
   amount = 1;
   now = new Date();
-
+isLogin = 0;
   register(user) {
     return this.httpClient.post(`${environment.api}register`, user);
   }
@@ -36,9 +36,6 @@ export class UsersService {
       });
   }
 
-  isLogin() {
-    return localStorage.getItem('token');
-  }
   logout() {
     return localStorage.removeItem('token');
   }

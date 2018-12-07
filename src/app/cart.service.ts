@@ -27,33 +27,24 @@ export class CartService {
             } else {
               this.cart[i].item_amount += item_amount;
               alert('已增加' + item_amount + '件此商品至購物車中。');
-              if (this.usersService.isLogin()) {
-                this.patchCart(this.cart);
-              } else {
+              if (this.usersService.isLogin === 0) {
                 this.cookieService.set('cart', JSON.stringify(this.cart));
               }
-              this.show();
             }
             return;
           }
         }
         this.cart.push({ id: id, item_amount: item_amount });
         alert('已加入' + item_amount + '件此商品至購物車。');
-        if (this.usersService.isLogin()) {
-          this.patchCart(this.cart);
-        } else {
+        if (this.usersService.isLogin === 0) {
           this.cookieService.set('cart', JSON.stringify(this.cart));
         }
-        this.show();
       } else {
         this.cart.push({ id: id, item_amount: item_amount });
         alert('已加入' + item_amount + '件此商品至購物車。');
-        if (this.usersService.isLogin()) {
-          this.patchCart(this.cart);
-        } else {
+        if (this.usersService.isLogin === 0) {
           this.cookieService.set('cart', JSON.stringify(this.cart));
         }
-        this.show();
       }
     } else {
       alert('庫存不足，無法加入購物車。');
@@ -62,14 +53,16 @@ export class CartService {
 
   delete_item(index) {
     this.cart.splice(index, index + 1);
-    this.show();
+      this.show_cart.splice(index, index + 1);
+    if (this.usersService.isLogin === 0) {
+      this.cookieService.set('cart', JSON.stringify(this.cart));
+    }
   }
 
   show() {
     this.show_cart = [];
     if (JSON.stringify(this.cart) !== '[]') {
       for (let i = 0; i < this.cart.length; i++) {
-        console.log(this.cart);
         this.productsService
           .getProduct(this.cart[i].id)
           .subscribe((data: any) => {
@@ -93,7 +86,7 @@ export class CartService {
   }
 
   patchCart(cart) {
-    if (this.usersService.isLogin()) {
+    if (this.usersService.isLogin) {
       const cartdata = {};
       cart.forEach(product => {
         cartdata[product.id] = product.item_amount;

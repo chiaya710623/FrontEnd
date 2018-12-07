@@ -7,7 +7,7 @@
         <i class="fa fa-envelope-o" aria-hidden="true"></i>
         <a href="mailto:info@example.com">info@example.com</a>
       </li>
-      <ng-container *ngIf="!this.usersService.isLogin(); else: elseTag">
+      <ng-container *ngIf="this.usersService.isLogin === 0; else: elseTag">
         <li>
           <a [routerLink]="['/signup']"
             ><i class="fa fa-pencil-square-o"></i> 註冊
@@ -81,18 +81,10 @@
           >
             <ul class="nav navbar-nav menu__list">
               <li class=" menu__item">
-                <a
-                  class="menu__link"
-                  [routerLink]="['/']"
-                  >Home</a
-                >
+                <a class="menu__link" [routerLink]="['/']">Home</a>
               </li>
               <li class=" menu__item">
-                <a
-                  class="menu__link"
-                  [routerLink]="['/about']"
-                  >About</a
-                >
+                <a class="menu__link" [routerLink]="['/about']">About</a>
               </li>
               <li class="dropdown menu__item">
                 <a
@@ -108,18 +100,24 @@
                   <div class="agile_inner_drop_nav_info classification_font">
                     <div class="col-sm-3 multi-gd-img1 multi-gd-text ">
                       <a [routerLink]="['/products']">
-                        <p><img src="assets/images/top2.jpg" alt=" " (click)="
-                          this.productsService.search = {
-                            category: '',
-                            subcategory: '',
-                            publisher: '',
-                            title: '',
-                            author: '',
-                            interpreter: '',
-                            ISBN: ''
-                          };
-                          reload('/products');
-                        "/></p>
+                        <p>
+                          <img
+                            src="assets/images/top2.jpg"
+                            alt=" "
+                            (click)="
+                              this.productsService.search = {
+                                category: '',
+                                subcategory: '',
+                                publisher: '',
+                                title: '',
+                                author: '',
+                                interpreter: '',
+                                ISBN: ''
+                              };
+                              reload('/products')
+                            "
+                          />
+                        </p>
                       </a>
                     </div>
                     <div class="col-sm-9 multi-gd-img">
@@ -138,7 +136,7 @@
                                   interpreter: '',
                                   ISBN: ''
                                 };
-                                reload('/products');
+                                reload('/products')
                               "
                               >{{ category?.name
                               }}<span *ngIf="category.subcategory">：</span></a
@@ -158,12 +156,13 @@
                                     interpreter: '',
                                     ISBN: ''
                                   };
-                                  reload('/products');
+                                  reload('/products')
                                 "
                                 >{{ subcategory.name }}
                               </a>
                             </span>
-                          </li></ng-container>
+                          </li></ng-container
+                        >
                       </ul>
                     </div>
                     <div class="clearfix"></div>
@@ -171,23 +170,15 @@
                 </ul>
               </li>
               <li class=" menu__item">
-                <a
-                  class="menu__link"
-                  [routerLink]="['/contact']"
-                  (click)="this.usersService.refresh()"
-                  >Contact</a
-                >
+                <a class="menu__link" [routerLink]="['/contact']">Contact</a>
               </li>
-              <ng-container *ngIf="this.usersService.isLogin()">
+              <ng-container *ngIf="this.usersService.isLogin">
                 <li class=" menu__item">
-                  <a
-                    class="menu__link"
-                    [routerLink]="['/orderlist']"
+                  <a class="menu__link" [routerLink]="['/orderlist']"
                     >Orderlist</a
                   >
                 </li>
               </ng-container>
-
             </ul>
           </div>
         </div>
@@ -260,7 +251,7 @@
                         <p style="text-align:center;">
                           <img
                             src="assets/images/close_1.png"
-                            (click)="delete_item(index);"
+                            (click)="delete_item(index)"
                           />
                         </p>
                       </td>

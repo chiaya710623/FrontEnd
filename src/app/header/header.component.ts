@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit {
     private cartService: CartService,
     private productsService: ProductsService,
     private router: Router,
-    private cookieService: CookieService
+    private cookieService: CookieService,
   ) {}
   get show_cart() {
     return this.cartService.show_cart;
@@ -26,43 +26,21 @@ export class HeaderComponent implements OnInit {
     this.productsService.getCategories().subscribe((data: any) => {
       this.categories = data.data;
     });
-    // read cart
-    if (this.usersService.isLogin()) {
-      this.cartService.getCart().subscribe((data: any) => {
-        if (data.products !== {}) {
-          Object.keys(data.products).forEach(product => {
-            this.cartService.cart.push({
-              id: product,
-              item_amount: data.products[product]
-            });
-            this.cartService.show();
-          });
-        }
-      });
-    } else {
-      // not logged in
-      if (this.cookieService.check('cart') === false) {
-        this.cookieService.set('cart', JSON.stringify(this.cartService.cart));
-      } else {
-        this.cartService.cart = JSON.parse(this.cookieService.get('cart'));
-      }
-      this.cartService.show();
-    }
+    this.cartService.show();
   }
 
   logout() {
     this.usersService.logout();
     alert('已登出');
-    this.cartService.cart = [];
+    this.usersService.isLogin = 0;
+    if (this.cookieService.check('cart') === true) {
+      this.cartService.cart = JSON.parse(this.cookieService.get('cart'));
+    }
     this.router.navigate(['/']);
   }
   delete_item(index) {
     this.cartService.delete_item(index);
-    if (this.usersService.isLogin()) {
-      this.cartService.patchCart(this.cart);
-    } else {
-      this.cookieService.set('cart', JSON.stringify(this.cartService.cart));
-    }
+    this.cartService.show();
   }
 
   get cart() {
@@ -70,7 +48,7 @@ export class HeaderComponent implements OnInit {
   }
 
   checkout() {
-    if (this.usersService.isLogin()) {
+    if (this.usersService.isLogin) {
       if (JSON.stringify(this.cart) === '[]') {
         alert('購物車中沒有商品。');
       } else {

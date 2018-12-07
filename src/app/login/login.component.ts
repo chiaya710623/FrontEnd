@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../users.service';
 import { Router } from '@angular/router';
 import { CartService } from '../cart.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login',
@@ -17,15 +18,32 @@ export class LoginComponent implements OnInit {
   constructor(
     private usersService: UsersService,
     private cartService: CartService,
+    private cookieService: CookieService,
     private router: Router,
   ) {}
   ngOnInit() {}
   login() {
+    if (this.cookieService.check('cart') === true) { // 如果有cookie先存起來
+      this.cookieService.set('cart', JSON.stringify(this.cartService.cart));
+    }
+    this.cartService.cart = []; // 清空購物車
     this.usersService.login(this.user).subscribe((data: any) => {
       if (data.token) {
         localStorage.setItem('token', data.token);
+        this.usersService.isLogin = 1;
+        this.cartService.getCart().subscribe((cartdata: any) => { // 放入資料庫中的購物車
+          console.log(cartdata);
+          if (cartdata.products !== {}) {
+            Object.keys(cartdata.products).forEach(product => {
+              this.cartService.cart.push({
+                id: product,
+                item_amount: cartdata.products[product]
+              });
+            });
+          }
+          console.log(this.cartService.cart);
+        });
         alert('登入成功');
-        this.cartService.cart = [];
         this.router.navigate(['/']);
       } else {
         alert('登入失敗');
