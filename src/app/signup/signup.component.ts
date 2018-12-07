@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../users.service';
 import { Router } from '@angular/router';
+import { CartService } from '../cart.service';
 
 @Component({
   selector: 'app-signup',
@@ -8,7 +9,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-  constructor(private usersService: UsersService, private router: Router) {}
+  constructor(
+    private usersService: UsersService,
+    private router: Router,
+    private cartService: CartService
+  ) {}
 
   user = {
     name: '',
@@ -35,9 +40,10 @@ export class SignupComponent implements OnInit {
             console.log(data);
             if (data.success) {
               alert('註冊成功');
+              this.cartService.patchCart([]);
               this.router.navigate(['/']);
             } else {
-                alert('註冊失敗');
+              alert('註冊失敗');
             }
           },
           response => {
