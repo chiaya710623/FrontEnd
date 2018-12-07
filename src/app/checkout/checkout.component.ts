@@ -33,7 +33,6 @@ export class CheckoutComponent implements OnInit {
   show() {
     console.log('show cart');
     if (JSON.stringify(this.cart) !== '[]') {
-      console.log('ee');
       for (let i = 0; i < this.cart.length; i++) {
         this.productsService
           .getProduct(this.cart[i].id)

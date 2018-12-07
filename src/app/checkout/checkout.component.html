@@ -90,31 +90,6 @@
             >
           </td>
         </tr>
-        <ng-container
-          *ngIf="this.ordersService.order.ship_method === '0'; else: elseTag"
-        >
-          <tr>
-            <th>地址：</th>
-            <td>
-              <input
-                type="text"
-                name="address"
-                placeholder="請輸入地址"
-                [(ngModel)]="order.ship_information"
-              />
-            </td></tr></ng-container
-        ><ng-template #elseTag>
-          <tr>
-            <th>指定門市：</th>
-            <td>
-              <input
-                type="text"
-                name="address"
-                placeholder="請輸入指定門市名稱及地址"
-                [(ngModel)]="order.ship_information"
-              />
-            </td></tr
-        ></ng-template>
         <tr>
           <th>備註：</th>
           <td>
