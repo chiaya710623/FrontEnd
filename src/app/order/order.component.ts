@@ -1,5 +1,5 @@
 import { ProductsService } from './../products.service';
-import { OrderService } from './../order.service';
+
 import { Component, OnInit } from '@angular/core';
 import { OrdersService } from '../orders.service';
 declare let $: any;
@@ -15,7 +15,7 @@ export class OrderComponent implements OnInit {
   ) {}
   orderlist: any;
   productlist: any;
-  originOrderlist = this.orderlist;
+  newOrderlist: any;
   keyword = '';
   status = ['未出貨', '已出貨', '交易已完成'];
   pay_method = ['信用卡', '超商付款'];
@@ -30,26 +30,25 @@ export class OrderComponent implements OnInit {
         Object.keys(order.products).forEach(key => {
           this.products.getProduct(key).subscribe((product: any) => {
             order.productlist.push(product);
-            console.log(product);
+            // console.log(product);
             this.totalAmount += product.sale_price ;
-            console.log(response.Products[product.id]);
+            // console.log(response.Products[product.id]);
           });
         });
       });
     });
   }
-  search() {
-    /*
+  search(keyword) {
     if (this.keyword === '') {
-      this.orderlist = this.originOrderlist;
+      this.newOrderlist = this.orderlist;
     } else {
-      this.orderlist = this.originOrderlist.filter(
-        orderlist => {
+      this.newOrderlist = this.orderlist.filter(
+          results => {
           let flag = false;
-          orderlist.products.forEach(products => flag = flag || products.title.indexOf(this.keyword) !== -1);
+          results.products.forEach(products => flag = flag || products.title.indexOf(this.keyword) !== -1);
           return flag;
         }
       );
-      //*/
+    }
+    console.log(keyword);
   }
-}

@@ -2,8 +2,8 @@
   <div class="header-bot_inner_wthreeinfo_header_mid">
     <div class="col-md-4 header-middle">
     <form action="#" method="post">
-      <input type="search" name="search" placeholder="Search here..." required="" [(ngModel)]="keyword">
-      <input type="submit" value=" " (click)="search()">
+      <input type="search" name="search" placeholder="請輸入訂單編號" required="" [(ngModel)]="keyword">
+      <input type="submit" value=" " (click)="search(this.keyword)">
       <div class="clearfix"></div>
     </form>
     </div>
@@ -11,7 +11,7 @@
 </div>
 <br><br>
 
-<table width="1000" border="1" align="center" valign="center">
+<table width="1000" border="1" align="center" valign="center" >
   　<tr  align="center">
       <td colspan="2">
         <font size="5" color="red" >查詢結果</font>

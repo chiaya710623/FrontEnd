@@ -11,9 +11,9 @@ import { ProductsService } from '../products.service';
 })
 export class CheckoutComponent implements OnInit {
   constructor(
-    private cartService: CartService,
+    public cartService: CartService,
     private productsService: ProductsService,
-    private ordersService: OrdersService,
+    public ordersService: OrdersService,
     private router: Router
   ) {}
   total = 0;
