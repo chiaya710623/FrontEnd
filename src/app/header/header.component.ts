@@ -30,6 +30,8 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
+    this.cartService.patchCart(this.cartService.cart);
+    // 等下處理成 註冊新會員後跟結帳完自動patch一個空購物車
     this.usersService.logout();
     alert('已登出');
     this.usersService.isLogin = 0;

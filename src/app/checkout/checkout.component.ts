@@ -37,6 +37,7 @@ export class CheckoutComponent implements OnInit {
       ship_information: '',
       ship_method: '0'
     };
+    this.cartService.patchCart([]);
     alert('訂單已送出，謝謝您的購買！');
     this.router.navigate(['/']);
   }
