@@ -46,7 +46,7 @@
                     <div class="entry value-plus active"></div> </a
                   >
                 </div><span
-                    *ngIf="item.item_amount == item.product.stock"
+                    *ngIf="item?.item_amount === item?.product?.stock"
                     style="color:red; z-index: 10;"
                     >已達庫存上限</span
                   >

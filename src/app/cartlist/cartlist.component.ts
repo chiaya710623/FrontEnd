@@ -54,12 +54,14 @@ export class CartlistComponent implements OnInit {
     ) {
       this.cartService.cart[index].item_amount++;
       this.cartService.show_cart[index].item_amount++;
+      this.total += this.cartService.show_cart[index].product.sale_price;
     }
   }
   minor(index) {
     if (this.cartService.cart[index].item_amount > 1) {
       this.cartService.cart[index].item_amount--;
       this.cartService.show_cart[index].item_amount--;
+      this.total -= this.cartService.show_cart[index].product.sale_price;
     }
   }
   delete_item(index) {
