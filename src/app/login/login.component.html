@@ -16,10 +16,6 @@
             type="email"
           />
           <label>Email</label
-          ><label
-            style="padding-left: 80%; color:red;"
-            ng-show="loginForm.email.$error.required && loginForm.email.$dirty"
-            >請勿空白。</label
           >
         </div>
         <div class="styled-input">
@@ -33,11 +29,7 @@
             required
           />
           <label>Password</label>
-          <label
-            style="padding-left: 80%; color:red;"
-            ng-show="loginForm.password.$error.required && loginForm.email.$dirty"
-            >請勿空白。</label
-          >
+
         </div>
 
         <input
@@ -51,7 +43,7 @@
       </form>
 
       <div class="clearfix"></div>
-      <p><a href="#" [routerLink]="['/signup']"> 點我註冊會員</a></p>
+      <p><a href="#" [routerLink]="['/signup']"> 註冊會員</a></p>
     </div>
     <div class="col-md-4 modal_body_right modal_body_right1">
       <img src="assets/images/log_pic.jpg" alt=" " />
