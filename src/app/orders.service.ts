@@ -30,25 +30,18 @@ export class OrdersService {
   }
 
   patchOrder() {
-    let orderstring = '';
+    const productobject = {};
     this.cartService.cart.forEach(product => {
-      this.order.products[product.id] = product.item_amount;
+      productobject[product.id] = product.item_amount;
     });
     console.log('送出訂單前的商品內容：', this.order.products);
+    this.order.products = productobject;
 
-    const orderobject = {};
-    for (const key in this.order) {
-      if (1) {
-        orderobject[key] = this.order[key];
-      }
-    }
-    orderstring = JSON.stringify(orderobject);
-
-    console.log(`${environment.api}orders?`, encodeURI(`${orderstring}`));
+    console.log(`${environment.api}orders?`, JSON.stringify(`${this.order}`));
     return this.httpClient
-      .patch(`${environment.api}orders?`, encodeURI(`${orderstring}`), {
+      .patch(`${environment.api}orders`, this.order, {
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
+          'Content-Type': 'application/json',
           Authorization: `Bearer ${localStorage.getItem('token')}`
         }
       })

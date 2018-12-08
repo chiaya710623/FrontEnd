@@ -56,20 +56,24 @@ export class CheckoutComponent implements OnInit {
   }
 
   submit() {
-    this.ordersService.patchOrder();
-    this.ordersService.order = {
-      state: '1',
-      message: '',
-      pay_method: '0',
-      receiver: '',
-      receiver_phone: '',
-      products: [],
-      ship_method: '0'
-    };
-    this.cartService.cart = [];
-    console.log('送出訂單後的購物車：', this.cart);
-    this.cartService.patchCart(this.cartService.cart);
-    alert('訂單已送出，謝謝您的購買！');
-    this.router.navigate(['/']);
+    if (this.order.receiver_phone.match(/0(9[0-9]{8}|[2-8][0-9]{7,9})/) {
+      this.ordersService.patchOrder();
+      this.ordersService.order = {
+        state: '1',
+        message: '',
+        pay_method: '0',
+        receiver: '',
+        receiver_phone: '',
+        products: [],
+        ship_method: '0'
+      };
+      this.cartService.cart = [];
+      console.log('送出訂單後的購物車：', this.cart);
+      this.cartService.patchCart(this.cartService.cart);
+      alert('訂單已送出，謝謝您的購買！');
+      this.router.navigate(['/']);
+    } else {
+      alert('電話號碼不符合規則');
+    }
   }
 }
