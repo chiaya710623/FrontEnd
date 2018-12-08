@@ -56,7 +56,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   submit() {
-    if (this.order.receiver_phone.match(/0(9[0-9]{8}|[2-8][0-9]{7,9})/) {
+    if (this.order.receiver_phone.match(/0(9[0-9]{8}|[2-8][0-9]{7,9})/)) {
       this.ordersService.patchOrder();
       this.ordersService.order = {
         state: '1',
