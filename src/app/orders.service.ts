@@ -17,7 +17,7 @@ export class OrdersService {
     pay_method: '0',
     receiver: '',
     receiver_phone: '',
-    products: [],
+    products: {},
     ship_method: '0'
   };
 
@@ -34,26 +34,19 @@ export class OrdersService {
     this.cartService.cart.forEach(product => {
       this.order.products[product.id] = product.item_amount;
     });
-    console.log(this.order.products);
+    console.log('送出訂單前的商品內容：', this.order.products);
+
+    const orderobject = {};
     for (const key in this.order) {
-      if (key === 'products') {
-        orderstring = orderstring.concat(
-          key,
-          '=',
-          JSON.stringify(this.order[key]),
-          '&'
-        );
-      } else {
-        orderstring = orderstring.concat(key, '=', this.order[key]);
-        if (key !== 'ship_method') {
-          orderstring = orderstring.concat('&');
-        }
+      if (1) {
+        orderobject[key] = this.order[key];
       }
     }
+    orderstring = JSON.stringify(orderobject);
 
-    console.log(`${environment.api}orders`, `?${orderstring}`);
+    console.log(`${environment.api}orders?`, encodeURI(`${orderstring}`));
     return this.httpClient
-      .patch(`${environment.api}orders`, `?${orderstring}`, {
+      .patch(`${environment.api}orders?`, encodeURI(`${orderstring}`), {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
           Authorization: `Bearer ${localStorage.getItem('token')}`

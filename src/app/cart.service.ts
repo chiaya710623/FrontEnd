@@ -53,7 +53,7 @@ export class CartService {
 
   delete_item(index) {
     this.cart.splice(index, index + 1);
-      this.show_cart.splice(index, index + 1);
+    this.show_cart.splice(index, index + 1);
     if (this.usersService.isLogin()) {
       this.cookieService.set('cart', JSON.stringify(this.cart));
     }
@@ -86,12 +86,13 @@ export class CartService {
   }
 
   patchCart(cart) {
+    console.log('更新購物車前的購物車', cart);
     if (this.usersService.isLogin()) {
       const cartdata = {};
       cart.forEach(product => {
         cartdata[product.id] = product.item_amount;
       });
-      console.log(cartdata);
+      console.log('更新購物車傳的參數', JSON.stringify(cartdata));
       return this.httpClient
         .patch(
           `${environment.api}orders/cart`,

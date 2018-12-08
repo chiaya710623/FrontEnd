@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
           this.cartService.getCart().subscribe(
             (cartdata: any) => {
               // 放入資料庫中的購物車
-              console.log(cartdata);
+              console.log('登入時從資料庫抓的購物車：', cartdata);
               if (cartdata.products !== {}) {
                 Object.keys(cartdata.products).forEach(product => {
                   this.cartService.cart.push({
@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
                   });
                 });
               }
-              console.log(this.cartService.cart);
+              console.log('登入時從資料庫抓的購物車：', this.cartService.cart);
             },
             (err: any) => {
               console.log(err);
