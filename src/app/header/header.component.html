@@ -119,7 +119,7 @@
                     <div class="col-sm-9 multi-gd-img">
                       <ul class="multi-column-dropdown">
                         <ng-container *ngFor="let category of categories">
-                          <li style="font-size: 80%; text-align: left;">
+                          <li style="font-size: 100%; text-align: left;">
                             <a
                               [routerLink]="['/products']"
                               (click)="
@@ -134,9 +134,11 @@
                                 };
                                 reload('/products')
                               "
-                              >{{ category?.name
-                              }}<span *ngIf="category.subcategory">：</span></a
-                            >
+                            >{{ category?.name}}
+                              <span *ngIf="category.subcategory">：
+
+                              </span>
+                            </a>
                             <span
                               *ngFor="let subcategory of category?.subcategory"
                               style="font-size: 80%;"
@@ -154,8 +156,8 @@
                                   };
                                   reload('/products')
                                 "
-                                >{{ subcategory.name }}
-                              </a>
+                              >{{ subcategory.name }}
+                              </a>/
                             </span>
                           </li></ng-container
                         >

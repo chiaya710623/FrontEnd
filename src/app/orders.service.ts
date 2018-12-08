@@ -37,7 +37,6 @@ export class OrdersService {
     console.log('送出訂單前的商品內容：', this.order.products);
     this.order.products = productobject;
 
-    console.log(`${environment.api}orders?`, JSON.stringify(`${this.order}`));
     return this.httpClient
       .patch(`${environment.api}orders`, this.order, {
         headers: {
