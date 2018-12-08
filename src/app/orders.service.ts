@@ -43,6 +43,7 @@ export class OrdersService {
       }
     }
     orderstring = JSON.stringify(orderobject);
+    console.log(`${environment.api}orders?`, (`${orderstring}`));
 
     console.log(`${environment.api}orders?`, encodeURI(`${orderstring}`));
     return this.httpClient
