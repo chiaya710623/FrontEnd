@@ -26,7 +26,7 @@
                   <td>
                     <select
                       [(ngModel)]="this.productsService.search.category"
-                      (change)="this.productsService.search.subcategory='';getSubcategories($event.target.value);"
+                      (change)="this.productsService.search.subcategory=''; this.productsService.etSubcategories($event.target.value);"
                     >
                       -->
                       <option value="">請選擇主類別</option>

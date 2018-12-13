@@ -34,8 +34,8 @@ export class OrdersService {
     this.cartService.cart.forEach(product => {
       productobject[product.id] = product.item_amount;
     });
-    console.log('送出訂單前的商品內容：', this.order.products);
     this.order.products = productobject;
+    console.log('送出訂單前的商品內容：', this.order.products);
 
     return this.httpClient
       .patch(`${environment.api}orders`, this.order, {
