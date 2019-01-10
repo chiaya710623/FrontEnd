@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  api: 'https://host.limaois.me:1723/api/',
+  api: 'https://localhost/api/',
 };
 
 /*
