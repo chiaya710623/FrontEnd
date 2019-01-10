@@ -38,10 +38,10 @@
           value="登入"
           (click)="login()"
           ng-disable="loginForm.$invalid"
-        />
+        /> or 
+      <div class="fb-login-button" data-max-rows="1" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false" scope="email"></div>
         <p ><a href="http://host.limaois.me:1723/password/reset"> 忘記密碼</a></p>
       </form>
-
       <div class="clearfix"></div>
       <p><a href="#" [routerLink]="['/signup']"> 註冊會員</a></p>
     </div>

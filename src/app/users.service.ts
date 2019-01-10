@@ -22,6 +22,10 @@ export class UsersService {
     return this.httpClient.post(`${environment.api}login`, user);
   }
 
+  fbLogin(token) {
+    return this.httpClient.get(`${environment.api}fblogin?token=${token}`);
+  }
+
   getUser() {
     return this.httpClient.get(`${environment.api}register`);
   }
